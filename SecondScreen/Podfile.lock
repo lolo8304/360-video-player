@@ -1,0 +1,20 @@
+PODS:
+  - PocketSocket (1.0.1):
+    - PocketSocket/Client (= 1.0.1)
+    - PocketSocket/Core (= 1.0.1)
+    - PocketSocket/Server (= 1.0.1)
+  - PocketSocket/Client (1.0.1):
+    - PocketSocket/Core
+  - PocketSocket/Core (1.0.1)
+  - PocketSocket/Server (1.0.1):
+    - PocketSocket/Client
+
+DEPENDENCIES:
+  - PocketSocket
+
+SPEC CHECKSUMS:
+  PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
+
+PODFILE CHECKSUM: b7fdc1740fee7144e9acf0e3eb6ed484fde36631
+
+COCOAPODS: 1.1.1

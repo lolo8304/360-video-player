@@ -1,0 +1,3 @@
+target 'SecondScreen' do
+    pod 'PocketSocket'
+end
