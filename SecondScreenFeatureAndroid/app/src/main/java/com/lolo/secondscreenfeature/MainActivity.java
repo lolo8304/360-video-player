@@ -3,6 +3,7 @@ package com.lolo.secondscreenfeature;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.hardware.SensorManager;
+import android.net.nsd.NsdServiceInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -16,7 +17,11 @@ import org.hitlabnz.sensor_fusion_demo.orientationProvider.OrientationProvider;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.OrientationProviderDelegate;
 import org.hitlabnz.sensor_fusion_demo.representation.Quaternion;
 
+import java.net.URI;
 import java.net.URISyntaxException;
+
+import static org.java_websocket.WebSocket.READYSTATE.NOT_YET_CONNECTED;
+import static org.java_websocket.WebSocket.READYSTATE.OPEN;
 
 public class MainActivity extends AppCompatActivity implements MessageDelegate, OrientationProviderDelegate {
 
@@ -26,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
     private OrientationProvider currentOrientationProvider;
 
     SecondScreenClient client;
+
     int count = 0;
     TextView logs;
     TextView endPoint;
@@ -48,10 +54,18 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         this.logs = (TextView) findViewById(R.id.sent);
         this.endPoint = (TextView) findViewById(R.id.endPoint);
         try {
-            this.endPoint.setText(this.getMyApplication().getEndPoint().toString());
-            this.client = new SecondScreenClient(this.getMyApplication().getEndPoint());
+            URI uri = this.getMyApplication().getClientEndPoint();
+            this.endPoint.setText(uri.toString());
+            this.client = new SecondScreenClient(uri);
             this.client.delegate = this;
-            this.client.connect();
+            this.client.connectBlocking();
+
+            NsdHelper nsdHelper = new NsdHelper(this);
+            nsdHelper.initializeNsd();
+            nsdHelper.discoverServices();
+            NsdServiceInfo service = nsdHelper.getChosenServiceInfo();
+
+
 
             this.currentOrientationProvider = new ImprovedOrientationSensor1Provider((SensorManager) this.getSystemService(this.SENSOR_SERVICE));
             this.currentOrientationProvider.delegate = this;
@@ -93,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
             textView.setText(newMessage);
             count = 0;
         } else {
-            textView.setText(newMessage + "\n" + textView.getText());
+            //textView.setText(newMessage + "\n" + textView.getText());
         }
     }
 
@@ -121,7 +135,11 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         Quaternion quaternion = new Quaternion();
         this.currentOrientationProvider.getQuaternion(quaternion);
         String message = quaternion.toString();
-        this.client.send(message);
-        this.addAppendLog(this.logs, "sent: "+message);
+        if (this.client != null && this.client.getReadyState() == OPEN) {
+            this.client.send(message);
+            this.addAppendLog(this.logs, "sent: "+message);
+        } else {
+            this.addAppendLog(this.logs, "not open yet / "+this.client.getReadyState()+": "+message);
+        }
     }
 }

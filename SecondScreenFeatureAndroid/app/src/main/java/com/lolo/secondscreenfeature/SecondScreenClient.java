@@ -4,6 +4,8 @@ package com.lolo.secondscreenfeature;
 import android.util.Log;
 
 import org.java_websocket.client.WebSocketClient;
+import org.java_websocket.drafts.Draft;
+import org.java_websocket.drafts.Draft_17;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
@@ -17,10 +19,14 @@ public class SecondScreenClient extends WebSocketClient {
     public MessageDelegate delegate;
 
     public SecondScreenClient(URI serverURI) {
-        super(serverURI);
+        this(serverURI, new Draft_17());
+    }
+    public SecondScreenClient( URI serverUri , Draft draft ) {
+        super(serverUri, draft);
     }
 
-    @Override
+
+        @Override
     public void onMessage( String message ) {
         if (this.delegate != null) {
             this.delegate.onMessage(message);

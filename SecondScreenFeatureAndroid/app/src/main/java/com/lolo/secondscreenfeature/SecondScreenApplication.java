@@ -24,11 +24,11 @@ public class SecondScreenApplication extends Application {
     private static final int SERVER_PORT = 12345;
 
     private SecondScreenServer mServer;
+    private NsdHelper nsdHelper;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        startServer();
     }
 
     private void startServer() {
@@ -77,5 +77,8 @@ public class SecondScreenApplication extends Application {
 
     public URI getEndPoint() throws URISyntaxException {
         return this.getServer().getEndPoint();
+    }
+    public URI getClientEndPoint() throws URISyntaxException {
+        return new URI("ws://192.168.0.243:12345");
     }
 }
