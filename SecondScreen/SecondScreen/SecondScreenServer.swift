@@ -13,6 +13,8 @@ class SecondScreenServer : NSObject {
     var url: URL?
     let port: Int!
     var socketServer: PSWebSocketServer?
+    var gcdSocket: GCDAsyncSocket?
+    var bonjourService: NetService?
     
     public init(port: Int) {
         self.port = port
@@ -59,23 +61,39 @@ class SecondScreenServer : NSObject {
         let url: URL = URL(string: urlString)!
         return url
     }
-    func start(delegate: PSWebSocketServerDelegate) {
+    func start(delegate: PSWebSocketServerDelegate, udpDelegate: GCDAsyncSocketDelegate, bonjourDelegate: NetServiceDelegate) {
         self.stop()
         self.socketServer = PSWebSocketServer.init(host: self.getWiFiAddress(), port: 12345)
         self.socketServer?.delegate = delegate
         self.socketServer?.start()
+        
+        self.gcdSocket = GCDAsyncSocket(delegate: udpDelegate, delegateQueue: DispatchQueue.main)
+        var port: UInt16 = 0
+        do {
+            try self.gcdSocket?.accept(onPort: port)
+            port = (self.gcdSocket?.localPort)!
+            self.bonjourService = NetService(domain: "local.", type: "_AXAVR360._tcp.", name: "", port: Int32(port))
+            self.bonjourService?.delegate = bonjourDelegate
+            self.bonjourService?.publish()
+        } catch {
+            self.stop()
+        }
     }
     func stop() {
         if (self.socketServer != nil) {
             self.socketServer?.stop()
             self.socketServer = nil
         }
+        if (self.gcdSocket != nil) {
+            self.gcdSocket?.disconnect()
+            self.gcdSocket = nil
+        }
+        if (self.bonjourService != nil) {
+            self.bonjourService?.stop()
+            self.bonjourService = nil
+        }
     }
     
-    
-}
-
-class SecondScreenClient {
     
 }
 

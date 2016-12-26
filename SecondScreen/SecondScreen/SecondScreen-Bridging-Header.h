@@ -4,6 +4,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Security/Security.h>
-#import <SocketRocket/SocketRocket.h>
 #import <PocketSocket/PSWebSocketServer.h>
+#import <CocoaAsyncSocket/GCDAsyncUdpSocket.h>
+#import <CocoaAsyncSocket/GCDAsyncSocket.h>
 #include <ifaddrs.h>

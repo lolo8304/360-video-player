@@ -1,4 +1,7 @@
 PODS:
+  - CocoaAsyncSocket (7.5.1):
+    - CocoaAsyncSocket/GCD (= 7.5.1)
+  - CocoaAsyncSocket/GCD (7.5.1)
   - PocketSocket (1.0.1):
     - PocketSocket/Client (= 1.0.1)
     - PocketSocket/Core (= 1.0.1)
@@ -10,11 +13,13 @@ PODS:
     - PocketSocket/Client
 
 DEPENDENCIES:
+  - CocoaAsyncSocket
   - PocketSocket
 
 SPEC CHECKSUMS:
+  CocoaAsyncSocket: e0a7e93b2ffa411592ff87e58524fbbc9b95b4fa
   PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
 
-PODFILE CHECKSUM: b7fdc1740fee7144e9acf0e3eb6ed484fde36631
+PODFILE CHECKSUM: eb2c0aa7e2e9507c80bf4b4de7a29bf2087df6ba
 
 COCOAPODS: 1.1.1

@@ -1,3 +1,4 @@
 target 'SecondScreen' do
     pod 'PocketSocket'
+    pod 'CocoaAsyncSocket'
 end

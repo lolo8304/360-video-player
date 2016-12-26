@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func startServer(delegate: PSWebSocketServerDelegate) {
         self.socketServer = SecondScreenServer(port: 12345)
-        self.socketServer?.start(delegate: delegate)
+        self.socketServer?.start(delegate: delegate, udpDelegate: self, bonjourDelegate: self)
     }
     func stopServer() {
         self.socketServer?.stop()
@@ -48,7 +48,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+
     
     
 }
 
+
+
+extension AppDelegate : GCDAsyncSocketDelegate {
+    func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
+        
+    }
+    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+        
+    }
+}
+extension AppDelegate : NetServiceDelegate {
+    func netServiceDidPublish(_ sender: NetService) {
+        NSLog("Bonjour Service Published: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) port(\(sender.port))");
+    }
+    func netService(_ sender: NetService, didNotPublish errorDict: [String : NSNumber]) {
+        NSLog("Failed to Publish: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) port(\(sender.port))");
+        
+    }
+}

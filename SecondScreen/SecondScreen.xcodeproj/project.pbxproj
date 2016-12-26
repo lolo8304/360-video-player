@@ -7,18 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8F2FAB07442DA39247E5D7E6 /* libPods-SecondScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A3E5C856774CB3448F946FD /* libPods-SecondScreen.a */; };
+		0EB922E14C855CDC47457719 /* libPods-SecondScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBFDD50C213BC6FC72C535C /* libPods-SecondScreen.a */; };
 		E11AFDF81E10355F009C7E8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11AFDF71E10355F009C7E8F /* AppDelegate.swift */; };
 		E11AFDFA1E10355F009C7E8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11AFDF91E10355F009C7E8F /* ViewController.swift */; };
 		E11AFDFD1E10355F009C7E8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11AFDFB1E10355F009C7E8F /* Main.storyboard */; };
 		E11AFDFF1E10355F009C7E8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E11AFDFE1E10355F009C7E8F /* Assets.xcassets */; };
 		E11AFE021E10355F009C7E8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE001E10355F009C7E8F /* LaunchScreen.storyboard */; };
 		E11AFE0C1E103643009C7E8F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE0B1E103643009C7E8F /* Podfile */; };
-		E11AFE0E1E103763009C7E8F /* SecondScreenServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11AFE0D1E103763009C7E8F /* SecondScreenServer.swift */; };
+		E11AFE131E109544009C7E8F /* SecondScreenServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11AFE121E109544009C7E8F /* SecondScreenServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8A3E5C856774CB3448F946FD /* libPods-SecondScreen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SecondScreen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ED136A7E18703C7E324B4AC /* Pods-SecondScreen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreen.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreen/Pods-SecondScreen.release.xcconfig"; sourceTree = "<group>"; };
 		E11AFDF41E10355F009C7E8F /* SecondScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecondScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11AFDF71E10355F009C7E8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -28,9 +27,10 @@
 		E11AFE011E10355F009C7E8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E11AFE031E10355F009C7E8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E11AFE0B1E103643009C7E8F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		E11AFE0D1E103763009C7E8F /* SecondScreenServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondScreenServer.swift; sourceTree = SOURCE_ROOT; };
 		E11AFE0F1E103795009C7E8F /* SecondScreen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SecondScreen-Bridging-Header.h"; sourceTree = "<group>"; };
+		E11AFE121E109544009C7E8F /* SecondScreenServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondScreenServer.swift; sourceTree = "<group>"; };
 		F6EB514396150EE61CE2F6E6 /* Pods-SecondScreen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreen/Pods-SecondScreen.debug.xcconfig"; sourceTree = "<group>"; };
+		FFBFDD50C213BC6FC72C535C /* libPods-SecondScreen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SecondScreen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,7 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F2FAB07442DA39247E5D7E6 /* libPods-SecondScreen.a in Frameworks */,
+				0EB922E14C855CDC47457719 /* libPods-SecondScreen.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,7 +57,7 @@
 		953991134EFBDE3A299AED49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8A3E5C856774CB3448F946FD /* libPods-SecondScreen.a */,
+				FFBFDD50C213BC6FC72C535C /* libPods-SecondScreen.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -84,7 +84,7 @@
 		E11AFDF61E10355F009C7E8F /* SecondScreen */ = {
 			isa = PBXGroup;
 			children = (
-				E11AFE0D1E103763009C7E8F /* SecondScreenServer.swift */,
+				E11AFE121E109544009C7E8F /* SecondScreenServer.swift */,
 				E11AFDF71E10355F009C7E8F /* AppDelegate.swift */,
 				E11AFDF91E10355F009C7E8F /* ViewController.swift */,
 				E11AFDFB1E10355F009C7E8F /* Main.storyboard */,
@@ -228,7 +228,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E11AFDFA1E10355F009C7E8F /* ViewController.swift in Sources */,
-				E11AFE0E1E103763009C7E8F /* SecondScreenServer.swift in Sources */,
+				E11AFE131E109544009C7E8F /* SecondScreenServer.swift in Sources */,
 				E11AFDF81E10355F009C7E8F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

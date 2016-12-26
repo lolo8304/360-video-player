@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>CocoaAsyncSocket.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>PocketSocket.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,7 +27,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4A19E40F4AC9182A2FF75C025AC516E7</key>
+		<key>23D7DA26C40DEA0CBB49A7825C7CD4F1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>40275F7CECBAB68BF64CCB16E099AA3E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
