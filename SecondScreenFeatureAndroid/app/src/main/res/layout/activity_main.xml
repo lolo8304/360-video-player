@@ -11,35 +11,201 @@
     tools:context="com.lolo.secondscreenfeature.MainActivity">
 
     <TextView
-        android:text="..."
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/sent"
-        android:layout_weight="1"
-        android:layout_below="@+id/testButton"
-        android:layout_alignParentBottom="true" />
-
-    <Button
-        android:text="Test!"
+        android:text="-0.0000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/testButton"
-        android:onClick="onClickTest"
+        android:id="@+id/Z"
+        android:layout_below="@+id/Y"
+        android:layout_alignLeft="@+id/Y"
+        android:layout_alignStart="@+id/Y" />
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView11"
+        android:layout_toRightOf="@+id/textView7"
+        android:layout_toEndOf="@+id/textView7"
+        android:id="@+id/Y" />
+
+    <Button
+        android:text="Stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toRightOf="@+id/testButton"
+        android:layout_toEndOf="@+id/testButton"
+        android:onClick="stopVideo (MainActivity)" />
 
     <TextView
         android:text="none"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/testButton"
-        android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp"
         android:id="@+id/endPoint"
+        android:textAlignment="viewStart"
+        android:layout_below="@+id/testButton"
+        android:layout_marginTop="16dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/testButton"
+        android:layout_toRightOf="@+id/testButton" />
+
+    <TextView
+        android:text="2nd Screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_alignBaseline="@+id/endPoint"
+        android:layout_alignBottom="@+id/endPoint"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:fontFamily="sans-serif"
+        android:textSize="14sp"
+        android:textStyle="normal|bold"
+        android:layout_toLeftOf="@+id/endPoint"
+        android:layout_toStartOf="@+id/endPoint" />
+
+    <Button
+        android:text="Start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/testButton"
+        android:onClick="startVideo (MainActivity)"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:id="@+id/textView3"
+        android:layout_toLeftOf="@+id/endPoint"
+        android:layout_toStartOf="@+id/endPoint"
+        android:textStyle="normal|bold"
         android:textAlignment="viewStart" />
+
+    <CheckBox
+        android:text="Screen connected?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/isScreenConnected"
+        android:focusable="false"
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3" />
+
+    <CheckBox
+        android:text="Sensor sending?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/isScreenConnected"
+        android:layout_alignLeft="@+id/isScreenConnected"
+        android:layout_alignStart="@+id/isScreenConnected"
+        android:id="@+id/isSensorSending"
+        android:focusable="false" />
+
+    <TextView
+        android:text="Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/isSensorSending"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp"
+        android:id="@+id/textView4" />
+
+    <TextView
+        android:text="00:00:00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignLeft="@+id/isSensorSending"
+        android:layout_alignStart="@+id/isSensorSending"
+        android:id="@+id/time" />
+
+    <TextView
+        android:text="Rotation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="19dp"
+        android:id="@+id/textView6" />
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView7"
+        android:id="@+id/X"
+        android:layout_toRightOf="@+id/textView7"
+        android:textAlignment="textEnd" />
+
+    <TextView
+        android:text="Z"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView13"
+        android:layout_below="@+id/textView11"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_alignStart="@+id/textView11" />
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/W"
+        android:layout_below="@+id/Z"
+        android:layout_toRightOf="@+id/textView15"
+        android:layout_toEndOf="@+id/textView15" />
+
+    <TextView
+        android:text="X"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7"
+        android:layout_alignBaseline="@+id/textView6"
+        android:layout_alignBottom="@+id/textView6"
+        android:layout_alignLeft="@+id/time"
+        android:layout_alignStart="@+id/time"
+        android:textAlignment="viewStart" />
+
+    <TextView
+        android:text="Y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView11"
+        android:layout_below="@+id/textView7"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_alignStart="@+id/textView7" />
+
+    <TextView
+        android:text="W"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView15"
+        android:layout_below="@+id/Z"
+        android:layout_toLeftOf="@+id/Z"
+        android:layout_toStartOf="@+id/Z" />
+
+    <TextView
+        android:text="..."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView15"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/logs"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

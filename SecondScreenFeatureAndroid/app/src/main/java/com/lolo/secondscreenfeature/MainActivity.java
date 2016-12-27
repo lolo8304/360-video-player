@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import org.hitlabnz.sensor_fusion_demo.HardwareChecker;
@@ -35,6 +36,12 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
     int count = 0;
     TextView logs;
     TextView endPoint;
+    private TextView labelX;
+    private TextView labelY;
+    private TextView labelZ;
+    private TextView labelW;
+    private CheckBox isScreenConnected;
+    private CheckBox isSensorSending;
 
     public SecondScreenApplication getMyApplication() {
         return (SecondScreenApplication)this.getApplication();
@@ -51,8 +58,14 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         }
 
         setContentView(R.layout.activity_main);
-        this.logs = (TextView) findViewById(R.id.sent);
+        this.logs = (TextView) findViewById(R.id.logs);
         this.endPoint = (TextView) findViewById(R.id.endPoint);
+        this.labelX = (TextView) findViewById(R.id.X);
+        this.labelY = (TextView) findViewById(R.id.Y);
+        this.labelZ = (TextView) findViewById(R.id.Z);
+        this.labelW = (TextView) findViewById(R.id.W);
+        this.isScreenConnected = (CheckBox)findViewById(R.id.isScreenConnected);
+        this.isSensorSending = (CheckBox)findViewById(R.id.isSensorSending);
         try {
             NsdHelper nsdHelper = new NsdHelper(this, this);
             nsdHelper.initializeNsd();
@@ -65,9 +78,16 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
     protected void stop() {
         if (this.currentOrientationProvider != null) {
             this.currentOrientationProvider.stop();
+            this.sensorsDown();
         }
         if (this.client != null) {
             this.client.close();
+            runOnUiThread(new Runnable() {
+                public void run(){
+                    isSensorSending.setSelected(false);
+                }
+            });
+
         }
         this.updateEndPoint("none");
 
@@ -95,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
 
     private void addAppendLog(final TextView textView, final String newMessage) {
         count++;
-        if (count >= 30) {
+        if (count >= 10) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -108,7 +128,16 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         }
     }
 
-    public void onClickTest(View v) {
+    public void startVideo(View v) {
+        try {
+            String message = "hello world";
+            this.client.send(message);
+            this.addAppendLog(this.logs, "sent: "+message);
+        } catch (Exception e) {
+            Log.e("View", "error while sending", e);
+        }
+    }
+    public void stopVideo(View v) {
         try {
             String message = "hello world";
             this.client.send(message);
@@ -135,20 +164,64 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         });
     }
 
+    private void sensorsUp() {
+        if (!isSensorSending.isChecked()) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    isSensorSending.setChecked(true);
+                }
+            });
+        }
+    }
+    private void sensorsDown() {
+        if (isSensorSending.isChecked()) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    isSensorSending.setChecked(false);
+                }
+            });
+        }
+    }
+    private void updateRotationStatus(String message) {
+    }
+
     @Override
     public void onSensorChanged() {
+        this.sensorsUp();
         Quaternion quaternion = new Quaternion();
         this.currentOrientationProvider.getQuaternion(quaternion);
         String message = quaternion.toString();
         if (this.client != null) {
             if (this.client.getReadyState() == OPEN) {
+                screenUp();
                 this.client.send(message);
-                this.addAppendLog(this.logs, "sent: " + message);
+                //this.addAppendLog(this.logs, "sent: " + message);
             } else {
                 this.addAppendLog(this.logs, "not open yet / "+this.client.getReadyState()+": "+message);
+                screenDown();
             }
         } else {
-            //no action, no client websocket
+            screenDown();
+        }
+    }
+
+    private void screenDown() {
+        if (isScreenConnected.isChecked()) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    isScreenConnected.setChecked(false);
+                }
+            });
+        }
+    }
+
+    private void screenUp() {
+        if (!isScreenConnected.isChecked()) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    isScreenConnected.setChecked(true);
+                }
+            });
         }
     }
 
