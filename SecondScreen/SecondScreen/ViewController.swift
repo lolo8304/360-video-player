@@ -62,6 +62,33 @@ class ViewController: UIViewController {
         }
         NSLog("message arrived: \(message)")
     }
+    
+    
+    @IBAction func playVideo(_ sender: UIButton) {
+/*
+         - (void)launchVideoWithName:(NSString*)name ext: (NSString*) ext {
+         NSString *path = [[NSBundle mainBundle] pathForResource:name ofType: ext];
+         NSURL *url = [[NSURL alloc] initFileURLWithPath:path];
+         HTY360PlayerVC *videoController = [[HTY360PlayerVC alloc] initWithNibName:@"HTY360PlayerVC"
+         bundle:nil
+         url:url];
+         
+         if (![[self presentedViewController] isBeingDismissed]) {
+         [self presentViewController:videoController animated:YES completion:nil];
+         }
+         }
+
+ */
+        self.launchVideo(name: "DE-AXA-One_second_away-Final_v3_short_360", ext: "mp4")
+    }
+    func launchVideo(name: String, ext: String) {
+        let path: String = Bundle.main.path(forResource: name, ofType: ext)!
+        let url: URL = URL(fileURLWithPath: path)
+        let videoController: HTY360PlayerVC = HTY360PlayerVC.init(nibName: "HTY360PlayerVC", bundle: nil, url: url)
+        //self.dismiss(animated: true, completion: nil)
+        self.present(videoController, animated: false, completion: nil)
+    }
+
 
 }
 

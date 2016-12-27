@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ws://" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eoS-oy-46v">
-                                <rect key="frame" x="111" y="24" width="248" height="21"/>
+                                <rect key="frame" x="159" y="24" width="200" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -54,19 +54,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qPi-Vm-EsP">
+                                <rect key="frame" x="111" y="20" width="40" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="fvY-0r-CoN"/>
+                                </constraints>
+                                <state key="normal" title="Video"/>
+                                <connections>
+                                    <action selector="playVideo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WPj-Ak-ojU"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="MT6-7X-0BF" firstAttribute="top" secondItem="eoS-oy-46v" secondAttribute="bottom" constant="8" symbolic="YES" id="0Fu-xT-h7L"/>
                             <constraint firstItem="4Is-oW-RPH" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="2iW-tq-t7r"/>
                             <constraint firstItem="QsP-yE-WRb" firstAttribute="leading" secondItem="4Is-oW-RPH" secondAttribute="trailing" constant="15" id="5oJ-XO-ZNS"/>
-                            <constraint firstItem="eoS-oy-46v" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Ibz-hX-Djj"/>
+                            <constraint firstItem="qPi-Vm-EsP" firstAttribute="leading" secondItem="QsP-yE-WRb" secondAttribute="trailing" constant="8" symbolic="YES" id="Afx-Vc-Up4"/>
                             <constraint firstItem="4Is-oW-RPH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="6" id="K8n-en-G02"/>
-                            <constraint firstItem="MT6-7X-0BF" firstAttribute="trailing" secondItem="eoS-oy-46v" secondAttribute="trailing" id="Nlh-gu-e9u"/>
-                            <constraint firstItem="QsP-yE-WRb" firstAttribute="baseline" secondItem="eoS-oy-46v" secondAttribute="baseline" id="WQn-TU-uV0"/>
-                            <constraint firstItem="eoS-oy-46v" firstAttribute="leading" secondItem="QsP-yE-WRb" secondAttribute="trailing" constant="8" symbolic="YES" id="aED-b9-6Kc"/>
+                            <constraint firstItem="eoS-oy-46v" firstAttribute="baseline" secondItem="qPi-Vm-EsP" secondAttribute="baseline" id="Oyr-ct-IiW"/>
+                            <constraint firstItem="eoS-oy-46v" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Qps-4O-tIB"/>
+                            <constraint firstItem="eoS-oy-46v" firstAttribute="leading" secondItem="qPi-Vm-EsP" secondAttribute="trailing" constant="8" symbolic="YES" id="Ysi-ID-obe"/>
+                            <constraint firstItem="eoS-oy-46v" firstAttribute="trailing" secondItem="MT6-7X-0BF" secondAttribute="trailing" id="baE-n2-XAd"/>
+                            <constraint firstItem="MT6-7X-0BF" firstAttribute="top" secondItem="eoS-oy-46v" secondAttribute="bottom" constant="8" symbolic="YES" id="cCd-HC-jdA"/>
                             <constraint firstItem="4Is-oW-RPH" firstAttribute="baseline" secondItem="QsP-yE-WRb" secondAttribute="baseline" id="kZn-sT-ZfY"/>
                             <constraint firstAttribute="bottom" secondItem="MT6-7X-0BF" secondAttribute="bottom" constant="20" symbolic="YES" id="kfx-ra-ttI"/>
+                            <constraint firstItem="qPi-Vm-EsP" firstAttribute="baseline" secondItem="QsP-yE-WRb" secondAttribute="baseline" id="tIN-Yb-KpM"/>
                             <constraint firstItem="MT6-7X-0BF" firstAttribute="leading" secondItem="4Is-oW-RPH" secondAttribute="leading" id="xEc-vx-C4g"/>
                         </constraints>
                     </view>

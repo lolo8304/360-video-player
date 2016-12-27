@@ -65,10 +65,13 @@ extension AppDelegate : GCDAsyncSocketDelegate {
 }
 extension AppDelegate : NetServiceDelegate {
     func netServiceDidPublish(_ sender: NetService) {
-        NSLog("Bonjour Service Published: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) port(\(sender.port))");
+        NSLog("Bonjour Service Published: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
     }
     func netService(_ sender: NetService, didNotPublish errorDict: [String : NSNumber]) {
-        NSLog("Failed to Publish: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) port(\(sender.port))");
+        NSLog("Failed to Publish: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
         
+    }
+    func netServiceDidResolveAddress(_ sender: NetService) {
+        NSLog("Bonjour Service Did Resolved Address: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
     }
 }

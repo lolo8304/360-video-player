@@ -15,6 +15,16 @@
 		E11AFE021E10355F009C7E8F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE001E10355F009C7E8F /* LaunchScreen.storyboard */; };
 		E11AFE0C1E103643009C7E8F /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE0B1E103643009C7E8F /* Podfile */; };
 		E11AFE131E109544009C7E8F /* SecondScreenServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11AFE121E109544009C7E8F /* SecondScreenServer.swift */; };
+		E11AFE181E11D768009C7E8F /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11AFE171E11D768009C7E8F /* VideoViewController.swift */; };
+		E11AFE1A1E11E0EA009C7E8F /* DE-AXA-One_second_away-Final_v3_short_360.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE191E11E0EA009C7E8F /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */; };
+		E11AFE2A1E12B0D5009C7E8F /* HTYGLKVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11AFE1E1E12B0D5009C7E8F /* HTYGLKVC.m */; };
+		E11AFE2B1E12B0D5009C7E8F /* HTY360PlayerVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE1F1E12B0D5009C7E8F /* HTY360PlayerVC.xib */; };
+		E11AFE2C1E12B0D5009C7E8F /* HTYMenuVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE201E12B0D5009C7E8F /* HTYMenuVC.xib */; };
+		E11AFE2D1E12B0D5009C7E8F /* GLProgram.m in Sources */ = {isa = PBXBuildFile; fileRef = E11AFE221E12B0D5009C7E8F /* GLProgram.m */; };
+		E11AFE2E1E12B0D5009C7E8F /* HTY360PlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11AFE241E12B0D5009C7E8F /* HTY360PlayerVC.m */; };
+		E11AFE2F1E12B0D5009C7E8F /* HTYMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11AFE271E12B0D5009C7E8F /* HTYMenuVC.m */; };
+		E11AFE301E12B0D5009C7E8F /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE281E12B0D5009C7E8F /* Shader.fsh */; };
+		E11AFE311E12B0D5009C7E8F /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE291E12B0D5009C7E8F /* Shader.vsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +39,20 @@
 		E11AFE0B1E103643009C7E8F /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E11AFE0F1E103795009C7E8F /* SecondScreen-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SecondScreen-Bridging-Header.h"; sourceTree = "<group>"; };
 		E11AFE121E109544009C7E8F /* SecondScreenServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondScreenServer.swift; sourceTree = "<group>"; };
+		E11AFE171E11D768009C7E8F /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		E11AFE191E11E0EA009C7E8F /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DE-AXA-One_second_away-Final_v3_short_360.mp4"; sourceTree = "<group>"; };
+		E11AFE1E1E12B0D5009C7E8F /* HTYGLKVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTYGLKVC.m; sourceTree = "<group>"; };
+		E11AFE1F1E12B0D5009C7E8F /* HTY360PlayerVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTY360PlayerVC.xib; sourceTree = "<group>"; };
+		E11AFE201E12B0D5009C7E8F /* HTYMenuVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTYMenuVC.xib; sourceTree = "<group>"; };
+		E11AFE211E12B0D5009C7E8F /* GLProgram.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GLProgram.h; sourceTree = "<group>"; };
+		E11AFE221E12B0D5009C7E8F /* GLProgram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GLProgram.m; sourceTree = "<group>"; };
+		E11AFE231E12B0D5009C7E8F /* HTY360PlayerVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTY360PlayerVC.h; sourceTree = "<group>"; };
+		E11AFE241E12B0D5009C7E8F /* HTY360PlayerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTY360PlayerVC.m; sourceTree = "<group>"; };
+		E11AFE251E12B0D5009C7E8F /* HTYGLKVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTYGLKVC.h; sourceTree = "<group>"; };
+		E11AFE261E12B0D5009C7E8F /* HTYMenuVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTYMenuVC.h; sourceTree = "<group>"; };
+		E11AFE271E12B0D5009C7E8F /* HTYMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTYMenuVC.m; sourceTree = "<group>"; };
+		E11AFE281E12B0D5009C7E8F /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		E11AFE291E12B0D5009C7E8F /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		F6EB514396150EE61CE2F6E6 /* Pods-SecondScreen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreen/Pods-SecondScreen.debug.xcconfig"; sourceTree = "<group>"; };
 		FFBFDD50C213BC6FC72C535C /* libPods-SecondScreen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SecondScreen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -84,9 +108,12 @@
 		E11AFDF61E10355F009C7E8F /* SecondScreen */ = {
 			isa = PBXGroup;
 			children = (
+				E11AFE1D1E12B0B5009C7E8F /* HTY360 */,
 				E11AFE121E109544009C7E8F /* SecondScreenServer.swift */,
+				E11AFE191E11E0EA009C7E8F /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */,
 				E11AFDF71E10355F009C7E8F /* AppDelegate.swift */,
 				E11AFDF91E10355F009C7E8F /* ViewController.swift */,
+				E11AFE171E11D768009C7E8F /* VideoViewController.swift */,
 				E11AFDFB1E10355F009C7E8F /* Main.storyboard */,
 				E11AFDFE1E10355F009C7E8F /* Assets.xcassets */,
 				E11AFE001E10355F009C7E8F /* LaunchScreen.storyboard */,
@@ -94,6 +121,49 @@
 				E11AFE0F1E103795009C7E8F /* SecondScreen-Bridging-Header.h */,
 			);
 			path = SecondScreen;
+			sourceTree = "<group>";
+		};
+		E11AFE1D1E12B0B5009C7E8F /* HTY360 */ = {
+			isa = PBXGroup;
+			children = (
+				E11AFE321E12B0F2009C7E8F /* OpenGL */,
+				E11AFE331E12B102009C7E8F /* Player */,
+				E11AFE341E12B10A009C7E8F /* Menu */,
+			);
+			name = HTY360;
+			sourceTree = "<group>";
+		};
+		E11AFE321E12B0F2009C7E8F /* OpenGL */ = {
+			isa = PBXGroup;
+			children = (
+				E11AFE251E12B0D5009C7E8F /* HTYGLKVC.h */,
+				E11AFE1E1E12B0D5009C7E8F /* HTYGLKVC.m */,
+				E11AFE211E12B0D5009C7E8F /* GLProgram.h */,
+				E11AFE221E12B0D5009C7E8F /* GLProgram.m */,
+				E11AFE281E12B0D5009C7E8F /* Shader.fsh */,
+				E11AFE291E12B0D5009C7E8F /* Shader.vsh */,
+			);
+			name = OpenGL;
+			sourceTree = "<group>";
+		};
+		E11AFE331E12B102009C7E8F /* Player */ = {
+			isa = PBXGroup;
+			children = (
+				E11AFE231E12B0D5009C7E8F /* HTY360PlayerVC.h */,
+				E11AFE241E12B0D5009C7E8F /* HTY360PlayerVC.m */,
+				E11AFE1F1E12B0D5009C7E8F /* HTY360PlayerVC.xib */,
+			);
+			name = Player;
+			sourceTree = "<group>";
+		};
+		E11AFE341E12B10A009C7E8F /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				E11AFE261E12B0D5009C7E8F /* HTYMenuVC.h */,
+				E11AFE271E12B0D5009C7E8F /* HTYMenuVC.m */,
+				E11AFE201E12B0D5009C7E8F /* HTYMenuVC.xib */,
+			);
+			name = Menu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,10 +235,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E11AFE301E12B0D5009C7E8F /* Shader.fsh in Resources */,
 				E11AFE021E10355F009C7E8F /* LaunchScreen.storyboard in Resources */,
+				E11AFE2B1E12B0D5009C7E8F /* HTY360PlayerVC.xib in Resources */,
 				E11AFDFF1E10355F009C7E8F /* Assets.xcassets in Resources */,
+				E11AFE1A1E11E0EA009C7E8F /* DE-AXA-One_second_away-Final_v3_short_360.mp4 in Resources */,
+				E11AFE311E12B0D5009C7E8F /* Shader.vsh in Resources */,
 				E11AFE0C1E103643009C7E8F /* Podfile in Resources */,
 				E11AFDFD1E10355F009C7E8F /* Main.storyboard in Resources */,
+				E11AFE2C1E12B0D5009C7E8F /* HTYMenuVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -227,9 +302,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E11AFE2A1E12B0D5009C7E8F /* HTYGLKVC.m in Sources */,
+				E11AFE2F1E12B0D5009C7E8F /* HTYMenuVC.m in Sources */,
 				E11AFDFA1E10355F009C7E8F /* ViewController.swift in Sources */,
+				E11AFE2E1E12B0D5009C7E8F /* HTY360PlayerVC.m in Sources */,
 				E11AFE131E109544009C7E8F /* SecondScreenServer.swift in Sources */,
+				E11AFE181E11D768009C7E8F /* VideoViewController.swift in Sources */,
 				E11AFDF81E10355F009C7E8F /* AppDelegate.swift in Sources */,
+				E11AFE2D1E12B0D5009C7E8F /* GLProgram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -355,6 +435,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = W3U24WE3R3;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SecondScreen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lolo.SecondScreen;
@@ -372,6 +453,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = W3U24WE3R3;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SecondScreen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.lolo.SecondScreen;

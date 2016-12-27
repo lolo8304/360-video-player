@@ -72,7 +72,7 @@ class SecondScreenServer : NSObject {
         do {
             try self.gcdSocket?.accept(onPort: port)
             port = (self.gcdSocket?.localPort)!
-            self.bonjourService = NetService(domain: "local.", type: "_AXAVR360._tcp.", name: "", port: Int32(port))
+            self.bonjourService = NetService(domain: "local.", type: "_ws._tcp.", name: "ws://\(self.getWiFiAddress()!):12345", port: Int32(port))
             self.bonjourService?.delegate = bonjourDelegate
             self.bonjourService?.publish()
         } catch {
