@@ -7,8 +7,5 @@
 #import <PocketSocket/PSWebSocketServer.h>
 #import <CocoaAsyncSocket/GCDAsyncUdpSocket.h>
 #import <CocoaAsyncSocket/GCDAsyncSocket.h>
-#import "GVRPanoramaView.h"
-#import "GVRWidgetView.h"
-#import "GVRVideoView.h"
 #import "HTY360PlayerVC.h"
 #include <ifaddrs.h>

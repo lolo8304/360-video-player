@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     // MAK: actions
     @IBAction func start(_ sender: UIButton) {
         self.app.startServer(delegate: self)
-        self.endPoint.text = self.app.socketServer?.endPoint().absoluteString
+        self.endPoint.text = self.app.socketServer?.endPoint()
     }
     
     @IBAction func stop(_ sender: UIButton) {
@@ -65,20 +65,6 @@ class ViewController: UIViewController {
     
     
     @IBAction func playVideo(_ sender: UIButton) {
-/*
-         - (void)launchVideoWithName:(NSString*)name ext: (NSString*) ext {
-         NSString *path = [[NSBundle mainBundle] pathForResource:name ofType: ext];
-         NSURL *url = [[NSURL alloc] initFileURLWithPath:path];
-         HTY360PlayerVC *videoController = [[HTY360PlayerVC alloc] initWithNibName:@"HTY360PlayerVC"
-         bundle:nil
-         url:url];
-         
-         if (![[self presentedViewController] isBeingDismissed]) {
-         [self presentViewController:videoController animated:YES completion:nil];
-         }
-         }
-
- */
         self.launchVideo(name: "DE-AXA-One_second_away-Final_v3_short_360", ext: "mp4")
     }
     func launchVideo(name: String, ext: String) {

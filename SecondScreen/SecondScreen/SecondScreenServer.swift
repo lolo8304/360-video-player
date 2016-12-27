@@ -10,14 +10,15 @@ import Foundation
 
 class SecondScreenServer : NSObject {
     
-    var url: URL?
-    let port: Int!
+    var urlString: String?
+    var port: Int
     var socketServer: PSWebSocketServer?
     var gcdSocket: GCDAsyncSocket?
     var bonjourService: NetService?
     
     public init(port: Int) {
         self.port = port
+        self.urlString = "none"
     }
     
     // Return IP address of WiFi interface (en0) as a String, or `nil`
@@ -39,7 +40,7 @@ class SecondScreenServer : NSObject {
                 
                 // Check interface name:
                 let name = String(cString: interface.ifa_name)
-                if  name == "en0" {
+                if  (name == "en0" || name == "bridge100") {
                     
                     // Convert interface address to a human readable string:
                     var addr = interface.ifa_addr.pointee
@@ -47,7 +48,11 @@ class SecondScreenServer : NSObject {
                     getnameinfo(&addr, socklen_t(interface.ifa_addr.pointee.sa_len),
                                 &hostname, socklen_t(hostname.count),
                                 nil, socklen_t(0), NI_NUMERICHOST)
-                    address = String(cString: hostname)
+                    let tempAddress = String(cString: hostname)
+                    if (!tempAddress.isEmpty) {
+                        address = tempAddress
+                        NSLog("IF \(name) = \(address!)");
+                    }
                 }
             }
         }
@@ -55,24 +60,24 @@ class SecondScreenServer : NSObject {
         
         return address
     }
-    func endPoint() -> URL {
-        let inetAddress: String = self.getWiFiAddress()!
-        let urlString: String = "ws://\(inetAddress):\(self.port!)"
-        let url: URL = URL(string: urlString)!
-        return url
+    func endPoint() -> String {
+        return self.urlString!
     }
     func start(delegate: PSWebSocketServerDelegate, udpDelegate: GCDAsyncSocketDelegate, bonjourDelegate: NetServiceDelegate) {
+        let hostname: String = self.getWiFiAddress()!
         self.stop()
-        self.socketServer = PSWebSocketServer.init(host: self.getWiFiAddress(), port: 12345)
+        self.socketServer = PSWebSocketServer.init(host: hostname, port: UInt(self.port))
         self.socketServer?.delegate = delegate
         self.socketServer?.start()
+        self.urlString = "ws://\(hostname):\(self.port)"
+
         
         self.gcdSocket = GCDAsyncSocket(delegate: udpDelegate, delegateQueue: DispatchQueue.main)
-        var port: UInt16 = 0
+        var localPort: UInt16 = 0
         do {
-            try self.gcdSocket?.accept(onPort: port)
-            port = (self.gcdSocket?.localPort)!
-            self.bonjourService = NetService(domain: "local.", type: "_ws._tcp.", name: "ws://\(self.getWiFiAddress()!):12345", port: Int32(port))
+            try self.gcdSocket?.accept(onPort: localPort)
+            localPort = (self.gcdSocket?.localPort)!
+            self.bonjourService = NetService(domain: "local.", type: "_ws._tcp.", name: self.urlString!, port: Int32(localPort))
             self.bonjourService?.delegate = bonjourDelegate
             self.bonjourService?.publish()
         } catch {

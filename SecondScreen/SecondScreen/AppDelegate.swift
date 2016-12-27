@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var socketServer: SecondScreenServer?
     
     func startServer(delegate: PSWebSocketServerDelegate) {
-        self.socketServer = SecondScreenServer(port: 12345)
+        self.socketServer = SecondScreenServer(port: 6577)
         self.socketServer?.start(delegate: delegate, udpDelegate: self, bonjourDelegate: self)
     }
     func stopServer() {

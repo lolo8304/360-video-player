@@ -78,7 +78,4 @@ public class SecondScreenApplication extends Application {
     public URI getEndPoint() throws URISyntaxException {
         return this.getServer().getEndPoint();
     }
-    public URI getClientEndPoint() throws URISyntaxException {
-        return new URI("ws://192.168.0.243:12345");
-    }
 }
