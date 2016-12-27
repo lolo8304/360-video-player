@@ -65,7 +65,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func playVideo(_ sender: UIButton) {
-        self.launchVideo(name: "DE-AXA-One_second_away-Final_v3_short_360", ext: "mp4")
+        self.launchVideo(name: "demo", ext: "mv4")
     }
     func launchVideo(name: String, ext: String) {
         let path: String = Bundle.main.path(forResource: name, ofType: ext)!
