@@ -23,7 +23,7 @@ import java.net.URISyntaxException;
 import static org.java_websocket.WebSocket.READYSTATE.NOT_YET_CONNECTED;
 import static org.java_websocket.WebSocket.READYSTATE.OPEN;
 
-public class MainActivity extends AppCompatActivity implements MessageDelegate, OrientationProviderDelegate {
+public class MainActivity extends AppCompatActivity implements MessageDelegate, OrientationProviderDelegate, NsdDelegate {
 
     /**
      * The current orientation provider that delivers device orientation.
@@ -54,37 +54,29 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         this.logs = (TextView) findViewById(R.id.sent);
         this.endPoint = (TextView) findViewById(R.id.endPoint);
         try {
-            URI uri = this.getMyApplication().getClientEndPoint();
-            this.endPoint.setText(uri.toString());
-            this.client = new SecondScreenClient(uri);
-            this.client.delegate = this;
-            this.client.connectBlocking();
-
-            NsdHelper nsdHelper = new NsdHelper(this);
+            NsdHelper nsdHelper = new NsdHelper(this, this);
             nsdHelper.initializeNsd();
             nsdHelper.discoverServices();
-            NsdServiceInfo service = nsdHelper.getChosenServiceInfo();
-
-
-
-            this.currentOrientationProvider = new ImprovedOrientationSensor1Provider((SensorManager) this.getSystemService(this.SENSOR_SERVICE));
-            this.currentOrientationProvider.delegate = this;
-            this.currentOrientationProvider.start();
-            this.addAppendLog(this.logs, "sensors started");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void stop() {
         if (this.currentOrientationProvider != null) {
             this.currentOrientationProvider.stop();
         }
         if (this.client != null) {
             this.client.close();
         }
+        this.updateEndPoint("none");
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        this.stop();
     }
 
 
@@ -101,10 +93,15 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         ad.show();
     }
 
-    private void addAppendLog(TextView textView, String newMessage) {
+    private void addAppendLog(final TextView textView, final String newMessage) {
         count++;
         if (count >= 30) {
-            textView.setText(newMessage);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    textView.setText(newMessage);
+                }
+            });
             count = 0;
         } else {
             //textView.setText(newMessage + "\n" + textView.getText());
@@ -130,16 +127,58 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         });
     }
 
+    private void updateEndPoint(final String uri) {
+        runOnUiThread(new Runnable() {
+            public void run(){
+                endPoint.setText(uri);
+            }
+        });
+    }
+
     @Override
     public void onSensorChanged() {
         Quaternion quaternion = new Quaternion();
         this.currentOrientationProvider.getQuaternion(quaternion);
         String message = quaternion.toString();
-        if (this.client != null && this.client.getReadyState() == OPEN) {
-            this.client.send(message);
-            this.addAppendLog(this.logs, "sent: "+message);
+        if (this.client != null) {
+            if (this.client.getReadyState() == OPEN) {
+                this.client.send(message);
+                this.addAppendLog(this.logs, "sent: " + message);
+            } else {
+                this.addAppendLog(this.logs, "not open yet / "+this.client.getReadyState()+": "+message);
+            }
         } else {
-            this.addAppendLog(this.logs, "not open yet / "+this.client.getReadyState()+": "+message);
+            //no action, no client websocket
         }
     }
+
+    @Override
+    public void onServiceResolved(NsdServiceInfo serviceInfo) {
+        try {
+            this.addAppendLog(this.logs, "service resolved and connect to "+serviceInfo.getServiceName());
+            URI uri = new URI(serviceInfo.getServiceName());
+            this.updateEndPoint(uri.toString());
+            this.client = new SecondScreenClient(uri);
+            this.client.delegate = this;
+            this.client.connectBlocking();
+
+            this.currentOrientationProvider = new ImprovedOrientationSensor1Provider((SensorManager) this.getSystemService(this.SENSOR_SERVICE));
+            this.currentOrientationProvider.delegate = this;
+            this.currentOrientationProvider.start();
+            this.addAppendLog(this.logs, "sensors started");
+
+        } catch (URISyntaxException e) {
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @Override
+    public void onServiceLost(NsdServiceInfo serviceInfo) {
+        this.addAppendLog(this.logs, "service lost from "+serviceInfo.getServiceName());
+        Log.i("View", "service lost from "+serviceInfo.getServiceName());
+        this.stop();
+    }
+
 }

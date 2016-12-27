@@ -14,16 +14,18 @@ public class NsdHelper {
     NsdManager.DiscoveryListener mDiscoveryListener;
     NsdManager.RegistrationListener mRegistrationListener;
 
-    public static final String SERVICE_TYPE = "_AXAVR360._tcp.";
+    public static final String SERVICE_TYPE = "_ws._tcp.";
 
     public static final String TAG = "NsdHelper";
-    public String mServiceName = "NsdChat";
+    public String mServiceName = "ws://";
 
     NsdServiceInfo mService;
+    private NsdDelegate delegate;
 
-    public NsdHelper(Context context) {
+    public NsdHelper(Context context, NsdDelegate delegate) {
         mContext = context;
         mNsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
+        this.delegate = delegate;
     }
 
     public void initializeNsd() {
@@ -45,7 +47,7 @@ public class NsdHelper {
 
             @Override
             public void onServiceFound(NsdServiceInfo service) {
-                Log.d(TAG, "Service discovery success" + service);
+                Log.d(TAG, "Service discovery success " + service);
                 if (!service.getServiceType().equals(SERVICE_TYPE)) {
                     Log.d(TAG, "Unknown Service Type: " + service.getServiceType());
                 } else if (service.getServiceName().equals(mServiceName)) {
@@ -57,7 +59,8 @@ public class NsdHelper {
 
             @Override
             public void onServiceLost(NsdServiceInfo service) {
-                Log.e(TAG, "service lost" + service);
+                Log.e(TAG, "service lost " + service);
+                delegate.onServiceLost(service);
                 if (mService == service) {
                     mService = null;
                 }
@@ -98,6 +101,7 @@ public class NsdHelper {
                     Log.d(TAG, "Same IP.");
                     return;
                 }
+                delegate.onServiceResolved(serviceInfo);
                 mService = serviceInfo;
             }
         };
