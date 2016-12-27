@@ -1,5 +1,4 @@
 target 'SecondScreen' do
     pod 'PocketSocket'
     pod 'CocoaAsyncSocket'
-    pod 'GVRSDK/GVRView'
 end
