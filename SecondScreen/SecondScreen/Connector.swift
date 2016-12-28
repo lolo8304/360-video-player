@@ -16,6 +16,7 @@ class Connector: NSObject {
     }()
     
     private var socketServer: SecondScreenServer?
+    private var connectedDevices = [ String : JSON ]()
     
     private override init() {
     }
@@ -41,6 +42,10 @@ class Connector: NSObject {
         return self.isStarted() ? self.socketServer!.endPoint() : "none"
     }
     
+    func addDevice(uuid: String, deviceId: JSON) {
+        NSLog("register device: \(uuid), data=\(deviceId.rawString()!)")
+        self.connectedDevices[uuid] = deviceId
+    }
     
     public func appendLog(_ message: String) {
         NSLog("message arrived: \(message)")
@@ -70,7 +75,7 @@ extension Connector : PSWebSocketServerDelegate {
     func serverDidStart(_ server: PSWebSocketServer!) {
     }
     func server(_ server: PSWebSocketServer!, didFailWithError error: Error!) {
-        self.showError("webSocket didFailWithError \(error!)", stack: true)
+        //self.showError("webSocket didFailWithError \(error!)", stack: true)
     }
     func server(_ server: PSWebSocketServer!, webSocketDidOpen webSocket: PSWebSocket!) {
     }
@@ -82,13 +87,32 @@ extension Connector : PSWebSocketServerDelegate {
         return true
     }
     func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didFailWithError error: Error!) {
-        self.showError("webSocket didFailWithError \(error!)", stack: true)
+        //self.showError("webSocket didFailWithError \(error!)", stack: true)
     }
     func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
-        self.showError("didCloseWithCode code=\(code), reason=\(reason)", stack: true)
+        self.showError("didCloseWithCode code=\(code), reason=\(reason)", stack: false)
     }
     func server(_ server: PSWebSocketServer!, acceptWebSocketWith request: URLRequest!, address: Data!, trust: SecTrust!, response: AutoreleasingUnsafeMutablePointer<HTTPURLResponse?>!) -> Bool {
-        return true
+        
+        if (PSWebSocket.isWebSocketRequest(request)) {
+            let headers: [String : String] = request.allHTTPHeaderFields!
+            let deviceId: JSON = self.getDeviceId(headers: headers)
+            self.addDevice(uuid: deviceId["device.uuid"].string!, deviceId: deviceId)
+            return true
+        } else {
+            return false
+        }
+    }
+    private func getDeviceId(headers: [String : String]) -> JSON {
+        var deviceName: String = "none"
+        var deviceIp: String = "0.0.0.0"
+        var deviceUUID: String = ""
+        for (key, value) in headers {
+            if (key == "device.name") { deviceName = value }
+            if (key == "device.ip") { deviceIp = value }
+            if (key == "Sec-WebSocket-Key") { deviceUUID = value }
+        }
+        return JSON.init(["device.name": deviceName, "device.ip": deviceIp, "device.uuid": deviceUUID])
     }
 }
 

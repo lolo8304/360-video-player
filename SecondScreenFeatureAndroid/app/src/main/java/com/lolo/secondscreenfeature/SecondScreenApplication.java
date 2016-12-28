@@ -1,7 +1,10 @@
 package com.lolo.secondscreenfeature;
 
 import android.app.Application;
+import android.bluetooth.BluetoothAdapter;
 import android.util.Log;
+
+import com.jaredrummler.android.device.DeviceName;
 
 import java.net.Inet4Address;
 import java.net.InetAddress;
@@ -12,6 +15,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Date;
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.greenrobot.event.EventBus;
 
@@ -23,12 +28,19 @@ public class SecondScreenApplication extends Application {
     private static final String TAG = "MyApplication";
     private static final int SERVER_PORT = 12345;
 
+    private static SecondScreenApplication singleton;
+    public static SecondScreenApplication getInstance(){
+        return singleton;
+    }
+
+
     private SecondScreenServer mServer;
     private NsdHelper nsdHelper;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        singleton = this;
     }
 
     private void startServer() {
@@ -43,7 +55,7 @@ public class SecondScreenApplication extends Application {
         mServer.start();
     }
 
-    private static InetAddress getInetAddress() {
+    public static InetAddress getInetAddress() {
         try {
             for (Enumeration en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
                 NetworkInterface networkInterface = (NetworkInterface) en.nextElement();
@@ -62,6 +74,19 @@ public class SecondScreenApplication extends Application {
         }
 
         return null;
+    }
+
+    public Map<String, String> getDeviceId() {
+        DeviceName.DeviceInfo deviceInfo = DeviceName.getDeviceInfo(SecondScreenApplication.getInstance());
+        Map<String, String> headers = new HashMap<String, String>();
+        headers.put("device.ip", this.getInetAddress().getHostAddress());
+        headers.put("device.marketName", deviceInfo.marketName);
+        headers.put("device.manufacturer", deviceInfo.manufacturer);
+        headers.put("device.model", deviceInfo.model);
+        BluetoothAdapter myDevice = BluetoothAdapter.getDefaultAdapter();
+        String deviceName = myDevice.getName();
+        headers.put("device.name", deviceName);
+        return headers;
     }
 
     @SuppressWarnings("UnusedDeclaration")

@@ -17,6 +17,7 @@ import org.hitlabnz.sensor_fusion_demo.orientationProvider.ImprovedOrientationSe
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.OrientationProvider;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.OrientationProviderDelegate;
 import org.hitlabnz.sensor_fusion_demo.representation.Quaternion;
+import org.java_websocket.framing.CloseFrame;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -81,13 +82,12 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
             this.sensorsDown();
         }
         if (this.client != null) {
-            this.client.close();
+            this.client.getConnection().closeConnection(CloseFrame.NORMAL, this.getMyApplication().getDeviceId().get("device.ip"));
             runOnUiThread(new Runnable() {
                 public void run(){
-                    isSensorSending.setSelected(false);
+                    isScreenConnected.setSelected(false);
                 }
             });
-
         }
         this.updateEndPoint("none");
 
@@ -231,17 +231,15 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
             this.addAppendLog(this.logs, "service resolved and connect to "+serviceInfo.getServiceName());
             URI uri = new URI(serviceInfo.getServiceName());
             this.updateEndPoint(uri.toString());
-            this.client = new SecondScreenClient(uri);
+            this.client = SecondScreenClient.create(uri);
             this.client.delegate = this;
-            this.client.connectBlocking();
+            this.client.connect();
 
             this.currentOrientationProvider = new ImprovedOrientationSensor1Provider((SensorManager) this.getSystemService(this.SENSOR_SERVICE));
             this.currentOrientationProvider.delegate = this;
             this.currentOrientationProvider.start();
             this.addAppendLog(this.logs, "sensors started");
-
         } catch (URISyntaxException e) {
-        } catch (InterruptedException e) {
             e.printStackTrace();
         }
 

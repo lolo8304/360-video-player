@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Connector.server(PSWebSocketServer!, acceptWebSocketWith : URLRequest!, address : Data!, trust : SecTrust!, response : AutoreleasingUnsafeMutablePointer&lt;HTTPURLResponse?&gt;!) -&gt; Bool:Connector.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "request.httpBody">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.switchImage() -&gt; ():HomeViewController.swift">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

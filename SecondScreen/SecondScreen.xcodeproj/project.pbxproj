@@ -26,6 +26,7 @@
 		E11AFE361E1328E6009C7E8F /* demo.m4v in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE351E1328E6009C7E8F /* demo.m4v */; };
 		E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF41E140AFA0055104C /* HomeViewController.swift */; };
 		E1E99EF71E141A7D0055104C /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF61E141A7D0055104C /* Connector.swift */; };
+		E1E99EFC1E14528C0055104C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		E11AFE351E1328E6009C7E8F /* demo.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo.m4v; sourceTree = "<group>"; };
 		E1E99EF41E140AFA0055104C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E1E99EF61E141A7D0055104C /* Connector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
+		E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		F6EB514396150EE61CE2F6E6 /* Pods-SecondScreen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreen/Pods-SecondScreen.debug.xcconfig"; sourceTree = "<group>"; };
 		FFBFDD50C213BC6FC72C535C /* libPods-SecondScreen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SecondScreen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -180,6 +182,7 @@
 			children = (
 				E11AFE121E109544009C7E8F /* SecondScreenServer.swift */,
 				E1E99EF61E141A7D0055104C /* Connector.swift */,
+				E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */,
 			);
 			name = Connector;
 			sourceTree = "<group>";
@@ -332,6 +335,7 @@
 				E1E99EF71E141A7D0055104C /* Connector.swift in Sources */,
 				E11AFE2A1E12B0D5009C7E8F /* HTYGLKVC.m in Sources */,
 				E11AFE2F1E12B0D5009C7E8F /* HTYMenuVC.m in Sources */,
+				E1E99EFC1E14528C0055104C /* SwiftyJSON.swift in Sources */,
 				E11AFDFA1E10355F009C7E8F /* ViewController.swift in Sources */,
 				E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */,
 				E11AFE2E1E12B0D5009C7E8F /* HTY360PlayerVC.m in Sources */,

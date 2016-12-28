@@ -1,7 +1,11 @@
 
 package com.lolo.secondscreenfeature;
 
+import android.bluetooth.BluetoothAdapter;
+import android.provider.Settings;
 import android.util.Log;
+
+import com.jaredrummler.android.device.DeviceName;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
@@ -9,6 +13,8 @@ import org.java_websocket.drafts.Draft_17;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Doris on 25.12.2016.
@@ -18,11 +24,12 @@ public class SecondScreenClient extends WebSocketClient {
     private static final String TAG = "SecondScreenClient";
     public MessageDelegate delegate;
 
-    public SecondScreenClient(URI serverURI) {
-        this(serverURI, new Draft_17());
+    public static SecondScreenClient create(URI serverURI) {
+        return new SecondScreenClient(serverURI, new Draft_17(), SecondScreenApplication.getInstance().getDeviceId(), 0);
     }
-    public SecondScreenClient( URI serverUri , Draft draft ) {
-        super(serverUri, draft);
+
+    protected SecondScreenClient(URI serverUri , Draft draft , Map<String,String> headers , int connecttimeout ) {
+        super(serverUri, draft, headers, connecttimeout);
     }
 
 
