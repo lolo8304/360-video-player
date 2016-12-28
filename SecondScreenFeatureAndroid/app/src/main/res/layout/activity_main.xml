@@ -99,7 +99,8 @@
         android:layout_alignBaseline="@+id/textView3"
         android:layout_alignBottom="@+id/textView3"
         android:layout_toRightOf="@+id/textView3"
-        android:layout_toEndOf="@+id/textView3" />
+        android:layout_toEndOf="@+id/textView3"
+        android:clickable="false" />
 
     <CheckBox
         android:text="Sensor sending?"
@@ -109,7 +110,8 @@
         android:layout_alignLeft="@+id/isScreenConnected"
         android:layout_alignStart="@+id/isScreenConnected"
         android:id="@+id/isSensorSending"
-        android:focusable="false" />
+        android:focusable="false"
+        android:clickable="false" />
 
     <TextView
         android:text="Time"

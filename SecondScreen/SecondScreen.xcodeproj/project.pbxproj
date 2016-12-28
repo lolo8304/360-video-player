@@ -24,6 +24,8 @@
 		E11AFE301E12B0D5009C7E8F /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE281E12B0D5009C7E8F /* Shader.fsh */; };
 		E11AFE311E12B0D5009C7E8F /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE291E12B0D5009C7E8F /* Shader.vsh */; };
 		E11AFE361E1328E6009C7E8F /* demo.m4v in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE351E1328E6009C7E8F /* demo.m4v */; };
+		E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF41E140AFA0055104C /* HomeViewController.swift */; };
+		E1E99EF71E141A7D0055104C /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF61E141A7D0055104C /* Connector.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		E11AFE281E12B0D5009C7E8F /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		E11AFE291E12B0D5009C7E8F /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		E11AFE351E1328E6009C7E8F /* demo.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo.m4v; sourceTree = "<group>"; };
+		E1E99EF41E140AFA0055104C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E1E99EF61E141A7D0055104C /* Connector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
 		F6EB514396150EE61CE2F6E6 /* Pods-SecondScreen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreen/Pods-SecondScreen.debug.xcconfig"; sourceTree = "<group>"; };
 		FFBFDD50C213BC6FC72C535C /* libPods-SecondScreen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SecondScreen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -106,16 +110,15 @@
 		E11AFDF61E10355F009C7E8F /* SecondScreen */ = {
 			isa = PBXGroup;
 			children = (
-				E11AFE1D1E12B0B5009C7E8F /* HTY360 */,
-				E11AFE121E109544009C7E8F /* SecondScreenServer.swift */,
-				E11AFE351E1328E6009C7E8F /* demo.m4v */,
+				E11AFE0F1E103795009C7E8F /* SecondScreen-Bridging-Header.h */,
 				E11AFDF71E10355F009C7E8F /* AppDelegate.swift */,
-				E11AFDF91E10355F009C7E8F /* ViewController.swift */,
+				E11AFE1D1E12B0B5009C7E8F /* HTY360 */,
+				E1E99EF91E141C0F0055104C /* Connector */,
+				E1E99EFA1E141C270055104C /* Controller */,
 				E11AFDFB1E10355F009C7E8F /* Main.storyboard */,
 				E11AFDFE1E10355F009C7E8F /* Assets.xcassets */,
 				E11AFE001E10355F009C7E8F /* LaunchScreen.storyboard */,
-				E11AFE031E10355F009C7E8F /* Info.plist */,
-				E11AFE0F1E103795009C7E8F /* SecondScreen-Bridging-Header.h */,
+				E1E99EF81E141C060055104C /* Resources */,
 			);
 			path = SecondScreen;
 			sourceTree = "<group>";
@@ -161,6 +164,33 @@
 				E11AFE201E12B0D5009C7E8F /* HTYMenuVC.xib */,
 			);
 			name = Menu;
+			sourceTree = "<group>";
+		};
+		E1E99EF81E141C060055104C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E11AFE031E10355F009C7E8F /* Info.plist */,
+				E11AFE351E1328E6009C7E8F /* demo.m4v */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		E1E99EF91E141C0F0055104C /* Connector */ = {
+			isa = PBXGroup;
+			children = (
+				E11AFE121E109544009C7E8F /* SecondScreenServer.swift */,
+				E1E99EF61E141A7D0055104C /* Connector.swift */,
+			);
+			name = Connector;
+			sourceTree = "<group>";
+		};
+		E1E99EFA1E141C270055104C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E11AFDF91E10355F009C7E8F /* ViewController.swift */,
+				E1E99EF41E140AFA0055104C /* HomeViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,9 +329,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1E99EF71E141A7D0055104C /* Connector.swift in Sources */,
 				E11AFE2A1E12B0D5009C7E8F /* HTYGLKVC.m in Sources */,
 				E11AFE2F1E12B0D5009C7E8F /* HTYMenuVC.m in Sources */,
 				E11AFDFA1E10355F009C7E8F /* ViewController.swift in Sources */,
+				E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */,
 				E11AFE2E1E12B0D5009C7E8F /* HTY360PlayerVC.m in Sources */,
 				E11AFE131E109544009C7E8F /* SecondScreenServer.swift in Sources */,
 				E11AFDF81E10355F009C7E8F /* AppDelegate.swift in Sources */,

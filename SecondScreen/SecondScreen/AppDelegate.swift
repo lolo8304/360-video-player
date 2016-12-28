@@ -12,18 +12,10 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
-    var socketServer: SecondScreenServer?
-    
-    func startServer(delegate: PSWebSocketServerDelegate) {
-        self.socketServer = SecondScreenServer(port: 6577)
-        self.socketServer?.start(delegate: delegate, udpDelegate: self, bonjourDelegate: self)
-    }
-    func stopServer() {
-        self.socketServer?.stop()
-    }
+    let connector: Connector = Connector.instance
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        self.connector.startServer()
         return true
     }
     
@@ -47,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        self.connector.stopServer()
     }
 
     
@@ -55,23 +48,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 
-extension AppDelegate : GCDAsyncSocketDelegate {
-    func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
-        
-    }
-    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
-        
-    }
-}
-extension AppDelegate : NetServiceDelegate {
-    func netServiceDidPublish(_ sender: NetService) {
-        NSLog("Bonjour Service Published: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
-    }
-    func netService(_ sender: NetService, didNotPublish errorDict: [String : NSNumber]) {
-        NSLog("Failed to Publish: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
-        
-    }
-    func netServiceDidResolveAddress(_ sender: NetService) {
-        NSLog("Bonjour Service Did Resolved Address: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
+
+extension UIViewController {
+    
+    func launchVideo(name: String, ext: String) {
+        let path: String = Bundle.main.path(forResource: name, ofType: ext)!
+        let url: URL = URL(fileURLWithPath: path)
+        let videoController: HTY360PlayerVC = HTY360PlayerVC.init(nibName: "HTY360PlayerVC", bundle: nil, url: url)
+        //self.dismiss(animated: true, completion: nil)
+        self.present(videoController, animated: false, completion: nil)
     }
 }

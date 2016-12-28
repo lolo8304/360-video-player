@@ -15,6 +15,7 @@ class SecondScreenServer : NSObject {
     var socketServer: PSWebSocketServer?
     var gcdSocket: GCDAsyncSocket?
     var bonjourService: NetService?
+    var started: Bool = false
     
     public init(port: Int) {
         self.port = port
@@ -60,6 +61,12 @@ class SecondScreenServer : NSObject {
         
         return address
     }
+    func isStarted() -> Bool {
+        return started
+    }
+    func isStopped() -> Bool {
+        return !started
+    }
     func endPoint() -> String {
         return self.urlString!
     }
@@ -80,6 +87,7 @@ class SecondScreenServer : NSObject {
             self.bonjourService = NetService(domain: "local.", type: "_ws._tcp.", name: self.urlString!, port: Int32(localPort))
             self.bonjourService?.delegate = bonjourDelegate
             self.bonjourService?.publish()
+            self.started = true
         } catch {
             self.stop()
         }
@@ -97,6 +105,7 @@ class SecondScreenServer : NSObject {
             self.bonjourService?.stop()
             self.bonjourService = nil
         }
+        self.started = false
     }
     
     

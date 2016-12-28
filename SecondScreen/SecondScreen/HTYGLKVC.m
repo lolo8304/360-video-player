@@ -436,6 +436,7 @@ int esGenSphere(int numSlices, float radius, float **vertices,
             modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, cYaw);
             
             modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, ROLL_CORRECTION);
+            modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, ES_PI);
             
             modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, self.fingerRotationX);
             modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, self.fingerRotationY);
