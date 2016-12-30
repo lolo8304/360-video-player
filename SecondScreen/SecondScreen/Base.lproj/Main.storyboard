@@ -60,6 +60,9 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="playVideo:" destination="rPL-Uc-l0u" eventType="touchUpInside" id="VTN-8q-NQD"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U6x-Aq-Amp">
                                 <rect key="frame" x="20" y="712" width="98" height="36"/>
@@ -104,6 +107,8 @@
                     <navigationItem key="navigationItem" title="Home" id="D5A-8I-3o3"/>
                     <connections>
                         <outlet property="imageView" destination="xnY-bb-0FK" id="08v-SE-Owx"/>
+                        <outlet property="nofConnectionLabel" destination="C4P-iy-ReN" id="xfE-Ck-R5w"/>
+                        <outlet property="satusView" destination="KoH-QW-ebD" id="CTe-Zk-Eo5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Nt-wF-mKn" userLabel="First Responder" sceneMemberID="firstResponder"/>

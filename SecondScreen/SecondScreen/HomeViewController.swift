@@ -12,6 +12,8 @@ import UIKit
 class HomeViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var satusView: UIImageView!
+    @IBOutlet weak var nofConnectionLabel: UILabel!
     
     var timer = Timer()
     var lastNo: Int = 1
@@ -20,8 +22,12 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.countNo = countImages()
+        Connector.instance.delegate = self
+    }
+    override func viewDidAppear(_ animated: Bool) {
         let aSelector : Selector = #selector(HomeViewController.switchImage)
         timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: aSelector, userInfo: nil, repeats: true)
+        Connector.instance.refreshState()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -56,4 +62,24 @@ class HomeViewController: UIViewController {
     }
 
     
+}
+
+extension HomeViewController: ConnectorDelegate {
+    func serverDidStart() {
+        DispatchQueue.main.async() { () -> Void in
+            self.satusView.image = UIImage(named: "status-green")
+        }
+    }
+    func serverDidStop() {
+        DispatchQueue.main.async() { () -> Void in
+            self.satusView.image = UIImage(named: "status-green")
+        }
+    }
+    func device() {
+        
+    }
+    func statusChanged() {
+        
+    }
+
 }
