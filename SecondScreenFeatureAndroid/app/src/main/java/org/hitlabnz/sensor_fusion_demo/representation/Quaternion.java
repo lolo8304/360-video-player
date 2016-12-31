@@ -113,7 +113,6 @@ public class Quaternion extends Vector4f {
      * Multiply this quaternion by the input quaternion and store the result in the out quaternion
      * 
      * @param input
-     * @param output
      */
     public void multiplyByQuat(Quaternion input) {
         this.dirty = true;
@@ -270,6 +269,10 @@ public class Quaternion extends Vector4f {
     @Override
     public String toString() {
         return "{X: " + getX() + ", Y:" + getY() + ", Z:" + getZ() + ", W:" + getW() + "}";
+    }
+
+    public String toJSONString() {
+        return "{ \"action\":\"position\", \"X\":" + getX() + ", \"Y\":" + getY() + ", \"Z\":" + getZ() + ", \"W\":" + getW() + "}";
     }
 
     /**

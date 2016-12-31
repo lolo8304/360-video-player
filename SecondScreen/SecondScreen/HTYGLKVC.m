@@ -9,7 +9,10 @@
 #import "HTYGLKVC.h"
 #import "GLProgram.h"
 #import "HTY360PlayerVC.h"
+#import "CurrentQuaternion.h"
+#import "Quaternion.h"
 #import <CoreMotion/CoreMotion.h>
+
 
 #define MAX_OVERTURE 95.0
 #define MIN_OVERTURE 25.0
@@ -72,6 +75,7 @@ GLint uniforms[NUM_UNIFORMS];
 @property (assign, nonatomic) GLuint vertexTexCoordID;
 @property (assign, nonatomic) GLuint vertexTexCoordAttributeIndex;
 @property (assign, nonatomic, readwrite) BOOL isUsingMotion;
+@property (assign, nonatomic, readwrite) MotionType motionType;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -170,7 +174,7 @@ GLint uniforms[NUM_UNIFORMS];
 }
 
 - (void)dealloc {
-    [self stopDeviceMotion];
+    [self startDeviceMotion];
     [self tearDownVideoCache];
     [self tearDownGL];
     
@@ -346,6 +350,7 @@ int esGenSphere(int numSlices, float radius, float **vertices,
 
 - (void)startDeviceMotion {
     self.isUsingMotion = NO;
+    self.motionType = kUsingFingerMotion;
     
     self.motionManager = [[CMMotionManager alloc] init];
     self.referenceAttitude = nil;
@@ -365,7 +370,33 @@ int esGenSphere(int numSlices, float radius, float **vertices,
     self.minGyroRotationY = 0;
     
     self.isUsingMotion = YES;
+    self.motionType = kUsingDeviceMotion;
+
 }
+
+- (void)startRemoteMotion {
+    self.motionManager = [[CMMotionManager alloc] init];
+    self.referenceAttitude = nil;
+    self.motionManager.deviceMotionUpdateInterval = 1.0 / 60.0;
+    self.motionManager.gyroUpdateInterval = 1.0f / 60;
+    self.motionManager.showsDeviceMovementDisplay = YES;
+    
+    [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXArbitraryCorrectedZVertical];
+    
+    self.referenceAttitude = self.motionManager.deviceMotion.attitude; // Maybe nil actually. reset it later when we have data
+    
+    self.savedGyroRotationX = 0;
+    self.savedGyroRotationY = 0;
+    self.maxGyroRotationX = 0;
+    self.maxGyroRotationY = 0;
+    self.minGyroRotationX = 0;
+    self.minGyroRotationY = 0;
+    
+    self.isUsingMotion = YES;
+    self.motionType = kUsingRemoteMotion;
+    
+}
+
 
 - (void)setFingerRotationX: (CGFloat) x Y: (CGFloat) y {
     self.fingerRotationX = x;
@@ -378,12 +409,13 @@ int esGenSphere(int numSlices, float radius, float **vertices,
 
 }
 
-- (void)stopDeviceMotion {
+- (void)startFingerMotion {
     CGFloat fingerRotX = self.savedGyroRotationX-self.referenceAttitude.roll- ROLL_CORRECTION;
     CGFloat fingerRotY = self.savedGyroRotationY;
     [self setFingerRotationX: fingerRotX Y: fingerRotY];
     
     self.isUsingMotion = NO;
+    self.motionType = kUsingFingerMotion;
     [self.motionManager stopDeviceMotionUpdates];
     self.motionManager = nil;
 }
@@ -409,7 +441,7 @@ int esGenSphere(int numSlices, float radius, float **vertices,
     GLKMatrix4 modelViewMatrix = GLKMatrix4Identity;
     float scale = SphereScale;
     modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, scale, scale, scale);
-    if(self.isUsingMotion) {
+    if(self.isUsingMotion && self.motionType == kUsingDeviceMotion) {
         CMDeviceMotion *deviceMotion = self.motionManager.deviceMotion;
         if (deviceMotion != nil) {
             CMAttitude *attitude = deviceMotion.attitude;
@@ -446,6 +478,35 @@ int esGenSphere(int numSlices, float radius, float **vertices,
             [self logAndMeasureX:self.savedGyroRotationX Y:self.savedGyroRotationY];
 
         }
+    } else if(self.isUsingMotion && self.motionType == kUsingRemoteMotion) {
+        // see http://sunday-lab.blogspot.ch/2008/04/get-pitch-yaw-roll-from-quaternion.html
+
+        Quaternion* q = [[CurrentQuaternion instance] dequeue];
+        float cRoll = -fabs(q.roll); // Up/Down landscape
+        float cYaw = q.yaw;  // Left/ Right landscape
+        float cPitch = q.pitch; // Depth landscape
+        /*
+        UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+        if (orientation == UIDeviceOrientationLandscapeRight ){
+            cPitch = cPitch*-1; // correct depth when in landscape right
+        }*/
+        
+        
+        modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, cRoll); // Up/Down axis
+        modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, cPitch);
+        modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, cYaw);
+        
+        modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, ROLL_CORRECTION);
+        modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, ES_PI);
+        
+        modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, self.fingerRotationX);
+        modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, self.fingerRotationY);
+        
+        self.savedGyroRotationX = cRoll + ROLL_CORRECTION + self.fingerRotationX;
+        self.savedGyroRotationY = cPitch + self.fingerRotationY;
+        [self logAndMeasureX:self.savedGyroRotationX Y:self.savedGyroRotationY];
+        
+        
     } else {
         modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, self.fingerRotationX);
         modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, self.fingerRotationY);

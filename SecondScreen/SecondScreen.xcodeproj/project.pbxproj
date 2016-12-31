@@ -24,6 +24,9 @@
 		E11AFE301E12B0D5009C7E8F /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE281E12B0D5009C7E8F /* Shader.fsh */; };
 		E11AFE311E12B0D5009C7E8F /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE291E12B0D5009C7E8F /* Shader.vsh */; };
 		E11AFE361E1328E6009C7E8F /* demo.m4v in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE351E1328E6009C7E8F /* demo.m4v */; };
+		E1A1350D1E180538003A4B24 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A1350C1E180538003A4B24 /* Queue.swift */; };
+		E1A135111E1809C6003A4B24 /* CurrentQuaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A135101E1809C6003A4B24 /* CurrentQuaternion.m */; };
+		E1A135151E1810C0003A4B24 /* Quaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A135141E1810C0003A4B24 /* Quaternion.m */; };
 		E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF41E140AFA0055104C /* HomeViewController.swift */; };
 		E1E99EF71E141A7D0055104C /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF61E141A7D0055104C /* Connector.swift */; };
 		E1E99EFC1E14528C0055104C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */; };
@@ -54,6 +57,11 @@
 		E11AFE281E12B0D5009C7E8F /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		E11AFE291E12B0D5009C7E8F /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		E11AFE351E1328E6009C7E8F /* demo.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo.m4v; sourceTree = "<group>"; };
+		E1A1350C1E180538003A4B24 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
+		E1A135101E1809C6003A4B24 /* CurrentQuaternion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentQuaternion.m; sourceTree = "<group>"; };
+		E1A135121E180A00003A4B24 /* CurrentQuaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrentQuaternion.h; sourceTree = "<group>"; };
+		E1A135131E180EE4003A4B24 /* Quaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
+		E1A135141E1810C0003A4B24 /* Quaternion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quaternion.m; sourceTree = "<group>"; };
 		E1E99EF41E140AFA0055104C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E1E99EF61E141A7D0055104C /* Connector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
 		E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -138,6 +146,10 @@
 		E11AFE321E12B0F2009C7E8F /* OpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				E1A135131E180EE4003A4B24 /* Quaternion.h */,
+				E1A135141E1810C0003A4B24 /* Quaternion.m */,
+				E1A135121E180A00003A4B24 /* CurrentQuaternion.h */,
+				E1A135101E1809C6003A4B24 /* CurrentQuaternion.m */,
 				E11AFE251E12B0D5009C7E8F /* HTYGLKVC.h */,
 				E11AFE1E1E12B0D5009C7E8F /* HTYGLKVC.m */,
 				E11AFE211E12B0D5009C7E8F /* GLProgram.h */,
@@ -183,6 +195,7 @@
 				E11AFE121E109544009C7E8F /* SecondScreenServer.swift */,
 				E1E99EF61E141A7D0055104C /* Connector.swift */,
 				E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */,
+				E1A1350C1E180538003A4B24 /* Queue.swift */,
 			);
 			name = Connector;
 			sourceTree = "<group>";
@@ -335,12 +348,15 @@
 				E1E99EF71E141A7D0055104C /* Connector.swift in Sources */,
 				E11AFE2A1E12B0D5009C7E8F /* HTYGLKVC.m in Sources */,
 				E11AFE2F1E12B0D5009C7E8F /* HTYMenuVC.m in Sources */,
+				E1A1350D1E180538003A4B24 /* Queue.swift in Sources */,
 				E1E99EFC1E14528C0055104C /* SwiftyJSON.swift in Sources */,
+				E1A135151E1810C0003A4B24 /* Quaternion.m in Sources */,
 				E11AFDFA1E10355F009C7E8F /* ViewController.swift in Sources */,
 				E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */,
 				E11AFE2E1E12B0D5009C7E8F /* HTY360PlayerVC.m in Sources */,
 				E11AFE131E109544009C7E8F /* SecondScreenServer.swift in Sources */,
 				E11AFDF81E10355F009C7E8F /* AppDelegate.swift in Sources */,
+				E1A135111E1809C6003A4B24 /* CurrentQuaternion.m in Sources */,
 				E11AFE2D1E12B0D5009C7E8F /* GLProgram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

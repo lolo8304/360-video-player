@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         this.sensorsUp();
         Quaternion quaternion = new Quaternion();
         this.currentOrientationProvider.getQuaternion(quaternion);
-        String message = quaternion.toString();
+        String message = quaternion.toJSONString();
         if (this.client != null) {
             if (this.client.getReadyState() == OPEN) {
                 screenUp();

@@ -9,3 +9,5 @@
 #import <CocoaAsyncSocket/GCDAsyncSocket.h>
 #import "HTY360PlayerVC.h"
 #include <ifaddrs.h>
+#import "Quaternion.h"
+#import "CurrentQuaternion.h"

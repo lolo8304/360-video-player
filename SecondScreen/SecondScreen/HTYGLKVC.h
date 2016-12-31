@@ -12,11 +12,18 @@
 @class HTY360PlayerVC;
 
 @interface HTYGLKVC : GLKViewController <UIGestureRecognizerDelegate>
+typedef NS_ENUM(NSUInteger, MotionType) {
+    kUsingDeviceMotion,
+    kUsingRemoteMotion,
+    kUsingFingerMotion
+};
 
 @property (strong, nonatomic, readwrite) HTY360PlayerVC* videoPlayerController;
 @property (assign, nonatomic, readonly) BOOL isUsingMotion;
+@property (assign, nonatomic, readonly) MotionType motionType;
 
 - (void)startDeviceMotion;
-- (void)stopDeviceMotion;
+- (void)startRemoteMotion;
+- (void)startFingerMotion;
 
 @end

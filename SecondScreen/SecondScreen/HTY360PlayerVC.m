@@ -118,6 +118,10 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 - (void)viewWillAppear:(BOOL)animated {
     [self updatePlayButton];
 }
+- (void)viewDidAppear:(BOOL)animated {
+    [self playButtonTouched: nil];
+    [self gyroButtonTouched: nil];
+}
 
 #pragma mark - video communication
 
@@ -585,7 +589,11 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 - (IBAction)gyroButtonTouched:(id)sender {
     if(self.glkViewController.isUsingMotion) {
-        [self.glkViewController stopDeviceMotion];
+        if (self.glkViewController.motionType == kUsingDeviceMotion) {
+            [self.glkViewController startRemoteMotion];
+        } else {
+            [self.glkViewController startFingerMotion];
+        }
     } else {
         [self.glkViewController startDeviceMotion];
     }

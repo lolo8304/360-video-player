@@ -96,6 +96,7 @@ class Device: NSObject {
         let jsonString: String? = json.rawString(.utf8, options: .prettyPrinted)
         return jsonString!
     }
+    
 }
 
 class Connector: NSObject {
@@ -107,6 +108,7 @@ class Connector: NSObject {
     private var socketServer: SecondScreenServer?
     private var connectedDevices = [ String : Device ]()
     private var connectedDevicesByWebSocket = [ PSWebSocket : Device ]()
+    public var connectedDevice: Device?
     
     public var delegate: ConnectorDelegate?
     public var status: ConnectorStatus = .Stopped
@@ -220,6 +222,7 @@ class Connector: NSObject {
             NSLog("register websocket of device: \(ip), data=\(device.toString())")
             self.status = .Connected
             self.statusChanged()
+            self.connectedDevice = device
         }
     }
 
@@ -273,6 +276,14 @@ extension Connector : PSWebSocketServerDelegate {
         if (device != nil) {
             device!.pinged = true
             device!.ponged = true
+            let json:JSON = JSON.init(data: message.data(using: .utf8, allowLossyConversion: false)!)
+            if (json["action"].stringValue == "position") {
+                
+                CurrentQuaternion.instance().enqueue(json["X"].floatValue, add: json["Y"].floatValue, add: json["Z"].floatValue, add: json["W"].floatValue)
+                //{"action":"position", "X":0.21428485, "Y":-0.32440406, "Z":-0.71701926, "W":-0.5779501}
+                NSLog("queue size = \(CurrentQuaternion.instance().count())");
+            }
+            
         } else {
             let json: JSON = JSON.init(data: message.data(using: .utf8)!)
             if (json["action"].stringValue == "request-connection-data") {
