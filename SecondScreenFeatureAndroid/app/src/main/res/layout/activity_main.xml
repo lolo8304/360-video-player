@@ -36,7 +36,7 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/testButton"
         android:layout_toEndOf="@+id/testButton"
-        android:onClick="stopVideo (MainActivity)" />
+        android:onClick="stopVideo" />
 
     <TextView
         android:text="none"
@@ -71,7 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/testButton"
-        android:onClick="startVideo (MainActivity)"
+        android:onClick="startVideo"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

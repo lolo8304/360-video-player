@@ -27,10 +27,12 @@ class HomeViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         let aSelector : Selector = #selector(HomeViewController.switchImage)
         timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: aSelector, userInfo: nil, repeats: true)
+        Connector.instance.startServer()
         Connector.instance.refreshState()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        Connector.instance.delegate = nil
         timer.invalidate()
     }
     
@@ -65,21 +67,18 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: ConnectorDelegate {
-    func serverDidStart() {
-        DispatchQueue.main.async() { () -> Void in
-            self.satusView.image = UIImage(named: "status-green")
-        }
-    }
-    func serverDidStop() {
-        DispatchQueue.main.async() { () -> Void in
-            self.satusView.image = UIImage(named: "status-green")
-        }
-    }
     func device() {
         
     }
-    func statusChanged() {
-        
+    func statusChanged(started: Bool, server: ConnectorStatus, bonjourServer: ConnectorBonjourStatus, connections: Int) {
+        DispatchQueue.main.async() { () -> Void in
+            if (started) {
+                self.satusView.image = UIImage(named: "status-green")
+            } else {
+                self.satusView.image = UIImage(named: "status-green")
+            }
+            self.nofConnectionLabel.text = "\(connections)"
+        }
     }
 
 }

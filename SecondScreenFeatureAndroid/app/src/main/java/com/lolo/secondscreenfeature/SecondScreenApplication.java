@@ -93,7 +93,7 @@ public class SecondScreenApplication extends Application {
     public void onEvent(SocketMessageEvent event) {
         String message = event.getMessage();
         Log.i(TAG, "message arrived ("+message+")");
-//        mServer.sendMessage("echo: " + message + ", "+ new Date());
+        mServer.sendMessage("echo: " + message + ", "+ new Date());
     }
 
     public SecondScreenServer getServer() {
@@ -103,4 +103,5 @@ public class SecondScreenApplication extends Application {
     public URI getEndPoint() throws URISyntaxException {
         return this.getServer().getEndPoint();
     }
+
 }

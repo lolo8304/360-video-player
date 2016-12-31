@@ -18,9 +18,13 @@ import org.hitlabnz.sensor_fusion_demo.orientationProvider.OrientationProvider;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.OrientationProviderDelegate;
 import org.hitlabnz.sensor_fusion_demo.representation.Quaternion;
 import org.java_websocket.framing.CloseFrame;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.java_websocket.WebSocket.READYSTATE.NOT_YET_CONNECTED;
 import static org.java_websocket.WebSocket.READYSTATE.OPEN;
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
     private OrientationProvider currentOrientationProvider;
 
     SecondScreenClient client;
+    NsdHelper nsdHelper;
 
     int count = 0;
     TextView logs;
@@ -67,10 +72,16 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         this.labelW = (TextView) findViewById(R.id.W);
         this.isScreenConnected = (CheckBox)findViewById(R.id.isScreenConnected);
         this.isSensorSending = (CheckBox)findViewById(R.id.isSensorSending);
+        this.start();
+    }
+
+    protected void start() {
         try {
-            NsdHelper nsdHelper = new NsdHelper(this, this);
-            nsdHelper.initializeNsd();
-            nsdHelper.discoverServices();
+            if (this.nsdHelper == null) {
+                this.nsdHelper = new NsdHelper(this, this);
+                this.nsdHelper.initializeNsd();
+                this.nsdHelper.discoverServices();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,16 +90,24 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
     protected void stop() {
         if (this.currentOrientationProvider != null) {
             this.currentOrientationProvider.stop();
+            this.currentOrientationProvider = null;
             this.sensorsDown();
         }
         if (this.client != null) {
-            this.client.getConnection().closeConnection(CloseFrame.NORMAL, this.getMyApplication().getDeviceId().get("device.ip"));
+            this.client.close();
+            this.client = null;
             runOnUiThread(new Runnable() {
                 public void run(){
                     isScreenConnected.setSelected(false);
                 }
             });
         }
+        /*
+        if (this.nsdHelper != null) {
+            this.nsdHelper.stopDiscovery();
+            this.nsdHelper = null;
+        }
+        */
         this.updateEndPoint("none");
 
     }
@@ -98,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         super.onDestroy();
         this.stop();
     }
-
 
     private void displayWarning(String text) {
         AlertDialog ad = new AlertDialog.Builder(this).create();
@@ -129,26 +147,40 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
     }
 
     public void startVideo(View v) {
-        try {
-            String message = "hello world";
-            this.client.send(message);
-            this.addAppendLog(this.logs, "sent: "+message);
-        } catch (Exception e) {
-            Log.e("View", "error while sending", e);
+        if (this.client == null) {
+            this.start();
         }
     }
     public void stopVideo(View v) {
-        try {
-            String message = "hello world";
-            this.client.send(message);
-            this.addAppendLog(this.logs, "sent: "+message);
-        } catch (Exception e) {
-            Log.e("View", "error while sending", e);
+        if (this.client != null) {
+            this.stop();
         }
     }
 
     @Override
+    public void onClose(int code, String reason, boolean remote) {
+        Log.e("View", "close webSocket");
+        this.screenDown();
+
+    }
+
+    @Override
     public void onMessage(final String message) {
+        try {
+            JSONObject messageJson = new JSONObject(message);
+            String action = messageJson.getString("action");
+            if (action != null && action.equals("request-connection-data")) {
+                Map<String, String> device = new HashMap<String, String>();
+                device.put("action", action);
+                device.put("ip", SecondScreenApplication.getInetAddress().getHostAddress());
+                String messageBack = new JSONObject(device).toString();
+                this.client.send(messageBack);
+                Log.e("View", "send device information on request: "+messageBack);
+            }
+        } catch (JSONException e) {
+            Log.e("View", "error while parsing JSON request from server", e);
+        }
+
         runOnUiThread(new Runnable() {
             public void run(){
                 addAppendLog(logs, message);

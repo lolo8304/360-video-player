@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.start(self.startButton)
+        self.endPoint.text = self.app.connector.endPoint()
     }
     
     override func didReceiveMemoryWarning() {

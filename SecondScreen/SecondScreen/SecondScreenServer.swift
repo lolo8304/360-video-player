@@ -86,7 +86,12 @@ class SecondScreenServer : NSObject {
     }
     func stop() {
         if (self.socketServer != nil) {
-            self.socketServer?.stop()
+            do {
+                try
+                    self.socketServer?.stop()
+            } catch {
+                NSLog("error orrured while stopping server ")
+            }
             self.socketServer = nil
         }
         if (self.gcdSocket != nil) {

@@ -47,11 +47,14 @@ public class SecondScreenClient extends WebSocketClient {
 
     @Override
     public void onClose( int code, String reason, boolean remote ) {
-        Log.i(TAG, "onClose code="+code+", reason="+reason+", remote="+remote);
+        if (this.delegate != null) {
+            this.delegate.onClose(code, reason, remote);
+        }
     }
 
     @Override
     public void onError( Exception ex ) {
         Log.e(TAG, "onError", ex);
     }
+
 }

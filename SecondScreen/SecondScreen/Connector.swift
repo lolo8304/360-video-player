@@ -9,10 +9,8 @@
 import Foundation
 
 protocol ConnectorDelegate {
-    func serverDidStart()
-    func serverDidStop()
     func device()
-    func statusChanged()
+    func statusChanged(started: Bool, server:ConnectorStatus, bonjourServer: ConnectorBonjourStatus, connections: Int)
 }
 
 enum ConnectorStatus {
@@ -29,6 +27,77 @@ enum ConnectorBonjourStatus {
     case Stopped
 }
 
+enum DeviceStatus {
+    case closed
+    case accepted
+    case connected
+    case selected
+}
+
+
+class Device: NSObject {
+    public var connector: Connector
+    public var uuid: String
+    public var ip: String
+    public var name: String
+    public var webSocket: PSWebSocket? = nil
+    public var status: DeviceStatus = .closed
+    public var pinged: Bool = false
+    public var ponged: Bool = false
+
+    public static func create(connector: Connector, uuid: String, ip: String, name: String) -> Device {
+        let device: Device = Device(connector: connector, uuid: uuid, ip: ip, name: name)
+        connector.add(device: device)
+        return device
+    }
+    public static func create(connector: Connector, json: JSON) -> Device {
+        let device: Device = Device(connector: connector, json: json)
+        connector.add(device: device)
+        return device
+    }
+    private init(connector: Connector, uuid: String, ip: String, name: String) {
+        self.connector = connector
+        self.uuid = uuid
+        self.ip = ip
+        self.name = name
+    }
+    private init(connector: Connector, json: JSON) {
+        self.connector = connector
+        self.uuid = json["device.uuid"].string!
+        self.ip = json["device.ip"].string!
+        self.name = json["device.name"].string!
+    }
+    public func connect() {
+        self.connector.add(device: self)
+    }
+    public func connect(webSocket: PSWebSocket) {
+        if (self.isConnected()) {
+            self.disconnect()
+        }
+        self.webSocket = webSocket
+        self.connect()
+        self.status = .connected
+    }
+    public func disconnect() {
+        self.connector.remove(device: self)
+    }
+    
+    public func isConnected() -> Bool {
+        return self.webSocket != nil
+    }
+    public func getConnection() -> PSWebSocket {
+        return self.webSocket!
+    }
+    public func toJSON() -> JSON {
+        return JSON.init(["name": self.name, "ip": self.ip, "uuid": self.uuid, "status" : "\(self.status)"])
+    }
+    public func toString() -> String {
+        let json: JSON = self.toJSON()
+        let jsonString: String? = json.rawString(.utf8, options: .prettyPrinted)
+        return jsonString!
+    }
+}
+
 class Connector: NSObject {
     
     static let instance: Connector = {
@@ -36,13 +105,64 @@ class Connector: NSObject {
     }()
     
     private var socketServer: SecondScreenServer?
-    private var connectedDevices = [ String : JSON ]()
+    private var connectedDevices = [ String : Device ]()
+    private var connectedDevicesByWebSocket = [ PSWebSocket : Device ]()
+    
     public var delegate: ConnectorDelegate?
     public var status: ConnectorStatus = .Stopped
     public var bonjourStatus: ConnectorBonjourStatus = .Stopped
+    var timer = Timer()
     
     private override init() {
+        
     }
+    
+    // timer functions
+    
+    func startTimer() {
+        let aSelector : Selector = #selector(Connector.validateDevices)
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: aSelector, userInfo: nil, repeats: true)
+    }
+    func stopTimer() {
+        timer.invalidate()
+    }
+    
+    /*
+    func pongResult (pongData: Data?) -> Void {
+        let pongDataString: String = pongData!.base64EncodedString()
+        NSLog("Pong arrived \(pongDataString)")
+    }
+     webSocket.ping(pingData, handler: pongResult)
+
+    */
+
+    public func validateDevices() {
+        if (self.connectedDevicesByWebSocket.count == 0) { return }
+        NSLog("validate all \(self.connectedDevicesByWebSocket.count) devices")
+        var allNonValidDevices = [PSWebSocket : Device]()
+        var allValidDevices = [PSWebSocket : Device]()
+        for (key, value) in (self.connectedDevicesByWebSocket) {
+            if (value.pinged && value.ponged) {
+                NSLog("validation: valid device \(value.ip)")
+                allValidDevices[key] = value
+                value.pinged = false
+                value.ponged = false
+            } else if (value.pinged && !value.ponged) {
+                NSLog("validation: non valid device \(value.ip)")
+                allNonValidDevices[key] = value
+            } else {
+                let pingData: Data = "hello-from-server".data(using: .utf8)!
+                value.pinged = true
+                key.ping(pingData, handler: { (pongData) in
+                    value.ponged = true
+                })
+            }
+        }
+        for (_, value) in allNonValidDevices {
+            value.disconnect()
+        }
+    }
+    
     
     
     // server activities
@@ -56,7 +176,7 @@ class Connector: NSObject {
     }
     func stopServer() {
         if (self.isStopped()) { return }
-        self.changeState(server: .Starting)
+        self.changeState(server: .Stopping)
         self.changeState(bonjourServer: .Stopping)
         
         self.socketServer?.stop()
@@ -72,32 +192,57 @@ class Connector: NSObject {
         return self.isStarted() ? self.socketServer!.endPoint() : "none"
     }
 
+    private func statusChanged() {
+        self.delegate?.statusChanged(started: self.isStarted(), server: self.status, bonjourServer: self.bonjourStatus, connections: self.connectedDevices.count)
+    }
     // state management
     func changeState(server: ConnectorStatus) {
         self.status = server
-        self.delegate?.statusChanged()
-        if (self.isStarted()) { self.delegate?.serverDidStart() }
-        if (self.isStopped()) { self.delegate?.serverDidStop() }
+        self.statusChanged()
     }
     func changeState(bonjourServer: ConnectorBonjourStatus) {
         self.bonjourStatus = bonjourServer
-        self.delegate?.statusChanged()
-        if (self.isStarted()) { self.delegate?.serverDidStart() }
-        if (self.isStopped()) { self.delegate?.serverDidStop() }
+        self.statusChanged()
     }
     func refreshState() {
-        if (self.isStarted()) { self.delegate?.serverDidStart() }
-        if (self.isStopped()) { self.delegate?.serverDidStop() }
+        self.statusChanged()
     }
 
     
     // device management
+
+    func add(device: Device) {
+        let ip: String = device.ip
+        NSLog("register device: \(ip), data=\(device.toString())")
+        self.connectedDevices[ip] = device
+        if (device.isConnected()) {
+            self.connectedDevicesByWebSocket[device.webSocket!] =  device
+            NSLog("register websocket of device: \(ip), data=\(device.toString())")
+            self.status = .Connected
+            self.statusChanged()
+        }
+    }
+
+    func add(json: JSON) {
+        self.add(device: Device.create(connector: self, json: json))
+    }
+    func remove(device: Device) {
+        self.connectedDevices.removeValue(forKey: device.ip)
+        if (device.isConnected()) {
+            self.connectedDevicesByWebSocket.removeValue(forKey: device.webSocket!)
+            NSLog("remove connected device: \(device.ip), data=\(device.toString())")
+            if (self.connectedDevicesByWebSocket.count == 0) {
+                self.status = .Ready
+            }
+            self.statusChanged()
+        }
+    }
     
-    func addDevice(_ deviceId: JSON) {
-        let uuid: String = deviceId["device.uuid"].string!
-        NSLog("register device: \(uuid), data=\(deviceId.rawString()!)")
-        self.connectedDevices[uuid] = deviceId
-        self.status = .Connected
+    func get(deviceIp: String) -> Device? {
+        return self.connectedDevices[deviceIp]
+    }
+    func get(webSocket: PSWebSocket) -> Device? {
+        return self.connectedDevicesByWebSocket[webSocket]
     }
 
     // logs
@@ -121,22 +266,36 @@ class Connector: NSObject {
 extension Connector : PSWebSocketServerDelegate {
 
     func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didReceiveMessage message: Any!) {
-        self.appendLog(message as! String)
+        self.server(server, webSocket: webSocket, didReceive: message as! String)
     }
-        
+    func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didReceive message: String!) {
+        let device: Device? = self.get(webSocket: webSocket)
+        if (device != nil) {
+            device!.pinged = true
+            device!.ponged = true
+        } else {
+            let json: JSON = JSON.init(data: message.data(using: .utf8)!)
+            if (json["action"].stringValue == "request-connection-data") {
+                // retrieve IP, name of device to map it with device-object and websocket
+                let device: Device? = self.get(deviceIp: json["ip"].stringValue)
+                if (device != nil) {
+                    device!.connect(webSocket: webSocket)
+                }
+            }
+        }
+    }
+    
     func serverDidStop(_ server: PSWebSocketServer!) {
         self.changeState(server: .Stopped)
+        self.stopTimer()
     }
     func serverDidStart(_ server: PSWebSocketServer!) {
         self.changeState(server: .Ready)
-    }
-    func pongResult (pongData: Data?) -> Void {
-        let pongDataString: String = pongData!.base64EncodedString()
-        NSLog("Pong arrived \(pongDataString)")
+        self.startTimer()
     }
     func server(_ server: PSWebSocketServer!, webSocketDidOpen webSocket: PSWebSocket!) {
-        let pingData: Data = "hello-from-server".data(using: .utf8)!
-        webSocket.ping(pingData, handler: pongResult)
+        let acknowledgeRequest = JSON.init(["action": "request-connection-data", "device.ip": "", "device.uuid": ""])
+        webSocket.send(acknowledgeRequest.rawString())
     }
     
     func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didFailWithError error: Error!) {
@@ -153,7 +312,8 @@ extension Connector : PSWebSocketServerDelegate {
         if (PSWebSocket.isWebSocketRequest(request)) {
             let headers: [String : String] = request.allHTTPHeaderFields!
             let deviceId: JSON = self.getDeviceId(headers: headers)
-            self.addDevice(deviceId)
+            let device: Device = Device.create(connector: self, json: deviceId)
+            device.status = .accepted
             return true
         } else {
             return false
