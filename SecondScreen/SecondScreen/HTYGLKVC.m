@@ -420,13 +420,32 @@ int esGenSphere(int numSlices, float radius, float **vertices,
     self.motionManager = nil;
 }
 
+- (void) logAndMeasureRoll: (CGFloat) roll Yaw: (CGFloat) yaw Pitch: (CGFloat) pitch X: (CGFloat) x Y: (CGFloat) y {
+    if (self.maxGyroRotationX < x) { self.maxGyroRotationX = x; }
+    if (self.maxGyroRotationY < y) { self.maxGyroRotationY = y; }
+    if (self.minGyroRotationX > x) { self.minGyroRotationX = x; }
+    if (self.minGyroRotationY > y) { self.minGyroRotationY = y; }
+    //    NSLog(@"rotation min=%.6g,X=%.6g,max=%.6g  -   min=%.6g,Y=%.6g,max=%.6g, ", self.minGyroRotationX, x, self.maxGyroRotationX, self.minGyroRotationY, y, self.maxGyroRotationY);
+    NSLog(@"-------------");
+    NSLog(@" roll = %.4g", roll);
+    NSLog(@"pitch = %.4g", pitch);
+    NSLog(@"  yaw = %.4g", yaw);
+    NSLog(@"    X = %.4g", x);
+    NSLog(@"    Y = %.4g", y);
+    
+}
+
 - (void) logAndMeasureX: (CGFloat) x Y: (CGFloat) y {
     NSLog(@"rotation X=%.6g, Y=%.6g", x, y);
     if (self.maxGyroRotationX < x) { self.maxGyroRotationX = x; }
     if (self.maxGyroRotationY < y) { self.maxGyroRotationY = y; }
     if (self.minGyroRotationX > x) { self.minGyroRotationX = x; }
     if (self.minGyroRotationY > y) { self.minGyroRotationY = y; }
-    NSLog(@"rotation min=%.6g,X=%.6g,max=%.6g  -   min=%.6g,Y=%.6g,max=%.6g, ", self.minGyroRotationX, x, self.maxGyroRotationX, self.minGyroRotationY, y, self.maxGyroRotationY);
+//    NSLog(@"rotation min=%.6g,X=%.6g,max=%.6g  -   min=%.6g,Y=%.6g,max=%.6g, ", self.minGyroRotationX, x, self.maxGyroRotationX, self.minGyroRotationY, y, self.maxGyroRotationY);
+    NSLog(@"X=%.6g", x);
+    NSLog(@"Y=%.6g", x);
+    NSLog(@"Z=%.6g", x);
+    NSLog(@"W=%.6g", x);
 
 }
 
@@ -475,23 +494,17 @@ int esGenSphere(int numSlices, float radius, float **vertices,
             
             self.savedGyroRotationX = cRoll + ROLL_CORRECTION + self.fingerRotationX;
             self.savedGyroRotationY = cPitch + self.fingerRotationY;
-            [self logAndMeasureX:self.savedGyroRotationX Y:self.savedGyroRotationY];
+            [self logAndMeasureRoll: attitude.roll Yaw: attitude.yaw Pitch: attitude.pitch X:self.savedGyroRotationX Y:self.savedGyroRotationY];
 
         }
     } else if(self.isUsingMotion && self.motionType == kUsingRemoteMotion) {
         // see http://sunday-lab.blogspot.ch/2008/04/get-pitch-yaw-roll-from-quaternion.html
 
-        Quaternion* q = [[CurrentQuaternion instance] dequeue];
-        float cRoll = -fabs(q.roll); // Up/Down landscape
-        float cYaw = q.yaw;  // Left/ Right landscape
-        float cPitch = q.pitch; // Depth landscape
-        /*
-        UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-        if (orientation == UIDeviceOrientationLandscapeRight ){
-            cPitch = cPitch*-1; // correct depth when in landscape right
-        }*/
-        
-        
+        Quaternion* attitude = [[CurrentQuaternion instance] dequeue];
+        float cRoll = attitude.roll; // Up/Down landscape
+        float cYaw = attitude.yaw;  // Left/ Right landscape
+        float cPitch = attitude.pitch; // Depth landscape
+
         modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, cRoll); // Up/Down axis
         modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, cPitch);
         modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, cYaw);
@@ -504,7 +517,7 @@ int esGenSphere(int numSlices, float radius, float **vertices,
         
         self.savedGyroRotationX = cRoll + ROLL_CORRECTION + self.fingerRotationX;
         self.savedGyroRotationY = cPitch + self.fingerRotationY;
-        [self logAndMeasureX:self.savedGyroRotationX Y:self.savedGyroRotationY];
+        [self logAndMeasureRoll: attitude.roll Yaw: attitude.yaw Pitch: attitude.pitch X:self.savedGyroRotationX Y:self.savedGyroRotationY];
         
         
     } else {

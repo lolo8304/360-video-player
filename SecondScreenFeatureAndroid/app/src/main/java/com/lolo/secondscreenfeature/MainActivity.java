@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import org.hitlabnz.sensor_fusion_demo.HardwareChecker;
 import org.hitlabnz.sensor_fusion_demo.SensorChecker;
+import org.hitlabnz.sensor_fusion_demo.orientationProvider.CalibratedGyroscopeProvider;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.ImprovedOrientationSensor1Provider;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.OrientationProvider;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.OrientationProviderDelegate;
@@ -23,6 +24,9 @@ import org.json.JSONObject;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DecimalFormat;
+import java.text.Format;
+import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,6 +34,8 @@ import static org.java_websocket.WebSocket.READYSTATE.NOT_YET_CONNECTED;
 import static org.java_websocket.WebSocket.READYSTATE.OPEN;
 
 public class MainActivity extends AppCompatActivity implements MessageDelegate, OrientationProviderDelegate, NsdDelegate {
+
+    final static DecimalFormat f = new DecimalFormat("#.000");
 
     /**
      * The current orientation provider that delivers device orientation.
@@ -132,18 +138,12 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
     }
 
     private void addAppendLog(final TextView textView, final String newMessage) {
-        count++;
-        if (count >= 10) {
-            runOnUiThread(new Runnable() {
+        runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
                     textView.setText(newMessage);
                 }
             });
-            count = 0;
-        } else {
-            //textView.setText(newMessage + "\n" + textView.getText());
-        }
     }
 
     public void startVideo(View v) {
@@ -217,16 +217,36 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
     private void updateRotationStatus(String message) {
     }
 
+    private String Float2String(float pos) {
+        return f.format(pos);
+    }
+
     @Override
     public void onSensorChanged() {
         this.sensorsUp();
-        Quaternion quaternion = new Quaternion();
+        final Quaternion quaternion = new Quaternion();
         this.currentOrientationProvider.getQuaternion(quaternion);
         String message = quaternion.toJSONString();
         if (this.client != null) {
             if (this.client.getReadyState() == OPEN) {
                 screenUp();
                 this.client.send(message);
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        /*
+                        labelX.setText(Float2String(quaternion.getX()));
+                        labelY.setText(Float2String(quaternion.getY()));
+                        labelZ.setText(Float2String(quaternion.getZ()));
+                        labelW.setText(Float2String(quaternion.getW()));
+                        */
+                        double[] rollPitchYaw = quaternion.toEulerAngles();
+
+                        labelX.setText(Float2String(quaternion.));
+                        labelY.setText(Float2String(quaternion.getY()));
+                        labelZ.setText(Float2String(quaternion.getZ()));
+                    }
+                });
+
                 //this.addAppendLog(this.logs, "sent: " + message);
             } else {
                 this.addAppendLog(this.logs, "not open yet / "+this.client.getReadyState()+": "+message);
@@ -268,6 +288,7 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
             this.client.connect();
 
             this.currentOrientationProvider = new ImprovedOrientationSensor1Provider((SensorManager) this.getSystemService(this.SENSOR_SERVICE));
+//            this.currentOrientationProvider = new CalibratedGyroscopeProvider((SensorManager) this.getSystemService(this.SENSOR_SERVICE));
             this.currentOrientationProvider.delegate = this;
             this.currentOrientationProvider.start();
             this.addAppendLog(this.logs, "sensors started");

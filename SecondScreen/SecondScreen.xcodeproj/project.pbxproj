@@ -27,6 +27,7 @@
 		E1A1350D1E180538003A4B24 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A1350C1E180538003A4B24 /* Queue.swift */; };
 		E1A135111E1809C6003A4B24 /* CurrentQuaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A135101E1809C6003A4B24 /* CurrentQuaternion.m */; };
 		E1A135151E1810C0003A4B24 /* Quaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A135141E1810C0003A4B24 /* Quaternion.m */; };
+		E1A135171E19266A003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E1A135161E192551003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */; };
 		E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF41E140AFA0055104C /* HomeViewController.swift */; };
 		E1E99EF71E141A7D0055104C /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF61E141A7D0055104C /* Connector.swift */; };
 		E1E99EFC1E14528C0055104C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */; };
@@ -62,6 +63,7 @@
 		E1A135121E180A00003A4B24 /* CurrentQuaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrentQuaternion.h; sourceTree = "<group>"; };
 		E1A135131E180EE4003A4B24 /* Quaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
 		E1A135141E1810C0003A4B24 /* Quaternion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quaternion.m; sourceTree = "<group>"; };
+		E1A135161E192551003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DE-AXA-One_second_away-Final_v3_short_360.mp4"; sourceTree = "<group>"; };
 		E1E99EF41E140AFA0055104C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E1E99EF61E141A7D0055104C /* Connector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
 		E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				E11AFE031E10355F009C7E8F /* Info.plist */,
+				E1A135161E192551003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */,
 				E11AFE351E1328E6009C7E8F /* demo.m4v */,
 			);
 			name = Resources;
@@ -278,6 +281,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A135171E19266A003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 in Resources */,
 				E11AFE361E1328E6009C7E8F /* demo.m4v in Resources */,
 				E11AFE301E12B0D5009C7E8F /* Shader.fsh in Resources */,
 				E11AFE021E10355F009C7E8F /* LaunchScreen.storyboard in Resources */,

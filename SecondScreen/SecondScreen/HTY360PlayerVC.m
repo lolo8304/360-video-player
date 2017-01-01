@@ -8,6 +8,8 @@
 
 #import "HTY360PlayerVC.h"
 #import "HTYGLKVC.h"
+#import "CurrentQuaternion.h"
+#import "Quaternion.h"
 
 #define ONE_FRAME_DURATION 0.033
 #define HIDE_CONTROL_DELAY 3.0
@@ -120,7 +122,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 }
 - (void)viewDidAppear:(BOOL)animated {
     [self playButtonTouched: nil];
-    [self gyroButtonTouched: nil];
+//    [self gyroButtonTouched: nil];
 }
 
 #pragma mark - video communication
@@ -258,6 +260,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     
     [self updatePlayButton];
     [self.player play];
+    [[CurrentQuaternion instance] play];
     
     [self scheduleHideControls];
 }
@@ -583,6 +586,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     /* After the movie has played to its end time, seek back to time zero
      to play it again. */
     self.seekToZeroBeforePlay = YES;
+    [self play];
 }
 
 #pragma mark - gyro button
@@ -607,6 +611,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     [self removePlayerTimeObserver];
     
     [self.player pause];
+    [[CurrentQuaternion instance] stop];
     
     [self.glkViewController removeFromParentViewController];
     self.glkViewController = nil;

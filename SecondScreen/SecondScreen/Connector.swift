@@ -36,6 +36,10 @@ enum DeviceStatus {
 
 
 class Device: NSObject {
+    
+    private static var maxId: Int = 0
+    
+    public var id: Int
     public var connector: Connector
     public var uuid: String
     public var ip: String
@@ -56,12 +60,16 @@ class Device: NSObject {
         return device
     }
     private init(connector: Connector, uuid: String, ip: String, name: String) {
+        Device.maxId = Device.maxId + 1
+        self.id = Device.maxId
         self.connector = connector
         self.uuid = uuid
         self.ip = ip
         self.name = name
     }
     private init(connector: Connector, json: JSON) {
+        Device.maxId = Device.maxId + 1
+        self.id = Device.maxId
         self.connector = connector
         self.uuid = json["device.uuid"].string!
         self.ip = json["device.ip"].string!
@@ -88,6 +96,14 @@ class Device: NSObject {
     public func getConnection() -> PSWebSocket {
         return self.webSocket!
     }
+    
+    public func play() {
+        CurrentQuaternion.instance().play()
+    }
+    public func stop() {
+        CurrentQuaternion.instance().stop()
+    }
+    
     public func toJSON() -> JSON {
         return JSON.init(["name": self.name, "ip": self.ip, "uuid": self.uuid, "status" : "\(self.status)"])
     }
@@ -121,11 +137,11 @@ class Connector: NSObject {
     
     // timer functions
     
-    func startTimer() {
+    fileprivate func startTimer() {
         let aSelector : Selector = #selector(Connector.validateDevices)
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: aSelector, userInfo: nil, repeats: true)
     }
-    func stopTimer() {
+    fileprivate func stopTimer() {
         timer.invalidate()
     }
     
@@ -140,17 +156,15 @@ class Connector: NSObject {
 
     public func validateDevices() {
         if (self.connectedDevicesByWebSocket.count == 0) { return }
-        NSLog("validate all \(self.connectedDevicesByWebSocket.count) devices")
         var allNonValidDevices = [PSWebSocket : Device]()
         var allValidDevices = [PSWebSocket : Device]()
         for (key, value) in (self.connectedDevicesByWebSocket) {
             if (value.pinged && value.ponged) {
-                NSLog("validation: valid device \(value.ip)")
+                //NSLog("validation: valid device \(value.ip)")
                 allValidDevices[key] = value
                 value.pinged = false
                 value.ponged = false
             } else if (value.pinged && !value.ponged) {
-                NSLog("validation: non valid device \(value.ip)")
                 allNonValidDevices[key] = value
             } else {
                 let pingData: Data = "hello-from-server".data(using: .utf8)!
@@ -160,15 +174,19 @@ class Connector: NSObject {
                 })
             }
         }
-        for (_, value) in allNonValidDevices {
-            value.disconnect()
+        if (!allNonValidDevices.isEmpty) {
+            NSLog("validate all \(self.connectedDevicesByWebSocket.count) devices")
+            for (_, value) in allNonValidDevices {
+                NSLog("validation: non valid device \(value.ip)")
+                value.disconnect()
+            }
         }
     }
     
     
     
     // server activities
-    func startServer() {
+    public func startServer() {
         if (self.isStarted()) { return }
         self.changeState(server: .Starting)
         self.changeState(bonjourServer: .Starting)
@@ -176,7 +194,7 @@ class Connector: NSObject {
         self.socketServer = SecondScreenServer(port: 6577)
         self.socketServer?.start(delegate: self, udpDelegate: self, bonjourDelegate: self)
     }
-    func stopServer() {
+    public func stopServer() {
         if (self.isStopped()) { return }
         self.changeState(server: .Stopping)
         self.changeState(bonjourServer: .Stopping)
@@ -184,13 +202,13 @@ class Connector: NSObject {
         self.socketServer?.stop()
         self.socketServer = nil
     }
-    func isStarted() -> Bool {
+    public func isStarted() -> Bool {
         return (self.status == .Ready || self.status == .Connected) && (self.bonjourStatus == .Ready)
     }
-    func isStopped() -> Bool {
+    public func isStopped() -> Bool {
         return (self.status == .Stopped) && (self.bonjourStatus == .Stopped)
     }
-    func endPoint() -> String {
+    public func endPoint() -> String {
         return self.isStarted() ? self.socketServer!.endPoint() : "none"
     }
 
@@ -213,7 +231,7 @@ class Connector: NSObject {
     
     // device management
 
-    func add(device: Device) {
+    public func add(device: Device) {
         let ip: String = device.ip
         NSLog("register device: \(ip), data=\(device.toString())")
         self.connectedDevices[ip] = device
@@ -226,10 +244,10 @@ class Connector: NSObject {
         }
     }
 
-    func add(json: JSON) {
+    public func add(json: JSON) {
         self.add(device: Device.create(connector: self, json: json))
     }
-    func remove(device: Device) {
+    public func remove(device: Device) {
         self.connectedDevices.removeValue(forKey: device.ip)
         if (device.isConnected()) {
             self.connectedDevicesByWebSocket.removeValue(forKey: device.webSocket!)
@@ -241,19 +259,47 @@ class Connector: NSObject {
         }
     }
     
-    func get(deviceIp: String) -> Device? {
+    public func get(deviceIp: String) -> Device? {
         return self.connectedDevices[deviceIp]
     }
-    func get(webSocket: PSWebSocket) -> Device? {
+    public func get(webSocket: PSWebSocket) -> Device? {
         return self.connectedDevicesByWebSocket[webSocket]
+    }
+    
+    public func choose(device: Device) {
+        self.connectedDevice = device
+    }
+    public func choose(id: Int) {
+        for (_, value) in self.connectedDevices {
+            if (value.id == id) {
+                self.connectedDevice = value
+                return
+            }
+        }
+        self.connectedDevice = nil
+    }
+    
+    public func sortedDevicesById() -> [Device] {
+        var list: [Device] = [Device]();
+        for (_, value) in self.connectedDevices {
+            list.append(value)
+        }
+        list.sort {
+            $0.id < $1.id
+        }
+        return list
+    }
+    
+    public func play() {
+        self.connectedDevice?.play()
     }
 
     // logs
 
-    public func appendLog(_ message: String) {
+     func appendLog(_ message: String) {
         NSLog("message arrived: \(message)")
     }
-    public func showError(_ message: String, stack: Bool) {
+     func showError(_ message: String, stack: Bool) {
         if (stack) {
             NSLog("error message \(message): see stack")
             for symbol: String in Thread.callStackSymbols {
@@ -281,7 +327,7 @@ extension Connector : PSWebSocketServerDelegate {
                 
                 CurrentQuaternion.instance().enqueue(json["X"].floatValue, add: json["Y"].floatValue, add: json["Z"].floatValue, add: json["W"].floatValue)
                 //{"action":"position", "X":0.21428485, "Y":-0.32440406, "Z":-0.71701926, "W":-0.5779501}
-                NSLog("queue size = \(CurrentQuaternion.instance().count())");
+                //NSLog("queue size = \(CurrentQuaternion.instance().count())");
             }
             
         } else {
@@ -330,7 +376,7 @@ extension Connector : PSWebSocketServerDelegate {
             return false
         }
     }
-    private func getDeviceId(headers: [String : String]) -> JSON {
+    fileprivate func getDeviceId(headers: [String : String]) -> JSON {
         var deviceName: String = "none"
         var deviceIp: String = "0.0.0.0"
         var deviceUUID: String = ""

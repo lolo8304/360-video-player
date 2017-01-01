@@ -524,4 +524,6 @@ public class Quaternion extends Vector4f {
         }
     }
 
+
+
 }

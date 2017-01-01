@@ -17,7 +17,11 @@
         android:id="@+id/Z"
         android:layout_below="@+id/Y"
         android:layout_alignLeft="@+id/Y"
-        android:layout_alignStart="@+id/Y" />
+        android:layout_alignStart="@+id/Y"
+        android:fontFamily="monospace"
+        android:textAlignment="textEnd"
+        android:layout_alignRight="@+id/Y"
+        android:layout_alignEnd="@+id/Y" />
 
     <TextView
         android:text="-0.0000"
@@ -25,8 +29,9 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView11"
         android:layout_toRightOf="@+id/textView7"
-        android:layout_toEndOf="@+id/textView7"
-        android:id="@+id/Y" />
+        android:id="@+id/Y"
+        android:fontFamily="monospace"
+        android:textAlignment="textEnd" />
 
     <Button
         android:text="Stop"
@@ -149,16 +154,18 @@
         android:layout_alignBottom="@+id/textView7"
         android:id="@+id/X"
         android:layout_toRightOf="@+id/textView7"
-        android:textAlignment="textEnd" />
+        android:textAlignment="textEnd"
+        android:fontFamily="monospace" />
 
     <TextView
-        android:text="Z"
+        android:text="Yaw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView13"
         android:layout_below="@+id/textView11"
         android:layout_alignLeft="@+id/textView11"
-        android:layout_alignStart="@+id/textView11" />
+        android:layout_alignStart="@+id/textView11"
+        android:fontFamily="monospace" />
 
     <TextView
         android:text="-0.0000"
@@ -167,10 +174,13 @@
         android:id="@+id/W"
         android:layout_below="@+id/Z"
         android:layout_toRightOf="@+id/textView15"
-        android:layout_toEndOf="@+id/textView15" />
+        android:fontFamily="monospace"
+        android:textAlignment="textEnd"
+        android:layout_alignRight="@+id/Z"
+        android:layout_alignEnd="@+id/Z" />
 
     <TextView
-        android:text="X"
+        android:text="Roll"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView7"
@@ -178,16 +188,20 @@
         android:layout_alignBottom="@+id/textView6"
         android:layout_alignLeft="@+id/time"
         android:layout_alignStart="@+id/time"
-        android:textAlignment="viewStart" />
+        android:textAlignment="viewStart"
+        android:fontFamily="monospace"
+        android:layout_alignRight="@+id/time"
+        android:layout_alignEnd="@+id/time" />
 
     <TextView
-        android:text="Y"
+        android:text="Pitch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView11"
         android:layout_below="@+id/textView7"
         android:layout_alignLeft="@+id/textView7"
-        android:layout_alignStart="@+id/textView7" />
+        android:layout_alignStart="@+id/textView7"
+        android:fontFamily="monospace" />
 
     <TextView
         android:text="W"
@@ -196,7 +210,8 @@
         android:id="@+id/textView15"
         android:layout_below="@+id/Z"
         android:layout_toLeftOf="@+id/Z"
-        android:layout_toStartOf="@+id/Z" />
+        android:layout_toStartOf="@+id/Z"
+        android:fontFamily="monospace" />
 
     <TextView
         android:text="..."

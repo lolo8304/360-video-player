@@ -21,6 +21,11 @@
 
 - (void) enqueue: (float) x add: (float) y add: (float) z add: (float) w;
 - (Quaternion*) dequeue;
+- (Quaternion*) dequeueLast;
+- (void)reset;
 - (int)count;
+- (int)maxCount;
+- (void)play;
+- (void)stop;
 
 @end
