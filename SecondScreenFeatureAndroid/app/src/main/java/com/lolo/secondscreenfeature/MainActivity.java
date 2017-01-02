@@ -14,28 +14,27 @@ import android.widget.TextView;
 import org.hitlabnz.sensor_fusion_demo.HardwareChecker;
 import org.hitlabnz.sensor_fusion_demo.SensorChecker;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.CalibratedGyroscopeProvider;
+import org.hitlabnz.sensor_fusion_demo.orientationProvider.GravityCompassProvider;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.ImprovedOrientationSensor1Provider;
+import org.hitlabnz.sensor_fusion_demo.orientationProvider.ImprovedOrientationSensor2Provider;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.OrientationProvider;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.OrientationProviderDelegate;
 import org.hitlabnz.sensor_fusion_demo.representation.Quaternion;
-import org.java_websocket.framing.CloseFrame;
+import org.hitlabnz.sensor_fusion_demo.representation.Vector3f;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.text.DecimalFormat;
-import java.text.Format;
-import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.java_websocket.WebSocket.READYSTATE.NOT_YET_CONNECTED;
 import static org.java_websocket.WebSocket.READYSTATE.OPEN;
 
 public class MainActivity extends AppCompatActivity implements MessageDelegate, OrientationProviderDelegate, NsdDelegate {
 
-    final static DecimalFormat f = new DecimalFormat("#.000");
+    final static DecimalFormat f = new DecimalFormat("0.000");
 
     /**
      * The current orientation provider that delivers device orientation.
@@ -52,6 +51,9 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
     private TextView labelY;
     private TextView labelZ;
     private TextView labelW;
+    private TextView labelRoll;
+    private TextView labelYaw;
+    private TextView labelPitch;
     private CheckBox isScreenConnected;
     private CheckBox isSensorSending;
 
@@ -76,6 +78,9 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         this.labelY = (TextView) findViewById(R.id.Y);
         this.labelZ = (TextView) findViewById(R.id.Z);
         this.labelW = (TextView) findViewById(R.id.W);
+        this.labelRoll = (TextView) findViewById(R.id.Roll);
+        this.labelYaw = (TextView) findViewById(R.id.Yaw);
+        this.labelPitch = (TextView) findViewById(R.id.Pitch);
         this.isScreenConnected = (CheckBox)findViewById(R.id.isScreenConnected);
         this.isSensorSending = (CheckBox)findViewById(R.id.isSensorSending);
         this.start();
@@ -220,6 +225,9 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
     private String Float2String(float pos) {
         return f.format(pos);
     }
+    private String Double2String(double pos) {
+        return f.format(pos);
+    }
 
     @Override
     public void onSensorChanged() {
@@ -230,23 +238,23 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
         if (this.client != null) {
             if (this.client.getReadyState() == OPEN) {
                 screenUp();
-                this.client.send(message);
-                runOnUiThread(new Runnable() {
-                    public void run() {
-                        /*
-                        labelX.setText(Float2String(quaternion.getX()));
-                        labelY.setText(Float2String(quaternion.getY()));
-                        labelZ.setText(Float2String(quaternion.getZ()));
-                        labelW.setText(Float2String(quaternion.getW()));
-                        */
-                        double[] rollPitchYaw = quaternion.toEulerAngles();
+                if (quaternion.isValid()) {
+                    this.client.send(message);
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            labelX.setText(Float2String(quaternion.getX()));
+                            labelY.setText(Float2String(quaternion.getY()));
+                            labelZ.setText(Float2String(quaternion.getZ()));
+                            labelW.setText(Float2String(quaternion.getW()));
 
-                        labelX.setText(Float2String(quaternion.));
-                        labelY.setText(Float2String(quaternion.getY()));
-                        labelZ.setText(Float2String(quaternion.getZ()));
-                    }
-                });
+                            Vector3f rotationVector = quaternion.toEulerAngles();
 
+                            labelRoll.setText(Float2String(rotationVector.getRollY()));
+                            labelPitch.setText(Float2String(rotationVector.getPitchX()));
+                            labelYaw.setText(Float2String(rotationVector.getYawZ()));
+                        }
+                    });
+                }
                 //this.addAppendLog(this.logs, "sent: " + message);
             } else {
                 this.addAppendLog(this.logs, "not open yet / "+this.client.getReadyState()+": "+message);
@@ -287,8 +295,10 @@ public class MainActivity extends AppCompatActivity implements MessageDelegate, 
             this.client.delegate = this;
             this.client.connect();
 
+//            this.currentOrientationProvider = new GravityCompassProvider((SensorManager) this.getSystemService(this.SENSOR_SERVICE));
             this.currentOrientationProvider = new ImprovedOrientationSensor1Provider((SensorManager) this.getSystemService(this.SENSOR_SERVICE));
-//            this.currentOrientationProvider = new CalibratedGyroscopeProvider((SensorManager) this.getSystemService(this.SENSOR_SERVICE));
+            this.currentOrientationProvider = new CalibratedGyroscopeProvider((SensorManager) this.getSystemService(this.SENSOR_SERVICE));
+
             this.currentOrientationProvider.delegate = this;
             this.currentOrientationProvider.start();
             this.addAppendLog(this.logs, "sensors started");

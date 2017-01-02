@@ -6,14 +6,16 @@
 //  Copyright © 2016 Lorenz Hänggi. All rights reserved.
 //
 
-@interface Quaternion : NSObject
-
-
-- (id) initWith: (float) X with: (float) Y with: (float) Z with: (float) W;
+@protocol QuaternionAPI <NSObject>
 
 - (float)pitch;
 - (float)roll;
 - (float)yaw;
 
+@end
+
+@interface Quaternion : NSObject<QuaternionAPI>
+
+- (id) initWith: (float) X with: (float) Y with: (float) Z with: (float) W;
 
 @end

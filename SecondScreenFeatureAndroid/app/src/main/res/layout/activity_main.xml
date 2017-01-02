@@ -14,14 +14,14 @@
         android:text="-0.0000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Z"
-        android:layout_below="@+id/Y"
-        android:layout_alignLeft="@+id/Y"
-        android:layout_alignStart="@+id/Y"
+        android:id="@+id/Yaw"
+        android:layout_below="@+id/Pitch"
+        android:layout_alignLeft="@+id/Pitch"
+        android:layout_alignStart="@+id/Pitch"
         android:fontFamily="monospace"
-        android:textAlignment="textEnd"
-        android:layout_alignRight="@+id/Y"
-        android:layout_alignEnd="@+id/Y" />
+        android:layout_alignRight="@+id/Pitch"
+        android:layout_alignEnd="@+id/Pitch"
+        android:textAlignment="textEnd" />
 
     <TextView
         android:text="-0.0000"
@@ -29,19 +29,11 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView11"
         android:layout_toRightOf="@+id/textView7"
-        android:id="@+id/Y"
+        android:id="@+id/Pitch"
         android:fontFamily="monospace"
-        android:textAlignment="textEnd" />
-
-    <Button
-        android:text="Stop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/testButton"
-        android:layout_toEndOf="@+id/testButton"
-        android:onClick="stopVideo" />
+        android:textAlignment="textEnd"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:text="none"
@@ -152,10 +144,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView7"
-        android:id="@+id/X"
+        android:id="@+id/Roll"
         android:layout_toRightOf="@+id/textView7"
+        android:fontFamily="monospace"
         android:textAlignment="textEnd"
-        android:fontFamily="monospace" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:text="Yaw"
@@ -171,13 +165,13 @@
         android:text="-0.0000"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/W"
-        android:layout_below="@+id/Z"
+        android:id="@+id/X"
+        android:layout_below="@+id/Yaw"
         android:layout_toRightOf="@+id/textView15"
         android:fontFamily="monospace"
-        android:textAlignment="textEnd"
-        android:layout_alignRight="@+id/Z"
-        android:layout_alignEnd="@+id/Z" />
+        android:layout_alignRight="@+id/Yaw"
+        android:layout_alignEnd="@+id/Yaw"
+        android:textAlignment="textEnd" />
 
     <TextView
         android:text="Roll"
@@ -204,20 +198,96 @@
         android:fontFamily="monospace" />
 
     <TextView
-        android:text="W"
+        android:text="X"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView15"
-        android:layout_below="@+id/Z"
-        android:layout_toLeftOf="@+id/Z"
-        android:layout_toStartOf="@+id/Z"
-        android:fontFamily="monospace" />
+        android:fontFamily="monospace"
+        android:layout_below="@+id/textView13"
+        android:layout_alignLeft="@+id/textView13"
+        android:layout_alignStart="@+id/textView13" />
 
     <TextView
-        android:text="..."
+        android:text="Z"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView15"
+        android:id="@+id/textView8"
+        android:fontFamily="monospace"
+        android:layout_below="@+id/textView5"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignStart="@+id/textView5" />
+
+    <TextView
+        android:text="W"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:fontFamily="monospace"
+        android:layout_below="@+id/textView8"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignStart="@+id/textView8" />
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Z"
+        android:fontFamily="monospace"
+        android:layout_below="@+id/Y"
+        android:layout_toRightOf="@+id/textView8"
+        android:layout_alignRight="@+id/Y"
+        android:layout_alignEnd="@+id/Y"
+        android:textAlignment="textEnd" />
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/W"
+        android:fontFamily="monospace"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_alignRight="@+id/Z"
+        android:layout_alignEnd="@+id/Z"
+        android:textAlignment="textEnd" />
+
+    <TextView
+        android:text="Y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:fontFamily="monospace"
+        android:layout_below="@+id/X"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignStart="@+id/textView15" />
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Y"
+        android:fontFamily="monospace"
+        android:textAlignment="textEnd"
+        android:layout_below="@+id/X"
+        android:layout_alignRight="@+id/X"
+        android:layout_alignEnd="@+id/X" />
+
+    <Button
+        android:text="Stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:onClick="stopVideo"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/testButton"
+        android:layout_toEndOf="@+id/testButton" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/logs"

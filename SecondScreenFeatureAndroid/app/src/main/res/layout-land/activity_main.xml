@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.lolo.secondscreenfeature.MainActivity">
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Yaw"
+        android:layout_below="@+id/Pitch"
+        android:layout_alignLeft="@+id/Pitch"
+        android:layout_alignStart="@+id/Pitch"
+        android:fontFamily="monospace"
+        android:textAlignment="textEnd"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView11"
+        android:layout_toRightOf="@+id/textView7"
+        android:id="@+id/Pitch"
+        android:fontFamily="monospace"
+        android:textAlignment="textEnd"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="none"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/endPoint"
+        android:textAlignment="viewStart"
+        android:layout_below="@+id/testButton"
+        android:layout_marginTop="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/testButton"
+        android:layout_toRightOf="@+id/testButton" />
+
+    <TextView
+        android:text="2nd Screen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:layout_alignBaseline="@+id/endPoint"
+        android:layout_alignBottom="@+id/endPoint"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:fontFamily="sans-serif"
+        android:textSize="14sp"
+        android:textStyle="normal|bold"
+        android:layout_toLeftOf="@+id/endPoint"
+        android:layout_toStartOf="@+id/endPoint" />
+
+    <Button
+        android:text="Start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/testButton"
+        android:onClick="startVideo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="16dp"
+        android:id="@+id/textView3"
+        android:layout_toLeftOf="@+id/endPoint"
+        android:layout_toStartOf="@+id/endPoint"
+        android:textStyle="normal|bold"
+        android:textAlignment="viewStart" />
+
+    <CheckBox
+        android:text="Screen connected?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/isScreenConnected"
+        android:focusable="false"
+        android:layout_alignBaseline="@+id/textView3"
+        android:layout_alignBottom="@+id/textView3"
+        android:layout_toRightOf="@+id/textView3"
+        android:layout_toEndOf="@+id/textView3"
+        android:clickable="false" />
+
+    <CheckBox
+        android:text="Sensor sending?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/isScreenConnected"
+        android:layout_alignLeft="@+id/isScreenConnected"
+        android:layout_alignStart="@+id/isScreenConnected"
+        android:id="@+id/isSensorSending"
+        android:focusable="false"
+        android:clickable="false" />
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView7"
+        android:id="@+id/Roll"
+        android:layout_toRightOf="@+id/textView7"
+        android:fontFamily="monospace"
+        android:textAlignment="textEnd"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Yaw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView13"
+        android:layout_below="@+id/textView11"
+        android:layout_alignLeft="@+id/textView11"
+        android:layout_alignStart="@+id/textView11"
+        android:fontFamily="monospace" />
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/X"
+        android:layout_below="@+id/Yaw"
+        android:layout_toRightOf="@+id/textView15"
+        android:fontFamily="monospace"
+        android:textAlignment="textEnd"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Pitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView11"
+        android:layout_below="@+id/textView7"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_alignStart="@+id/textView7"
+        android:fontFamily="monospace" />
+
+    <TextView
+        android:text="X"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView15"
+        android:fontFamily="monospace"
+        android:layout_below="@+id/textView13"
+        android:layout_alignLeft="@+id/textView13"
+        android:layout_alignStart="@+id/textView13" />
+
+    <TextView
+        android:text="Z"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView8"
+        android:fontFamily="monospace"
+        android:layout_below="@+id/textView5"
+        android:layout_alignLeft="@+id/textView5"
+        android:layout_alignStart="@+id/textView5" />
+
+    <TextView
+        android:text="W"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:fontFamily="monospace"
+        android:layout_below="@+id/textView8"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignStart="@+id/textView8" />
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Z"
+        android:fontFamily="monospace"
+        android:layout_below="@+id/Y"
+        android:layout_toRightOf="@+id/textView8"
+        android:layout_alignRight="@+id/Y"
+        android:layout_alignEnd="@+id/Y"
+        android:textAlignment="textEnd" />
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/W"
+        android:fontFamily="monospace"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_alignRight="@+id/Z"
+        android:layout_alignEnd="@+id/Z"
+        android:textAlignment="textEnd" />
+
+    <TextView
+        android:text="Y"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:fontFamily="monospace"
+        android:layout_below="@+id/X"
+        android:layout_alignLeft="@+id/textView15"
+        android:layout_alignStart="@+id/textView15" />
+
+    <TextView
+        android:text="-0.0000"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Y"
+        android:fontFamily="monospace"
+        android:textAlignment="textEnd"
+        android:layout_below="@+id/X"
+        android:layout_alignRight="@+id/X"
+        android:layout_alignEnd="@+id/X" />
+
+    <Button
+        android:text="Stop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:onClick="stopVideo"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/testButton"
+        android:layout_toEndOf="@+id/testButton" />
+
+    <TextView
+        android:text="Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView4"
+        android:layout_alignBaseline="@+id/button2"
+        android:layout_alignBottom="@+id/button2"
+        android:layout_toRightOf="@+id/isScreenConnected"
+        android:layout_toEndOf="@+id/isScreenConnected" />
+
+    <TextView
+        android:text="Rotation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView6"
+        android:layout_above="@+id/textView"
+        android:layout_alignLeft="@+id/textView4"
+        android:layout_alignStart="@+id/textView4" />
+
+    <TextView
+        android:text="Roll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView7"
+        android:textAlignment="viewStart"
+        android:fontFamily="monospace"
+        android:layout_below="@+id/button2"
+        android:layout_toRightOf="@+id/textView6"
+        android:layout_toEndOf="@+id/textView6"
+        android:layout_marginLeft="26dp"
+        android:layout_marginStart="26dp" />
+
+    <TextView
+        android:text="00:00:00"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/time"
+        android:layout_alignBaseline="@+id/textView4"
+        android:layout_alignBottom="@+id/textView4"
+        android:layout_alignLeft="@+id/textView7"
+        android:layout_alignStart="@+id/textView7" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/logs"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

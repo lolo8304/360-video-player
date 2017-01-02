@@ -325,8 +325,8 @@ extension Connector : PSWebSocketServerDelegate {
             let json:JSON = JSON.init(data: message.data(using: .utf8, allowLossyConversion: false)!)
             if (json["action"].stringValue == "position") {
                 
-                CurrentQuaternion.instance().enqueue(json["X"].floatValue, add: json["Y"].floatValue, add: json["Z"].floatValue, add: json["W"].floatValue)
-                //{"action":"position", "X":0.21428485, "Y":-0.32440406, "Z":-0.71701926, "W":-0.5779501}
+                //CurrentQuaternion.instance().enqueue(json["X"].floatValue, add: json["Y"].floatValue, add: json["Z"].floatValue, add: json["W"].floatValue)
+                CurrentQuaternion.instance().enqueue(json["pitchX"].floatValue, add: json["rollY"].floatValue, add: json["yawZ"].floatValue)
                 //NSLog("queue size = \(CurrentQuaternion.instance().count())");
             }
             

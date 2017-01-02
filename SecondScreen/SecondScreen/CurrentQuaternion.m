@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CurrentQuaternion.h"
 #import "Quaternion.h"
+#import "EulerianAngle.h"
 
 @interface CurrentQuaternion ()
 @property (strong, nonatomic) NSMutableArray* queue;
@@ -40,14 +41,27 @@
     Quaternion* q = [[Quaternion alloc] initWith:x with:y with:z with:w];
     @synchronized(self.queue) {
         [self.queue addObject: q];
-        if (self.queue.count > 4) {
+        if (self.queue.count > 10) {
             [self.queue removeObjectAtIndex: 0];
         }
         self.maxQueue = MAX(self.maxQueue, self.queue.count);
         //NSLog(@"max queue = %lu", self.maxQueue);
     }
 }
-- (Quaternion*) dequeue {
+- (void)enqueue:(float)pitchX add:(float)rollY add:(float)yawZ {
+    if (!self.playing) { return; }
+    EulerianAngle* q = [[EulerianAngle alloc] initWith:pitchX with:rollY with:yawZ];
+    @synchronized(self.queue) {
+        [self.queue addObject: q];
+        if (self.queue.count > 10) {
+            [self.queue removeObjectAtIndex: 0];
+        }
+        self.maxQueue = MAX(self.maxQueue, self.queue.count);
+        //NSLog(@"max queue = %lu", self.maxQueue);
+    }
+}
+
+- (NSObject<QuaternionAPI>*) dequeue {
     @synchronized(self.queue) {
         if (self.queue.count > 0) {
             Quaternion* q = self.queue[0];
@@ -58,7 +72,7 @@
         }
     }
 }
-- (Quaternion*) dequeueLast {
+- (NSObject<QuaternionAPI>*) dequeueLast {
     @synchronized(self.queue) {
         if (self.queue.count > 0) {
             Quaternion* q = self.queue[self.queue.count-1];

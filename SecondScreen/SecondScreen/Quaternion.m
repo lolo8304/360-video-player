@@ -16,7 +16,7 @@
     @property (assign, nonatomic, readonly) float w;
 @end
 
-@implementation Quaternion
+@implementation Quaternion 
 
 - (id) initWith:(float)X with:(float)Y with:(float)Z with:(float)W {
     _x = X;

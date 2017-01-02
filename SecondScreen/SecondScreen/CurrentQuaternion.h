@@ -10,18 +10,13 @@
 
 @interface CurrentQuaternion : NSObject
 
-@property (assign, nonatomic, readonly) float x;
-@property (assign, nonatomic, readonly) float y;
-@property (assign, nonatomic, readonly) float z;
-@property (assign, nonatomic, readonly) float w;
-
-
 + (CurrentQuaternion*)instance;
 - (id) init;
 
 - (void) enqueue: (float) x add: (float) y add: (float) z add: (float) w;
-- (Quaternion*) dequeue;
-- (Quaternion*) dequeueLast;
+- (void) enqueue: (float) pitchX add: (float) rollY add: (float) yawZ;
+- (NSObject<QuaternionAPI>*) dequeue;
+- (NSObject<QuaternionAPI>*) dequeueLast;
 - (void)reset;
 - (int)count;
 - (int)maxCount;

@@ -9,6 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:name=".SecondScreenApplication"
+        android:screenOrientation="landscape"
         >
         <activity android:name=".MainActivity">
             <intent-filter>

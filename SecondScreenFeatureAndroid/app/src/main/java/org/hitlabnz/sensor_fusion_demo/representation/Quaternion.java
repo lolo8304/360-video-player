@@ -1,5 +1,7 @@
 package org.hitlabnz.sensor_fusion_demo.representation;
 
+import java.text.DecimalFormat;
+
 /**
  * The Quaternion class. A Quaternion is a four-dimensional vector that is used to represent rotations of a rigid body
  * in the 3D space. It is very similar to a rotation vector; it contains an angle, encoded into the w component
@@ -20,12 +22,16 @@ package org.hitlabnz.sensor_fusion_demo.representation;
  */
 public class Quaternion extends Vector4f {
 
+    final static DecimalFormat f = new DecimalFormat("0.00000000000");
+
     /**
      * Rotation matrix that contains the same rotation as the Quaternion in a 4x4 homogenised rotation matrix.
      * Remember that for performance reasons, this matrix is only updated, when it is accessed and not on every change
      * of the quaternion-values.
      */
     private MatrixF4x4 matrix;
+
+    private Vector3f eulerianAngles;
 
     /**
      * This variable is used to synchronise the rotation matrix with the current quaternion values. If someone has
@@ -243,16 +249,25 @@ public class Quaternion extends Vector4f {
      * 
      * @return An array of size 3 containing the euler angles for this quaternion
      */
-    public double[] toEulerAngles() {
-        double[] ret = new double[3];
-
-        ret[0] = Math.atan2(2 * points[1] * getW() - 2 * points[0] * points[2], 1 - 2 * (points[1] * points[1]) - 2
-                * (points[2] * points[2])); // atan2(2*qy*qw-2*qx*qz , 1 - 2*qy2 - 2*qz2)
-        ret[1] = Math.asin(2 * points[0] * points[1] + 2 * points[2] * getW()); // asin(2*qx*qy + 2*qz*qw) 
-        ret[2] = Math.atan2(2 * points[0] * getW() - 2 * points[1] * points[2], 1 - 2 * (points[0] * points[0]) - 2
-                * (points[2] * points[2])); // atan2(2*qx*qw-2*qy*qz , 1 - 2*qx2 - 2*qz2)
-
-        return ret;
+    public Vector3f toEulerAngles() {
+        if (this.eulerianAngles != null) {
+            return this.eulerianAngles;
+        }
+        Vector3f tempVector = new Vector3f();
+        double rollY = Math.atan2(
+                2 * (points[1] * getW() - points[0] * points[2]),
+                1 - 2 * (points[1] * points[1] + points[2] * points[2]));
+                // atan2(2*(qy*qw-qx*qz) , 1 - 2*(qy2 + qz2))
+        double pitchX = Math.asin(
+                2 * points[0] * points[1] + 2 * points[2] * getW());
+                // asin(2*(qx*qy + qz*qw))
+        double yawZ = Math.atan2(
+                2 * (points[0] * getW() - points[1] * points[2]),
+                1 - 2 * (points[0] * points[0] + points[2] * points[2]));
+                // atan2(2*(qx*qw-qy*qz) , 1 - 2*(qx2 + qz2))
+        tempVector.setXYZ((float)pitchX, (float)rollY, (float)yawZ);
+        this.eulerianAngles = tempVector;
+        return this.eulerianAngles;
     }
 
     /**
@@ -271,8 +286,26 @@ public class Quaternion extends Vector4f {
         return "{X: " + getX() + ", Y:" + getY() + ", Z:" + getZ() + ", W:" + getW() + "}";
     }
 
+    private String Float2String(float pos) {
+        return f.format(pos);
+    }
+    private String Double2String(double pos) {
+        return f.format(pos);
+    }
+
+
+    private boolean isFloatZero(float value, float threshold){
+        return value >= -threshold && value <= threshold;
+    }
+
+    public boolean isValid() {
+        return !(
+                isFloatZero(this.toEulerAngles().getPitchX(), 0.001f)
+                        &&
+                        isFloatZero(this.toEulerAngles().getRollY(), 0.001f));
+    }
     public String toJSONString() {
-        return "{ \"action\":\"position\", \"X\":" + getX() + ", \"Y\":" + getY() + ", \"Z\":" + getZ() + ", \"W\":" + getW() + "}";
+        return "{ \"action\":\"position\", \"X\":" + Float2String(getX()) + ", \"Y\":" + Float2String(getY()) + ", \"Z\":" + Float2String(getZ()) + ", \"W\":" + Float2String(getW()) + ", \"rollY\":" + Double2String(-this.toEulerAngles().getRollY()) + ", \"pitchX\":" + Double2String(-this.toEulerAngles().getPitchX()) + ", \"yawZ\":" + Double2String(this.toEulerAngles().getYawZ()) + "}";
     }
 
     /**

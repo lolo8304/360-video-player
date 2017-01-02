@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SecondScreen/HTYGLKVC.m"
-            timestampString = "504965796.178358"
+            timestampString = "505013647.48628"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "503"
-            endingLineNumber = "503"
+            startingLineNumber = "461"
+            endingLineNumber = "461"
             landmarkName = "-update"
             landmarkType = "7">
          </BreakpointContent>
@@ -22,16 +22,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SecondScreen/HTYGLKVC.m"
-            timestampString = "504970984.633184"
+            filePath = "SecondScreen/CurrentQuaternion.m"
+            timestampString = "505013788.831242"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
-            landmarkName = "-startRemoteMotion"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-dequeue"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

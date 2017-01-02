@@ -57,14 +57,6 @@ GLint uniforms[NUM_UNIFORMS];
 @property (assign, nonatomic) CGFloat savedGyroRotationX;
 @property (assign, nonatomic) CGFloat savedGyroRotationY;
 
-/* X  min=-1.57078, max=1.5708
-   Y  min=-1.50713, max=1.53613
-*/
-@property (assign, nonatomic) CGFloat maxGyroRotationX;
-@property (assign, nonatomic) CGFloat maxGyroRotationY;
-@property (assign, nonatomic) CGFloat minGyroRotationX;
-@property (assign, nonatomic) CGFloat minGyroRotationY;
-
 @property (assign, nonatomic) int numIndices;
 @property (assign, nonatomic) CVOpenGLESTextureRef lumaTexture;
 @property (assign, nonatomic) CVOpenGLESTextureRef chromaTexture;
@@ -364,10 +356,6 @@ int esGenSphere(int numSlices, float radius, float **vertices,
     
     self.savedGyroRotationX = 0;
     self.savedGyroRotationY = 0;
-    self.maxGyroRotationX = 0;
-    self.maxGyroRotationY = 0;
-    self.minGyroRotationX = 0;
-    self.minGyroRotationY = 0;
     
     self.isUsingMotion = YES;
     self.motionType = kUsingDeviceMotion;
@@ -375,22 +363,14 @@ int esGenSphere(int numSlices, float radius, float **vertices,
 }
 
 - (void)startRemoteMotion {
-    self.motionManager = [[CMMotionManager alloc] init];
+    if (self.motionManager != nil) {
+        [self.motionManager stopDeviceMotionUpdates];
+        self.motionManager = nil;
+    }
     self.referenceAttitude = nil;
-    self.motionManager.deviceMotionUpdateInterval = 1.0 / 60.0;
-    self.motionManager.gyroUpdateInterval = 1.0f / 60;
-    self.motionManager.showsDeviceMovementDisplay = YES;
-    
-    [self.motionManager startDeviceMotionUpdatesUsingReferenceFrame:CMAttitudeReferenceFrameXArbitraryCorrectedZVertical];
-    
-    self.referenceAttitude = self.motionManager.deviceMotion.attitude; // Maybe nil actually. reset it later when we have data
     
     self.savedGyroRotationX = 0;
     self.savedGyroRotationY = 0;
-    self.maxGyroRotationX = 0;
-    self.maxGyroRotationY = 0;
-    self.minGyroRotationX = 0;
-    self.minGyroRotationY = 0;
     
     self.isUsingMotion = YES;
     self.motionType = kUsingRemoteMotion;
@@ -410,22 +390,19 @@ int esGenSphere(int numSlices, float radius, float **vertices,
 }
 
 - (void)startFingerMotion {
+    if (self.motionManager != nil) {
+        [self.motionManager stopDeviceMotionUpdates];
+        self.motionManager = nil;
+    }
     CGFloat fingerRotX = self.savedGyroRotationX-self.referenceAttitude.roll- ROLL_CORRECTION;
     CGFloat fingerRotY = self.savedGyroRotationY;
     [self setFingerRotationX: fingerRotX Y: fingerRotY];
     
     self.isUsingMotion = NO;
     self.motionType = kUsingFingerMotion;
-    [self.motionManager stopDeviceMotionUpdates];
-    self.motionManager = nil;
 }
 
 - (void) logAndMeasureRoll: (CGFloat) roll Yaw: (CGFloat) yaw Pitch: (CGFloat) pitch X: (CGFloat) x Y: (CGFloat) y {
-    if (self.maxGyroRotationX < x) { self.maxGyroRotationX = x; }
-    if (self.maxGyroRotationY < y) { self.maxGyroRotationY = y; }
-    if (self.minGyroRotationX > x) { self.minGyroRotationX = x; }
-    if (self.minGyroRotationY > y) { self.minGyroRotationY = y; }
-    //    NSLog(@"rotation min=%.6g,X=%.6g,max=%.6g  -   min=%.6g,Y=%.6g,max=%.6g, ", self.minGyroRotationX, x, self.maxGyroRotationX, self.minGyroRotationY, y, self.maxGyroRotationY);
     NSLog(@"-------------");
     NSLog(@" roll = %.4g", roll);
     NSLog(@"pitch = %.4g", pitch);
@@ -437,11 +414,6 @@ int esGenSphere(int numSlices, float radius, float **vertices,
 
 - (void) logAndMeasureX: (CGFloat) x Y: (CGFloat) y {
     NSLog(@"rotation X=%.6g, Y=%.6g", x, y);
-    if (self.maxGyroRotationX < x) { self.maxGyroRotationX = x; }
-    if (self.maxGyroRotationY < y) { self.maxGyroRotationY = y; }
-    if (self.minGyroRotationX > x) { self.minGyroRotationX = x; }
-    if (self.minGyroRotationY > y) { self.minGyroRotationY = y; }
-//    NSLog(@"rotation min=%.6g,X=%.6g,max=%.6g  -   min=%.6g,Y=%.6g,max=%.6g, ", self.minGyroRotationX, x, self.maxGyroRotationX, self.minGyroRotationY, y, self.maxGyroRotationY);
     NSLog(@"X=%.6g", x);
     NSLog(@"Y=%.6g", x);
     NSLog(@"Z=%.6g", x);
@@ -460,75 +432,69 @@ int esGenSphere(int numSlices, float radius, float **vertices,
     GLKMatrix4 modelViewMatrix = GLKMatrix4Identity;
     float scale = SphereScale;
     modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, scale, scale, scale);
-    if(self.isUsingMotion && self.motionType == kUsingDeviceMotion) {
-        CMDeviceMotion *deviceMotion = self.motionManager.deviceMotion;
-        if (deviceMotion != nil) {
-            CMAttitude *attitude = deviceMotion.attitude;
-            
-            if (self.referenceAttitude != nil) {
-                [attitude multiplyByInverseOfAttitude:self.referenceAttitude];
-            } else {
-                //NSLog(@"was nil : set new attitude", nil);
-                self.referenceAttitude = deviceMotion.attitude;
+    if(self.isUsingMotion) {
+        float currentRoll = 0.0f;
+        float currentYaw = 0.0f;
+        float currentPitch = 0.0f;
+        float orientationLandscape = 1.0f;
+        if (self.motionType == kUsingDeviceMotion) {
+            CMDeviceMotion *deviceMotion = self.motionManager.deviceMotion;
+            if (deviceMotion != nil) {
+                CMAttitude *attitude = deviceMotion.attitude;
+                if (self.referenceAttitude != nil) {
+                    [attitude multiplyByInverseOfAttitude:self.referenceAttitude];
+                } else {
+                    //NSLog(@"was nil : set new attitude", nil);
+                    self.referenceAttitude = deviceMotion.attitude;
+                }
+                currentRoll = attitude.roll;
+                currentYaw = attitude.yaw;
+                currentPitch = attitude.pitch;
+                UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
+                if (orientation == UIDeviceOrientationLandscapeRight ){
+                    orientationLandscape = -1.0f;
+                }
             }
+        } else {
+            // see http://sunday-lab.blogspot.ch/2008/04/get-pitch-yaw-roll-from-quaternion.html
             
-            float cRoll = -fabs(attitude.roll); // Up/Down landscape
-            float cYaw = attitude.yaw;  // Left/ Right landscape
-            float cPitch = attitude.pitch; // Depth landscape
+            NSObject<QuaternionAPI>* remoteQuaternion = [[CurrentQuaternion instance] dequeue];
+            if (remoteQuaternion == nil) { return; }
+            currentRoll = remoteQuaternion.roll;
+            currentYaw = remoteQuaternion.yaw;
+            currentPitch = remoteQuaternion.pitch;
             
-            UIDeviceOrientation orientation = [[UIDevice currentDevice] orientation];
-            if (orientation == UIDeviceOrientationLandscapeRight ){
-                cPitch = cPitch*-1; // correct depth when in landscape right
-            }
-            
-            
-            modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, cRoll); // Up/Down axis
-            modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, cPitch);
-            modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, cYaw);
-            
-            modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, ROLL_CORRECTION);
-            modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, ES_PI);
-            
-            modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, self.fingerRotationX);
-            modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, self.fingerRotationY);
-            
-            self.savedGyroRotationX = cRoll + ROLL_CORRECTION + self.fingerRotationX;
-            self.savedGyroRotationY = cPitch + self.fingerRotationY;
-            [self logAndMeasureRoll: attitude.roll Yaw: attitude.yaw Pitch: attitude.pitch X:self.savedGyroRotationX Y:self.savedGyroRotationY];
-
+            //orientation is always Landscape right if attached to Gear VR
+            orientationLandscape = -1.0f; // correct depth when in landscape right
         }
-    } else if(self.isUsingMotion && self.motionType == kUsingRemoteMotion) {
-        // see http://sunday-lab.blogspot.ch/2008/04/get-pitch-yaw-roll-from-quaternion.html
-
-        Quaternion* attitude = [[CurrentQuaternion instance] dequeue];
-        float cRoll = attitude.roll; // Up/Down landscape
-        float cYaw = attitude.yaw;  // Left/ Right landscape
-        float cPitch = attitude.pitch; // Depth landscape
+        
+        float cRoll = currentRoll; // Up/Down landscape
+        float cYaw = currentYaw;  // Left/ Right landscape
+        float cPitch = currentPitch; // Depth landscape
+            
+        cPitch = cPitch * orientationLandscape; // correct depth when in landscape right
 
         modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, cRoll); // Up/Down axis
         modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, cPitch);
         modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, cYaw);
-        
+            
         modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, ROLL_CORRECTION);
         modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, ES_PI);
-        
+            
         modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, self.fingerRotationX);
         modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, self.fingerRotationY);
-        
+            
         self.savedGyroRotationX = cRoll + ROLL_CORRECTION + self.fingerRotationX;
         self.savedGyroRotationY = cPitch + self.fingerRotationY;
-        [self logAndMeasureRoll: attitude.roll Yaw: attitude.yaw Pitch: attitude.pitch X:self.savedGyroRotationX Y:self.savedGyroRotationY];
-        
-        
+        [self logAndMeasureRoll: currentRoll Yaw: currentYaw Pitch: currentPitch X:self.savedGyroRotationX Y:self.savedGyroRotationY];
+
     } else {
         modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, self.fingerRotationX);
         modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, self.fingerRotationY);
         [self logAndMeasureX:self.fingerRotationX Y:self.fingerRotationY];
         
     }
-    
     self.modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
-    
     //GLKMatrix4 mViewMatrix = GLKMatrix4MakeLookAt(-2.0, 0.0, 0.0, -2.0, 0.0, -1.0, 0.0, 1.0, 0.0);
     //GLKMatrix4 matrix = GLKMatrix4Multiply(mViewMatrix, modelViewMatrix);
     //self.modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, matrix);

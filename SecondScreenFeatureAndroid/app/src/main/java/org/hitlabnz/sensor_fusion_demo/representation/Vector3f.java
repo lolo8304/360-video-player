@@ -141,6 +141,9 @@ public class Vector3f {
     public float getX() {
         return points[0];
     }
+    public float getPitchX() {
+        return points[0];
+    }
 
     /**
      * Gets the y.
@@ -150,6 +153,9 @@ public class Vector3f {
     public float getY() {
         return points[1];
     }
+    public float getRollY() {
+        return points[1];
+    }
 
     /**
      * Gets the z.
@@ -157,6 +163,9 @@ public class Vector3f {
      * @return the z
      */
     public float getZ() {
+        return points[2];
+    }
+    public float getYawZ() {
         return points[2];
     }
 

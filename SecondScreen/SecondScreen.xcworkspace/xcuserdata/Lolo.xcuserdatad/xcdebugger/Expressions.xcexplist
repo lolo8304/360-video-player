@@ -3,15 +3,31 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Connector.server(PSWebSocketServer!, webSocket : PSWebSocket!, didReceive : String!) -&gt; ():Connector.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "json[&quot;rollX&quot;].floatValue">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[HTYGLKVC update]:HTYGLKVC.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "remoteQuaternion == nil">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "HomeViewController.switchImage() -&gt; ():HomeViewController.swift">
+      </ContextState>
+      <ContextState
          contextName = "Connector.server(PSWebSocketServer!, acceptWebSocketWith : URLRequest!, address : Data!, trust : SecTrust!, response : AutoreleasingUnsafeMutablePointer&lt;HTTPURLResponse?&gt;!) -&gt; Bool:Connector.swift">
          <PersistentStrings>
             <PersistentString
                value = "request.httpBody">
             </PersistentString>
          </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "HomeViewController.switchImage() -&gt; ():HomeViewController.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>
