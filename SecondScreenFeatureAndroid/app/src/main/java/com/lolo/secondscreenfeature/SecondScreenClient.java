@@ -1,11 +1,7 @@
 
 package com.lolo.secondscreenfeature;
 
-import android.bluetooth.BluetoothAdapter;
-import android.provider.Settings;
 import android.util.Log;
-
-import com.jaredrummler.android.device.DeviceName;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
@@ -13,7 +9,6 @@ import org.java_websocket.drafts.Draft_17;
 import org.java_websocket.handshake.ServerHandshake;
 
 import java.net.URI;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -22,10 +17,13 @@ import java.util.Map;
 
 public class SecondScreenClient extends WebSocketClient {
     private static final String TAG = "SecondScreenClient";
-    public MessageDelegate delegate;
 
-    public static SecondScreenClient create(URI serverURI) {
-        return new SecondScreenClient(serverURI, new Draft_17(), SecondScreenApplication.getInstance().getDeviceId(), 0);
+    private SecondsScreenClientDelegate delegate;
+
+    public static SecondScreenClient create(SecondsScreenClientDelegate delegate, URI serverURI) {
+        SecondScreenClient client = new SecondScreenClient(serverURI, new Draft_17(), Device.me().getWebSocketHeaders(), 0);
+        client.delegate = delegate;
+        return client;
     }
 
     protected SecondScreenClient(URI serverUri , Draft draft , Map<String,String> headers , int connecttimeout ) {
@@ -35,9 +33,7 @@ public class SecondScreenClient extends WebSocketClient {
 
         @Override
     public void onMessage( String message ) {
-        if (this.delegate != null) {
-            this.delegate.onMessage(message);
-        }
+        this.delegate.onMessage(message);
     }
 
     @Override
@@ -47,9 +43,8 @@ public class SecondScreenClient extends WebSocketClient {
 
     @Override
     public void onClose( int code, String reason, boolean remote ) {
-        if (this.delegate != null) {
-            this.delegate.onClose(code, reason, remote);
-        }
+        Log.i(TAG, "onClose");
+        this.delegate.onClose(code, reason, remote);
     }
 
     @Override

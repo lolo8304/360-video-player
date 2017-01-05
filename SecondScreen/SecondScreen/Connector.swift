@@ -124,7 +124,7 @@ class Connector: NSObject {
     private var socketServer: SecondScreenServer?
     private var connectedDevices = [ String : Device ]()
     private var connectedDevicesByWebSocket = [ PSWebSocket : Device ]()
-    public var connectedDevice: Device?
+    public var selectedDevice: Device?
     
     public var delegate: ConnectorDelegate?
     public var status: ConnectorStatus = .Stopped
@@ -240,7 +240,7 @@ class Connector: NSObject {
             NSLog("register websocket of device: \(ip), data=\(device.toString())")
             self.status = .Connected
             self.statusChanged()
-            self.connectedDevice = device
+            self.selectedDevice = device
         }
     }
 
@@ -267,16 +267,16 @@ class Connector: NSObject {
     }
     
     public func choose(device: Device) {
-        self.connectedDevice = device
+        self.selectedDevice = device
     }
     public func choose(id: Int) {
         for (_, value) in self.connectedDevices {
             if (value.id == id) {
-                self.connectedDevice = value
+                self.choose(device: value)
                 return
             }
         }
-        self.connectedDevice = nil
+        self.selectedDevice = nil
     }
     
     public func sortedDevicesById() -> [Device] {
@@ -291,7 +291,7 @@ class Connector: NSObject {
     }
     
     public func play() {
-        self.connectedDevice?.play()
+        self.selectedDevice?.play()
     }
 
     // logs
@@ -337,6 +337,11 @@ extension Connector : PSWebSocketServerDelegate {
                 let device: Device? = self.get(deviceIp: json["ip"].stringValue)
                 if (device != nil) {
                     device!.connect(webSocket: webSocket)
+                    var connectionResponse = JSON.init(["device.uuid": device!.uuid]);
+                    webSocket.send(json: &connectionResponse, action: "connected");
+                } else {
+                    var connectionResponse = JSON.init(["message": "no device found on that IP"]);
+                    webSocket.send(json: &connectionResponse, action: "connection-failed");
                 }
             }
         }
@@ -429,5 +434,15 @@ extension String {
     
     func toBase64() -> String {
         return Data(self.utf8).base64EncodedString()
+    }
+}
+
+extension PSWebSocket {
+    func send(json: JSON) {
+        self.send(json.rawString())
+    }
+    func send(json: inout JSON, action: String) {
+        json["action"].stringValue = action
+        self.send(json.rawString())
     }
 }

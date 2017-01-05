@@ -270,6 +270,16 @@ public class Quaternion extends Vector4f {
         return this.eulerianAngles;
     }
 
+    public float getPitchX() {
+        return this.toEulerAngles().getPitchX();
+    }
+    public float getRollY() {
+        return this.toEulerAngles().getRollY();
+    }
+    public float getYawZ() {
+        return this.toEulerAngles().getYawZ();
+    }
+
     /**
      * Sets the quaternion to an identity quaternion of 0,0,0,1.
      */
@@ -283,7 +293,7 @@ public class Quaternion extends Vector4f {
 
     @Override
     public String toString() {
-        return "{X: " + getX() + ", Y:" + getY() + ", Z:" + getZ() + ", W:" + getW() + "}";
+        return "{X: " + getX() + ", Y:" + getY() + ", Z:" + getZ() + ", W:" + getW() + ", pitchX:" + getPitchX() + ", rollY:"+this.getRollY()+", yawZ:"+this.getYawZ()+"}";
     }
 
     private String Float2String(float pos) {
@@ -300,12 +310,12 @@ public class Quaternion extends Vector4f {
 
     public boolean isValid() {
         return !(
-                isFloatZero(this.toEulerAngles().getPitchX(), 0.001f)
+                isFloatZero(this.getPitchX(), 0.001f)
                         &&
-                        isFloatZero(this.toEulerAngles().getRollY(), 0.001f));
+                        isFloatZero(this.getRollY(), 0.001f));
     }
     public String toJSONString() {
-        return "{ \"action\":\"position\", \"X\":" + Float2String(getX()) + ", \"Y\":" + Float2String(getY()) + ", \"Z\":" + Float2String(getZ()) + ", \"W\":" + Float2String(getW()) + ", \"rollY\":" + Double2String(-this.toEulerAngles().getRollY()) + ", \"pitchX\":" + Double2String(-this.toEulerAngles().getPitchX()) + ", \"yawZ\":" + Double2String(this.toEulerAngles().getYawZ()) + "}";
+        return "{ \"action\":\"position\", \"X\":" + Float2String(getX()) + ", \"Y\":" + Float2String(getY()) + ", \"Z\":" + Float2String(getZ()) + ", \"W\":" + Float2String(getW()) + ", \"rollY\":" + Double2String(-this.getRollY()) + ", \"pitchX\":" + Double2String(-this.getPitchX()) + ", \"yawZ\":" + Double2String(this.getYawZ()) + "}";
     }
 
     /**

@@ -7,6 +7,9 @@ import android.net.nsd.NsdServiceInfo;
  */
 
 public interface NsdDelegate {
+    public void onDiscoveryStarted();
+    public void onDiscoveryStopped();
+
     public void onServiceResolved(NsdServiceInfo serviceInfo);
     public void onServiceLost(NsdServiceInfo serviceInfo);
 

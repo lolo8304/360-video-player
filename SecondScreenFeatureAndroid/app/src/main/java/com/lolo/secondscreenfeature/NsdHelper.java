@@ -16,7 +16,7 @@ public class NsdHelper {
 
     public static final String SERVICE_TYPE = "_ws._tcp.";
 
-    public static final String TAG = "NsdHelper";
+    public static final String TAG = "NsdService";
     public String mServiceName = "ws://";
 
     NsdServiceInfo mService;
@@ -42,16 +42,17 @@ public class NsdHelper {
 
             @Override
             public void onDiscoveryStarted(String regType) {
-                Log.d(TAG, "Service discovery started");
+                Log.d(TAG, "NSD Discovery started");
+                delegate.onDiscoveryStarted();
             }
 
             @Override
             public void onServiceFound(NsdServiceInfo service) {
-                Log.d(TAG, "Service discovery success " + service);
+                Log.d(TAG, "NSD Discovery success " + service);
                 if (!service.getServiceType().equals(SERVICE_TYPE)) {
-                    Log.d(TAG, "Unknown Service Type: " + service.getServiceType());
+                    Log.d(TAG, "NSD Unknown Service Type: " + service.getServiceType());
                 } else if (service.getServiceName().equals(mServiceName)) {
-                    Log.d(TAG, "Same machine: " + mServiceName);
+                    Log.d(TAG, "NSD Same machine: " + mServiceName);
                 } else if (service.getServiceName().contains(mServiceName)){
                     mNsdManager.resolveService(service, mResolveListener);
                 }
@@ -59,7 +60,7 @@ public class NsdHelper {
 
             @Override
             public void onServiceLost(NsdServiceInfo service) {
-                Log.e(TAG, "service lost " + service);
+                Log.e(TAG, "NSD Service lost " + service);
                 delegate.onServiceLost(service);
                 if (mService == service) {
                     mService = null;
@@ -68,18 +69,19 @@ public class NsdHelper {
 
             @Override
             public void onDiscoveryStopped(String serviceType) {
-                Log.i(TAG, "Discovery stopped: " + serviceType);
+                Log.i(TAG, "NSD Discovery stopped: " + serviceType);
+                delegate.onDiscoveryStopped();
             }
 
             @Override
             public void onStartDiscoveryFailed(String serviceType, int errorCode) {
-                Log.e(TAG, "Discovery failed: Error code:" + errorCode);
+                Log.e(TAG, "NSD Start Discovery failed: Error code:" + errorCode);
                 mNsdManager.stopServiceDiscovery(this);
             }
 
             @Override
             public void onStopDiscoveryFailed(String serviceType, int errorCode) {
-                Log.e(TAG, "Discovery failed: Error code:" + errorCode);
+                Log.e(TAG, "NSD Stop Discovery failed: Error code:" + errorCode);
                 mNsdManager.stopServiceDiscovery(this);
             }
         };
