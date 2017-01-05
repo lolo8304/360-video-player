@@ -328,6 +328,12 @@ extension Connector : PSWebSocketServerDelegate {
                 //CurrentQuaternion.instance().enqueue(json["X"].floatValue, add: json["Y"].floatValue, add: json["Z"].floatValue, add: json["W"].floatValue)
                 CurrentQuaternion.instance().enqueue(json["pitchX"].floatValue, add: json["rollY"].floatValue, add: json["yawZ"].floatValue)
                 //NSLog("queue size = \(CurrentQuaternion.instance().count())");
+            } else {
+                if (json["action"].stringValue == "disconnect") {
+                    device?.disconnect()
+                    var connectionResponse = JSON.init(["device.uuid": device!.uuid]);
+                    webSocket.send(json: &connectionResponse, action: "disconnected");
+                }
             }
             
         } else {
@@ -338,6 +344,7 @@ extension Connector : PSWebSocketServerDelegate {
                 if (device != nil) {
                     device!.connect(webSocket: webSocket)
                     var connectionResponse = JSON.init(["device.uuid": device!.uuid]);
+                    NSLog("send connected back to device \(device!.ip)")
                     webSocket.send(json: &connectionResponse, action: "connected");
                 } else {
                     var connectionResponse = JSON.init(["message": "no device found on that IP"]);

@@ -9,12 +9,10 @@ import android.util.Log;
 
 import org.hitlabnz.sensor_fusion_demo.HardwareChecker;
 import org.hitlabnz.sensor_fusion_demo.SensorChecker;
-import org.hitlabnz.sensor_fusion_demo.orientationProvider.CalibratedGyroscopeProvider;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.ImprovedOrientationSensor1Provider;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.OrientationProvider;
 import org.hitlabnz.sensor_fusion_demo.orientationProvider.OrientationProviderDelegate;
 import org.hitlabnz.sensor_fusion_demo.representation.Quaternion;
-import org.hitlabnz.sensor_fusion_demo.representation.Vector3f;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -23,13 +21,11 @@ import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.java_websocket.WebSocket.READYSTATE.OPEN;
-
 /**
  * Created by Lolo on 03.01.17.
  */
 
-public class Connector implements NsdDelegate, OrientationProviderDelegate, SecondsScreenClientDelegate {
+public class Connector implements NsdServiceDelegate, OrientationProviderDelegate, SecondsScreenClientDelegate {
     private static final String TAG = "Connector";
 
     private static Connector singleton = new Connector();
@@ -45,7 +41,7 @@ public class Connector implements NsdDelegate, OrientationProviderDelegate, Seco
 
     private OrientationProvider currentOrientationProvider;
     private SecondScreenClient client;
-    private NsdHelper nsdService;
+    private NsdService nsdService;
 
     protected ConnectorDelegate delegate;
 
@@ -56,13 +52,11 @@ public class Connector implements NsdDelegate, OrientationProviderDelegate, Seco
     // Servers
 
     public void start() {
-        this.startSensors();
         this.startBonjour();
     }
 
     public void stop() {
         this.stopBonjour();
-        this.stopSensors();
         if (this.client != null) {
             this.client.close();
         }
@@ -82,7 +76,7 @@ public class Connector implements NsdDelegate, OrientationProviderDelegate, Seco
         try {
             if (this.nsdService == null) {
                 this.bonjourStatus = ConnectorBonjourStatus.Starting;
-                this.nsdService = new NsdHelper(this.getContext(), this);
+                this.nsdService = new NsdService(this.getContext(), this);
                 this.nsdService.initializeNsd();
                 this.nsdService.discoverServices();
             }
@@ -111,13 +105,39 @@ public class Connector implements NsdDelegate, OrientationProviderDelegate, Seco
         this.bonjourStatus = ConnectorBonjourStatus.Stopped;
     }
 
+
+    @Override
+    public void onServiceResolved(NsdServiceInfo serviceInfo) {
+        if (!this.isStarted()) {
+            this.connectWebSocketWith(serviceInfo.getServiceName());
+        }
+    }
+
+
+    @Override
+    public void onServiceLost(NsdServiceInfo serviceInfo) {
+        if (this.client != null) {
+            if (this.client.getEndPoint().equals(serviceInfo.getServiceName())) {
+                this.client.close();
+            }
+        }
+    }
+
+
+
     // WebSocket Services
 
     public boolean isStarted() {
-        return (this.status == ConnectorStatus.Ready || this.status == ConnectorStatus.Connected) && this.bonjourStatus == ConnectorBonjourStatus.Ready;
+        if (this.client != null) {
+            return (this.client.isReady()
+                    && (this.status == ConnectorStatus.Ready || this.status == ConnectorStatus.Connected)
+                    && this.bonjourStatus == ConnectorBonjourStatus.Ready);
+        } else {
+            return false;
+        }
     }
     public boolean isConnected() {
-        return (this.status == ConnectorStatus.Connected) && this.bonjourStatus == ConnectorBonjourStatus.Ready;
+        return (this.isStarted() && this.status == ConnectorStatus.Connected);
     }
 
     private void statusChanged() {
@@ -132,10 +152,6 @@ public class Connector implements NsdDelegate, OrientationProviderDelegate, Seco
         this.statusChanged();
     }
 
-    @Override
-    public void onServiceResolved(NsdServiceInfo serviceInfo) {
-        this.connectWebSocketWith(serviceInfo.getServiceName());
-    }
 
     protected void connectWebSocketWith(String endPoint) {
         try {
@@ -150,9 +166,10 @@ public class Connector implements NsdDelegate, OrientationProviderDelegate, Seco
 
     }
 
-    @Override
-    public void onServiceLost(NsdServiceInfo serviceInfo) {
+    public String getEndPoint() {
+        return this.client != null ? this.client.getEndPoint() : "none";
     }
+
 
 
     @Override
@@ -160,29 +177,35 @@ public class Connector implements NsdDelegate, OrientationProviderDelegate, Seco
         try {
             JSONObject messageJson = new JSONObject(message);
             String action = messageJson.getString("action");
-            if (action != null && action.equals("request-connection-data")) {
-                Map<String, String> device = new HashMap<String, String>();
-                device.put("action", action);
-                device.put("ip", Device.getHostAddress());
-                String messageBack = new JSONObject(device).toString();
-                this.client.send(messageBack);
-                Log.i(TAG, "send device information on request: "+messageBack);
-            }
-            if (action != null && action.equals("selected")) {
-                this.changeState(ConnectorStatus.Selected);
-                this.delegate.onServerSelected();
-            }
-            if (action != null && action.equals("connected")) {
-                this.changeState(ConnectorStatus.Connected);
-                this.delegate.onServerConnected();
-            }
-            if (action != null && action.equals("not-connected")) {
-                this.changeState(ConnectorStatus.Ready);
-            }
-            if (action != null && action.equals("connection-failed")) {
-                this.delegate.onServerConnectionFailed(messageJson.getString("message"));
-                this.changeState(ConnectorStatus.Stopping);
-                this.client.close();
+            if (action != null) {
+                Log.i(TAG, "Action received from Server: " + action);
+                if (action.equals("request-connection-data")) {
+                    Map<String, String> device = new HashMap<String, String>();
+                    device.put("action", action);
+                    device.put("ip", Device.getHostAddress());
+                    String messageBack = new JSONObject(device).toString();
+                    this.client.send(messageBack);
+                    Log.i(TAG, "send device information on request: " + messageBack);
+                }
+                if (action.equals("selected")) {
+                    this.changeState(ConnectorStatus.Selected);
+                    this.delegate.onServerSelected();
+                }
+                if (action.equals("connected")) {
+                    this.changeState(ConnectorStatus.Connected);
+                    this.delegate.onServerConnected();
+                }
+                if (action.equals("not-connected")) {
+                    this.changeState(ConnectorStatus.Ready);
+                }
+                if (action.equals("disconnected")) {
+                    this.changeState(ConnectorStatus.Ready);
+                }
+                if (action.equals("connection-failed")) {
+                    this.delegate.onServerConnectionFailed(messageJson.getString("message"));
+                    this.changeState(ConnectorStatus.Stopping);
+                    this.client.close();
+                }
             }
         } catch (JSONException e) {
             Log.e(TAG, "error while parsing JSON request from server", e);
@@ -190,10 +213,16 @@ public class Connector implements NsdDelegate, OrientationProviderDelegate, Seco
     }
 
     @Override
+    public void onOpen() {
+        this.startSensors();
+    }
+
+    @Override
     public void onClose(int code, String reason, boolean remote) {
         this.changeState(ConnectorStatus.Stopped);
         this.delegate.onServerClosed();
         this.client = null;
+        this.stopSensors();
     }
 
 
@@ -222,8 +251,8 @@ public class Connector implements NsdDelegate, OrientationProviderDelegate, Seco
         if (this.currentOrientationProvider != null) {
             this.currentOrientationProvider.stop();
             this.currentOrientationProvider = null;
-            this.delegate.sensorsDown();
         }
+        this.delegate.sensorsDown();
     }
     private void displayWarning(String text) {
         AlertDialog ad = new AlertDialog.Builder(this.getContext()).create();
@@ -241,7 +270,7 @@ public class Connector implements NsdDelegate, OrientationProviderDelegate, Seco
     @Override
     public void onSensorChanged() {
         this.delegate.sensorsUp();
-        if (this.isStarted() && this.isConnected()) {
+        if (this.isStarted()) {
             final Quaternion quaternion = new Quaternion();
             this.currentOrientationProvider.getQuaternion(quaternion);
             String message = quaternion.toJSONString();
@@ -250,6 +279,8 @@ public class Connector implements NsdDelegate, OrientationProviderDelegate, Seco
                 this.delegate.sendPosition(quaternion);
             }
             //this.addAppendLog(this.logs, "sent: " + message);
+        } else {
+            Log.d(TAG, "sensor is running, but server is in status "+this.status + " bonjourstatus "+this.bonjourStatus);
         }
     }
 

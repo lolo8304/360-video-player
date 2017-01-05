@@ -5,7 +5,8 @@ package com.lolo.secondscreenfeature;
  */
 
 public interface SecondsScreenClientDelegate {
-    public void onMessage( String message );
-    public void onClose(int code, String reason, boolean remote);
 
+    public void onOpen();
+    public void onClose(int code, String reason, boolean remote);
+    public void onMessage( String message );
 }

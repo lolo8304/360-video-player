@@ -5,7 +5,7 @@ package com.lolo.secondscreenfeature;
         import android.net.nsd.NsdManager;
         import android.util.Log;
 
-public class NsdHelper {
+public class NsdService {
 
     Context mContext;
 
@@ -20,9 +20,9 @@ public class NsdHelper {
     public String mServiceName = "ws://";
 
     NsdServiceInfo mService;
-    private NsdDelegate delegate;
+    private NsdServiceDelegate delegate;
 
-    public NsdHelper(Context context, NsdDelegate delegate) {
+    public NsdService(Context context, NsdServiceDelegate delegate) {
         mContext = context;
         mNsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
         this.delegate = delegate;

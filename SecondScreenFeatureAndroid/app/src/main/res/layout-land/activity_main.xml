@@ -88,10 +88,10 @@
         android:textAlignment="viewStart" />
 
     <CheckBox
-        android:text="Screen connected?"
+        android:text="Discovering?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/isScreenConnected"
+        android:id="@+id/isDiscovering"
         android:focusable="false"
         android:layout_alignBaseline="@+id/textView3"
         android:layout_alignBottom="@+id/textView3"
@@ -293,5 +293,16 @@
         android:layout_alignParentEnd="true"
         android:layout_below="@+id/textView2"
         android:layout_alignParentBottom="true" />
+
+    <CheckBox
+        android:text="Screen connected?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/isScreenConnected"
+        android:focusable="false"
+        android:clickable="false"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/isDiscovering"
+        android:layout_alignStart="@+id/isDiscovering" />
 
 </RelativeLayout>

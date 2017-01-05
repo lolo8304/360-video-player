@@ -2,6 +2,7 @@ package com.lolo.secondscreenfeature.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
@@ -14,12 +15,12 @@ import com.lolo.secondscreenfeature.R;
 import com.lolo.secondscreenfeature.SecondScreenApplication;
 
 import org.hitlabnz.sensor_fusion_demo.representation.Quaternion;
-import org.hitlabnz.sensor_fusion_demo.representation.Vector3f;
 
 import java.text.DecimalFormat;
 
 public class MainActivity extends AppCompatActivity implements ConnectorDelegate {
 
+    final static String TAG = "View";
     final static DecimalFormat f = new DecimalFormat("0.000");
 
     int count = 0;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements ConnectorDelegate
     private TextView labelPitch;
     private CheckBox isScreenConnected;
     private CheckBox isSensorSending;
+    private CheckBox isDiscovering;
 
     public SecondScreenApplication getMyApplication() {
         return (SecondScreenApplication)this.getApplication();
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements ConnectorDelegate
         this.labelPitch = (TextView) findViewById(R.id.Pitch);
         this.isScreenConnected = (CheckBox)findViewById(R.id.isScreenConnected);
         this.isSensorSending = (CheckBox)findViewById(R.id.isSensorSending);
+        this.isDiscovering = (CheckBox)findViewById(R.id.isDiscovering);
         this.start();
     }
 
@@ -74,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements ConnectorDelegate
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        this.stop();
+        Connector.instance().setDelegated(null);
     }
 
     private void addAppendLog(final TextView textView, final String newMessage) {
@@ -173,12 +176,21 @@ public class MainActivity extends AppCompatActivity implements ConnectorDelegate
     @Override
     public void onServerClosed() {
         this.screenDown();
-        Connector.instance().setDelegated(null);
     }
 
     @Override
-    public void statusChanged(boolean started, ConnectorStatus status, ConnectorBonjourStatus bonjourStatus) {
+    public void statusChanged(boolean started, final ConnectorStatus status, final ConnectorBonjourStatus bonjourStatus) {
+        Log.i(TAG, "status changed now: "+status+" / "+bonjourStatus);
         this.addAppendLog(this.logs, "status changed: started="+started +", status="+status+", bonjourStatus="+bonjourStatus);
+        runOnUiThread(new Runnable() {
+            public void run(){
+                if (bonjourStatus == ConnectorBonjourStatus.Ready) {
+                    if (!isDiscovering.isChecked()) { isDiscovering.setChecked(true); }
+                } else {
+                    if (isDiscovering.isChecked()) { isDiscovering.setChecked(false); }
+                }
+            }
+        });
     }
 
     @Override

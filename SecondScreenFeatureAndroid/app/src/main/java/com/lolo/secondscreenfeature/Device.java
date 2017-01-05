@@ -59,7 +59,7 @@ public class Device {
         return null;
     }
     public static String getHostAddress() {
-        return Device.getInetAddress().getHostName();
+        return Device.getInetAddress().getHostAddress();
     }
 
 

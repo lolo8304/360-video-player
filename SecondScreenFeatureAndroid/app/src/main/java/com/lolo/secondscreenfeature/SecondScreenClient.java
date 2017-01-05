@@ -3,6 +3,7 @@ package com.lolo.secondscreenfeature;
 
 import android.util.Log;
 
+import org.java_websocket.WebSocket;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.drafts.Draft_17;
@@ -30,8 +31,17 @@ public class SecondScreenClient extends WebSocketClient {
         super(serverUri, draft, headers, connecttimeout);
     }
 
+    @Override
+    public void close() {
+        this.send("{\"action\":\"disconnect\"}");
+        super.close();
+    }
 
-        @Override
+    public boolean isReady() {
+        return this.getConnection().getReadyState() == WebSocket.READYSTATE.OPEN;
+    }
+
+    @Override
     public void onMessage( String message ) {
         this.delegate.onMessage(message);
     }
@@ -39,6 +49,7 @@ public class SecondScreenClient extends WebSocketClient {
     @Override
     public void onOpen( ServerHandshake handshake ) {
         Log.i(TAG, "onOpen");
+        this.delegate.onOpen();
     }
 
     @Override
@@ -52,4 +63,7 @@ public class SecondScreenClient extends WebSocketClient {
         Log.e(TAG, "onError", ex);
     }
 
+    public String getEndPoint() {
+        return this.getURI().toString();
+    }
 }
