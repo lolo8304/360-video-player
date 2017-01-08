@@ -96,7 +96,8 @@ GLint uniforms[NUM_UNIFORMS];
     
     [self addGesture];
     [self setupGL];
-    [self startDeviceMotion];
+    //[self startDeviceMotion];
+    [self startRemoteMotion];
 }
 
 - (void)refreshTexture {
@@ -394,7 +395,7 @@ int esGenSphere(int numSlices, float radius, float **vertices,
         [self.motionManager stopDeviceMotionUpdates];
         self.motionManager = nil;
     }
-    CGFloat fingerRotX = self.savedGyroRotationX-self.referenceAttitude.roll- ROLL_CORRECTION;
+    CGFloat fingerRotX = self.savedGyroRotationX-/*self.referenceAttitude.roll*/- ROLL_CORRECTION;
     CGFloat fingerRotY = self.savedGyroRotationY;
     [self setFingerRotationX: fingerRotX Y: fingerRotY];
     
@@ -402,14 +403,23 @@ int esGenSphere(int numSlices, float radius, float **vertices,
     self.motionType = kUsingFingerMotion;
 }
 
+- (void) logFloat: (CGFloat) f text: (NSString*) text {
+    if (f > 0) {
+        NSLog(@"%@ =  %.4g", text, f);
+    } else {
+        NSLog(@"%@ = %.4g", text, f);
+        
+    }
+}
 - (void) logAndMeasureRoll: (CGFloat) roll Yaw: (CGFloat) yaw Pitch: (CGFloat) pitch X: (CGFloat) x Y: (CGFloat) y {
     NSLog(@"-------------");
-    NSLog(@" roll = %.4g", roll);
-    NSLog(@"pitch = %.4g", pitch);
-    NSLog(@"  yaw = %.4g", yaw);
+    [self logFloat: pitch text: @"pitch"];
+    [self logFloat: roll text: @"roll"];
+    [self logFloat: yaw text: @"yaw"];
+    /*
     NSLog(@"    X = %.4g", x);
     NSLog(@"    Y = %.4g", y);
-    
+*/
 }
 
 - (void) logAndMeasureX: (CGFloat) x Y: (CGFloat) y {
@@ -442,7 +452,7 @@ int esGenSphere(int numSlices, float radius, float **vertices,
             if (deviceMotion != nil) {
                 CMAttitude *attitude = deviceMotion.attitude;
                 if (self.referenceAttitude != nil) {
-                    [attitude multiplyByInverseOfAttitude:self.referenceAttitude];
+                    //[attitude multiplyByInverseOfAttitude:self.referenceAttitude];
                 } else {
                     //NSLog(@"was nil : set new attitude", nil);
                     self.referenceAttitude = deviceMotion.attitude;
@@ -475,6 +485,9 @@ int esGenSphere(int numSlices, float radius, float **vertices,
         cPitch = cPitch * orientationLandscape; // correct depth when in landscape right
 
         modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, cRoll); // Up/Down axis
+        if (self.motionType == kUsingRemoteMotion) {
+            modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, -ES_PI / 2);
+        }
         modelViewMatrix = GLKMatrix4RotateY(modelViewMatrix, cPitch);
         modelViewMatrix = GLKMatrix4RotateZ(modelViewMatrix, cYaw);
             
@@ -537,21 +550,21 @@ int esGenSphere(int numSlices, float radius, float **vertices,
 #pragma mark - Touch Event
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if(self.isUsingMotion) return;
+//    if(self.isUsingMotion) return;
     for (UITouch *touch in touches) {
         [_currentTouches addObject:touch];
     }
 }
 
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    if(self.isUsingMotion) return;
+//  if(self.isUsingMotion) return;
     UITouch *touch = [touches anyObject];
     float distX = [touch locationInView:touch.view].x - [touch previousLocationInView:touch.view].x;
     float distY = [touch locationInView:touch.view].y - [touch previousLocationInView:touch.view].y;
     distX *= -0.005;
     distY *= -0.005;
     
-    CGFloat incFingerRotX = distY *  self.overture / 100;
+    CGFloat incFingerRotX = 0 - distY *  self.overture / 100;
     CGFloat incFingerRotY = 0 - distX *  self.overture / 100;
     /*
     self.fingerRotationX += distY *  self.overture / 100;

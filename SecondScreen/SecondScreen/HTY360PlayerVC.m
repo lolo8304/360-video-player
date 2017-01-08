@@ -592,16 +592,11 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 #pragma mark - gyro button
 
 - (IBAction)gyroButtonTouched:(id)sender {
-    if(self.glkViewController.isUsingMotion) {
-        if (self.glkViewController.motionType == kUsingDeviceMotion) {
-            [self.glkViewController startRemoteMotion];
-        } else {
-            [self.glkViewController startFingerMotion];
-        }
+    if (self.glkViewController.motionType == kUsingDeviceMotion) {
+        [self.glkViewController startRemoteMotion];
     } else {
-        [self.glkViewController startDeviceMotion];
+            [self.glkViewController startDeviceMotion];
     }
-    
     self.gyroButton.selected = self.glkViewController.isUsingMotion;
 }
 

@@ -13,15 +13,15 @@
  * limitations under the License.
  */
 
-package com.lolo.secondscreen;
+package com.lolo.secondscreen.activity;
 
-import android.content.res.AssetFileDescriptor;
 import android.media.MediaCodec;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.Surface;
+import android.view.WindowManager;
 
 import com.google.android.exoplayer.ExoPlaybackException;
 import com.google.android.exoplayer.ExoPlayer;
@@ -32,15 +32,17 @@ import com.google.android.exoplayer.extractor.ExtractorSampleSource;
 import com.google.android.exoplayer.upstream.AssetDataSource;
 import com.google.android.exoplayer.upstream.DefaultAllocator;
 import com.google.android.exoplayer.upstream.FileDataSource;
+import com.lolo.secondscreen.connector.Connector;
+import com.lolo.secondscreen.connector.ConnectorBonjourStatus;
+import com.lolo.secondscreen.connector.ConnectorDelegate;
+import com.lolo.secondscreen.connector.ConnectorStatus;
+import com.lolo.secondscreen.connector.gvr.GVRConnector;
+import com.lolo.secondscreen.sensor_fusion.representation.Quaternion;
 
 import org.gearvrf.GVRActivity;
-import org.gearvrf.scene_objects.GVRVideoSceneObject;
 import org.gearvrf.scene_objects.GVRVideoSceneObjectPlayer;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-
-public class Minimal360VideoActivity extends GVRActivity {
+public class Minimal360VideoActivity extends GVRActivity implements ConnectorDelegate {
 
     /**
      * Called when the activity is first created.
@@ -48,9 +50,10 @@ public class Minimal360VideoActivity extends GVRActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-            videoSceneObjectPlayer = makeExoPlayer();
-
+        GVRConnector.activate();
+        Connector.instance().setDelegated(this);
+        videoSceneObjectPlayer = makeExoPlayer();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         if (null != videoSceneObjectPlayer) {
             final Minimal360Video main = new Minimal360Video(videoSceneObjectPlayer);
             setMain(main, "gvr.xml");
@@ -163,4 +166,61 @@ public class Minimal360VideoActivity extends GVRActivity {
 
 
     private GVRVideoSceneObjectPlayer<?> videoSceneObjectPlayer;
+
+    // ConnectionDelegate
+
+    @Override
+    public void endpointChanged(String s) {
+
+    }
+
+    @Override
+    public void sensorsUp() {
+
+    }
+
+    @Override
+    public void sensorsDown() {
+
+    }
+
+    @Override
+    public void onServerConnectionFailed(String message) {
+
+    }
+
+    @Override
+    public void onServerClosed() {
+
+    }
+
+    @Override
+    public void onServerReady() {
+
+    }
+
+    @Override
+    public void onServerConnected() {
+
+    }
+
+    @Override
+    public void onServerSelected() {
+
+    }
+
+    @Override
+    public void statusChanged(boolean started, ConnectorStatus status, ConnectorBonjourStatus bonjourStatus) {
+        Log.d(TAG, "status changed "+started + " / "+ status +" / "+ bonjourStatus);
+    }
+
+    @Override
+    public void positionSent(Quaternion quaternion) {
+       // Log.d("Video", String.format("Pitch / Roll / Yaw =   %3.3f  %3.3f  %3.3f", quaternion.getPitchX(), quaternion.getRollY(), quaternion.getYawZ()));
+    }
+
+    @Override
+    public void positionNotSent(Quaternion quaternion) {
+
+    }
 }
