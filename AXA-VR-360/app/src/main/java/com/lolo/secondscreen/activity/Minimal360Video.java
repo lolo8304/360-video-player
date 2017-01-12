@@ -37,7 +37,13 @@ import org.gearvrf.scene_objects.GVRVideoSceneObject;
 import org.gearvrf.scene_objects.GVRVideoSceneObject.GVRVideoType;
 import org.gearvrf.scene_objects.GVRVideoSceneObjectPlayer;
 
+import java.util.Random;
+
 public class Minimal360Video extends GVRMain {
+
+
+    private float start = Float.MAX_VALUE;
+    private float start2 = Float.MAX_VALUE;
 
     public Minimal360Video(GVRVideoSceneObjectPlayer<?> player) {
         mPlayer = player;
@@ -88,30 +94,52 @@ public class Minimal360Video extends GVRMain {
 
         float[] eulerAngles = quaternion.toEulerAngles().toArray();
 
-        /* int screenRotation = app.getCurrentActivity().getWindowManager().getDefaultDisplay().getRotation(); */
-        /* switch Roll and Pitch for iOS */
         float yawEuler = eulerAngles[1]; // pitch is turning here for yaw
+        Log.d("Video", String.format("before = %.4f = %.4f", yawZ, yawEuler));
+        String quadrant = "0";
         if (yawZ >= 0.0f) {
             if (yawEuler < Quaternion.PI2) {
-                // pitch and roll are OK
-                //no action
+                // before 0 - 90
+                // after 0 - 90
+                quadrant = "1st";
             } else {
-                yawZ = 180 - yawZ;
-                //switch pitch and roll
+                // before 90 - 0
+                // after 270 - 360
+                yawZ = 270 + (90 - yawZ);
+                quadrant = "2nd";
             }
         } else {
                 if (yawEuler < -Quaternion.PI2) {
-                    yawZ = -180 - yawZ;
-                    //switch pitch and roll
+                    // before 0 - -90
+                    // after 180 - 270
+                    yawZ = 180 - yawZ;
+                    quadrant = "3rd";
                 }
                 else  {
+                    // before -90 - 0
+                    // after 90 - 180
+                    yawZ = 180 + yawZ;
+                    quadrant = "4th";
                     // no action
                     // pitch and roll are OK
                 }
         }
 
-        quaternion.setEulerAnglesDegree(new Vector3f(rollY, pitchX, yawZ));
-        Log.d("Video", String.format("Rotation Q= Pitch=%.4f (%3.0f), Roll=%.4f (%3.0f), Yaw=%.4f (%3.0f)", quaternion.getPitchX(), rollY, quaternion.getRollY(), pitchX, quaternion.getYawZ(), yawZ));
+        /*
+        if (this.start == Float.MAX_VALUE) {
+            this.start = yawZ;
+        } else {
+            start += 2;
+            yawZ = this.start;
+        }
+        yawZ = yawZ % 360.0f;
+*/
+        Vector3f v = new Vector3f(rollY, pitchX, yawZ);
+        quaternion.setEulerAnglesDegree(v);
+        eulerAngles = quaternion.toEulerAngles().toArray(); yawEuler = eulerAngles[1];
+        Log.d("Video", String.format("yaw in %s quadrant = %.4f = %.4f", quadrant, yawZ, yawEuler));
+
+        //Log.d("Video", String.format("Rotation Q= Pitch=%.4f (%3.0f), Roll=%.4f (%3.0f), Yaw=%.4f (%3.0f)", quaternion.getPitchX(), rollY, quaternion.getRollY(), pitchX, quaternion.getYawZ(), yawZ));
         //Log.d("Video", String.format("Rotation Q= W=%.4f, X=%.4f, Y=%.4f, Z=%.4f", W, X, Y, Z));
         //Log.d("Video", String.format("Debug Rotation %.4f %3.0f %3.4f     ---    %3.4f  %3.4f  %3.4f", quaternion.getYawZ(), yawZ, Y, eulerAngles[0], eulerAngles[1], eulerAngles[2]));
         Connector.instance().sendPositionMessage(quaternion);

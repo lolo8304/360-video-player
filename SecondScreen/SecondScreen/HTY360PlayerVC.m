@@ -72,6 +72,8 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     [self configureBackButton];
     [self configureGyroButton];
     
+    [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
+    
 #if SHOW_DEBUG_LABEL
     self.debugView.hidden = NO;
 #endif
@@ -101,6 +103,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     
     @try {
         [self removePlayerTimeObserver];
