@@ -12,7 +12,9 @@ import org.json.JSONObject;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
+import java.util.Queue;
 
 /**
  * Created by Lolo on 03.01.17.
@@ -37,6 +39,8 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
     public ConnectorBonjourStatus bonjourStatus = ConnectorBonjourStatus.Stopped;
 
     private SecondScreenClient client;
+    private Queue<String> messageQueue = new LinkedList<String>();
+
     private NsdService nsdService;
 
     protected ConnectorDelegate delegate;
@@ -167,6 +171,13 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
     }
 
 
+    protected void bufferedSendMessage(String message) {
+        if (this.isStarted()) {
+            this.client.send(message);
+        } else {
+            this.messageQueue.add(message);
+        }
+    }
 
     @Override
     public void onMessage(final String message) {
@@ -228,6 +239,29 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
         this.client.send(message);
     }
 
+    public void sendActionMessage(String action, Map<String, String> data) {
+        data.put("action", action);
+        data.put("ip", Device.getHostAddress());
+        String messageBack = new JSONObject(data).toString();
+        this.bufferedSendMessage(messageBack);
+        this.delegate.actionMessageSent(action, data);
+    }
+    public void sendAttributeMessage(String action, String name, String value) {
+        Map<String, String> data = new HashMap<String, String>();
+        data.put(name, value);
+        this.sendActionMessage(action, data);
+    }
+    public void sendAction(String action) {
+        Map<String, String> data = new HashMap<String, String>();
+        this.sendActionMessage(action, data);
+    }
+    public void sendAttributeMessage(String action, String name, int value) {
+        this.sendAttributeMessage(action, name, ""+value);
+    }
+    public void sendAttributeMessage(String action, String name, long value) {
+        this.sendAttributeMessage(action, name, ""+value);
+    }
+
     public void sendPositionMessage(Quaternion quaternion) {
         if (this.isStarted()) {
             String message = quaternion.toJSONString();
@@ -237,7 +271,7 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
             }
         } else {
             this.delegate.positionNotSent(quaternion);
-            Log.d(TAG, "sensor is running, but server is in status "+this.status + " bonjourstatus "+this.bonjourStatus);
+            //Log.d(TAG, "sensor is running, but server is in status "+this.status + " bonjourstatus "+this.bonjourStatus);
         }
     }
     public abstract void startSensors();

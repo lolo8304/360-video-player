@@ -2,6 +2,8 @@ package com.lolo.secondscreen.connector;
 
 import com.lolo.secondscreen.sensor_fusion.representation.Quaternion;
 
+import java.util.Map;
+
 /**
  * Created by Lolo on 05.01.17.
  */
@@ -59,6 +61,11 @@ public class NoConnectorDelegate implements ConnectorDelegate {
 
     @Override
     public void positionNotSent(Quaternion quaternion) {
+
+    }
+
+    @Override
+    public void actionMessageSent(String action, Map<String, String> data) {
 
     }
 }

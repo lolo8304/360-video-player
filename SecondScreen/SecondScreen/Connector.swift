@@ -9,8 +9,12 @@
 import Foundation
 
 protocol ConnectorDelegate {
-    func device()
+    func deviceConnected(device: Device)
+    func deviceDisconnected(device: Device)
+    func deviceSelected(device: Device)
     func statusChanged(started: Bool, server:ConnectorStatus, bonjourServer: ConnectorBonjourStatus, connections: Int)
+    func sendAction(action: String, data: JSON);
+
 }
 
 enum ConnectorStatus {
@@ -122,17 +126,17 @@ class Connector: NSObject {
     }()
     
     private var socketServer: SecondScreenServer?
-    private var connectedDevices = [ String : Device ]()
+    private var tempConnectedDevices = [ String : Device ]()
     private var connectedDevicesByWebSocket = [ PSWebSocket : Device ]()
     public var selectedDevice: Device?
     
-    public var delegate: ConnectorDelegate?
+    public var delegate: ConnectorDelegate
     public var status: ConnectorStatus = .Stopped
     public var bonjourStatus: ConnectorBonjourStatus = .Stopped
     var timer = Timer()
     
     private override init() {
-        
+        self.delegate = ConnectorNoDelegate()
     }
     
     // timer functions
@@ -190,7 +194,9 @@ class Connector: NSObject {
         if (self.isStarted()) { return }
         self.changeState(server: .Starting)
         self.changeState(bonjourServer: .Starting)
-        
+
+        self.socketServer?.stop()
+        self.socketServer = nil
         self.socketServer = SecondScreenServer(port: 6577)
         self.socketServer?.start(delegate: self, udpDelegate: self, bonjourDelegate: self)
     }
@@ -213,7 +219,7 @@ class Connector: NSObject {
     }
 
     private func statusChanged() {
-        self.delegate?.statusChanged(started: self.isStarted(), server: self.status, bonjourServer: self.bonjourStatus, connections: self.connectedDevices.count)
+        self.delegate.statusChanged(started: self.isStarted(), server: self.status, bonjourServer: self.bonjourStatus, connections: self.connectedDevicesByWebSocket.count)
     }
     // state management
     func changeState(server: ConnectorStatus) {
@@ -234,13 +240,18 @@ class Connector: NSObject {
     public func add(device: Device) {
         let ip: String = device.ip
         NSLog("register device: \(ip), data=\(device.toString())")
-        self.connectedDevices[ip] = device
         if (device.isConnected()) {
+            if (self.tempConnectedDevices[ip] == device) {
+                self.tempConnectedDevices.removeValue(forKey: device.ip)
+            }
             self.connectedDevicesByWebSocket[device.webSocket!] =  device
             NSLog("register websocket of device: \(ip), data=\(device.toString())")
             self.status = .Connected
             self.statusChanged()
             self.selectedDevice = device
+            self.delegate.deviceConnected(device: device)
+        } else {
+            self.tempConnectedDevices[device.ip] = device
         }
     }
 
@@ -248,7 +259,6 @@ class Connector: NSObject {
         self.add(device: Device.create(connector: self, json: json))
     }
     public func remove(device: Device) {
-        self.connectedDevices.removeValue(forKey: device.ip)
         if (device.isConnected()) {
             self.connectedDevicesByWebSocket.removeValue(forKey: device.webSocket!)
             NSLog("remove connected device: \(device.ip), data=\(device.toString())")
@@ -256,11 +266,13 @@ class Connector: NSObject {
                 self.status = .Ready
             }
             self.statusChanged()
+            self.delegate.deviceDisconnected(device: device)
         }
     }
     
     public func get(deviceIp: String) -> Device? {
-        return self.connectedDevices[deviceIp]
+        self.choose(ip: deviceIp)
+        return self.selectedDevice
     }
     public func get(webSocket: PSWebSocket) -> Device? {
         return self.connectedDevicesByWebSocket[webSocket]
@@ -270,8 +282,23 @@ class Connector: NSObject {
         self.selectedDevice = device
     }
     public func choose(id: Int) {
-        for (_, value) in self.connectedDevices {
+        for (_, value) in self.connectedDevicesByWebSocket {
             if (value.id == id) {
+                self.choose(device: value)
+                return
+            }
+        }
+        self.selectedDevice = nil
+    }
+    public func choose(ip: String) {
+        for (_, value) in self.connectedDevicesByWebSocket {
+            if (value.ip == ip) {
+                self.choose(device: value)
+                return
+            }
+        }
+        for (_, value) in self.tempConnectedDevices {
+            if (value.ip == ip) {
                 self.choose(device: value)
                 return
             }
@@ -281,7 +308,7 @@ class Connector: NSObject {
     
     public func sortedDevicesById() -> [Device] {
         var list: [Device] = [Device]();
-        for (_, value) in self.connectedDevices {
+        for (_, value) in self.connectedDevicesByWebSocket {
             list.append(value)
         }
         list.sort {
@@ -328,14 +355,13 @@ extension Connector : PSWebSocketServerDelegate {
                 //CurrentQuaternion.instance().enqueue(json["X"].floatValue, add: json["Y"].floatValue, add: json["Z"].floatValue, add: json["W"].floatValue)
                 CurrentQuaternion.instance().enqueue(json["pitchX"].floatValue, add: json["rollY"].floatValue, add: json["yawZ"].floatValue)
                 //NSLog("queue size = \(CurrentQuaternion.instance().count())");
-            } else {
-                if (json["action"].stringValue == "disconnect") {
+            } else if (json["action"].stringValue == "disconnect") {
                     device?.disconnect()
                     var connectionResponse = JSON.init(["device.uuid": device!.uuid]);
                     webSocket.send(json: &connectionResponse, action: "disconnected");
-                }
+            } else if (json["action"].stringValue != "") {
+                delegate.sendAction(action: json["action"].stringValue, data: json);
             }
-            
         } else {
             let json: JSON = JSON.init(data: message.data(using: .utf8)!)
             if (json["action"].stringValue == "request-connection-data") {
@@ -424,7 +450,14 @@ extension Connector : NetServiceDelegate {
         NSLog("Bonjour Service Did Resolved Address: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
     }
     func netServiceDidStop(_ sender: NetService) {
+        NSLog("Bonjour Service Did Stop: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
         self.changeState(bonjourServer: .Stopped)
+    }
+    func netService(_ sender: NetService, didNotResolve errorDict: [String : NSNumber]) {
+        NSLog("Bonjour Service did not resolve: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
+    }
+    func netService(_ sender: NetService, didAcceptConnectionWith inputStream: InputStream, outputStream: OutputStream) {
+        
     }
 
 }
@@ -452,4 +485,30 @@ extension PSWebSocket {
         json["action"].stringValue = action
         self.send(json.rawString())
     }
+}
+
+
+
+class ConnectorNoDelegate: ConnectorDelegate {
+    internal func sendAction(action: String, data: JSON) {
+        
+    }
+
+    internal func statusChanged(started: Bool, server: ConnectorStatus, bonjourServer: ConnectorBonjourStatus, connections: Int) {
+        
+    }
+
+    internal func deviceSelected(device: Device) {
+        
+    }
+
+    internal func deviceDisconnected(device: Device) {
+        
+    }
+
+    internal func deviceConnected(device: Device) {
+        
+    }
+
+    
 }

@@ -24,11 +24,17 @@
 		E11AFE301E12B0D5009C7E8F /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE281E12B0D5009C7E8F /* Shader.fsh */; };
 		E11AFE311E12B0D5009C7E8F /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE291E12B0D5009C7E8F /* Shader.vsh */; };
 		E11AFE361E1328E6009C7E8F /* demo.m4v in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE351E1328E6009C7E8F /* demo.m4v */; };
+		E154DB751E29A63E00250A70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E154DB741E29A63E00250A70 /* AppDelegate.swift */; };
+		E154DB771E29A63E00250A70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E154DB761E29A63E00250A70 /* ViewController.swift */; };
+		E154DB7A1E29A63E00250A70 /* MainTV.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E154DB781E29A63E00250A70 /* MainTV.storyboard */; };
+		E154DB841E29AA2600250A70 /* AssetsTV.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E154DB831E29AA2600250A70 /* AssetsTV.xcassets */; };
 		E19F71D11E19AB4B009D7926 /* EulerianAngle.m in Sources */ = {isa = PBXBuildFile; fileRef = E19F71CF1E19AB4B009D7926 /* EulerianAngle.m */; };
 		E1A1350D1E180538003A4B24 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A1350C1E180538003A4B24 /* Queue.swift */; };
 		E1A135111E1809C6003A4B24 /* CurrentQuaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A135101E1809C6003A4B24 /* CurrentQuaternion.m */; };
 		E1A135151E1810C0003A4B24 /* Quaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A135141E1810C0003A4B24 /* Quaternion.m */; };
 		E1A135171E19266A003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E1A135161E192551003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */; };
+		E1C039821E3019C9009698D3 /* SelectDeviceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C039811E3019C9009698D3 /* SelectDeviceController.swift */; };
+		E1C039841E301B13009698D3 /* UIDeviceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C039831E301B13009698D3 /* UIDeviceCollectionViewCell.swift */; };
 		E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF41E140AFA0055104C /* HomeViewController.swift */; };
 		E1E99EF71E141A7D0055104C /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF61E141A7D0055104C /* Connector.swift */; };
 		E1E99EFC1E14528C0055104C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */; };
@@ -59,6 +65,12 @@
 		E11AFE281E12B0D5009C7E8F /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		E11AFE291E12B0D5009C7E8F /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		E11AFE351E1328E6009C7E8F /* demo.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo.m4v; sourceTree = "<group>"; };
+		E154DB721E29A63E00250A70 /* SecondScreenTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecondScreenTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E154DB741E29A63E00250A70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E154DB761E29A63E00250A70 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E154DB791E29A63E00250A70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainTV.storyboard; sourceTree = "<group>"; };
+		E154DB7D1E29A63E00250A70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E154DB831E29AA2600250A70 /* AssetsTV.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AssetsTV.xcassets; sourceTree = "<group>"; };
 		E19F71CF1E19AB4B009D7926 /* EulerianAngle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EulerianAngle.m; sourceTree = "<group>"; };
 		E19F71D01E19AB4B009D7926 /* EulerianAngle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EulerianAngle.h; sourceTree = "<group>"; };
 		E1A1350C1E180538003A4B24 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
@@ -67,6 +79,8 @@
 		E1A135131E180EE4003A4B24 /* Quaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
 		E1A135141E1810C0003A4B24 /* Quaternion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quaternion.m; sourceTree = "<group>"; };
 		E1A135161E192551003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DE-AXA-One_second_away-Final_v3_short_360.mp4"; sourceTree = "<group>"; };
+		E1C039811E3019C9009698D3 /* SelectDeviceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDeviceController.swift; sourceTree = "<group>"; };
+		E1C039831E301B13009698D3 /* UIDeviceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceCollectionViewCell.swift; sourceTree = "<group>"; };
 		E1E99EF41E140AFA0055104C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E1E99EF61E141A7D0055104C /* Connector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
 		E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
@@ -80,6 +94,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EB922E14C855CDC47457719 /* libPods-SecondScreen.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E154DB6F1E29A63E00250A70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +129,7 @@
 			children = (
 				E11AFE0B1E103643009C7E8F /* Podfile */,
 				E11AFDF61E10355F009C7E8F /* SecondScreen */,
+				E154DB731E29A63E00250A70 /* SecondScreenTV */,
 				E11AFDF51E10355F009C7E8F /* Products */,
 				136032E88965A4312D7F3D38 /* Pods */,
 				953991134EFBDE3A299AED49 /* Frameworks */,
@@ -118,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				E11AFDF41E10355F009C7E8F /* SecondScreen.app */,
+				E154DB721E29A63E00250A70 /* SecondScreenTV.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,6 +210,18 @@
 			name = Menu;
 			sourceTree = "<group>";
 		};
+		E154DB731E29A63E00250A70 /* SecondScreenTV */ = {
+			isa = PBXGroup;
+			children = (
+				E154DB741E29A63E00250A70 /* AppDelegate.swift */,
+				E154DB761E29A63E00250A70 /* ViewController.swift */,
+				E154DB781E29A63E00250A70 /* MainTV.storyboard */,
+				E154DB831E29AA2600250A70 /* AssetsTV.xcassets */,
+				E154DB7D1E29A63E00250A70 /* Info.plist */,
+			);
+			path = SecondScreenTV;
+			sourceTree = "<group>";
+		};
 		E1E99EF81E141C060055104C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +247,8 @@
 			isa = PBXGroup;
 			children = (
 				E11AFDF91E10355F009C7E8F /* ViewController.swift */,
+				E1C039811E3019C9009698D3 /* SelectDeviceController.swift */,
+				E1C039831E301B13009698D3 /* UIDeviceCollectionViewCell.swift */,
 				E1E99EF41E140AFA0055104C /* HomeViewController.swift */,
 			);
 			name = Controller;
@@ -240,6 +277,23 @@
 			productReference = E11AFDF41E10355F009C7E8F /* SecondScreen.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E154DB711E29A63E00250A70 /* SecondScreenTV */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E154DB801E29A63E00250A70 /* Build configuration list for PBXNativeTarget "SecondScreenTV" */;
+			buildPhases = (
+				E154DB6E1E29A63E00250A70 /* Sources */,
+				E154DB6F1E29A63E00250A70 /* Frameworks */,
+				E154DB701E29A63E00250A70 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SecondScreenTV;
+			productName = SecondScreenTV;
+			productReference = E154DB721E29A63E00250A70 /* SecondScreenTV.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -261,6 +315,16 @@
 							};
 						};
 					};
+					E154DB711E29A63E00250A70 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = W3U24WE3R3;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes.appletvos = {
+								enabled = 1;
+							};
+						};
+					};
 				};
 			};
 			buildConfigurationList = E11AFDEF1E10355F009C7E8F /* Build configuration list for PBXProject "SecondScreen" */;
@@ -277,6 +341,7 @@
 			projectRoot = "";
 			targets = (
 				E11AFDF31E10355F009C7E8F /* SecondScreen */,
+				E154DB711E29A63E00250A70 /* SecondScreenTV */,
 			);
 		};
 /* End PBXProject section */
@@ -296,6 +361,15 @@
 				E11AFE0C1E103643009C7E8F /* Podfile in Resources */,
 				E11AFDFD1E10355F009C7E8F /* Main.storyboard in Resources */,
 				E11AFE2C1E12B0D5009C7E8F /* HTYMenuVC.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E154DB701E29A63E00250A70 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E154DB841E29AA2600250A70 /* AssetsTV.xcassets in Resources */,
+				E154DB7A1E29A63E00250A70 /* MainTV.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -354,6 +428,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1C039841E301B13009698D3 /* UIDeviceCollectionViewCell.swift in Sources */,
 				E1E99EF71E141A7D0055104C /* Connector.swift in Sources */,
 				E11AFE2A1E12B0D5009C7E8F /* HTYGLKVC.m in Sources */,
 				E11AFE2F1E12B0D5009C7E8F /* HTYMenuVC.m in Sources */,
@@ -364,10 +439,20 @@
 				E11AFDFA1E10355F009C7E8F /* ViewController.swift in Sources */,
 				E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */,
 				E11AFE2E1E12B0D5009C7E8F /* HTY360PlayerVC.m in Sources */,
+				E1C039821E3019C9009698D3 /* SelectDeviceController.swift in Sources */,
 				E11AFE131E109544009C7E8F /* SecondScreenServer.swift in Sources */,
 				E11AFDF81E10355F009C7E8F /* AppDelegate.swift in Sources */,
 				E1A135111E1809C6003A4B24 /* CurrentQuaternion.m in Sources */,
 				E11AFE2D1E12B0D5009C7E8F /* GLProgram.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E154DB6E1E29A63E00250A70 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E154DB771E29A63E00250A70 /* ViewController.swift in Sources */,
+				E154DB751E29A63E00250A70 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +473,14 @@
 				E11AFE011E10355F009C7E8F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		E154DB781E29A63E00250A70 /* MainTV.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E154DB791E29A63E00250A70 /* Base */,
+			);
+			name = MainTV.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -496,7 +589,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SecondScreen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lolo.SecondScreen;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vr-second-tv.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SecondScreen/SecondScreen-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -514,10 +607,44 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SecondScreen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.lolo.SecondScreen;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vr-second-tv.app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "SecondScreen/SecondScreen-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		E154DB7E1E29A63E00250A70 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = W3U24WE3R3;
+				INFOPLIST_FILE = SecondScreenTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vr-second-tv.tv-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Debug;
+		};
+		E154DB7F1E29A63E00250A70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = W3U24WE3R3;
+				INFOPLIST_FILE = SecondScreenTV/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vr-second-tv.tv-app";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
 		};
@@ -538,6 +665,15 @@
 			buildConfigurations = (
 				E11AFE071E10355F009C7E8F /* Debug */,
 				E11AFE081E10355F009C7E8F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E154DB801E29A63E00250A70 /* Build configuration list for PBXNativeTarget "SecondScreenTV" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E154DB7E1E29A63E00250A70 /* Debug */,
+				E154DB7F1E29A63E00250A70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

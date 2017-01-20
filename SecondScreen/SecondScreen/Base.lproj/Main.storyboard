@@ -30,7 +30,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Analyze">
+                                <state key="normal" title="Log">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -39,7 +39,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Demo">
+                                <state key="normal" title="Debug">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -69,10 +69,13 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.67843137249999996" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <state key="normal" title="Start">
+                                <state key="normal" title="Select">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <segue destination="pWd-Xg-eBy" kind="show" id="UGq-YR-QA8"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status-red" translatesAutoresizingMaskIntoConstraints="NO" id="KoH-QW-ebD">
                                 <rect key="frame" x="20" y="52" width="30" height="30"/>
@@ -195,6 +198,102 @@
             </objects>
             <point key="canvasLocation" x="1416.0326086956522" y="107.24637681159422"/>
         </scene>
+        <!--Select device-->
+        <scene sceneID="zSu-me-vEE">
+            <objects>
+                <viewController id="pWd-Xg-eBy" customClass="SelectDeviceController" customModule="SecondScreen" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ZSD-uy-aTY"/>
+                        <viewControllerLayoutGuide type="bottom" id="dTN-E7-fdR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="y8g-vg-Sq5">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3xh-6z-sQD">
+                                <rect key="frame" x="20" y="20" width="984" height="696"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="gZh-si-EFC">
+                                    <size key="itemSize" width="180" height="100"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="DeviceCell" id="qxA-gl-b2U" customClass="UIDeviceCollectionViewCell" customModule="SecondScreen" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" tag="50" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VR-0" translatesAutoresizingMaskIntoConstraints="NO" id="15E-YT-t9f">
+                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iso-GY-Idt">
+                                                    <rect key="frame" x="8" y="71" width="31" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="31" id="GtP-Ef-sLw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vst-eL-wdz">
+                                                    <rect key="frame" x="8" y="8" width="164" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="30" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ip" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pr9-Qb-q0e">
+                                                    <rect key="frame" x="64" y="71" width="108" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" tag="60" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="status-red" translatesAutoresizingMaskIntoConstraints="NO" id="MKZ-MG-Vha" userLabel="status">
+                                                    <rect key="frame" x="8" y="45" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="bRa-po-6gS"/>
+                                                        <constraint firstAttribute="width" constant="20" id="uSt-m7-DLd"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <color key="backgroundColor" red="0.80462545156478882" green="0.95012873411178589" blue="0.81050640344619751" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="15E-YT-t9f" secondAttribute="bottom" id="29r-51-q35"/>
+                                            <constraint firstItem="Iso-GY-Idt" firstAttribute="leading" secondItem="qxA-gl-b2U" secondAttribute="leadingMargin" id="6Xt-Xr-0Bo"/>
+                                            <constraint firstItem="Iso-GY-Idt" firstAttribute="bottom" secondItem="qxA-gl-b2U" secondAttribute="bottomMargin" id="Alc-2M-2eN"/>
+                                            <constraint firstItem="MKZ-MG-Vha" firstAttribute="leading" secondItem="qxA-gl-b2U" secondAttribute="leadingMargin" id="EkC-H7-hDg"/>
+                                            <constraint firstItem="Pr9-Qb-q0e" firstAttribute="bottom" secondItem="qxA-gl-b2U" secondAttribute="bottomMargin" id="J6u-4o-GlT"/>
+                                            <constraint firstItem="Pr9-Qb-q0e" firstAttribute="trailing" secondItem="qxA-gl-b2U" secondAttribute="trailingMargin" id="Ndw-m4-ACU"/>
+                                            <constraint firstItem="15E-YT-t9f" firstAttribute="leading" secondItem="qxA-gl-b2U" secondAttribute="leading" id="Qk9-L9-7pG"/>
+                                            <constraint firstItem="15E-YT-t9f" firstAttribute="top" secondItem="qxA-gl-b2U" secondAttribute="top" id="ZH9-ny-PYy"/>
+                                            <constraint firstItem="vst-eL-wdz" firstAttribute="top" secondItem="qxA-gl-b2U" secondAttribute="topMargin" id="bw8-q3-eOO"/>
+                                            <constraint firstItem="Iso-GY-Idt" firstAttribute="top" secondItem="MKZ-MG-Vha" secondAttribute="bottom" constant="6" id="eNm-g1-a2U"/>
+                                            <constraint firstItem="vst-eL-wdz" firstAttribute="trailing" secondItem="qxA-gl-b2U" secondAttribute="trailingMargin" id="hD0-0g-a9N"/>
+                                            <constraint firstItem="Iso-GY-Idt" firstAttribute="bottom" secondItem="qxA-gl-b2U" secondAttribute="bottomMargin" id="hDg-DG-x5b"/>
+                                            <constraint firstItem="Pr9-Qb-q0e" firstAttribute="leading" secondItem="Iso-GY-Idt" secondAttribute="trailing" constant="25" id="ny6-xl-FeQ"/>
+                                            <constraint firstItem="vst-eL-wdz" firstAttribute="centerX" secondItem="15E-YT-t9f" secondAttribute="centerX" id="rPq-hm-jy6"/>
+                                            <constraint firstItem="vst-eL-wdz" firstAttribute="leading" secondItem="qxA-gl-b2U" secondAttribute="leadingMargin" id="sZc-zM-xwf"/>
+                                        </constraints>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Select device" id="ibn-Yb-gd1"/>
+                    <connections>
+                        <outlet property="devicesCollectionView" destination="3xh-6z-sQD" id="BP7-iG-UGB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="p3y-wm-nbJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1070.5078125" y="765.625"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="yL5-cr-gbe">
             <objects>
@@ -217,6 +316,7 @@
     </scenes>
     <resources>
         <image name="AXA-Logo" width="667" height="667"/>
+        <image name="VR-0" width="667" height="375"/>
         <image name="VR-1" width="667" height="375"/>
         <image name="status-red" width="60" height="60"/>
     </resources>

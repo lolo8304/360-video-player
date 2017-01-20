@@ -42,7 +42,15 @@ import com.lolo.secondscreen.sensor_fusion.representation.Quaternion;
 import org.gearvrf.GVRActivity;
 import org.gearvrf.scene_objects.GVRVideoSceneObjectPlayer;
 
+import java.util.Map;
+
 public class Minimal360VideoActivity extends GVRActivity implements ConnectorDelegate {
+
+    private static final String VIDEO_NAME = "DE-AXA-One_second_away-Final_v3_short_360.mp4";
+
+
+    private GVRVideoSceneObjectPlayer<ExoPlayer> videoSceneObjectPlayer;
+    private RemotePlayer remotePlayer;
 
     /**
      * Called when the activity is first created.
@@ -52,12 +60,19 @@ public class Minimal360VideoActivity extends GVRActivity implements ConnectorDel
         super.onCreate(savedInstanceState);
         GVRConnector.activate();
         Connector.instance().setDelegated(this);
-        videoSceneObjectPlayer = makeExoPlayer();
+        videoSceneObjectPlayer = makeExoPlayer(VIDEO_NAME);
+        this.remotePlayer = new RemotePlayer(Connector.instance(), videoSceneObjectPlayer.getPlayer());
+        this.remotePlayer.playNamedVideo(VIDEO_NAME);
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         if (null != videoSceneObjectPlayer) {
-            final Minimal360Video main = new Minimal360Video(videoSceneObjectPlayer);
+            final Minimal360Video main = new Minimal360Video(videoSceneObjectPlayer, this.remotePlayer);
             setMain(main, "gvr.xml");
         }
+    }
+
+    protected Minimal360Video getMainVideo() {
+        return (Minimal360Video)getMain();
     }
 
     @Override
@@ -80,17 +95,14 @@ public class Minimal360VideoActivity extends GVRActivity implements ConnectorDel
         }
     }
 
-    private GVRVideoSceneObjectPlayer<ExoPlayer> makeExoPlayer() {
+    private GVRVideoSceneObjectPlayer<ExoPlayer> makeExoPlayer(String videoName) {
         final ExoPlayer player = ExoPlayer.Factory.newInstance(2);
-
         final AssetDataSource dataSource = new AssetDataSource(this);
         final FileDataSource fileSource = new FileDataSource();
 /*        final ExtractorSampleSource sampleSource = new ExtractorSampleSource(Uri.parse("asset:///videos_s_3.mp4"),
                 fileSource, new DefaultAllocator(64 * 1024), 64 * 1024 * 256); */
 
-        String movie = "videos_s_3_test.mp4";
-        movie = "DE-AXA-One_second_away-Final_v3_long_360.mp4";
-        String moviePath = Environment.getExternalStorageDirectory().getPath()+"/Movies/"+movie;
+        String moviePath = Environment.getExternalStorageDirectory().getPath()+"/Movies/"+videoName;
         Uri uri = Uri.parse(moviePath);
         final ExtractorSampleSource sampleSource = new ExtractorSampleSource(uri,
                 fileSource, new DefaultAllocator(64 * 1024), 64 * 1024 * 256);
@@ -117,12 +129,14 @@ public class Minimal360VideoActivity extends GVRActivity implements ConnectorDel
                                 break;
                             case ExoPlayer.STATE_ENDED:
                                 player.seekTo(0);
+                                remotePlayer.seekTo(0);
                                 break;
                             case ExoPlayer.STATE_IDLE:
                                 break;
                             case ExoPlayer.STATE_PREPARING:
                                 break;
                             case ExoPlayer.STATE_READY:
+                                remotePlayer.start();
                                 break;
                             default:
                                 break;
@@ -145,6 +159,7 @@ public class Minimal360VideoActivity extends GVRActivity implements ConnectorDel
             @Override
             public void release() {
                 player.release();
+                remotePlayer.stop();
             }
 
             @Override
@@ -155,17 +170,17 @@ public class Minimal360VideoActivity extends GVRActivity implements ConnectorDel
             @Override
             public void pause() {
                 player.setPlayWhenReady(false);
+                remotePlayer.pause();
             }
 
             @Override
             public void start() {
                 player.setPlayWhenReady(true);
+                remotePlayer.start();
             }
         };
     }
 
-
-    private GVRVideoSceneObjectPlayer<?> videoSceneObjectPlayer;
 
     // ConnectionDelegate
 
@@ -222,5 +237,10 @@ public class Minimal360VideoActivity extends GVRActivity implements ConnectorDel
     @Override
     public void positionNotSent(Quaternion quaternion) {
 
+    }
+
+    @Override
+    public void actionMessageSent(String action, Map<String, String> data) {
+        Log.d("Video", String.format("send action '%s'", action));
     }
 }

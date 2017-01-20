@@ -17,6 +17,7 @@ package com.lolo.secondscreen.activity;
 
 import android.util.Log;
 
+import com.google.android.exoplayer.ExoPlayer;
 import com.lolo.secondscreen.connector.Connector;
 import com.lolo.secondscreen.connector.ConnectorBonjourStatus;
 import com.lolo.secondscreen.connector.ConnectorDelegate;
@@ -41,12 +42,17 @@ import java.util.Random;
 
 public class Minimal360Video extends GVRMain {
 
+    private final RemotePlayer remotePlayer;
+    private final GVRVideoSceneObjectPlayer<ExoPlayer> mPlayer;
+
+    private long nextTimeMs = 0;
 
     private float start = Float.MAX_VALUE;
     private float start2 = Float.MAX_VALUE;
 
-    public Minimal360Video(GVRVideoSceneObjectPlayer<?> player) {
-        mPlayer = player;
+    public Minimal360Video(GVRVideoSceneObjectPlayer<ExoPlayer> player, RemotePlayer remotePlayer) {
+        this.mPlayer = player;
+        this.remotePlayer = remotePlayer;
     }
 
     /** Called when the activity is first created. */
@@ -70,10 +76,24 @@ public class Minimal360Video extends GVRMain {
 
         // apply video to scene
         scene.addSceneObject( video );
+        this.nextTimeMs = System.currentTimeMillis();
+    }
+
+    protected synchronized void sendKeepAliveIfNeeded() {
+        if (System.currentTimeMillis() > this.nextTimeMs) {
+            this.nextTimeMs = System.currentTimeMillis() + 5 * 1000; // 5s
+            this.remotePlayer.keepAlive(mPlayer.getPlayer().getCurrentPosition());
+        }
     }
 
     @Override
     public void onStep() {
+        new Runnable() {
+            @Override
+            public void run() {
+                sendKeepAliveIfNeeded();
+            }
+        }.run();
         GVRCameraRig cameraRig = this.getGVRContext().getMainScene().getMainCameraRig();
         GVRCameraRig nextCameraRig = this.getGVRContext().getNextMainScene().getMainCameraRig();
         float pitchX = cameraRig.getHeadTransform().getRotationPitch();
@@ -95,7 +115,7 @@ public class Minimal360Video extends GVRMain {
         float[] eulerAngles = quaternion.toEulerAngles().toArray();
 
         float yawEuler = eulerAngles[1]; // pitch is turning here for yaw
-        Log.d("Video", String.format("before = %.4f = %.4f", yawZ, yawEuler));
+        //Log.d("Video", String.format("before = %.4f = %.4f", yawZ, yawEuler));
         String quadrant = "0";
         if (yawZ >= 0.0f) {
             if (yawEuler < Quaternion.PI2) {
@@ -124,12 +144,11 @@ public class Minimal360Video extends GVRMain {
                     // pitch and roll are OK
                 }
         }
-
-        /*
+/*
         if (this.start == Float.MAX_VALUE) {
             this.start = yawZ;
         } else {
-            start += 2;
+            start += 0.2;
             yawZ = this.start;
         }
         yawZ = yawZ % 360.0f;
@@ -137,7 +156,7 @@ public class Minimal360Video extends GVRMain {
         Vector3f v = new Vector3f(rollY, pitchX, yawZ);
         quaternion.setEulerAnglesDegree(v);
         eulerAngles = quaternion.toEulerAngles().toArray(); yawEuler = eulerAngles[1];
-        Log.d("Video", String.format("yaw in %s quadrant = %.4f = %.4f", quadrant, yawZ, yawEuler));
+        //Log.d("Video", String.format("yaw in %s quadrant = %.4f = %.4f", quadrant, yawZ, yawEuler));
 
         //Log.d("Video", String.format("Rotation Q= Pitch=%.4f (%3.0f), Roll=%.4f (%3.0f), Yaw=%.4f (%3.0f)", quaternion.getPitchX(), rollY, quaternion.getRollY(), pitchX, quaternion.getYawZ(), yawZ));
         //Log.d("Video", String.format("Rotation Q= W=%.4f, X=%.4f, Y=%.4f, Z=%.4f", W, X, Y, Z));
@@ -146,6 +165,5 @@ public class Minimal360Video extends GVRMain {
 
     }
 
-    private final GVRVideoSceneObjectPlayer<?> mPlayer;
 
 }

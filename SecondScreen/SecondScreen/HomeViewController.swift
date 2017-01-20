@@ -32,7 +32,7 @@ class HomeViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        Connector.instance.delegate = nil
+        Connector.instance.delegate = ConnectorNoDelegate()
         timer.invalidate()
     }
     
@@ -69,9 +69,18 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: ConnectorDelegate {
-    func device() {
+    internal func deviceSelected(device: Device) {
         
     }
+
+    internal func deviceDisconnected(device: Device) {
+        
+    }
+
+    internal func deviceConnected(device: Device) {
+        
+    }
+
     func statusChanged(started: Bool, server: ConnectorStatus, bonjourServer: ConnectorBonjourStatus, connections: Int) {
         DispatchQueue.main.async() { () -> Void in
             if (started) {
@@ -82,5 +91,9 @@ extension HomeViewController: ConnectorDelegate {
             self.nofConnectionLabel.text = "\(connections)"
         }
     }
+    func sendAction(action: String, data: JSON) {
+        NSLog("received action=\(action), data=\(data.rawString())")
+    }
+
 
 }
