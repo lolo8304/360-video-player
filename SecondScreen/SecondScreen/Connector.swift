@@ -14,6 +14,7 @@ protocol ConnectorDelegate {
     func deviceSelected(device: Device)
     func statusChanged(started: Bool, server:ConnectorStatus, bonjourServer: ConnectorBonjourStatus, connections: Int)
     func sendAction(action: String, data: JSON);
+    func playerUpdated(device: Device, player: DevicePlayer);
 
 }
 
@@ -38,6 +39,91 @@ enum DeviceStatus {
     case selected
 }
 
+enum DevicePlayerStatus {
+    case stopped
+    case paused
+    case playing
+    case synchronizing
+}
+
+
+class DevicePlayer : NSObject {
+    public var name: String = ""
+    public var medianame: String = ""
+    public var language: String = "DE"
+    public var status: DevicePlayerStatus = .stopped
+    public var position: Int = 0
+    public var duration: Int = 0
+    
+    override init() {
+    }
+    
+    private func getString(_ data: JSON, attribute: String) -> String {
+        return data[attribute].stringValue
+    }
+    private func getInt(_ data: JSON, attribute: String) -> Int {
+        return data[attribute].intValue
+    }
+    
+    private func getAttrName(_ data: JSON) -> String {
+        return self.getString(data, attribute: "name")
+    }
+    private func getAttrLanguage(_ data: JSON) -> String {
+        return self.getString(data, attribute: "language")
+    }
+    private func getAttrDuration(_ data: JSON) -> Int {
+        return self.getInt(data, attribute: "duration")
+    }
+    private func getAttrSeek(_ data: JSON) -> Int {
+        return self.getInt(data, attribute: "seek")
+    }
+    public func handleAction(_ action: String, data: JSON) {
+        self.name = self.getAttrName(data)
+        self.medianame = self.name
+        self.language = self.getAttrLanguage(data)
+        switch action {
+        case "player-prepare":
+            self.duration = self.getAttrDuration(data)
+            self.status = .stopped
+        case "player-seek":
+            self.position = self.getAttrSeek(data)
+        case "player-start":
+            self.position = self.getAttrSeek(data)
+            self.status = .playing
+        case "player-pause":
+            self.position = self.getAttrSeek(data)
+            self.status = .paused
+        case "player-stop":
+            self.position = self.getAttrSeek(data)
+            self.status = .stopped
+        case "player-keepAlive":
+            self.position = self.getAttrSeek(data)
+        default:
+            return
+        }
+    }
+    
+    public func positionTime() ->String {
+        var seconds: Int = self.position / 1000
+        let minutes: Int = seconds / 60
+        seconds = seconds % 60
+        return String(format: "%02i:%02i", minutes, seconds)
+    }
+    public func positionPercentage() -> Int {
+        if (self.position == 0) { return 0 }
+        return self.duration * 100 / self.duration
+    }
+    
+    public func isPlaying() -> Bool {
+        return self.status == .playing
+    }
+    public func isSynchronizing() -> Bool {
+        return self.status == .synchronizing
+    }
+    public func isStopped() -> Bool {
+        return !self.isPlaying() && !self.isSynchronizing()
+    }
+}
 
 class Device: NSObject {
     
@@ -52,6 +138,8 @@ class Device: NSObject {
     public var status: DeviceStatus = .closed
     public var pinged: Bool = false
     public var ponged: Bool = false
+    public let player: DevicePlayer = DevicePlayer()
+    
 
     public static func create(connector: Connector, uuid: String, ip: String, name: String) -> Device {
         let device: Device = Device(connector: connector, uuid: uuid, ip: ip, name: name)
@@ -350,17 +438,22 @@ extension Connector : PSWebSocketServerDelegate {
             device!.pinged = true
             device!.ponged = true
             let json:JSON = JSON.init(data: message.data(using: .utf8, allowLossyConversion: false)!)
-            if (json["action"].stringValue == "position") {
+            let action = json["action"].stringValue
+            if (action == "position") {
                 
                 //CurrentQuaternion.instance().enqueue(json["X"].floatValue, add: json["Y"].floatValue, add: json["Z"].floatValue, add: json["W"].floatValue)
                 CurrentQuaternion.instance().enqueue(json["pitchX"].floatValue, add: json["rollY"].floatValue, add: json["yawZ"].floatValue)
                 //NSLog("queue size = \(CurrentQuaternion.instance().count())");
-            } else if (json["action"].stringValue == "disconnect") {
+            } else if (action == "disconnect") {
                     device?.disconnect()
                     var connectionResponse = JSON.init(["device.uuid": device!.uuid]);
                     webSocket.send(json: &connectionResponse, action: "disconnected");
-            } else if (json["action"].stringValue != "") {
-                delegate.sendAction(action: json["action"].stringValue, data: json);
+            } else if (action.hasPrefix("player-")) {
+                device!.player.handleAction(action, data: json)
+                delegate.playerUpdated(device: device!, player: device!.player)
+                delegate.sendAction(action: action, data: json)
+            } else if (action != "") {
+                delegate.sendAction(action: action, data: json)
             }
         } else {
             let json: JSON = JSON.init(data: message.data(using: .utf8)!)
@@ -490,6 +583,10 @@ extension PSWebSocket {
 
 
 class ConnectorNoDelegate: ConnectorDelegate {
+    internal func playerUpdated(device: Device, player: DevicePlayer) {
+        
+    }
+
     internal func sendAction(action: String, data: JSON) {
         
     }

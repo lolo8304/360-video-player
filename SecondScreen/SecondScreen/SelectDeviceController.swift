@@ -84,24 +84,28 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
         let cell: UIDeviceCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! UIDeviceCollectionViewCell
         //cell.backgroundColor = UIColor.black
         
-        let titleLabel = cell.contentView.viewWithTag(10) as? UILabel
-        let pointCountLabel = cell.contentView.viewWithTag(20) as? UILabel
-        let countGamesLabels = cell.contentView.viewWithTag(30) as? UILabel
-        let imageView = cell.contentView.viewWithTag(50) as? UIImageView
-        let statusImageView = cell.contentView.viewWithTag(60) as? UIImageView
+        let hostNameLabel = cell.contentView.viewWithTag(10) as? UILabel
+        let nameLabel = cell.contentView.viewWithTag(20) as? UILabel
+        let languageImageView = cell.contentView.viewWithTag(30) as? UIImageView
+        let statusImageView = cell.contentView.viewWithTag(40) as? UIImageView
+        let timeLabel = cell.contentView.viewWithTag(50) as? UILabel
         
         let device: Device = self.devices()[indexPath.item]
         cell.device = device
         
-        titleLabel?.text = device.name
-        pointCountLabel?.text = "\(device.id)"
-        countGamesLabels?.text = device.ip
+        hostNameLabel?.text = device.name
+        nameLabel?.text = device.player.name
+        timeLabel?.text = device.player.positionTime()
+        
         DispatchQueue.main.async() { () -> Void in
-            if (device.isConnected()) {
-                statusImageView!.image = UIImage(named: "status-green")
+            if (device.player.isPlaying()) {
+                statusImageView?.image = UIImage(named: "player-play")
+            } else if (device.player.isSynchronizing()){
+                statusImageView?.image = UIImage(named: "player-refresh")
             } else {
-                statusImageView!.image = UIImage(named: "status-red")
+                statusImageView?.image = UIImage(named: "player-pause")
             }
+            languageImageView?.image = UIImage(named: device.player.language)
         }
         
         //device.firstUIImage(view: imageView!)
@@ -147,9 +151,31 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
             performSegue(withIdentifier: "AddEditDevice", sender: nil)
         }
     }
+    
+    @IBAction func refreshItems(_ sender: UIBarButtonItem) {
+        self.devicesCollectionView.reloadData()
+    }
+    
+    
 }
 
 extension SelectDeviceController : ConnectorDelegate {
+    
+    private func refreshDevice(device: Device) {
+        var i: Int = 0
+        for eachDevice: Device in self.devices() {
+            if (eachDevice.id == device.id) {
+                let path: IndexPath = IndexPath(item: i, section: 1)
+                self.devicesCollectionView.reloadItems(at: [path])
+                return
+            }
+            i += 1
+        }
+    }
+    internal func playerUpdated(device: Device, player: DevicePlayer) {
+        self.refreshDevice(device: device)
+    }
+
     internal func sendAction(action: String, data: JSON) {
         
     }
@@ -160,15 +186,15 @@ extension SelectDeviceController : ConnectorDelegate {
     }
 
     internal func deviceSelected(device: Device) {
-        
+        self.refreshDevice(device: device)
     }
 
     internal func deviceDisconnected(device: Device) {
-        self.devicesCollectionView.reloadData()
+        self.refreshDevice(device: device)
     }
 
     internal func deviceConnected(device: Device) {
-        self.devicesCollectionView.reloadData()
+        self.refreshDevice(device: device)
     }
 
     

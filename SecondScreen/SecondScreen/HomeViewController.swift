@@ -69,6 +69,10 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: ConnectorDelegate {
+    internal func playerUpdated(device: Device, player: DevicePlayer) {
+        
+    }
+
     internal func deviceSelected(device: Device) {
         
     }

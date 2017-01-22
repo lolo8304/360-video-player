@@ -239,7 +239,7 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
         this.client.send(message);
     }
 
-    public void sendActionMessage(String action, Map<String, String> data) {
+    public void sendActionMessage(String action, Map<String, Object> data) {
         data.put("action", action);
         data.put("ip", Device.getHostAddress());
         String messageBack = new JSONObject(data).toString();
@@ -247,12 +247,12 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
         this.delegate.actionMessageSent(action, data);
     }
     public void sendAttributeMessage(String action, String name, String value) {
-        Map<String, String> data = new HashMap<String, String>();
+        Map<String, Object> data = new HashMap<String, Object>();
         data.put(name, value);
         this.sendActionMessage(action, data);
     }
     public void sendAction(String action) {
-        Map<String, String> data = new HashMap<String, String>();
+        Map<String, Object> data = new HashMap<String, Object>();
         this.sendActionMessage(action, data);
     }
     public void sendAttributeMessage(String action, String name, int value) {

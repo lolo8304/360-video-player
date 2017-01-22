@@ -25,5 +25,5 @@ public interface ConnectorDelegate {
     void positionSent(Quaternion quaternion);
     void positionNotSent(Quaternion quaternion);
 
-    void actionMessageSent(String action, Map<String, String> data);
+    void actionMessageSent(String action, Map<String, Object> data);
 }

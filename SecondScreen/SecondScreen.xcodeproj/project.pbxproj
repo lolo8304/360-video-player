@@ -28,6 +28,8 @@
 		E154DB771E29A63E00250A70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E154DB761E29A63E00250A70 /* ViewController.swift */; };
 		E154DB7A1E29A63E00250A70 /* MainTV.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E154DB781E29A63E00250A70 /* MainTV.storyboard */; };
 		E154DB841E29AA2600250A70 /* AssetsTV.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E154DB831E29AA2600250A70 /* AssetsTV.xcassets */; };
+		E16ADEC01E342292008A0F52 /* credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E16ADEBF1E342292008A0F52 /* credits.rtf */; };
+		E16ADEC21E3427D2008A0F52 /* FlagKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E16ADEC11E3427D2008A0F52 /* FlagKit.xcassets */; };
 		E19F71D11E19AB4B009D7926 /* EulerianAngle.m in Sources */ = {isa = PBXBuildFile; fileRef = E19F71CF1E19AB4B009D7926 /* EulerianAngle.m */; };
 		E1A1350D1E180538003A4B24 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A1350C1E180538003A4B24 /* Queue.swift */; };
 		E1A135111E1809C6003A4B24 /* CurrentQuaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A135101E1809C6003A4B24 /* CurrentQuaternion.m */; };
@@ -71,6 +73,8 @@
 		E154DB791E29A63E00250A70 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainTV.storyboard; sourceTree = "<group>"; };
 		E154DB7D1E29A63E00250A70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E154DB831E29AA2600250A70 /* AssetsTV.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AssetsTV.xcassets; sourceTree = "<group>"; };
+		E16ADEBF1E342292008A0F52 /* credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = credits.rtf; sourceTree = "<group>"; };
+		E16ADEC11E3427D2008A0F52 /* FlagKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FlagKit.xcassets; sourceTree = "<group>"; };
 		E19F71CF1E19AB4B009D7926 /* EulerianAngle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EulerianAngle.m; sourceTree = "<group>"; };
 		E19F71D01E19AB4B009D7926 /* EulerianAngle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EulerianAngle.h; sourceTree = "<group>"; };
 		E1A1350C1E180538003A4B24 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
@@ -155,6 +159,7 @@
 				E1E99EFA1E141C270055104C /* Controller */,
 				E11AFDFB1E10355F009C7E8F /* Main.storyboard */,
 				E11AFDFE1E10355F009C7E8F /* Assets.xcassets */,
+				E16ADEC11E3427D2008A0F52 /* FlagKit.xcassets */,
 				E11AFE001E10355F009C7E8F /* LaunchScreen.storyboard */,
 				E1E99EF81E141C060055104C /* Resources */,
 			);
@@ -228,6 +233,7 @@
 				E11AFE031E10355F009C7E8F /* Info.plist */,
 				E1A135161E192551003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */,
 				E11AFE351E1328E6009C7E8F /* demo.m4v */,
+				E16ADEBF1E342292008A0F52 /* credits.rtf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -353,12 +359,14 @@
 			files = (
 				E1A135171E19266A003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 in Resources */,
 				E11AFE361E1328E6009C7E8F /* demo.m4v in Resources */,
+				E16ADEC21E3427D2008A0F52 /* FlagKit.xcassets in Resources */,
 				E11AFE301E12B0D5009C7E8F /* Shader.fsh in Resources */,
 				E11AFE021E10355F009C7E8F /* LaunchScreen.storyboard in Resources */,
 				E11AFE2B1E12B0D5009C7E8F /* HTY360PlayerVC.xib in Resources */,
 				E11AFDFF1E10355F009C7E8F /* Assets.xcassets in Resources */,
 				E11AFE311E12B0D5009C7E8F /* Shader.vsh in Resources */,
 				E11AFE0C1E103643009C7E8F /* Podfile in Resources */,
+				E16ADEC01E342292008A0F52 /* credits.rtf in Resources */,
 				E11AFDFD1E10355F009C7E8F /* Main.storyboard in Resources */,
 				E11AFE2C1E12B0D5009C7E8F /* HTYMenuVC.xib in Resources */,
 			);

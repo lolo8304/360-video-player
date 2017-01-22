@@ -240,7 +240,9 @@ public class Minimal360VideoActivity extends GVRActivity implements ConnectorDel
     }
 
     @Override
-    public void actionMessageSent(String action, Map<String, String> data) {
+    public void actionMessageSent(String action, Map<String, Object> data) {
         Log.d("Video", String.format("send action '%s'", action));
+
     }
+
 }

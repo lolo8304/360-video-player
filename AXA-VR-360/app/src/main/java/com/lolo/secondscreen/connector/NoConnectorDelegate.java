@@ -65,7 +65,7 @@ public class NoConnectorDelegate implements ConnectorDelegate {
     }
 
     @Override
-    public void actionMessageSent(String action, Map<String, String> data) {
+    public void actionMessageSent(String action, Map<String, Object> data) {
 
     }
 }
