@@ -12,3 +12,9 @@ class UIDeviceCollectionViewCell: UICollectionViewCell {
     var device: Device?
     
 }
+
+class UIVideoCollectionViewCell: UICollectionViewCell {
+    
+    var video: Video?
+    
+}

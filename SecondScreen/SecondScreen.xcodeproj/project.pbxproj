@@ -23,13 +23,20 @@
 		E11AFE2F1E12B0D5009C7E8F /* HTYMenuVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11AFE271E12B0D5009C7E8F /* HTYMenuVC.m */; };
 		E11AFE301E12B0D5009C7E8F /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE281E12B0D5009C7E8F /* Shader.fsh */; };
 		E11AFE311E12B0D5009C7E8F /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE291E12B0D5009C7E8F /* Shader.vsh */; };
-		E11AFE361E1328E6009C7E8F /* demo.m4v in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE351E1328E6009C7E8F /* demo.m4v */; };
 		E154DB751E29A63E00250A70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E154DB741E29A63E00250A70 /* AppDelegate.swift */; };
 		E154DB771E29A63E00250A70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E154DB761E29A63E00250A70 /* ViewController.swift */; };
 		E154DB7A1E29A63E00250A70 /* MainTV.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E154DB781E29A63E00250A70 /* MainTV.storyboard */; };
 		E154DB841E29AA2600250A70 /* AssetsTV.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E154DB831E29AA2600250A70 /* AssetsTV.xcassets */; };
 		E16ADEC01E342292008A0F52 /* credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E16ADEBF1E342292008A0F52 /* credits.rtf */; };
 		E16ADEC21E3427D2008A0F52 /* FlagKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E16ADEC11E3427D2008A0F52 /* FlagKit.xcassets */; };
+		E1955D381E35025600546A91 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1955D371E35025600546A91 /* Content.swift */; };
+		E1955D3B1E3502B200546A91 /* videos.json in Resources */ = {isa = PBXBuildFile; fileRef = E1955D3A1E3502B200546A91 /* videos.json */; };
+		E1955D3D1E350B2100546A91 /* EditVideosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1955D3C1E350B2100546A91 /* EditVideosController.swift */; };
+		E1955D401E356C0000546A91 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1955D3E1E356C0000546A91 /* Model.xcdatamodeld */; };
+		E1955D421E36210C00546A91 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1955D411E36210B00546A91 /* CoreData.framework */; };
+		E1955D4A1E363E1600546A91 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1955D491E363E1600546A91 /* ShareViewController.swift */; };
+		E1955D4D1E363E1600546A91 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1955D4B1E363E1600546A91 /* MainInterface.storyboard */; };
+		E1955D511E363E1600546A91 /* Share-VR.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E1955D471E363E1600546A91 /* Share-VR.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		E19F71D11E19AB4B009D7926 /* EulerianAngle.m in Sources */ = {isa = PBXBuildFile; fileRef = E19F71CF1E19AB4B009D7926 /* EulerianAngle.m */; };
 		E1A1350D1E180538003A4B24 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A1350C1E180538003A4B24 /* Queue.swift */; };
 		E1A135111E1809C6003A4B24 /* CurrentQuaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A135101E1809C6003A4B24 /* CurrentQuaternion.m */; };
@@ -41,6 +48,30 @@
 		E1E99EF71E141A7D0055104C /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF61E141A7D0055104C /* Connector.swift */; };
 		E1E99EFC1E14528C0055104C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E1955D4F1E363E1600546A91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E11AFDEC1E10355F009C7E8F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1955D461E363E1600546A91;
+			remoteInfo = "Share-VR";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E1955D551E363E1600546A91 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E1955D511E363E1600546A91 /* Share-VR.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		9ED136A7E18703C7E324B4AC /* Pods-SecondScreen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreen.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreen/Pods-SecondScreen.release.xcconfig"; sourceTree = "<group>"; };
@@ -66,7 +97,6 @@
 		E11AFE271E12B0D5009C7E8F /* HTYMenuVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTYMenuVC.m; sourceTree = "<group>"; };
 		E11AFE281E12B0D5009C7E8F /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		E11AFE291E12B0D5009C7E8F /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
-		E11AFE351E1328E6009C7E8F /* demo.m4v */ = {isa = PBXFileReference; lastKnownFileType = file; path = demo.m4v; sourceTree = "<group>"; };
 		E154DB721E29A63E00250A70 /* SecondScreenTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecondScreenTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E154DB741E29A63E00250A70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E154DB761E29A63E00250A70 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -75,6 +105,17 @@
 		E154DB831E29AA2600250A70 /* AssetsTV.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AssetsTV.xcassets; sourceTree = "<group>"; };
 		E16ADEBF1E342292008A0F52 /* credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = credits.rtf; sourceTree = "<group>"; };
 		E16ADEC11E3427D2008A0F52 /* FlagKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FlagKit.xcassets; sourceTree = "<group>"; };
+		E1955D371E35025600546A91 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		E1955D3A1E3502B200546A91 /* videos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = videos.json; sourceTree = "<group>"; };
+		E1955D3C1E350B2100546A91 /* EditVideosController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditVideosController.swift; sourceTree = "<group>"; };
+		E1955D3F1E356C0000546A91 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		E1955D411E36210B00546A91 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		E1955D471E363E1600546A91 /* Share-VR.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Share-VR.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1955D491E363E1600546A91 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		E1955D4C1E363E1600546A91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		E1955D4E1E363E1600546A91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1955D561E363EEF00546A91 /* Share-VR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Share-VR.entitlements"; sourceTree = "<group>"; };
+		E1955D571E363F9900546A91 /* SecondScreen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SecondScreen.entitlements; sourceTree = "<group>"; };
 		E19F71CF1E19AB4B009D7926 /* EulerianAngle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EulerianAngle.m; sourceTree = "<group>"; };
 		E19F71D01E19AB4B009D7926 /* EulerianAngle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EulerianAngle.h; sourceTree = "<group>"; };
 		E1A1350C1E180538003A4B24 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
@@ -97,11 +138,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1955D421E36210C00546A91 /* CoreData.framework in Frameworks */,
 				0EB922E14C855CDC47457719 /* libPods-SecondScreen.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E154DB6F1E29A63E00250A70 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1955D441E363E1600546A91 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -123,6 +172,7 @@
 		953991134EFBDE3A299AED49 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E1955D411E36210B00546A91 /* CoreData.framework */,
 				FFBFDD50C213BC6FC72C535C /* libPods-SecondScreen.a */,
 			);
 			name = Frameworks;
@@ -134,6 +184,7 @@
 				E11AFE0B1E103643009C7E8F /* Podfile */,
 				E11AFDF61E10355F009C7E8F /* SecondScreen */,
 				E154DB731E29A63E00250A70 /* SecondScreenTV */,
+				E1955D481E363E1600546A91 /* Share-VR */,
 				E11AFDF51E10355F009C7E8F /* Products */,
 				136032E88965A4312D7F3D38 /* Pods */,
 				953991134EFBDE3A299AED49 /* Frameworks */,
@@ -145,6 +196,7 @@
 			children = (
 				E11AFDF41E10355F009C7E8F /* SecondScreen.app */,
 				E154DB721E29A63E00250A70 /* SecondScreenTV.app */,
+				E1955D471E363E1600546A91 /* Share-VR.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,9 +204,12 @@
 		E11AFDF61E10355F009C7E8F /* SecondScreen */ = {
 			isa = PBXGroup;
 			children = (
+				E1955D571E363F9900546A91 /* SecondScreen.entitlements */,
 				E11AFE0F1E103795009C7E8F /* SecondScreen-Bridging-Header.h */,
 				E11AFDF71E10355F009C7E8F /* AppDelegate.swift */,
+				E1955D3E1E356C0000546A91 /* Model.xcdatamodeld */,
 				E11AFE1D1E12B0B5009C7E8F /* HTY360 */,
+				E1955D391E35026000546A91 /* Content */,
 				E1E99EF91E141C0F0055104C /* Connector */,
 				E1E99EFA1E141C270055104C /* Controller */,
 				E11AFDFB1E10355F009C7E8F /* Main.storyboard */,
@@ -227,12 +282,31 @@
 			path = SecondScreenTV;
 			sourceTree = "<group>";
 		};
+		E1955D391E35026000546A91 /* Content */ = {
+			isa = PBXGroup;
+			children = (
+				E1955D371E35025600546A91 /* Content.swift */,
+				E1955D3A1E3502B200546A91 /* videos.json */,
+			);
+			name = Content;
+			sourceTree = "<group>";
+		};
+		E1955D481E363E1600546A91 /* Share-VR */ = {
+			isa = PBXGroup;
+			children = (
+				E1955D561E363EEF00546A91 /* Share-VR.entitlements */,
+				E1955D491E363E1600546A91 /* ShareViewController.swift */,
+				E1955D4B1E363E1600546A91 /* MainInterface.storyboard */,
+				E1955D4E1E363E1600546A91 /* Info.plist */,
+			);
+			path = "Share-VR";
+			sourceTree = "<group>";
+		};
 		E1E99EF81E141C060055104C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				E11AFE031E10355F009C7E8F /* Info.plist */,
 				E1A135161E192551003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */,
-				E11AFE351E1328E6009C7E8F /* demo.m4v */,
 				E16ADEBF1E342292008A0F52 /* credits.rtf */,
 			);
 			name = Resources;
@@ -254,6 +328,7 @@
 			children = (
 				E11AFDF91E10355F009C7E8F /* ViewController.swift */,
 				E1C039811E3019C9009698D3 /* SelectDeviceController.swift */,
+				E1955D3C1E350B2100546A91 /* EditVideosController.swift */,
 				E1C039831E301B13009698D3 /* UIDeviceCollectionViewCell.swift */,
 				E1E99EF41E140AFA0055104C /* HomeViewController.swift */,
 			);
@@ -273,10 +348,12 @@
 				E11AFDF21E10355F009C7E8F /* Resources */,
 				ED273E96ABCF9B6FD67EB5C5 /* [CP] Embed Pods Frameworks */,
 				E70FE30C03678156D5561A3F /* [CP] Copy Pods Resources */,
+				E1955D551E363E1600546A91 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E1955D501E363E1600546A91 /* PBXTargetDependency */,
 			);
 			name = SecondScreen;
 			productName = SecondScreen;
@@ -300,6 +377,23 @@
 			productReference = E154DB721E29A63E00250A70 /* SecondScreenTV.app */;
 			productType = "com.apple.product-type.application";
 		};
+		E1955D461E363E1600546A91 /* Share-VR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1955D521E363E1600546A91 /* Build configuration list for PBXNativeTarget "Share-VR" */;
+			buildPhases = (
+				E1955D431E363E1600546A91 /* Sources */,
+				E1955D441E363E1600546A91 /* Frameworks */,
+				E1955D451E363E1600546A91 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Share-VR";
+			productName = "Share-VR";
+			productReference = E1955D471E363E1600546A91 /* Share-VR.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -316,6 +410,9 @@
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -327,6 +424,16 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes.appletvos = {
+								enabled = 1;
+							};
+						};
+					};
+					E1955D461E363E1600546A91 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = W3U24WE3R3;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
 							};
 						};
@@ -348,6 +455,7 @@
 			targets = (
 				E11AFDF31E10355F009C7E8F /* SecondScreen */,
 				E154DB711E29A63E00250A70 /* SecondScreenTV */,
+				E1955D461E363E1600546A91 /* Share-VR */,
 			);
 		};
 /* End PBXProject section */
@@ -358,9 +466,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1A135171E19266A003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 in Resources */,
-				E11AFE361E1328E6009C7E8F /* demo.m4v in Resources */,
 				E16ADEC21E3427D2008A0F52 /* FlagKit.xcassets in Resources */,
 				E11AFE301E12B0D5009C7E8F /* Shader.fsh in Resources */,
+				E1955D3B1E3502B200546A91 /* videos.json in Resources */,
 				E11AFE021E10355F009C7E8F /* LaunchScreen.storyboard in Resources */,
 				E11AFE2B1E12B0D5009C7E8F /* HTY360PlayerVC.xib in Resources */,
 				E11AFDFF1E10355F009C7E8F /* Assets.xcassets in Resources */,
@@ -378,6 +486,14 @@
 			files = (
 				E154DB841E29AA2600250A70 /* AssetsTV.xcassets in Resources */,
 				E154DB7A1E29A63E00250A70 /* MainTV.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1955D451E363E1600546A91 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1955D4D1E363E1600546A91 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,12 +554,14 @@
 			files = (
 				E1C039841E301B13009698D3 /* UIDeviceCollectionViewCell.swift in Sources */,
 				E1E99EF71E141A7D0055104C /* Connector.swift in Sources */,
+				E1955D381E35025600546A91 /* Content.swift in Sources */,
 				E11AFE2A1E12B0D5009C7E8F /* HTYGLKVC.m in Sources */,
 				E11AFE2F1E12B0D5009C7E8F /* HTYMenuVC.m in Sources */,
 				E1A1350D1E180538003A4B24 /* Queue.swift in Sources */,
 				E19F71D11E19AB4B009D7926 /* EulerianAngle.m in Sources */,
 				E1E99EFC1E14528C0055104C /* SwiftyJSON.swift in Sources */,
 				E1A135151E1810C0003A4B24 /* Quaternion.m in Sources */,
+				E1955D3D1E350B2100546A91 /* EditVideosController.swift in Sources */,
 				E11AFDFA1E10355F009C7E8F /* ViewController.swift in Sources */,
 				E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */,
 				E11AFE2E1E12B0D5009C7E8F /* HTY360PlayerVC.m in Sources */,
@@ -451,6 +569,7 @@
 				E11AFE131E109544009C7E8F /* SecondScreenServer.swift in Sources */,
 				E11AFDF81E10355F009C7E8F /* AppDelegate.swift in Sources */,
 				E1A135111E1809C6003A4B24 /* CurrentQuaternion.m in Sources */,
+				E1955D401E356C0000546A91 /* Model.xcdatamodeld in Sources */,
 				E11AFE2D1E12B0D5009C7E8F /* GLProgram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,7 +583,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1955D431E363E1600546A91 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1955D4A1E363E1600546A91 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E1955D501E363E1600546A91 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1955D461E363E1600546A91 /* Share-VR */;
+			targetProxy = E1955D4F1E363E1600546A91 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E11AFDFB1E10355F009C7E8F /* Main.storyboard */ = {
@@ -489,6 +624,14 @@
 				E154DB791E29A63E00250A70 /* Base */,
 			);
 			name = MainTV.storyboard;
+			sourceTree = "<group>";
+		};
+		E1955D4B1E363E1600546A91 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E1955D4C1E363E1600546A91 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -591,8 +734,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F6EB514396150EE61CE2F6E6 /* Pods-SecondScreen.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SecondScreen/SecondScreen.entitlements;
 				DEVELOPMENT_TEAM = W3U24WE3R3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SecondScreen/Info.plist;
@@ -609,8 +754,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9ED136A7E18703C7E324B4AC /* Pods-SecondScreen.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = SecondScreen/SecondScreen.entitlements;
 				DEVELOPMENT_TEAM = W3U24WE3R3;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SecondScreen/Info.plist;
@@ -656,6 +803,34 @@
 			};
 			name = Release;
 		};
+		E1955D531E363E1600546A91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Share-VR/Share-VR.entitlements";
+				DEVELOPMENT_TEAM = W3U24WE3R3;
+				INFOPLIST_FILE = "Share-VR/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vr-second-tv.app.Share-VR";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		E1955D541E363E1600546A91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Share-VR/Share-VR.entitlements";
+				DEVELOPMENT_TEAM = W3U24WE3R3;
+				INFOPLIST_FILE = "Share-VR/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vr-second-tv.app.Share-VR";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -686,7 +861,28 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		E1955D521E363E1600546A91 /* Build configuration list for PBXNativeTarget "Share-VR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1955D531E363E1600546A91 /* Debug */,
+				E1955D541E363E1600546A91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E1955D3E1E356C0000546A91 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E1955D3F1E356C0000546A91 /* Model.xcdatamodel */,
+			);
+			currentVersion = E1955D3F1E356C0000546A91 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E11AFDEC1E10355F009C7E8F /* Project object */;
 }

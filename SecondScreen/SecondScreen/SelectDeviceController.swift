@@ -105,7 +105,7 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
             } else {
                 statusImageView?.image = UIImage(named: "player-pause")
             }
-            languageImageView?.image = UIImage(named: device.player.language)
+            languageImageView?.image = UIImage(named: device.player.language.languageFlag())
         }
         
         //device.firstUIImage(view: imageView!)
@@ -148,14 +148,16 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
         if (sender.state == UIGestureRecognizerState.began) {
             let cell: UIDeviceCollectionViewCell = sender.view as! UIDeviceCollectionViewCell
             self.connector.selectedDevice = cell.device
-            performSegue(withIdentifier: "AddEditDevice", sender: nil)
+            let alert = UIAlertController(title: "Alert", message: "Edit mode is not implemented yet", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            //performSegue(withIdentifier: "AddEditDevice", sender: nil)
         }
     }
     
     @IBAction func refreshItems(_ sender: UIBarButtonItem) {
         self.devicesCollectionView.reloadData()
-    }
-    
+    }    
     
 }
 
@@ -165,7 +167,7 @@ extension SelectDeviceController : ConnectorDelegate {
         var i: Int = 0
         for eachDevice: Device in self.devices() {
             if (eachDevice.id == device.id) {
-                let path: IndexPath = IndexPath(item: i, section: 1)
+                let path: IndexPath = IndexPath(item: i, section: 0)
                 self.devicesCollectionView.reloadItems(at: [path])
                 return
             }

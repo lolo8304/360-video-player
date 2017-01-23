@@ -63,24 +63,26 @@ class SecondScreenServer : NSObject {
         return self.urlString!
     }
     func start(delegate: PSWebSocketServerDelegate, udpDelegate: GCDAsyncSocketDelegate, bonjourDelegate: NetServiceDelegate) {
-        let hostname: String = self.getWiFiAddress()!
-        self.stop()
-        self.socketServer = PSWebSocketServer.init(host: hostname, port: UInt(self.port))
-        self.socketServer?.delegate = delegate
-        self.socketServer?.start()
-        self.urlString = "ws://\(hostname):\(self.port)"
-
-        
-        self.gcdSocket = GCDAsyncSocket(delegate: udpDelegate, delegateQueue: DispatchQueue.main)
-        var localPort: UInt16 = 0
-        do {
-            try self.gcdSocket?.accept(onPort: localPort)
-            localPort = (self.gcdSocket?.localPort)!
-            self.bonjourService = NetService(domain: "local.", type: "_ws._tcp.", name: self.urlString!, port: Int32(localPort))
-            self.bonjourService?.delegate = bonjourDelegate
-            self.bonjourService?.publish()
-        } catch {
+        let endPoint: String? = self.getWiFiAddress()
+        if (endPoint != nil) {
+            let hostname: String = endPoint!
             self.stop()
+            self.socketServer = PSWebSocketServer.init(host: hostname, port: UInt(self.port))
+            self.socketServer?.delegate = delegate
+            self.socketServer?.start()
+            self.urlString = "ws://\(hostname):\(self.port)"
+
+            self.gcdSocket = GCDAsyncSocket(delegate: udpDelegate, delegateQueue: DispatchQueue.main)
+            var localPort: UInt16 = 0
+            do {
+                try self.gcdSocket?.accept(onPort: localPort)
+                localPort = (self.gcdSocket?.localPort)!
+                self.bonjourService = NetService(domain: "local.", type: "_ws._tcp.", name: self.urlString!, port: Int32(localPort))
+                self.bonjourService?.delegate = bonjourDelegate
+                self.bonjourService?.publish()
+            } catch {
+                self.stop()
+            }
         }
     }
     func stop() {

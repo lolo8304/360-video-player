@@ -1,0 +1,44 @@
+{
+    "videos": [
+               {
+               "name": "One-Second-Away / Long",
+               "media-name": "DE-AXA-One_second_away-Final_v3_long_360",
+               "media-ext" : "mp4",
+               "language": "DE",
+               "version": "long",
+               "sizeInBytes": 1376281223,
+               "duration" : "03:42",
+               "lastModified": "2017-01-01T18:25:43.511Z"
+               },
+               {
+               "name": "One-Second-Away / Short",
+               "media-name": "DE-AXA-One_second_away-Final_v3_short_360",
+               "media-ext" : "mp4",
+               "language": "DE",
+               "version": "short",
+               "sizeInBytes": 422206062,
+               "duration" : "01:10",
+               "lastModified": "2017-01-01T18:25:43.511Z"
+               },
+               {
+               "name": "One-Second-Away / Long",
+               "media-name": "EN-AXA-One_second_away-Final_v3_long_360",
+               "media-ext" : "mp4",
+               "language": "EN",
+               "version": "long",
+               "sizeInBytes": 3824312653,
+               "duration" : "03:42",
+               "lastModified": "2017-01-01T18:25:43.511Z"
+               },
+               {
+               "name": "One-Second-Away / Short",
+               "media-name": "EN-AXA-One_second_away-Final_v3_short_360",
+               "media-ext" : "mp4",
+               "language": "EN",
+               "version": "short",
+               "sizeInBytes": 1041191710,
+               "duration" : "01:10",
+               "lastModified": "2017-01-01T18:25:43.511Z"
+               }
+        ]
+}

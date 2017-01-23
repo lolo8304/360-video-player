@@ -29,5 +29,13 @@
             </PersistentString>
          </PersistentStrings>
       </ContextState>
+      <ContextState
+         contextName = "Int.asSizePrettyPrint() -&gt; String:Content.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "String(format: &quot;%.1f \(levels[index])&quot;, size)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
    </ContextStates>
 </VariablesViewState>

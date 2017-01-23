@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -43,9 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         self.connector.stopServer()
     }
+    
 
-    
-    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return [ .landscapeRight,  .portrait ]
+    }
 }
 
 
@@ -53,6 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension UIViewController {
     
+    func launchVideo(url: URL) {
+        let videoController: HTY360PlayerVC = HTY360PlayerVC.init(nibName: "HTY360PlayerVC", bundle: nil, url: url)
+        //self.dismiss(animated: true, completion: nil)
+        self.present(videoController, animated: false, completion: nil)
+    }
     func launchVideo(name: String, ext: String) {
         let path: String = Bundle.main.path(forResource: name, ofType: ext)!
         let url: URL = URL(fileURLWithPath: path)
@@ -60,4 +68,50 @@ extension UIViewController {
         //self.dismiss(animated: true, completion: nil)
         self.present(videoController, animated: false, completion: nil)
     }
+
 }
+
+
+var applicationDocumentsDirectory: NSURL = {
+    let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+    return urls[urls.count-1] as NSURL
+}()
+
+
+
+var managedObjectContext: NSManagedObjectContext = {
+    let coordinator = persistentStoreCoordinator
+    var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+    managedObjectContext.persistentStoreCoordinator = coordinator
+    return managedObjectContext
+}()
+
+
+var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
+    let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
+    let url = applicationDocumentsDirectory.appendingPathComponent("SecondScreen.sqlite")
+    var failureReason = "There was an error creating or loading the application's saved data."
+    do {
+        try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
+    } catch {
+        var dict = [String: AnyObject]()
+        dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
+        dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject?
+        
+        dict[NSUnderlyingErrorKey] = error as NSError
+        let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
+        NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
+        abort()
+    }
+    
+    return coordinator
+}()
+
+
+var managedObjectModel: NSManagedObjectModel = {
+    let modelURL = Bundle.main.url(forResource: "Model", withExtension: "momd")!
+    return NSManagedObjectModel(contentsOf: modelURL)!
+}()
+
+
+

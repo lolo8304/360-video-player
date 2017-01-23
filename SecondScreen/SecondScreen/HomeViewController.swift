@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var satusView: UIImageView!
@@ -23,6 +23,7 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         self.countNo = countImages()
         Connector.instance.delegate = self
+
     }
     override func viewDidAppear(_ animated: Bool) {
         let aSelector : Selector = #selector(HomeViewController.switchImage)
@@ -37,6 +38,9 @@ class HomeViewController: UIViewController {
     }
     
     func switchImage() {
+        if (!Connector.instance.isStarted()) {
+            Connector.instance.startServer()
+        }
         var no: Int = lastNo
         repeat {
             no = Int(arc4random_uniform(UInt32(self.countNo)))
@@ -64,7 +68,6 @@ class HomeViewController: UIViewController {
         self.launchVideo(name: "DE-AXA-One_second_away-Final_v3_short_360", ext: "mp4")
         
     }
-
     
 }
 
@@ -90,7 +93,7 @@ extension HomeViewController: ConnectorDelegate {
             if (started) {
                 self.satusView.image = UIImage(named: "status-green")
             } else {
-                self.satusView.image = UIImage(named: "status-green")
+                self.satusView.image = UIImage(named: "status-red")
             }
             self.nofConnectionLabel.text = "\(connections)"
         }
