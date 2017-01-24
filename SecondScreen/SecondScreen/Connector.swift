@@ -221,7 +221,9 @@ class Connector: NSObject {
     public var delegate: ConnectorDelegate
     public var status: ConnectorStatus = .Stopped
     public var bonjourStatus: ConnectorBonjourStatus = .Stopped
-    var timer = Timer()
+
+    private var needRestart = false
+    private var timer = Timer()
     
     private override init() {
         self.delegate = ConnectorNoDelegate()
@@ -276,17 +278,25 @@ class Connector: NSObject {
     }
     
     
+
+    private func delayedStart() {
+        self.needRestart = false
+        self.socketServer = nil
+        self.changeState(server: .Starting)
+        self.changeState(bonjourServer: .Starting)
+        self.socketServer = SecondScreenServer(port: 6577)
+        self.socketServer?.start(delegate: self, udpDelegate: self, bonjourDelegate: self)
+    }
     
     // server activities
     public func startServer() {
         if (self.isStarted()) { return }
-        self.changeState(server: .Starting)
-        self.changeState(bonjourServer: .Starting)
-
-        self.socketServer?.stop()
-        self.socketServer = nil
-        self.socketServer = SecondScreenServer(port: 6577)
-        self.socketServer?.start(delegate: self, udpDelegate: self, bonjourDelegate: self)
+        if (!self.isStopped()) {
+            self.needRestart = true
+            self.socketServer?.stop()
+        } else {
+            self.delayedStart()
+        }
     }
     public func stopServer() {
         if (self.isStopped()) { return }
@@ -308,6 +318,9 @@ class Connector: NSObject {
 
     private func statusChanged() {
         self.delegate.statusChanged(started: self.isStarted(), server: self.status, bonjourServer: self.bonjourStatus, connections: self.connectedDevicesByWebSocket.count)
+        if (self.isStopped() && self.needRestart) {
+            self.delayedStart()
+        }
     }
     // state management
     func changeState(server: ConnectorStatus) {
@@ -490,7 +503,7 @@ extension Connector : PSWebSocketServerDelegate {
         //self.showError("webSocket didFailWithError \(error!)", stack: true)
     }
     public func server(_ server: PSWebSocketServer!, didFailWithError error: Error!) {
-        //self.showError("webSocket didFailWithError \(error!)", stack: true)
+        self.showError("webSocket didFailWithError \(error!)", stack: true)
     }
     func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
         self.showError("didCloseWithCode code=\(code), reason=\(reason)", stack: false)

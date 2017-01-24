@@ -9,8 +9,11 @@
 import UIKit
 import Social
 
-class ShareViewController: SLComposeServiceViewController {
+class ShareViewController: SLComposeServiceViewController, LanguageSelectionViewControllerDelegate {
 
+    private var selectedLanguage: String = "DE"
+    private var configLanguage: SLComposeSheetConfigurationItem?
+    
     override func isContentValid() -> Bool {
         // Do validation of contentText and/or NSExtensionContext attachments here
         return true
@@ -23,9 +26,37 @@ class ShareViewController: SLComposeServiceViewController {
         self.extensionContext!.completeRequest(returningItems: [], completionHandler: nil)
     }
 
+    func getConfigLanguage() -> SLComposeSheetConfigurationItem {
+        if (self.configLanguage == nil) {
+            let config: SLComposeSheetConfigurationItem = SLComposeSheetConfigurationItem()
+            config.title = "Language"
+            config.value = self.selectedLanguage
+            config.tapHandler = self.languageSelection
+            self.configLanguage = config
+        }
+        return self.configLanguage!
+    }
+    
+    func languageSelection() {
+        let controller = LanguageSelectionViewController(style: .plain)
+        controller.selectedLanguageName = "DE"
+        controller.delegate = self
+        pushConfigurationViewController(controller)
+    }
+
+    func languageSelection(sender: LanguageSelectionViewController, selectedValue: String) {
+        self.getConfigLanguage().value = selectedValue
+        self.selectedLanguage = selectedValue
+        popConfigurationViewController()
+    }
+
+    
     override func configurationItems() -> [Any]! {
         // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
-        return []
+        return [
+            self.getConfigLanguage()
+        ]
     }
 
 }
+

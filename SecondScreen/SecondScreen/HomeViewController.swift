@@ -38,9 +38,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
     }
     
     func switchImage() {
-        if (!Connector.instance.isStarted()) {
-            Connector.instance.startServer()
-        }
         var no: Int = lastNo
         repeat {
             no = Int(arc4random_uniform(UInt32(self.countNo)))

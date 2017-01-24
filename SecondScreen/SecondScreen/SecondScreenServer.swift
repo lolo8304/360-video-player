@@ -16,6 +16,7 @@ class SecondScreenServer : NSObject {
     var gcdSocket: GCDAsyncSocket?
     var bonjourService: NetService?
     
+    
     public init(port: Int) {
         self.port = port
         self.urlString = "none"
@@ -88,8 +89,7 @@ class SecondScreenServer : NSObject {
     func stop() {
         if (self.socketServer != nil) {
             do {
-                try
-                    self.socketServer?.stop()
+                self.socketServer?.stop()
             } catch {
                 NSLog("error orrured while stopping server ")
             }
