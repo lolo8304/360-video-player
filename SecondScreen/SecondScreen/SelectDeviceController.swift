@@ -42,6 +42,7 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
         self.devicesCollectionView.dataSource = self
         self.devicesCollectionView.reloadData()
         Connector.instance.delegate = self
+        Connector.instance.choose(device: nil)
     }
     
     override func viewDidLoad() {
@@ -127,8 +128,10 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         _ = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
-        self.connector.selectedDevice = self.devices()[indexPath.item]
-        self.connector.selectedDevice?.play()
+
+        let device: Device = self.devices()[indexPath.item]
+        self.connector.choose(device: device)
+        device.play()
         self.launchVideo(name: "DE-AXA-One_second_away-Final_v3_short_360", ext: "mp4")
 //        performSegue(withIdentifier: "PlayDevice", sender: nil)
     }
@@ -147,7 +150,7 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
     @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
         if (sender.state == UIGestureRecognizerState.began) {
             let cell: UIDeviceCollectionViewCell = sender.view as! UIDeviceCollectionViewCell
-            self.connector.selectedDevice = cell.device
+
             let alert = UIAlertController(title: "Alert", message: "Edit mode is not implemented yet", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -189,6 +192,12 @@ extension SelectDeviceController : ConnectorDelegate {
 
     internal func deviceSelected(device: Device) {
         self.refreshDevice(device: device)
+    }
+    func deviceDeselected(device: Device) {
+        
+    }
+    func noDeviceSelected() {
+        
     }
 
     internal func deviceDisconnected(device: Device) {

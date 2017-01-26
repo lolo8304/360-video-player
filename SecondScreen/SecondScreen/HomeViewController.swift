@@ -76,6 +76,12 @@ extension HomeViewController: ConnectorDelegate {
     internal func deviceSelected(device: Device) {
         
     }
+    func deviceDeselected(device: Device) {
+        
+    }
+    func noDeviceSelected() {
+        
+    }
 
     internal func deviceDisconnected(device: Device) {
         

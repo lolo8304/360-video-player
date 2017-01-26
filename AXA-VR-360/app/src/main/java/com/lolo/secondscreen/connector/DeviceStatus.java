@@ -6,6 +6,5 @@ package com.lolo.secondscreen.connector;
 public enum DeviceStatus {
     Closed,
     Accepted,
-    Connected,
-    Selected;
+    Connected;
 }

@@ -1,6 +1,11 @@
 package com.lolo.secondscreen.sensor_fusion.representation;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.text.DecimalFormat;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The Quaternion class. A Quaternion is a four-dimensional vector that is used to represent rotations of a rigid body
@@ -331,6 +336,21 @@ public class Quaternion extends Vector4f {
     }
     public String toJSONString() {
         return "{ \"action\":\"position\", \"X\":" + Float2String(getX()) + ", \"Y\":" + Float2String(getY()) + ", \"Z\":" + Float2String(getZ()) + ", \"W\":" + Float2String(getW()) + ", \"rollY\":" + Double2String(-this.getRollY()) + ", \"pitchX\":" + Double2String(-this.getPitchX()) + ", \"yawZ\":" + Double2String(this.getYawZ()) + "}";
+    }
+    public JSONObject toJSON() {
+        try {
+            JSONObject message = new JSONObject();
+            message.put("X", Float2String(getX()));
+            message.put("Y", Float2String(getY()));
+            message.put("Z", Float2String(getZ()));
+            message.put("W", Float2String(getW()));
+            message.put("pitchX", Double2String(-this.getPitchX()));
+            message.put("rollY", Double2String(-this.getRollY()));
+            message.put("yawZ", Double2String(this.getYawZ()));
+            return message;
+        } catch (JSONException e) {
+            throw new RuntimeException("error while creating JSON", e);
+        }
     }
 
     /**

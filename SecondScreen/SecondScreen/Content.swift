@@ -127,7 +127,13 @@ class Content : NSObject {
     public var videos: [Video] = []
     
     private override init() {
-        
+    }
+    
+    public func getVideo(name: String) -> Video? {
+        for video in self.videos {
+            if (video.name == name) { return video }
+        }
+        return nil;
     }
     
     public func addNewVideo(_ newVideo: Video) {

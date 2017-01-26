@@ -62,9 +62,7 @@ extension UIViewController {
         self.present(videoController, animated: false, completion: nil)
     }
     func launchVideo(name: String, ext: String) {
-        let path: String = Bundle.main.path(forResource: name, ofType: ext)!
-        let url: URL = URL(fileURLWithPath: path)
-        let videoController: HTY360PlayerVC = HTY360PlayerVC.init(nibName: "HTY360PlayerVC", bundle: nil, url: url)
+        let videoController: HTY360PlayerVC = HTY360PlayerVC.init(nibName: "HTY360PlayerVC", bundle: nil, name: name, ext: ext)
         //self.dismiss(animated: true, completion: nil)
         self.present(videoController, animated: false, completion: nil)
     }

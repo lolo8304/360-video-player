@@ -12,6 +12,8 @@ protocol ConnectorDelegate {
     func deviceConnected(device: Device)
     func deviceDisconnected(device: Device)
     func deviceSelected(device: Device)
+    func deviceDeselected(device: Device)
+    func noDeviceSelected()
     func statusChanged(started: Bool, server:ConnectorStatus, bonjourServer: ConnectorBonjourStatus, connections: Int)
     func sendAction(action: String, data: JSON);
     func playerUpdated(device: Device, player: DevicePlayer);
@@ -51,6 +53,7 @@ class DevicePlayer : NSObject {
     public var name: String = ""
     public var medianame: String = ""
     public var language: String = "DE"
+    public var video: Video?
     public var status: DevicePlayerStatus = .stopped
     public var position: Int = 0
     public var duration: Int = 0
@@ -77,27 +80,52 @@ class DevicePlayer : NSObject {
     private func getAttrSeek(_ data: JSON) -> Int {
         return self.getInt(data, attribute: "seek")
     }
-    public func handleAction(_ action: String, data: JSON) {
+    public func handleFirstPositionAction(data: JSON) {
         self.name = self.getAttrName(data)
-        self.medianame = self.name
-        self.language = self.getAttrLanguage(data)
-        switch action {
-        case "player-prepare":
+        self.position = self.getAttrSeek(data)
+        self.video = Content.instance.getVideo(name: self.name)
+        if (self.video != nil) {
+            let action: PlayerAction = PlayerAction(prepareVideo: self.name, mediaURL: video!.mediaURL(), ext: video!.mediaExt, at: Int32(self.position))
+            CurrentQuaternion.instance().enqueue(action)
+        } else {
+            NSLog("remote Video play not found '\(self.name)'")
+            let action: PlayerAction = PlayerAction(stopAt: 0)
+            CurrentQuaternion.instance().enqueue(action)
+        }
+    }
+    
+    private func verifyName(_ data: JSON) -> Bool {
+        return self.name == self.getAttrName(data);
+    }
+    public func handleAction(_ action: String, data: JSON) {
+        if (action == "player-prepare") {
+            self.name = self.getAttrName(data)
             self.duration = self.getAttrDuration(data)
+            self.position = self.getAttrSeek(data)
             self.status = .stopped
+            return
+        }
+        
+        //if (!self.verifyName(data)) { return }
+        self.position = self.getAttrSeek(data)
+        switch action {
         case "player-seek":
-            self.position = self.getAttrSeek(data)
+            let action: PlayerAction = PlayerAction(seekAt: Int32(self.position))
+            CurrentQuaternion.instance().enqueue(action)
         case "player-start":
-            self.position = self.getAttrSeek(data)
             self.status = .playing
+            let action: PlayerAction = PlayerAction(playAt: Int32(self.position))
+            CurrentQuaternion.instance().enqueue(action)
         case "player-pause":
-            self.position = self.getAttrSeek(data)
             self.status = .paused
+            let action: PlayerAction = PlayerAction(pauseAt: Int32(self.position))
+            CurrentQuaternion.instance().enqueue(action)
         case "player-stop":
-            self.position = self.getAttrSeek(data)
             self.status = .stopped
+            let action: PlayerAction = PlayerAction(stopAt: -1)
+            CurrentQuaternion.instance().enqueue(action)
         case "player-keepAlive":
-            self.position = self.getAttrSeek(data)
+            break
         default:
             return
         }
@@ -178,6 +206,12 @@ class Device: NSObject {
         self.connect()
         self.status = .connected
     }
+    public func select() {
+        self.status = .selected
+    }
+    public func deselect() {
+        self.status = .connected
+    }
     public func disconnect() {
         self.connector.remove(device: self)
     }
@@ -205,6 +239,23 @@ class Device: NSObject {
         return jsonString!
     }
     
+    
+    public func send(action: String, name: String, message: String) {
+        let localMessage:JSON = JSON.init([ name : message])
+        self.send(action: action, message: localMessage)
+    }
+    public func send(action: String) {
+        let message:JSON = JSON.init(["id" : self.id])
+        self.send(action: action, message: message)
+
+    }
+    public func send(action: String, message: JSON) {
+        var localMessage = message
+        localMessage["device.uuid"].stringValue = self.uuid
+        localMessage["device.ip"].stringValue = self.ip
+        webSocket!.send(action: action, json: &localMessage);
+    }
+    
 }
 
 class Connector: NSObject {
@@ -216,7 +267,7 @@ class Connector: NSObject {
     private var socketServer: SecondScreenServer?
     private var tempConnectedDevices = [ String : Device ]()
     private var connectedDevicesByWebSocket = [ PSWebSocket : Device ]()
-    public var selectedDevice: Device?
+    private var selectedDevice: Device?
     
     public var delegate: ConnectorDelegate
     public var status: ConnectorStatus = .Stopped
@@ -349,7 +400,6 @@ class Connector: NSObject {
             NSLog("register websocket of device: \(ip), data=\(device.toString())")
             self.status = .Connected
             self.statusChanged()
-            self.selectedDevice = device
             self.delegate.deviceConnected(device: device)
         } else {
             self.tempConnectedDevices[device.ip] = device
@@ -371,40 +421,60 @@ class Connector: NSObject {
         }
     }
     
-    public func get(deviceIp: String) -> Device? {
-        self.choose(ip: deviceIp)
-        return self.selectedDevice
+    public func get(id: Int) -> Device? {
+        for (_, value) in self.connectedDevicesByWebSocket {
+            if (value.id == id) {
+                return value
+            }
+        }
+        for (_, value) in self.tempConnectedDevices {
+            if (value.id == id) {
+                return value
+            }
+        }
+        return nil
+    }
+    public func get(ip: String) -> Device? {
+        for (_, value) in self.connectedDevicesByWebSocket {
+            if (value.ip == ip) {
+                return value
+            }
+        }
+        for (_, value) in self.tempConnectedDevices {
+            if (value.ip == ip) {
+                return value
+            }
+        }
+        return nil
     }
     public func get(webSocket: PSWebSocket) -> Device? {
         return self.connectedDevicesByWebSocket[webSocket]
     }
     
-    public func choose(device: Device) {
+    public func choose(device: Device?) {
+        if (self.selectedDevice == device) {
+            return
+        }
+        if (self.selectedDevice != nil) {
+            self.selectedDevice!.send(action: "deselected")
+            self.selectedDevice!.deselect()
+            self.delegate.deviceDeselected(device: self.selectedDevice!)
+        }
+        if (device != nil) {
+            device!.send(action: "selected")
+            device!.select()
+            self.delegate.deviceSelected(device: device!)
+        } else {
+            self.delegate.noDeviceSelected()
+        }
         self.selectedDevice = device
     }
+    
     public func choose(id: Int) {
-        for (_, value) in self.connectedDevicesByWebSocket {
-            if (value.id == id) {
-                self.choose(device: value)
-                return
-            }
-        }
-        self.selectedDevice = nil
+        self.choose(device: self.get(id: id))
     }
     public func choose(ip: String) {
-        for (_, value) in self.connectedDevicesByWebSocket {
-            if (value.ip == ip) {
-                self.choose(device: value)
-                return
-            }
-        }
-        for (_, value) in self.tempConnectedDevices {
-            if (value.ip == ip) {
-                self.choose(device: value)
-                return
-            }
-        }
-        self.selectedDevice = nil
+        self.choose(device: self.get(ip: ip))
     }
     
     public func sortedDevicesById() -> [Device] {
@@ -453,14 +523,15 @@ extension Connector : PSWebSocketServerDelegate {
             let json:JSON = JSON.init(data: message.data(using: .utf8, allowLossyConversion: false)!)
             let action = json["action"].stringValue
             if (action == "position") {
-                
-                //CurrentQuaternion.instance().enqueue(json["X"].floatValue, add: json["Y"].floatValue, add: json["Z"].floatValue, add: json["W"].floatValue)
                 CurrentQuaternion.instance().enqueue(json["pitchX"].floatValue, add: json["rollY"].floatValue, add: json["yawZ"].floatValue)
-                //NSLog("queue size = \(CurrentQuaternion.instance().count())");
+            } else if (action == "positionAndPrepare") {
+                device!.player.handleFirstPositionAction(data: json)
+                delegate.playerUpdated(device: device!, player: device!.player)
+                CurrentQuaternion.instance().enqueue(json["pitchX"].floatValue, add: json["rollY"].floatValue, add: json["yawZ"].floatValue)
             } else if (action == "disconnect") {
                     device?.disconnect()
                     var connectionResponse = JSON.init(["device.uuid": device!.uuid]);
-                    webSocket.send(json: &connectionResponse, action: "disconnected");
+                    webSocket.send(action: "disconnected", json: &connectionResponse);
             } else if (action.hasPrefix("player-")) {
                 device!.player.handleAction(action, data: json)
                 delegate.playerUpdated(device: device!, player: device!.player)
@@ -472,15 +543,15 @@ extension Connector : PSWebSocketServerDelegate {
             let json: JSON = JSON.init(data: message.data(using: .utf8)!)
             if (json["action"].stringValue == "request-connection-data") {
                 // retrieve IP, name of device to map it with device-object and websocket
-                let device: Device? = self.get(deviceIp: json["ip"].stringValue)
+                let device: Device? = self.get(ip: json["ip"].stringValue)
                 if (device != nil) {
                     device!.connect(webSocket: webSocket)
                     var connectionResponse = JSON.init(["device.uuid": device!.uuid]);
                     NSLog("send connected back to device \(device!.ip)")
-                    webSocket.send(json: &connectionResponse, action: "connected");
+                    webSocket.send(action: "connected", json: &connectionResponse);
                 } else {
                     var connectionResponse = JSON.init(["message": "no device found on that IP"]);
-                    webSocket.send(json: &connectionResponse, action: "connection-failed");
+                    webSocket.send(action: "connection-failed", json: &connectionResponse);
                 }
             }
         }
@@ -587,7 +658,7 @@ extension PSWebSocket {
     func send(json: JSON) {
         self.send(json.rawString())
     }
-    func send(json: inout JSON, action: String) {
+    func send(action: String, json: inout JSON) {
         json["action"].stringValue = action
         self.send(json.rawString())
     }
@@ -596,6 +667,7 @@ extension PSWebSocket {
 
 
 class ConnectorNoDelegate: ConnectorDelegate {
+
     internal func playerUpdated(device: Device, player: DevicePlayer) {
         
     }
@@ -609,6 +681,12 @@ class ConnectorNoDelegate: ConnectorDelegate {
     }
 
     internal func deviceSelected(device: Device) {
+        
+    }
+    func deviceDeselected(device: Device) {
+        
+    }
+    func noDeviceSelected() {
         
     }
 

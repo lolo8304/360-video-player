@@ -41,12 +41,14 @@ import com.lolo.secondscreen.sensor_fusion.representation.Quaternion;
 
 import org.gearvrf.GVRActivity;
 import org.gearvrf.scene_objects.GVRVideoSceneObjectPlayer;
+import org.json.JSONObject;
 
 import java.util.Map;
 
 public class Minimal360VideoActivity extends GVRActivity implements ConnectorDelegate {
 
-    private static final String VIDEO_NAME = "DE-AXA-One_second_away-Final_v3_short_360.mp4";
+    private static final String VIDEO_MEDIA_NAME = "DE-AXA-One_second_away-Final_v3_short_360.mp4";
+    private static final String VIDEO_NAME = "new";
 
 
     private GVRVideoSceneObjectPlayer<ExoPlayer> videoSceneObjectPlayer;
@@ -60,7 +62,7 @@ public class Minimal360VideoActivity extends GVRActivity implements ConnectorDel
         super.onCreate(savedInstanceState);
         GVRConnector.activate();
         Connector.instance().setDelegated(this);
-        videoSceneObjectPlayer = makeExoPlayer(VIDEO_NAME);
+        videoSceneObjectPlayer = makeExoPlayer(VIDEO_MEDIA_NAME);
         this.remotePlayer = new RemotePlayer(Connector.instance(), videoSceneObjectPlayer.getPlayer());
         this.remotePlayer.playNamedVideo(VIDEO_NAME);
 
@@ -220,8 +222,13 @@ public class Minimal360VideoActivity extends GVRActivity implements ConnectorDel
     }
 
     @Override
-    public void onServerSelected() {
+    public void onServerDeselected() {
+        this.remotePlayer.deselected();
+    }
 
+    @Override
+    public void onServerSelected() {
+        this.remotePlayer.selected();
     }
 
     @Override
@@ -242,6 +249,11 @@ public class Minimal360VideoActivity extends GVRActivity implements ConnectorDel
     @Override
     public void actionMessageSent(String action, Map<String, Object> data) {
         Log.d("Video", String.format("send action '%s'", action));
+
+    }
+
+    @Override
+    public void actionMessageSent(String action, JSONObject data) {
 
     }
 

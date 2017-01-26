@@ -2,6 +2,8 @@ package com.lolo.secondscreen.connector;
 
 import com.lolo.secondscreen.sensor_fusion.representation.Quaternion;
 
+import org.json.JSONObject;
+
 import java.util.Map;
 
 /**
@@ -40,6 +42,11 @@ public class NoConnectorDelegate implements ConnectorDelegate {
     }
 
     @Override
+    public void onServerDeselected() {
+
+    }
+
+    @Override
     public void onServerConnectionFailed(String message) {
 
     }
@@ -66,6 +73,11 @@ public class NoConnectorDelegate implements ConnectorDelegate {
 
     @Override
     public void actionMessageSent(String action, Map<String, Object> data) {
+
+    }
+
+    @Override
+    public void actionMessageSent(String action, JSONObject data) {
 
     }
 }

@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
+#import "CurrentQuaternion.h"
 
 @interface HTY360PlayerVC : UIViewController
 
 @property (strong, nonatomic) NSURL *videoURL;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL*)url;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil name:(NSString*)name ext: (NSString*) ext;
 - (CVPixelBufferRef)retrievePixelBufferToDraw;
 - (void)toggleControls;
+
+- (BOOL)runPlayerAction: (PlayerAction*) action;
 
 @end

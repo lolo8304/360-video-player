@@ -2,6 +2,8 @@ package com.lolo.secondscreen.connector;
 
 import com.lolo.secondscreen.sensor_fusion.representation.Quaternion;
 
+import org.json.JSONObject;
+
 import java.util.Map;
 
 /**
@@ -19,6 +21,7 @@ public interface ConnectorDelegate {
     void onServerReady();
     void onServerConnected();
     void onServerSelected();
+    void onServerDeselected();
 
     void statusChanged(boolean started, ConnectorStatus status, ConnectorBonjourStatus bonjourStatus);
 
@@ -26,4 +29,6 @@ public interface ConnectorDelegate {
     void positionNotSent(Quaternion quaternion);
 
     void actionMessageSent(String action, Map<String, Object> data);
+    void actionMessageSent(String action, JSONObject data);
+
 }

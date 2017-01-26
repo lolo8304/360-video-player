@@ -11,10 +11,83 @@
 #import "Quaternion.h"
 #import "EulerianAngle.h"
 
+
+
+@interface PlayerAction ()
+@end
+
+
 @interface CurrentQuaternion ()
 @property (strong, nonatomic) NSMutableArray* queue;
-@property (atomic) unsigned long maxQueue;
+@property (strong, nonatomic) NSMutableArray* playerActionQueue;
 @property (atomic) BOOL playing;
+@end
+
+@implementation PlayerAction
+- (id) initStopAt: (int) seek {
+    self.type = kStop;
+    self.seek = -1;
+    self.name = nil;
+    self.mediaName = nil;
+    self.mediaExtension = nil;
+    self.mediaURL = nil;
+    return self;
+}
+
+- (id) initSeekAt: (int) seek {
+    self.type = kSeek;
+    self.seek = seek;
+    self.name = nil;
+    self.mediaName = nil;
+    self.mediaExtension = nil;
+    self.mediaURL = nil;
+    return self;
+}
+- (id) initPlayAt: (int) seek {
+    self.type = kPlayAt;
+    self.seek = seek;
+    self.name = nil;
+    self.mediaName = nil;
+    self.mediaExtension = nil;
+    self.mediaURL = nil;
+    return self;
+}
+- (id) initPauseAt: (int) seek {
+    self.type = kPauseAt;
+    self.seek = seek;
+    self.name = nil;
+    self.mediaName = nil;
+    self.mediaExtension = nil;
+    self.mediaURL = nil;
+    return self;
+}
+- (id) initPrepareVideo: (NSString*) name mediaName: (NSString*) mediaName ext: (NSString*) ext at: (int) seek {
+    self.type = kPlayNewVideo;
+    self.seek = seek;
+    self.name = name;
+    self.mediaName = mediaName;
+    self.mediaExtension = ext;
+    self.mediaURL = nil;
+    return self;
+}
+- (id) initPrepareVideo: (NSString*) name mediaURL: (NSURL*) mediaURL ext: (NSString*) ext at: (int) seek {
+    self.type = kPlayNewVideo;
+    self.seek = seek;
+    self.name = name;
+    self.mediaName = nil;
+    self.mediaExtension = ext;
+    self.mediaURL = mediaURL;
+    return self;
+}
+- (NSURL*) getURL {
+    if (self.mediaURL != nil) {
+        return self.mediaURL;
+    } else {
+        NSString* path = [[NSBundle mainBundle] pathForResource: self.mediaName ofType: self.mediaExtension];
+        return [NSURL fileURLWithPath: path];
+    }
+}
+
 
 @end
 
@@ -31,7 +104,7 @@
 
 - (id) init {
     self.queue = [[NSMutableArray alloc] init];
-    self.maxQueue = 0;
+    self.playerActionQueue = [[NSMutableArray alloc] init];
     self.playing = false;
     return self;
 }
@@ -44,7 +117,7 @@
         if (self.queue.count > 10) {
             [self.queue removeObjectAtIndex: 0];
         }
-        self.maxQueue = MAX(self.maxQueue, self.queue.count);
+        //self.maxQueue = MAX(self.maxQueue, self.queue.count);
         //NSLog(@"max queue = %lu", self.maxQueue);
     }
 }
@@ -56,7 +129,7 @@
         if (self.queue.count > 10) {
             [self.queue removeObjectAtIndex: 0];
         }
-        self.maxQueue = MAX(self.maxQueue, self.queue.count);
+        //self.maxQueue = MAX(self.maxQueue, self.queue.count);
         //NSLog(@"max queue = %lu", self.maxQueue);
     }
 }
@@ -88,10 +161,15 @@
         return (int)self.queue.count;
     }
 }
+- (int)playerActionCount {
+    @synchronized(self.playerActionQueue) {
+        return (int)self.playerActionQueue.count;
+    }
+}
 
 - (void)reset {
     self.queue = [[NSMutableArray alloc] init];
-    self.maxQueue = 0;
+    self.playerActionQueue = [[NSMutableArray alloc] init];
 }
 
 - (void)play {
@@ -104,5 +182,25 @@
 }
 
 
+- (void) enqueuePlayerAction: (PlayerAction*) playerAction {
+    @synchronized(self.playerActionQueue) {
+        [self.playerActionQueue addObject: playerAction];
+        if (self.playerActionQueue.count > 3) {
+            [self.playerActionQueue removeObjectAtIndex: 0];
+        }
+    }
+    
+}
+- (PlayerAction*) dequeuePlayerAction {
+    @synchronized(self.playerActionQueue) {
+        if (self.playerActionQueue.count > 0) {
+            PlayerAction* a = self.playerActionQueue[0];
+            [self.playerActionQueue removeObjectAtIndex: 0];
+            return a;
+        } else {
+            return nil;
+        }
+    }
+}
 
 @end

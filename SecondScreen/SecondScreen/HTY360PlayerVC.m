@@ -52,18 +52,27 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     }
     return self;
 }
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil name:(NSString*)name ext: (NSString*) ext {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        [self setVideoName: name ext: ext];
+    }
+    return self;
+}
 
-
-- (void)viewDidLoad {
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationWillResignActive:)
-                                                 name:UIApplicationWillResignActiveNotification
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(applicationDidBecomeActive:)
-                                                 name:UIApplicationDidBecomeActiveNotification
-                                               object:nil];
+- (void)setVideoName: (NSString*) name ext: (NSString*) ext {
+    NSString* path = [[NSBundle mainBundle] pathForResource: name ofType: ext];
+    NSURL* url = [NSURL fileURLWithPath: path];
+    /*
+     let path: String = Bundle.main.path(forResource: name, ofType: ext)!
+     let url: URL = URL(fileURLWithPath: path)
+     */
     
+    [self setVideoURL:url];
+}
+
+
+- (void) startPlayer {
     [self setupVideoPlaybackForURL:_videoURL];
     [self configureGLKView];
     [self configurePlayButton];
@@ -77,6 +86,19 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 #if SHOW_DEBUG_LABEL
     self.debugView.hidden = NO;
 #endif
+}
+
+
+- (void)viewDidLoad {
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationWillResignActive:)
+                                                 name:UIApplicationWillResignActiveNotification
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(applicationDidBecomeActive:)
+                                                 name:UIApplicationDidBecomeActiveNotification
+                                               object:nil];
+    [self startPlayer];
 }
 
 - (void)applicationWillResignActive:(NSNotification *)notification {
@@ -101,8 +123,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     return UIInterfaceOrientationMaskLandscape;
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+- (void)stopPlayer {
     [[UIApplication sharedApplication] setIdleTimerDisabled:NO];
     
     @try {
@@ -114,10 +135,15 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     } @catch(id anException) {
         //do nothing
     }
-    
     self.videoOutput = nil;
     self.playerItem = nil;
     self.player = nil;
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self stopPlayer];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -276,6 +302,40 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     [self.player pause];
     
     [self scheduleHideControls];
+}
+
+- (BOOL)runPlayerAction: (PlayerAction*) action {
+    double seek = action.seek / 1000.0;
+    NSLog(@"seek time=%f", seek);
+    switch (action.type) {
+        case kSeek:
+            [self.player seekToTime: CMTimeMakeWithSeconds(seek, NSEC_PER_SEC)];
+            break;
+        case kPauseAt:
+            [self.player pause];
+            break;
+        case kPlayAt:
+            [self.player seekToTime: CMTimeMakeWithSeconds(seek, NSEC_PER_SEC)];
+            [self.player play];
+            break;
+        case kStop:
+            [self backButtonTouched: nil];
+            return false;
+            break;
+        case kPlayNewVideo:
+            [self pause];
+            [self.player seekToTime: CMTimeMakeWithSeconds(seek, NSEC_PER_SEC)];
+            [self play];
+            /*
+            [self stopPlayer];
+            [self setVideoURL: [action getURL]];
+            [self startPlayer];
+             */
+            break;
+        default:
+            break;
+    }
+    return true;
 }
 
 #pragma mark - progress slider management
@@ -463,7 +523,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
             float value = [slider value];
             
             double time = duration * (value - minValue) / (maxValue - minValue);
-            
+            NSLog(@"seek time=%f", time);
             [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC)];
         }
     }

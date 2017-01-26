@@ -467,6 +467,13 @@ int esGenSphere(int numSlices, float radius, float **vertices,
             }
         } else {
             // see http://sunday-lab.blogspot.ch/2008/04/get-pitch-yaw-roll-from-quaternion.html
+            PlayerAction* action = [[CurrentQuaternion instance] dequeuePlayerAction];
+            if (action != nil) {
+                if (![self.videoPlayerController runPlayerAction: action]) {
+                    /* stop upate because of action */
+                    return;
+                }
+            }
             
             NSObject<QuaternionAPI>* remoteQuaternion = [[CurrentQuaternion instance] dequeue];
             if (remoteQuaternion == nil) { return; }
@@ -499,7 +506,7 @@ int esGenSphere(int numSlices, float radius, float **vertices,
             
         self.savedGyroRotationX = cRoll + ROLL_CORRECTION + self.fingerRotationX;
         self.savedGyroRotationY = cPitch + self.fingerRotationY;
-        [self logAndMeasureRoll: currentRoll Yaw: currentYaw Pitch: currentPitch X:self.savedGyroRotationX Y:self.savedGyroRotationY];
+        //[self logAndMeasureRoll: currentRoll Yaw: currentYaw Pitch: currentPitch X:self.savedGyroRotationX Y:self.savedGyroRotationY];
 
     } else {
         modelViewMatrix = GLKMatrix4RotateX(modelViewMatrix, self.fingerRotationX);

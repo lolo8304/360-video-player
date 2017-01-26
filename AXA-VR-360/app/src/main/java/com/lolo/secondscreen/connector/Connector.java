@@ -16,6 +16,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
+import static android.R.attr.data;
+
 /**
  * Created by Lolo on 03.01.17.
  */
@@ -42,9 +44,7 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
     private Queue<String> messageQueue = new LinkedList<String>();
 
     private NsdService nsdService;
-
     protected ConnectorDelegate delegate;
-
     protected Context getContext() {
         return SecondScreenApplication.instance();
     }
@@ -130,7 +130,7 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
     public boolean isStarted() {
         if (this.client != null) {
             return (this.client.isReady()
-                    && (this.status == ConnectorStatus.Ready || this.status == ConnectorStatus.Connected)
+                    && (this.status == ConnectorStatus.Ready || this.status == ConnectorStatus.Connected || this.status == ConnectorStatus.Selected)
                     && this.bonjourStatus == ConnectorBonjourStatus.Ready);
         } else {
             return false;
@@ -138,6 +138,9 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
     }
     public boolean isConnected() {
         return (this.isStarted() && this.status == ConnectorStatus.Connected);
+    }
+    public boolean isSelected() {
+        return (this.isStarted() && this.status == ConnectorStatus.Selected);
     }
 
     private void statusChanged() {
@@ -171,8 +174,8 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
     }
 
 
-    protected void bufferedSendMessage(String message) {
-        if (this.isStarted()) {
+    protected void bufferedSendMessage(String message, boolean direct) {
+        if (direct || this.isStarted()) {
             this.client.send(message);
         } else {
             this.messageQueue.add(message);
@@ -197,6 +200,10 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
                 if (action.equals("selected")) {
                     this.changeState(ConnectorStatus.Selected);
                     this.delegate.onServerSelected();
+                }
+                if (action.equals("deselected")) {
+                    this.changeState(ConnectorStatus.Connected);
+                    this.delegate.onServerDeselected();
                 }
                 if (action.equals("connected")) {
                     this.changeState(ConnectorStatus.Connected);
@@ -240,11 +247,22 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
     }
 
     public void sendActionMessage(String action, Map<String, Object> data) {
-        data.put("action", action);
-        data.put("ip", Device.getHostAddress());
-        String messageBack = new JSONObject(data).toString();
-        this.bufferedSendMessage(messageBack);
-        this.delegate.actionMessageSent(action, data);
+        this.sendActionMessage(action, new JSONObject(data));
+    }
+    public void sendActionMessage(String action, JSONObject json) {
+        this.sendActionMessage(action, json, false);
+    }
+
+    public void sendActionMessage(String action, JSONObject json, boolean direct) {
+        try {
+            json.put("action", action);
+            json.put("ip", Device.getHostAddress());
+            String messageBack = json.toString();
+            this.bufferedSendMessage(messageBack, direct);
+            this.delegate.actionMessageSent(action, json);
+        } catch (JSONException e) {
+            throw new RuntimeException("error while modifying JSON", e);
+        }
     }
     public void sendAttributeMessage(String action, String name, String value) {
         Map<String, Object> data = new HashMap<String, Object>();
@@ -263,10 +281,10 @@ public abstract class Connector implements NsdServiceDelegate, SecondsScreenClie
     }
 
     public void sendPositionMessage(Quaternion quaternion) {
-        if (this.isStarted()) {
-            String message = quaternion.toJSONString();
+        if (this.isSelected()) {
             if (quaternion.isValid()) {
-                this.sendMessage(message);
+                JSONObject message = quaternion.toJSON();
+                this.sendActionMessage("position", message);
                 this.delegate.positionSent(quaternion);
             }
         } else {

@@ -94,6 +94,10 @@ public class Minimal360Video extends GVRMain {
                 sendKeepAliveIfNeeded();
             }
         }.run();
+
+        if (!Connector.instance().isSelected()) { return; }
+
+        /* only send position data if device is selected on remote player */
         GVRCameraRig cameraRig = this.getGVRContext().getMainScene().getMainCameraRig();
         GVRCameraRig nextCameraRig = this.getGVRContext().getNextMainScene().getMainCameraRig();
         float pitchX = cameraRig.getHeadTransform().getRotationPitch();
@@ -161,7 +165,7 @@ public class Minimal360Video extends GVRMain {
         //Log.d("Video", String.format("Rotation Q= Pitch=%.4f (%3.0f), Roll=%.4f (%3.0f), Yaw=%.4f (%3.0f)", quaternion.getPitchX(), rollY, quaternion.getRollY(), pitchX, quaternion.getYawZ(), yawZ));
         //Log.d("Video", String.format("Rotation Q= W=%.4f, X=%.4f, Y=%.4f, Z=%.4f", W, X, Y, Z));
         //Log.d("Video", String.format("Debug Rotation %.4f %3.0f %3.4f     ---    %3.4f  %3.4f  %3.4f", quaternion.getYawZ(), yawZ, Y, eulerAngles[0], eulerAngles[1], eulerAngles[2]));
-        Connector.instance().sendPositionMessage(quaternion);
+        this.remotePlayer.sendPosition(quaternion);
 
     }
 
