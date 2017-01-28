@@ -41,8 +41,7 @@
 		E1A1350D1E180538003A4B24 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A1350C1E180538003A4B24 /* Queue.swift */; };
 		E1A135111E1809C6003A4B24 /* CurrentQuaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A135101E1809C6003A4B24 /* CurrentQuaternion.m */; };
 		E1A135151E1810C0003A4B24 /* Quaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A135141E1810C0003A4B24 /* Quaternion.m */; };
-		E1A135171E19266A003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E1A135161E192551003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */; };
-		E1BE47BE1E3759ED00585816 /* LanguageSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BE47BD1E3759ED00585816 /* LanguageSelectionViewController.swift */; };
+		E1BE47BE1E3759ED00585816 /* NamedListSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BE47BD1E3759ED00585816 /* NamedListSelectionViewController.swift */; };
 		E1C039821E3019C9009698D3 /* SelectDeviceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C039811E3019C9009698D3 /* SelectDeviceController.swift */; };
 		E1C039841E301B13009698D3 /* UIDeviceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C039831E301B13009698D3 /* UIDeviceCollectionViewCell.swift */; };
 		E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF41E140AFA0055104C /* HomeViewController.swift */; };
@@ -124,8 +123,7 @@
 		E1A135121E180A00003A4B24 /* CurrentQuaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrentQuaternion.h; sourceTree = "<group>"; };
 		E1A135131E180EE4003A4B24 /* Quaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
 		E1A135141E1810C0003A4B24 /* Quaternion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quaternion.m; sourceTree = "<group>"; };
-		E1A135161E192551003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DE-AXA-One_second_away-Final_v3_short_360.mp4"; sourceTree = "<group>"; };
-		E1BE47BD1E3759ED00585816 /* LanguageSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageSelectionViewController.swift; sourceTree = "<group>"; };
+		E1BE47BD1E3759ED00585816 /* NamedListSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedListSelectionViewController.swift; sourceTree = "<group>"; };
 		E1C039811E3019C9009698D3 /* SelectDeviceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDeviceController.swift; sourceTree = "<group>"; };
 		E1C039831E301B13009698D3 /* UIDeviceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceCollectionViewCell.swift; sourceTree = "<group>"; };
 		E1E99EF41E140AFA0055104C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -300,7 +298,7 @@
 				E1955D491E363E1600546A91 /* ShareViewController.swift */,
 				E1955D4B1E363E1600546A91 /* MainInterface.storyboard */,
 				E1955D4E1E363E1600546A91 /* Info.plist */,
-				E1BE47BD1E3759ED00585816 /* LanguageSelectionViewController.swift */,
+				E1BE47BD1E3759ED00585816 /* NamedListSelectionViewController.swift */,
 			);
 			path = "Share-VR";
 			sourceTree = "<group>";
@@ -309,7 +307,6 @@
 			isa = PBXGroup;
 			children = (
 				E11AFE031E10355F009C7E8F /* Info.plist */,
-				E1A135161E192551003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 */,
 				E16ADEBF1E342292008A0F52 /* credits.rtf */,
 			);
 			name = Resources;
@@ -468,7 +465,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1A135171E19266A003A4B24 /* DE-AXA-One_second_away-Final_v3_short_360.mp4 in Resources */,
 				E16ADEC21E3427D2008A0F52 /* FlagKit.xcassets in Resources */,
 				E11AFE301E12B0D5009C7E8F /* Shader.fsh in Resources */,
 				E1955D3B1E3502B200546A91 /* videos.json in Resources */,
@@ -590,7 +586,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1BE47BE1E3759ED00585816 /* LanguageSelectionViewController.swift in Sources */,
+				E1BE47BE1E3759ED00585816 /* NamedListSelectionViewController.swift in Sources */,
 				E1955D4A1E363E1600546A91 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -34,6 +34,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         Connector.instance.startServer()
+        if let shared = UserDefaults(suiteName: "group.com.vr-second-tv.share") {
+            if let url: URL = shared.object(forKey: "shared.url") as? URL {
+                let newVideo: Video = Video(context: managedObjectContext)
+                newVideo.mediaURLString = url.absoluteString
+                newVideo.language = shared.object(forKey: "shared.language") as? String
+                newVideo.mediaExt = shared.object(forKey: "shared.media") as? String
+                newVideo.version = shared.object(forKey: "shared.version") as? String
+ //               shared.set(self.selected360Type, forKey: "shared.360-type")
+                Content.instance.addNewVideo(newVideo)
+                shared.removeObject(forKey: "shared.url")
+                shared.synchronize()
+            }
+        }
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -42,7 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-        self.connector.stopServer()
     }
     
 

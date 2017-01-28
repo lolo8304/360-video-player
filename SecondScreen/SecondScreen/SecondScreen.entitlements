@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.vr-second-tv</string>
+		<string>group.com.vr-second-tv.share</string>
 	</array>
 </dict>
 </plist>

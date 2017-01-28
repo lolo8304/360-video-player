@@ -1,5 +1,5 @@
 //
-//  LanguageSelectionViewController.swift
+//  NamedListViewController.swift
 //  deegeu-swift-share-extensions
 //
 //  Created by Daniel Spiess on 10/26/15.
@@ -8,22 +8,30 @@
 
 import UIKit
 
-@objc(LanguageSelectionViewControllerDelegate)
-protocol LanguageSelectionViewControllerDelegate {
-    @objc optional func languageSelection(
-        sender: LanguageSelectionViewController,
+@objc(NamedListViewControllerDelegate)
+protocol NamedListViewControllerDelegate {
+    @objc optional func namedListSelection(
+        sender: NamedListViewController,
+        name: String,
         selectedValue: String)
 }
 
-class LanguageSelectionViewController : UITableViewController {
+class NamedListViewController : UITableViewController {
     
-    let languageSelection = [ "DE", "EN", "FR" ]
-    let tableviewCellIdentifier = "languageSelectionCell"
-    var selectedLanguageName : String = "DE"
-    var delegate: LanguageSelectionViewControllerDelegate?
+    var namedListSelection: [String] = [ ]
+    let tableviewCellIdentifier = "namedListSelectionCell"
+    var defaultNamedListSelection : String = ""
+    var delegate: NamedListViewControllerDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    
+    convenience init(style: UITableViewStyle, name: String, defaultValue: String, list: [String]) {
+        self.init(style: style)
+        title = name
+        namedListSelection = list
+        defaultNamedListSelection = defaultValue
     }
     
     // Initialize the tableview
@@ -31,25 +39,30 @@ class LanguageSelectionViewController : UITableViewController {
         super.init(style: style)
         tableView.register(UITableViewCell.classForCoder(),
                                 forCellReuseIdentifier: tableviewCellIdentifier)
-        title = "Video Language"
     }
     
     // We only have three choices, but there's no reason this tableview can't be populated
     // dynamically from CoreData, NSDefaults, or something else.
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return namedListSelection.count
     }
     
+    
+    private func keyFrom(text: String, seperatedBy: String) -> String {
+        let keyValue: [String] = text.components(separatedBy: seperatedBy)
+        return keyValue.last!.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+
+    }
     // This just populates each row in the table, and if we've selected it, we'll check it
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: tableviewCellIdentifier,
             for: indexPath as IndexPath) as UITableViewCell
         
-        let text = languageSelection[indexPath.row]
+        let text = namedListSelection[indexPath.row]
         cell.textLabel!.text = text
         
-        if text == selectedLanguageName {
+        if defaultNamedListSelection == keyFrom(text: text, seperatedBy: ":") {
             cell.accessoryType = .checkmark
         } else {
             cell.accessoryType = .none
@@ -60,8 +73,8 @@ class LanguageSelectionViewController : UITableViewController {
     // Save the value the user picks
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let theDelegate = delegate {
-            selectedLanguageName = languageSelection[indexPath.row]
-            theDelegate.languageSelection!(sender: self, selectedValue: selectedLanguageName)
+            defaultNamedListSelection = keyFrom(text: namedListSelection[indexPath.row], seperatedBy: ":")
+            theDelegate.namedListSelection!(sender: self, name: title!, selectedValue: defaultNamedListSelection)
         }
     }
     
