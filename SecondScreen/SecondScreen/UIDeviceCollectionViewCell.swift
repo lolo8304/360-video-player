@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import SecondScreenShared
+
 class UIDeviceCollectionViewCell: UICollectionViewCell {
     
     var device: Device?

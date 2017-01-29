@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import SecondScreenShared
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,19 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         Connector.instance.startServer()
-        if let shared = UserDefaults(suiteName: "group.com.vr-second-tv.share") {
-            if let url: URL = shared.object(forKey: "shared.url") as? URL {
-                let newVideo: Video = Video(context: managedObjectContext)
-                newVideo.mediaURLString = url.absoluteString
-                newVideo.language = shared.object(forKey: "shared.language") as? String
-                newVideo.mediaExt = shared.object(forKey: "shared.media") as? String
-                newVideo.version = shared.object(forKey: "shared.version") as? String
- //               shared.set(self.selected360Type, forKey: "shared.360-type")
-                Content.instance.addNewVideo(newVideo)
-                shared.removeObject(forKey: "shared.url")
-                shared.synchronize()
-            }
-        }
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -59,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
 
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        return [ .landscapeRight,  .portrait ]
+        return [ .landscapeRight, .portrait ]
     }
 }
 
@@ -81,47 +69,6 @@ extension UIViewController {
 
 }
 
-
-var applicationDocumentsDirectory: NSURL = {
-    let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-    return urls[urls.count-1] as NSURL
-}()
-
-
-
-var managedObjectContext: NSManagedObjectContext = {
-    let coordinator = persistentStoreCoordinator
-    var managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-    managedObjectContext.persistentStoreCoordinator = coordinator
-    return managedObjectContext
-}()
-
-
-var persistentStoreCoordinator: NSPersistentStoreCoordinator = {
-    let coordinator = NSPersistentStoreCoordinator(managedObjectModel: managedObjectModel)
-    let url = applicationDocumentsDirectory.appendingPathComponent("SecondScreen.sqlite")
-    var failureReason = "There was an error creating or loading the application's saved data."
-    do {
-        try coordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
-    } catch {
-        var dict = [String: AnyObject]()
-        dict[NSLocalizedDescriptionKey] = "Failed to initialize the application's saved data" as AnyObject?
-        dict[NSLocalizedFailureReasonErrorKey] = failureReason as AnyObject?
-        
-        dict[NSUnderlyingErrorKey] = error as NSError
-        let wrappedError = NSError(domain: "YOUR_ERROR_DOMAIN", code: 9999, userInfo: dict)
-        NSLog("Unresolved error \(wrappedError), \(wrappedError.userInfo)")
-        abort()
-    }
-    
-    return coordinator
-}()
-
-
-var managedObjectModel: NSManagedObjectModel = {
-    let modelURL = Bundle.main.url(forResource: "Model", withExtension: "momd")!
-    return NSManagedObjectModel(contentsOf: modelURL)!
-}()
 
 
 

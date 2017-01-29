@@ -11,3 +11,4 @@
 #include <ifaddrs.h>
 #import "Quaternion.h"
 #import "CurrentQuaternion.h"
+#import "SecondScreen-Shared.h"

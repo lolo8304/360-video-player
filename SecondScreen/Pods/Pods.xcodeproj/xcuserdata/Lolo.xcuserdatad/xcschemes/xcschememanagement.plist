@@ -8,37 +8,51 @@
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>2</integer>
 		</dict>
 		<key>PocketSocket.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>3</integer>
 		</dict>
 		<key>Pods-SecondScreen.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
-			<key>orderHint</key>
-			<integer>4</integer>
+		</dict>
+		<key>Pods-SecondScreenShared.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0B3F726381E57B5D63D9BA6C36E1EC0C</key>
+		<key>0C5A912498CE4271C9C4A4CAA0E3BDB6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>23D7DA26C40DEA0CBB49A7825C7CD4F1</key>
+		<key>7B67696F0F6D9ADB2BFA0C79ACD25E5A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>40275F7CECBAB68BF64CCB16E099AA3E</key>
+		<key>AB19344FF46216F7B96BE552E2B7A725</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AC0D2D2B4EE7C873431AB3502859CA60</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F474215586579D47D934850DBC44F4C7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

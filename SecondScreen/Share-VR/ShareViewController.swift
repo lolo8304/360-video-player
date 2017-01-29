@@ -9,6 +9,7 @@
 import UIKit
 import Social
 import MobileCoreServices
+import SecondScreenShared
 
 class ShareViewController: SLComposeServiceViewController, NamedListViewControllerDelegate {
 
@@ -49,15 +50,13 @@ class ShareViewController: SLComposeServiceViewController, NamedListViewControll
                 for attachment in contents {
                     if attachment.hasItemConformingToTypeIdentifier(contentType) {
                         attachment.loadItem(forTypeIdentifier: contentType, options: nil) { data, error in
-                            let url = data as! NSURL
-                            if let shared = UserDefaults(suiteName: "group.com.vr-second-tv.share") {
-                                shared.set(url, forKey: "shared.url")
-                                shared.set(self.selectedLanguage, forKey: "shared.language")
-                                shared.set(self.selectedMedia, forKey: "shared.media")
-                                shared.set(self.selected360Type, forKey: "shared.360-type")
-                                shared.set(self.selectedVersion, forKey: "shared.version")
-                                shared.synchronize()
-                            }
+                            let url = URL(string: (data as! NSURL).absoluteString!)!
+                            NSLog("add new video from URL \(url)")
+                            let newVideo: Video = Video(context: managedObjectContext)
+                                    .from(name: "\(self.contentText!)\(self.selected360Type)", mediaURL: url, mediaExt: self.selectedMedia, language: self.selectedLanguage, duratinInS: 0, sizeInBytes: 0)
+                            newVideo.version = self.selectedVersion
+                            Content.instance.addNewVideo(newVideo)
+                            NSLog("video added - \(self.contentText!)\(self.selected360Type)")
                         }
                     }
                 }
@@ -137,7 +136,7 @@ class ShareViewController: SLComposeServiceViewController, NamedListViewControll
         return self.configVersion!
     }
     func versionSelection() {
-        let controller = NamedListViewController(style: .plain, name: "Version", defaultValue: self.selectedVersion, list: ["standard", "long", "shot", "teaser"])
+        let controller = NamedListViewController(style: .plain, name: "Version", defaultValue: self.selectedVersion, list: ["standard", "long", "short", "teaser"])
         controller.delegate = self
         pushConfigurationViewController(controller)
     }

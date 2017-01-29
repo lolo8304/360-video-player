@@ -3,6 +3,14 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "Video.updateSizeAndDuration() -&gt; ():Content.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "duration.isIndefinite">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "Connector.server(PSWebSocketServer!, webSocket : PSWebSocket!, didReceive : String!) -&gt; ():Connector.swift">
          <PersistentStrings>
             <PersistentString

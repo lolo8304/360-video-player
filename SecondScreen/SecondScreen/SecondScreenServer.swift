@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import PocketSocket
+import CocoaAsyncSocket
 
 class SecondScreenServer : NSObject {
     

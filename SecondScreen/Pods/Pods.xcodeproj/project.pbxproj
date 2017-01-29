@@ -7,151 +7,213 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0C768340F6C3796E95033CD05BB438C6 /* PSWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 624817AE68A97339AE37377B9B405DF0 /* PSWebSocket.m */; };
-		10B88DA1BA901CD5C8CC7253595CFD5B /* PSWebSocketDeflater.m in Sources */ = {isa = PBXBuildFile; fileRef = F9C66E310C265E4E2F3693DB524E0AF9 /* PSWebSocketDeflater.m */; };
-		184CAA31EC2B19CDAC9A4BEBC73608AA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC76A27B6AC5FF40DBB7B0E2B8BF8014 /* Security.framework */; };
-		1ADD4A5407315148C85E5819CFC7599B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D67AC30769732F1FF0BD1854B2E225 /* Foundation.framework */; };
-		1AE77AA2E8DF8EB5C8626506DA26286D /* PSWebSocketBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = EBB3CC67CE6A2BC6F8CE4F7DFDEA19DE /* PSWebSocketBuffer.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		20444C4AF0DC2B56E244446E5E598519 /* PSWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 515A20EEC553E567487B914D8BB891A5 /* PSWebSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		241E71118B10D7807D5E964D6D9D0022 /* GCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 8BCDBA15E2868C79E9AAD81E034BBFF4 /* GCDAsyncSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		293F2A62633060ED79CD67775B6AC94B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D67AC30769732F1FF0BD1854B2E225 /* Foundation.framework */; };
-		2FFFD7594A08807E41DFD72172F20F79 /* PSWebSocketServer.h in Headers */ = {isa = PBXBuildFile; fileRef = A3681D3AF5C863079909C8995FCA223F /* PSWebSocketServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		37B6EF4DF078C0F81443F32BB6FFB78B /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 898EE84856EB5E52F00A964689E9F67E /* CFNetwork.framework */; };
-		4AA1837864DD4A4F4EC2E9183E97B415 /* PSWebSocketNetworkThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BE317DAC50E468179E726016AEDD40A /* PSWebSocketNetworkThread.m */; };
-		5096A5687152FC9C2512CFD34B331C4A /* PSWebSocketDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = F2A4F57F3C4D5F73A30B2BC808B8DA07 /* PSWebSocketDriver.m */; };
-		51F2373E07478025F1199826E851C44D /* PSWebSocketNetworkThread.h in Headers */ = {isa = PBXBuildFile; fileRef = 8659E591D97D01B8B7B1EC39875B6958 /* PSWebSocketNetworkThread.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5445B897FA3DC81DABEDF9719FBC0E8F /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 8B2B250ADCFCC9DF81586CB494E909AE /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		63CE109B65E604E3CCFC927C51424299 /* PSWebSocketUTF8Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = B407A3D654CAB94966F07590F1723F87 /* PSWebSocketUTF8Decoder.m */; };
-		676498D669D8B2B63D90B88A5194A93C /* PSWebSocketInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = ADF325F78D39874B7E4DA34C364FCF33 /* PSWebSocketInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6A1C87D29A8F73A13EEA45039C431913 /* PSWebSocketDeflater.h in Headers */ = {isa = PBXBuildFile; fileRef = 64C6D9B0266F016E8328785C7A277C5B /* PSWebSocketDeflater.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		714D74BBAC857D21E4BE628C6E296BC5 /* GCDAsyncUdpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 6865D01FB6DA622C1B9CD08EF05EFC93 /* GCDAsyncUdpSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		78B48D56B35D31B62B0027CC395A95AB /* PSWebSocketTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 26366DB4960A77C24FBE3D109F5632B8 /* PSWebSocketTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		81A9C77CE9672A8C31461B04263C67D5 /* PSWebSocketUTF8Decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 82CC645341C32BAE55CCA47A2BE01DD6 /* PSWebSocketUTF8Decoder.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		8875FF965609BC4B4EDD3D076D3AD79D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC76A27B6AC5FF40DBB7B0E2B8BF8014 /* Security.framework */; };
-		89C7D8F2DE3042B84D89A1621A31B7E9 /* Pods-SecondScreen-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D15CA2B537F693CD1C7AA87D60C53542 /* Pods-SecondScreen-dummy.m */; };
-		8C7AEA54511304B50D9A1AD5844F9435 /* PSWebSocketBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 2F844F6ED67C6816E385251BF999ADEC /* PSWebSocketBuffer.m */; };
-		9E84336ABB133EB953CAA3CF81405DA0 /* PSWebSocketDriver.h in Headers */ = {isa = PBXBuildFile; fileRef = C0A14490548C665FEAC3326DB522DDFD /* PSWebSocketDriver.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		ABFAD23BA6072516D52DFFEA6A992A18 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 583D76EFB7FE60D605C1C2959D353818 /* GCDAsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
-		BBDD5EE897A25B8A3BBDC4BD7F76EE74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D67AC30769732F1FF0BD1854B2E225 /* Foundation.framework */; };
-		CC3895E3E907296D1967842D7D3CD5C5 /* PocketSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 82000B1FB50743B7DB1C00F6113B6E34 /* PocketSocket-dummy.m */; };
-		CE00FEC01B0EDD9CBE0BC361D2880078 /* PSWebSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D6783F96998F99FB410CE123C94D978 /* PSWebSocketServer.m */; };
-		D70CB0D5033B3BBE2274DF5C4BAA6A61 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 898EE84856EB5E52F00A964689E9F67E /* CFNetwork.framework */; };
-		D8301AC20EC9CA14FF590633419615B9 /* PSWebSocketInflater.h in Headers */ = {isa = PBXBuildFile; fileRef = E2C0FEAD44B77ED242AC94F8B78FB9C4 /* PSWebSocketInflater.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		D9DC6B4F2EAB04390F1DDA39493FABC7 /* PSWebSocketInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = C6197A07B0024829832353A3A53B4C41 /* PSWebSocketInflater.m */; };
-		E1D3558E80197D62084FD585403BAFA3 /* CocoaAsyncSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 41C4EAED12E5766A9B12A63ED9541C33 /* CocoaAsyncSocket-dummy.m */; };
+		06B7BFACAB279AC381E5CA5582C91AD9 /* Pods-SecondScreenShared-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 83F3109154E339936074D170B5544A51 /* Pods-SecondScreenShared-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0B2994CA0C4D30FB95355C10EFA2138A /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC76A27B6AC5FF40DBB7B0E2B8BF8014 /* Security.framework */; };
+		0EFD3920E5183E2E0C9A4B0860410273 /* PSWebSocketDeflater.m in Sources */ = {isa = PBXBuildFile; fileRef = EAD8D980EEF0F608D469756D9803ECA7 /* PSWebSocketDeflater.m */; };
+		14A955CF1870F12BDC183A80308888B4 /* Pods-SecondScreenShared-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C0A0DC06CF1E2B6D31D01DE36BAF470A /* Pods-SecondScreenShared-dummy.m */; };
+		14EC5349FAE75C5C03FFC70E099A4F17 /* PSWebSocketDeflater.h in Headers */ = {isa = PBXBuildFile; fileRef = 9265EE0DBD2AE080141D8DA8B8B30586 /* PSWebSocketDeflater.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		2024FEFCD06859BF91669C7987C2D1CE /* PSWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = A3AB677F93E17126FD25FC4233696449 /* PSWebSocket.m */; };
+		350A07B7A89CFC33CFA3C2C17E90CE61 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D67AC30769732F1FF0BD1854B2E225 /* Foundation.framework */; };
+		381CF9561487CDA9D32A0F176C0CD115 /* PSWebSocketBuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = D312CDE7D9CA7D89392FA54B484E75D5 /* PSWebSocketBuffer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3AE14E56C262E564769582CB20BA40BC /* PSWebSocketTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = 932688867160B788BAE7B3B6AF9B2494 /* PSWebSocketTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3C306246AF316598B43CDDBD87FA727C /* PSWebSocketBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F9334A021C3EE69DC27442A1B7E9319 /* PSWebSocketBuffer.m */; };
+		45C2EE9357EB92B648F11E21C63B76E1 /* PSWebSocketDriver.h in Headers */ = {isa = PBXBuildFile; fileRef = 843F373476A7F103BFAE0F3DF021264E /* PSWebSocketDriver.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4BC6A64FD16DBC93EFB304F4A16D7F78 /* PSWebSocketServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C7876966C13CA86F3CD8A4DA62E41F8 /* PSWebSocketServer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		531339279E2EFE95D408106EACE9A5EB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC76A27B6AC5FF40DBB7B0E2B8BF8014 /* Security.framework */; };
+		592BC9A82F44CE210EC0AB0808687DC9 /* SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0F9192C93C44E18C17B36CB97CF8C38E /* SwiftyJSON-dummy.m */; };
+		5E4745599A577238D8D8592325D878A6 /* PSWebSocketInflater.m in Sources */ = {isa = PBXBuildFile; fileRef = B6D2EA397F4FE57A8DDA2E85E7D0DE1A /* PSWebSocketInflater.m */; };
+		6A2F044C7F5387001D705ED9353E2A13 /* PSWebSocketInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = DEE8EAAC9F48006DF06B5876C7400F62 /* PSWebSocketInternal.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6F2F4C8E6DB53E4A978FCE671408BCB9 /* PSWebSocketUTF8Decoder.m in Sources */ = {isa = PBXBuildFile; fileRef = BACCFEEF92DB7FB6930CDC3B43AAF278 /* PSWebSocketUTF8Decoder.m */; };
+		6F4BF6BE5609435AB946E9BE6DE0E938 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 898EE84856EB5E52F00A964689E9F67E /* CFNetwork.framework */; };
+		78673E0A090CAA106F510D94186B39A1 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 898EE84856EB5E52F00A964689E9F67E /* CFNetwork.framework */; };
+		7A8D3FF46FF90FEA08704039586DE30A /* PSWebSocketNetworkThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 889791CE070BD2011F6F3A460CB7DE1A /* PSWebSocketNetworkThread.m */; };
+		7E4F0161B4D135DA3A0763619A56C2F5 /* CocoaAsyncSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 771AE77ADC533DC76A56E3A22805010C /* CocoaAsyncSocket-dummy.m */; };
+		8480493AEC1C7AF1B5C0E0BF2F70FB44 /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = F4D13A26CEEFB8EA8B2B26D39D3F5BA1 /* GCDAsyncSocket.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		917E034E03E6149149C8F84B29F64217 /* PSWebSocketDriver.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A6B7123792B0D43F27278753C2E50E9 /* PSWebSocketDriver.m */; };
+		A1E3D35D2985F04D6F5150DA0AF4BBD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D67AC30769732F1FF0BD1854B2E225 /* Foundation.framework */; };
+		A882891E5A89CADF96C2CA79606409CA /* GCDAsyncSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 2B8DD06E7F097F87DB176A3ADCD84580 /* GCDAsyncSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AC7DC2A21843CD99040DCD79FF3BE91B /* GCDAsyncUdpSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 96929100880BD472877A3E7E3B0A0A31 /* GCDAsyncUdpSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		AEE9644DA0EFCF945438E125BA4F0724 /* GCDAsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = E27E1B717208D010C6F4F91FE89D3D6C /* GCDAsyncUdpSocket.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
+		BD2691087780A7182B1D11EBD6C34B9B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D67AC30769732F1FF0BD1854B2E225 /* Foundation.framework */; };
+		BFEDBC1B856888EDEC3D04CC858909A0 /* PSWebSocketUTF8Decoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E86EA85572C02DCB3C299C5A34DE806 /* PSWebSocketUTF8Decoder.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C1D62AFEE94A4909C944D85548727612 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D67AC30769732F1FF0BD1854B2E225 /* Foundation.framework */; };
+		CC1392F18C5A69E0E346C0452A1E0CBC /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57085DB6C8837AFD73BB460655B3C5AD /* SwiftyJSON.swift */; };
+		CCA97FDDA7FF480004108644C689A98B /* PocketSocket-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E0039C315D0D3EA12F3B19FF2B8EA2A5 /* PocketSocket-dummy.m */; };
+		D115F3F196C50CD27B520E1383F9FC5D /* PocketSocket-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C6FC4F8138F7363B77525A13CB654BB8 /* PocketSocket-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D1877D0AAB6F68BFC6362E7D73C37A9C /* PSWebSocket.h in Headers */ = {isa = PBXBuildFile; fileRef = 957E68FA70238D7096116D546FC38A81 /* PSWebSocket.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D459A4FECA66D8A30D4A7755FEE1B5A6 /* Pods-SecondScreen-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AE78C1C254F79967ADB9F83AF0E07E42 /* Pods-SecondScreen-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D69ACCC700B8029AA7A2EC16F3DFA57D /* PSWebSocketInflater.h in Headers */ = {isa = PBXBuildFile; fileRef = 091507CDC469AA0C3DEBCB4AD0865157 /* PSWebSocketInflater.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		D7A0F9ACD8879AF84364BAE2C9BB7CAE /* PSWebSocketServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED31928D712FDF355BD5A32B6A119C7 /* PSWebSocketServer.m */; };
+		DA1203A7BFD46417B47BC7191EB34477 /* Pods-SecondScreen-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D4C5F785067509AE5BF421759BEDE480 /* Pods-SecondScreen-dummy.m */; };
+		DD5E1B36DAFD72B4987D69AC795F6EAD /* PSWebSocketNetworkThread.h in Headers */ = {isa = PBXBuildFile; fileRef = D9D4D42053C0118915E7534763EB3EAC /* PSWebSocketNetworkThread.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E4230DB0D114C94B081018C1AC1E9972 /* CocoaAsyncSocket-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3C0AB0BE4422BC0FA6854CB1BE9A5BF1 /* CocoaAsyncSocket-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E91B68DA1FA0C15785C4C6959EB8440B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5D67AC30769732F1FF0BD1854B2E225 /* Foundation.framework */; };
+		FE76F64B8B9B80FB47114183C0870408 /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7994EDD2567F4CB039C774E6D0309ECC /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8C39EC352AAEB6E11BDEF2104C2B49FE /* PBXContainerItemProxy */ = {
+		35E71B462377E13235F1DFE1AEFAAE83 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 23D7DA26C40DEA0CBB49A7825C7CD4F1;
+			remoteGlobalIDString = AC0D2D2B4EE7C873431AB3502859CA60;
 			remoteInfo = CocoaAsyncSocket;
 		};
-		BE57490474FE07BD2A4748F716D5CDA8 /* PBXContainerItemProxy */ = {
+		5C20AA9770BE888B24053B80FCA6F023 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 0B3F726381E57B5D63D9BA6C36E1EC0C;
+			remoteGlobalIDString = 0C5A912498CE4271C9C4A4CAA0E3BDB6;
+			remoteInfo = SwiftyJSON;
+		};
+		A755B0C097DF67E7183A8CA4823B2F78 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C5A912498CE4271C9C4A4CAA0E3BDB6;
+			remoteInfo = SwiftyJSON;
+		};
+		E1EBE6726CF32013E9B8175828C48D6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7B67696F0F6D9ADB2BFA0C79ACD25E5A;
 			remoteInfo = PocketSocket;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		060134D03F711CAB829C7212EDA15216 /* Pods-SecondScreen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SecondScreen.release.xcconfig"; sourceTree = "<group>"; };
-		193359CAB0CB6D69FB218494EAB1FF37 /* Pods-SecondScreen-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SecondScreen-frameworks.sh"; sourceTree = "<group>"; };
-		26366DB4960A77C24FBE3D109F5632B8 /* PSWebSocketTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketTypes.h; path = PocketSocket/PSWebSocketTypes.h; sourceTree = "<group>"; };
-		2C9E94DA27F9FF44483B2B625A92B851 /* Pods-SecondScreen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SecondScreen.debug.xcconfig"; sourceTree = "<group>"; };
-		2F844F6ED67C6816E385251BF999ADEC /* PSWebSocketBuffer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketBuffer.m; path = PocketSocket/PSWebSocketBuffer.m; sourceTree = "<group>"; };
-		398EB28901A0944FAD23F3A18292C5FA /* libPocketSocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libPocketSocket.a; path = libPocketSocket.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		3D6783F96998F99FB410CE123C94D978 /* PSWebSocketServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketServer.m; path = PocketSocket/PSWebSocketServer.m; sourceTree = "<group>"; };
-		41C4EAED12E5766A9B12A63ED9541C33 /* CocoaAsyncSocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CocoaAsyncSocket-dummy.m"; sourceTree = "<group>"; };
-		499F5BE3BB8B03C9FD512EED9716DA41 /* Pods-SecondScreen-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SecondScreen-acknowledgements.plist"; sourceTree = "<group>"; };
-		515A20EEC553E567487B914D8BB891A5 /* PSWebSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocket.h; path = PocketSocket/PSWebSocket.h; sourceTree = "<group>"; };
-		583D76EFB7FE60D605C1C2959D353818 /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncUdpSocket.m; path = Source/GCD/GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
-		624817AE68A97339AE37377B9B405DF0 /* PSWebSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocket.m; path = PocketSocket/PSWebSocket.m; sourceTree = "<group>"; };
-		64C6D9B0266F016E8328785C7A277C5B /* PSWebSocketDeflater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketDeflater.h; path = PocketSocket/PSWebSocketDeflater.h; sourceTree = "<group>"; };
-		6865D01FB6DA622C1B9CD08EF05EFC93 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCDAsyncUdpSocket.h; path = Source/GCD/GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
-		7716492AB6C2501BC9614F11B43FC5E5 /* Pods-SecondScreen-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SecondScreen-resources.sh"; sourceTree = "<group>"; };
-		82000B1FB50743B7DB1C00F6113B6E34 /* PocketSocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PocketSocket-dummy.m"; sourceTree = "<group>"; };
-		82CC645341C32BAE55CCA47A2BE01DD6 /* PSWebSocketUTF8Decoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketUTF8Decoder.h; path = PocketSocket/PSWebSocketUTF8Decoder.h; sourceTree = "<group>"; };
-		8659E591D97D01B8B7B1EC39875B6958 /* PSWebSocketNetworkThread.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketNetworkThread.h; path = PocketSocket/PSWebSocketNetworkThread.h; sourceTree = "<group>"; };
+		02619345141324AC7CCF65876F3BEC06 /* CocoaAsyncSocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CocoaAsyncSocket-prefix.pch"; sourceTree = "<group>"; };
+		04D29352C666C8CBD7FC01C169112A74 /* Pods-SecondScreenShared.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SecondScreenShared.release.xcconfig"; sourceTree = "<group>"; };
+		091507CDC469AA0C3DEBCB4AD0865157 /* PSWebSocketInflater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketInflater.h; path = PocketSocket/PSWebSocketInflater.h; sourceTree = "<group>"; };
+		0AE10BAF2EFB9CCD29D50450FA39161E /* Pods-SecondScreen.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SecondScreen.modulemap"; sourceTree = "<group>"; };
+		0F9192C93C44E18C17B36CB97CF8C38E /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
+		2B8DD06E7F097F87DB176A3ADCD84580 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = Source/GCD/GCDAsyncSocket.h; sourceTree = "<group>"; };
+		2C075E20468BAEE3DAD5040869B80C5E /* CocoaAsyncSocket.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = CocoaAsyncSocket.modulemap; sourceTree = "<group>"; };
+		2CE940AD02FF0385B86ED8B1CF6E567A /* Pods-SecondScreen-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SecondScreen-acknowledgements.plist"; sourceTree = "<group>"; };
+		2EDF5FAB5E9E6F64F05474A8929A9C78 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3C0AB0BE4422BC0FA6854CB1BE9A5BF1 /* CocoaAsyncSocket-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CocoaAsyncSocket-umbrella.h"; sourceTree = "<group>"; };
+		3ED31928D712FDF355BD5A32B6A119C7 /* PSWebSocketServer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketServer.m; path = PocketSocket/PSWebSocketServer.m; sourceTree = "<group>"; };
+		4425725BF178F1CA91CAECE9FC8BF41A /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
+		4E86EA85572C02DCB3C299C5A34DE806 /* PSWebSocketUTF8Decoder.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketUTF8Decoder.h; path = PocketSocket/PSWebSocketUTF8Decoder.h; sourceTree = "<group>"; };
+		5179CC682ABB1ED401E123E9C6331178 /* PocketSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = PocketSocket.framework; path = PocketSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		57085DB6C8837AFD73BB460655B3C5AD /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
+		57DDB99244763E5B164E99BB0179A3CD /* Pods-SecondScreen-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SecondScreen-resources.sh"; sourceTree = "<group>"; };
+		5D56397295C5FF9D5EF3B410337E28DD /* Pods-SecondScreenShared.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SecondScreenShared.modulemap"; sourceTree = "<group>"; };
+		5F9334A021C3EE69DC27442A1B7E9319 /* PSWebSocketBuffer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketBuffer.m; path = PocketSocket/PSWebSocketBuffer.m; sourceTree = "<group>"; };
+		6C998ACEBB7EF2CBAAA052AEF76F1B21 /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
+		6EE691A56DAF6057F9C6548ADEE1BE34 /* Pods-SecondScreenShared-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SecondScreenShared-acknowledgements.markdown"; sourceTree = "<group>"; };
+		7039F2EC9604D133464750634B2F5D08 /* Pods-SecondScreenShared.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SecondScreenShared.debug.xcconfig"; sourceTree = "<group>"; };
+		771AE77ADC533DC76A56E3A22805010C /* CocoaAsyncSocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CocoaAsyncSocket-dummy.m"; sourceTree = "<group>"; };
+		7994EDD2567F4CB039C774E6D0309ECC /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
+		8082A6BA3A0EE2BF8A16CA357B5FE870 /* Pods_SecondScreenShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SecondScreenShared.framework; path = "Pods-SecondScreenShared.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82BFD0E62C73C9EAF9904991D268BE09 /* PocketSocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PocketSocket.xcconfig; sourceTree = "<group>"; };
+		83F3109154E339936074D170B5544A51 /* Pods-SecondScreenShared-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SecondScreenShared-umbrella.h"; sourceTree = "<group>"; };
+		843F373476A7F103BFAE0F3DF021264E /* PSWebSocketDriver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketDriver.h; path = PocketSocket/PSWebSocketDriver.h; sourceTree = "<group>"; };
+		889791CE070BD2011F6F3A460CB7DE1A /* PSWebSocketNetworkThread.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketNetworkThread.m; path = PocketSocket/PSWebSocketNetworkThread.m; sourceTree = "<group>"; };
 		898EE84856EB5E52F00A964689E9F67E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/CFNetwork.framework; sourceTree = DEVELOPER_DIR; };
-		8B2B250ADCFCC9DF81586CB494E909AE /* GCDAsyncSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = Source/GCD/GCDAsyncSocket.m; sourceTree = "<group>"; };
-		8BCDBA15E2868C79E9AAD81E034BBFF4 /* GCDAsyncSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCDAsyncSocket.h; path = Source/GCD/GCDAsyncSocket.h; sourceTree = "<group>"; };
-		8BE317DAC50E468179E726016AEDD40A /* PSWebSocketNetworkThread.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketNetworkThread.m; path = PocketSocket/PSWebSocketNetworkThread.m; sourceTree = "<group>"; };
+		8A6B7123792B0D43F27278753C2E50E9 /* PSWebSocketDriver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketDriver.m; path = PocketSocket/PSWebSocketDriver.m; sourceTree = "<group>"; };
+		91F7F8B42DB607BE9B6D5C02F1FB9CE5 /* Pods_SecondScreen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SecondScreen.framework; path = "Pods-SecondScreen.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9265EE0DBD2AE080141D8DA8B8B30586 /* PSWebSocketDeflater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketDeflater.h; path = PocketSocket/PSWebSocketDeflater.h; sourceTree = "<group>"; };
+		932688867160B788BAE7B3B6AF9B2494 /* PSWebSocketTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketTypes.h; path = PocketSocket/PSWebSocketTypes.h; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A2F086BAC255467B72C0135B2F7E8CDF /* PocketSocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = PocketSocket.xcconfig; sourceTree = "<group>"; };
-		A3681D3AF5C863079909C8995FCA223F /* PSWebSocketServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketServer.h; path = PocketSocket/PSWebSocketServer.h; sourceTree = "<group>"; };
-		ADF325F78D39874B7E4DA34C364FCF33 /* PSWebSocketInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketInternal.h; path = PocketSocket/PSWebSocketInternal.h; sourceTree = "<group>"; };
-		B407A3D654CAB94966F07590F1723F87 /* PSWebSocketUTF8Decoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketUTF8Decoder.m; path = PocketSocket/PSWebSocketUTF8Decoder.m; sourceTree = "<group>"; };
+		944782D541CBC761F2C170E013E0AD9D /* Pods-SecondScreenShared-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SecondScreenShared-acknowledgements.plist"; sourceTree = "<group>"; };
+		94A2A99CD63047B6AA79ABB8B56C0F4F /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
+		957E68FA70238D7096116D546FC38A81 /* PSWebSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocket.h; path = PocketSocket/PSWebSocket.h; sourceTree = "<group>"; };
+		96929100880BD472877A3E7E3B0A0A31 /* GCDAsyncUdpSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GCDAsyncUdpSocket.h; path = Source/GCD/GCDAsyncUdpSocket.h; sourceTree = "<group>"; };
+		9A5F0860AAE1D85E7B575009F1B9A02D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AE26E4EABD867B362748350AABD5A5C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9C7876966C13CA86F3CD8A4DA62E41F8 /* PSWebSocketServer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketServer.h; path = PocketSocket/PSWebSocketServer.h; sourceTree = "<group>"; };
+		A3475AD4CEE21C17F225A76C72FD8CB9 /* CocoaAsyncSocket.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CocoaAsyncSocket.framework; path = CocoaAsyncSocket.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A379474BD94600DB479EB895075391F4 /* PocketSocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PocketSocket-prefix.pch"; sourceTree = "<group>"; };
+		A3AB677F93E17126FD25FC4233696449 /* PSWebSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocket.m; path = PocketSocket/PSWebSocket.m; sourceTree = "<group>"; };
+		A7205645E965173C60AEDDBCBCAE2D9F /* Pods-SecondScreen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SecondScreen.release.xcconfig"; sourceTree = "<group>"; };
+		A82FA473ADFA14FE972739E429D86B68 /* Pods-SecondScreen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SecondScreen.debug.xcconfig"; sourceTree = "<group>"; };
+		AE78C1C254F79967ADB9F83AF0E07E42 /* Pods-SecondScreen-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SecondScreen-umbrella.h"; sourceTree = "<group>"; };
+		AF42B58840FDACE2AFF1AC0608DD7FE5 /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SwiftyJSON.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5D67AC30769732F1FF0BD1854B2E225 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		B7F496B622934ACE59EB1FA343B2BCC8 /* CocoaAsyncSocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CocoaAsyncSocket.xcconfig; sourceTree = "<group>"; };
-		BBA423F3B44E3A20D89AE0180425ED06 /* libPods-SecondScreen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-SecondScreen.a"; path = "libPods-SecondScreen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6D2EA397F4FE57A8DDA2E85E7D0DE1A /* PSWebSocketInflater.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketInflater.m; path = PocketSocket/PSWebSocketInflater.m; sourceTree = "<group>"; };
+		BACCFEEF92DB7FB6930CDC3B43AAF278 /* PSWebSocketUTF8Decoder.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketUTF8Decoder.m; path = PocketSocket/PSWebSocketUTF8Decoder.m; sourceTree = "<group>"; };
 		BC76A27B6AC5FF40DBB7B0E2B8BF8014 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		C084EB5D6B42C31CF5CA3156A4DDA7BD /* Pods-SecondScreen-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SecondScreen-acknowledgements.markdown"; sourceTree = "<group>"; };
-		C0A14490548C665FEAC3326DB522DDFD /* PSWebSocketDriver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketDriver.h; path = PocketSocket/PSWebSocketDriver.h; sourceTree = "<group>"; };
-		C6197A07B0024829832353A3A53B4C41 /* PSWebSocketInflater.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketInflater.m; path = PocketSocket/PSWebSocketInflater.m; sourceTree = "<group>"; };
-		D15CA2B537F693CD1C7AA87D60C53542 /* Pods-SecondScreen-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SecondScreen-dummy.m"; sourceTree = "<group>"; };
-		D207EE62275515547BA153AC9C88A776 /* CocoaAsyncSocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CocoaAsyncSocket-prefix.pch"; sourceTree = "<group>"; };
-		D9707EC76E2DBB9081725CB056645B5A /* PocketSocket-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PocketSocket-prefix.pch"; sourceTree = "<group>"; };
-		E2C0FEAD44B77ED242AC94F8B78FB9C4 /* PSWebSocketInflater.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketInflater.h; path = PocketSocket/PSWebSocketInflater.h; sourceTree = "<group>"; };
-		E2E642FFE586BB560D2953FB9D0FB13C /* libCocoaAsyncSocket.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libCocoaAsyncSocket.a; path = libCocoaAsyncSocket.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		EBB3CC67CE6A2BC6F8CE4F7DFDEA19DE /* PSWebSocketBuffer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketBuffer.h; path = PocketSocket/PSWebSocketBuffer.h; sourceTree = "<group>"; };
-		F2A4F57F3C4D5F73A30B2BC808B8DA07 /* PSWebSocketDriver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketDriver.m; path = PocketSocket/PSWebSocketDriver.m; sourceTree = "<group>"; };
-		F9C66E310C265E4E2F3693DB524E0AF9 /* PSWebSocketDeflater.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketDeflater.m; path = PocketSocket/PSWebSocketDeflater.m; sourceTree = "<group>"; };
+		BE28AF95B4551B45A5F4A45BF2284DD8 /* Pods-SecondScreen-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SecondScreen-acknowledgements.markdown"; sourceTree = "<group>"; };
+		BFC2DF5E122481C4D5CC55BD9A331F93 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C0A0DC06CF1E2B6D31D01DE36BAF470A /* Pods-SecondScreenShared-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SecondScreenShared-dummy.m"; sourceTree = "<group>"; };
+		C6FC4F8138F7363B77525A13CB654BB8 /* PocketSocket-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PocketSocket-umbrella.h"; sourceTree = "<group>"; };
+		D2DFD1F8B46F7DD00E62DD64FA0FD8B1 /* Pods-SecondScreen-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SecondScreen-frameworks.sh"; sourceTree = "<group>"; };
+		D312CDE7D9CA7D89392FA54B484E75D5 /* PSWebSocketBuffer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketBuffer.h; path = PocketSocket/PSWebSocketBuffer.h; sourceTree = "<group>"; };
+		D4C5F785067509AE5BF421759BEDE480 /* Pods-SecondScreen-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SecondScreen-dummy.m"; sourceTree = "<group>"; };
+		D9D4D42053C0118915E7534763EB3EAC /* PSWebSocketNetworkThread.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketNetworkThread.h; path = PocketSocket/PSWebSocketNetworkThread.h; sourceTree = "<group>"; };
+		DEE8EAAC9F48006DF06B5876C7400F62 /* PSWebSocketInternal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = PSWebSocketInternal.h; path = PocketSocket/PSWebSocketInternal.h; sourceTree = "<group>"; };
+		DF5417342A97228BF70F08D80167787B /* CocoaAsyncSocket.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CocoaAsyncSocket.xcconfig; sourceTree = "<group>"; };
+		E0039C315D0D3EA12F3B19FF2B8EA2A5 /* PocketSocket-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "PocketSocket-dummy.m"; sourceTree = "<group>"; };
+		E24942386698F1AC93B95BB4ED14E78F /* Pods-SecondScreenShared-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SecondScreenShared-resources.sh"; sourceTree = "<group>"; };
+		E27E1B717208D010C6F4F91FE89D3D6C /* GCDAsyncUdpSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncUdpSocket.m; path = Source/GCD/GCDAsyncUdpSocket.m; sourceTree = "<group>"; };
+		E76F5202C2C3D1D85C13F347B0A1C34A /* PocketSocket.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = PocketSocket.modulemap; sourceTree = "<group>"; };
+		EAD8D980EEF0F608D469756D9803ECA7 /* PSWebSocketDeflater.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = PSWebSocketDeflater.m; path = PocketSocket/PSWebSocketDeflater.m; sourceTree = "<group>"; };
+		F4D13A26CEEFB8EA8B2B26D39D3F5BA1 /* GCDAsyncSocket.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GCDAsyncSocket.m; path = Source/GCD/GCDAsyncSocket.m; sourceTree = "<group>"; };
+		FE5F5B10C436E6182C5F7BBDFCC4D86D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2B6A1E9CF2056E33B13056BDA546B887 /* Frameworks */ = {
+		237E322BBAE16FEB6B1AADD5BA095F6C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37B6EF4DF078C0F81443F32BB6FFB78B /* CFNetwork.framework in Frameworks */,
-				293F2A62633060ED79CD67775B6AC94B /* Foundation.framework in Frameworks */,
-				8875FF965609BC4B4EDD3D076D3AD79D /* Security.framework in Frameworks */,
+				A1E3D35D2985F04D6F5150DA0AF4BBD8 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B93FB99E75631E0F64DFA82DAAE74718 /* Frameworks */ = {
+		4CE27E74007E79DEBBCBF6F241B05750 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ADD4A5407315148C85E5819CFC7599B /* Foundation.framework in Frameworks */,
+				C1D62AFEE94A4909C944D85548727612 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C45D3B493DB063C21F6EBB4C6CB2CD77 /* Frameworks */ = {
+		96D497B900CCB2732DE3CFB3E6341731 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D70CB0D5033B3BBE2274DF5C4BAA6A61 /* CFNetwork.framework in Frameworks */,
-				BBDD5EE897A25B8A3BBDC4BD7F76EE74 /* Foundation.framework in Frameworks */,
-				184CAA31EC2B19CDAC9A4BEBC73608AA /* Security.framework in Frameworks */,
+				BD2691087780A7182B1D11EBD6C34B9B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1C2C126168B038B9B15BF2A4C96FDDC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78673E0A090CAA106F510D94186B39A1 /* CFNetwork.framework in Frameworks */,
+				350A07B7A89CFC33CFA3C2C17E90CE61 /* Foundation.framework in Frameworks */,
+				0B2994CA0C4D30FB95355C10EFA2138A /* Security.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB8E04D7A67A74E0A95D62FAEA8622F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F4BF6BE5609435AB946E9BE6DE0E938 /* CFNetwork.framework in Frameworks */,
+				E91B68DA1FA0C15785C4C6959EB8440B /* Foundation.framework in Frameworks */,
+				531339279E2EFE95D408106EACE9A5EB /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		093E8130FF823A62D7AE7A6F89850211 /* Core */ = {
+		0766DF7AC97517A107E4CAFCEF0F7954 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				EBB3CC67CE6A2BC6F8CE4F7DFDEA19DE /* PSWebSocketBuffer.h */,
-				2F844F6ED67C6816E385251BF999ADEC /* PSWebSocketBuffer.m */,
-				64C6D9B0266F016E8328785C7A277C5B /* PSWebSocketDeflater.h */,
-				F9C66E310C265E4E2F3693DB524E0AF9 /* PSWebSocketDeflater.m */,
-				C0A14490548C665FEAC3326DB522DDFD /* PSWebSocketDriver.h */,
-				F2A4F57F3C4D5F73A30B2BC808B8DA07 /* PSWebSocketDriver.m */,
-				E2C0FEAD44B77ED242AC94F8B78FB9C4 /* PSWebSocketInflater.h */,
-				C6197A07B0024829832353A3A53B4C41 /* PSWebSocketInflater.m */,
-				ADF325F78D39874B7E4DA34C364FCF33 /* PSWebSocketInternal.h */,
-				26366DB4960A77C24FBE3D109F5632B8 /* PSWebSocketTypes.h */,
-				82CC645341C32BAE55CCA47A2BE01DD6 /* PSWebSocketUTF8Decoder.h */,
-				B407A3D654CAB94966F07590F1723F87 /* PSWebSocketUTF8Decoder.m */,
+				2EDF5FAB5E9E6F64F05474A8929A9C78 /* Info.plist */,
+				E76F5202C2C3D1D85C13F347B0A1C34A /* PocketSocket.modulemap */,
+				82BFD0E62C73C9EAF9904991D268BE09 /* PocketSocket.xcconfig */,
+				E0039C315D0D3EA12F3B19FF2B8EA2A5 /* PocketSocket-dummy.m */,
+				A379474BD94600DB479EB895075391F4 /* PocketSocket-prefix.pch */,
+				C6FC4F8138F7363B77525A13CB654BB8 /* PocketSocket-umbrella.h */,
 			);
-			name = Core;
+			name = "Support Files";
+			path = "../Target Support Files/PocketSocket";
 			sourceTree = "<group>";
 		};
 		122DA2E5084A4393C29BE363C764795C /* Frameworks */ = {
@@ -162,34 +224,50 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1841AD12A820E05A7738FBF20C19D276 /* Server */ = {
+		16B81E8B3B07517ABAC3C786133212C8 /* Pods-SecondScreen */ = {
 			isa = PBXGroup;
 			children = (
-				A3681D3AF5C863079909C8995FCA223F /* PSWebSocketServer.h */,
-				3D6783F96998F99FB410CE123C94D978 /* PSWebSocketServer.m */,
+				9AE26E4EABD867B362748350AABD5A5C /* Info.plist */,
+				0AE10BAF2EFB9CCD29D50450FA39161E /* Pods-SecondScreen.modulemap */,
+				BE28AF95B4551B45A5F4A45BF2284DD8 /* Pods-SecondScreen-acknowledgements.markdown */,
+				2CE940AD02FF0385B86ED8B1CF6E567A /* Pods-SecondScreen-acknowledgements.plist */,
+				D4C5F785067509AE5BF421759BEDE480 /* Pods-SecondScreen-dummy.m */,
+				D2DFD1F8B46F7DD00E62DD64FA0FD8B1 /* Pods-SecondScreen-frameworks.sh */,
+				57DDB99244763E5B164E99BB0179A3CD /* Pods-SecondScreen-resources.sh */,
+				AE78C1C254F79967ADB9F83AF0E07E42 /* Pods-SecondScreen-umbrella.h */,
+				A82FA473ADFA14FE972739E429D86B68 /* Pods-SecondScreen.debug.xcconfig */,
+				A7205645E965173C60AEDDBCBCAE2D9F /* Pods-SecondScreen.release.xcconfig */,
+			);
+			name = "Pods-SecondScreen";
+			path = "Target Support Files/Pods-SecondScreen";
+			sourceTree = "<group>";
+		};
+		1E7786F0C744E1E7A21FA87D1B0C1877 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				16B81E8B3B07517ABAC3C786133212C8 /* Pods-SecondScreen */,
+				8B35A50F8D777C518B4418BCB406DD83 /* Pods-SecondScreenShared */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		213312296FFDDF1069459AAD9B244DBA /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				57085DB6C8837AFD73BB460655B3C5AD /* SwiftyJSON.swift */,
+				824D6AD87692E24564BE341ADD1986D3 /* Support Files */,
+			);
+			name = SwiftyJSON;
+			path = SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		22110A6E280FBF61C742D349C5B11C32 /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				9C7876966C13CA86F3CD8A4DA62E41F8 /* PSWebSocketServer.h */,
+				3ED31928D712FDF355BD5A32B6A119C7 /* PSWebSocketServer.m */,
 			);
 			name = Server;
-			sourceTree = "<group>";
-		};
-		3962169A22C4F0EDF9E75BD2A6809C0F /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				A2F086BAC255467B72C0135B2F7E8CDF /* PocketSocket.xcconfig */,
-				82000B1FB50743B7DB1C00F6113B6E34 /* PocketSocket-dummy.m */,
-				D9707EC76E2DBB9081725CB056645B5A /* PocketSocket-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/PocketSocket";
-			sourceTree = "<group>";
-		};
-		40691251F8BDECCFBD1265E94243B7DC /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E2E642FFE586BB560D2953FB9D0FB13C /* libCocoaAsyncSocket.a */,
-				398EB28901A0944FAD23F3A18292C5FA /* libPocketSocket.a */,
-				BBA423F3B44E3A20D89AE0180425ED06 /* libPods-SecondScreen.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		4A9D6FF81BFBB1B195CCEBC8D335E2CF /* iOS */ = {
@@ -202,15 +280,35 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		750EE114E3D368E52D60E44E1C03E71C /* Support Files */ = {
+		54B967D31754C0376CE3A908C9FFB60E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B7F496B622934ACE59EB1FA343B2BCC8 /* CocoaAsyncSocket.xcconfig */,
-				41C4EAED12E5766A9B12A63ED9541C33 /* CocoaAsyncSocket-dummy.m */,
-				D207EE62275515547BA153AC9C88A776 /* CocoaAsyncSocket-prefix.pch */,
+				761F61927C769ABCC41EF77A2D952EB7 /* CocoaAsyncSocket */,
+				C851C393FC4FADD1C56FD7752244BEE7 /* PocketSocket */,
+				213312296FFDDF1069459AAD9B244DBA /* SwiftyJSON */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/CocoaAsyncSocket";
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		761F61927C769ABCC41EF77A2D952EB7 /* CocoaAsyncSocket */ = {
+			isa = PBXGroup;
+			children = (
+				89BB32F24D8C3E75A5F40B2836C8BAD5 /* GCD */,
+				FB72083E00081C9D45A00AC1EB621718 /* Support Files */,
+			);
+			name = CocoaAsyncSocket;
+			path = CocoaAsyncSocket;
+			sourceTree = "<group>";
+		};
+		79BB03E5D3F8E75CC05233334260477E /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				957E68FA70238D7096116D546FC38A81 /* PSWebSocket.h */,
+				A3AB677F93E17126FD25FC4233696449 /* PSWebSocket.m */,
+				D9D4D42053C0118915E7534763EB3EAC /* PSWebSocketNetworkThread.h */,
+				889791CE070BD2011F6F3A460CB7DE1A /* PSWebSocketNetworkThread.m */,
+			);
+			name = Client;
 			sourceTree = "<group>";
 		};
 		7DB346D0F39D3F0E887471402A8071AB = {
@@ -218,127 +316,193 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				122DA2E5084A4393C29BE363C764795C /* Frameworks */,
-				886764D83A643DBEBF19AC370724F602 /* Pods */,
-				40691251F8BDECCFBD1265E94243B7DC /* Products */,
-				C431B317ABAF42FCFDD03AA7ABDF2602 /* Targets Support Files */,
+				54B967D31754C0376CE3A908C9FFB60E /* Pods */,
+				C11F800300BB7EAAA41F79868E6DC56A /* Products */,
+				1E7786F0C744E1E7A21FA87D1B0C1877 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		886764D83A643DBEBF19AC370724F602 /* Pods */ = {
+		824D6AD87692E24564BE341ADD1986D3 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				F516B426FE9D431FAFF170B017489A83 /* CocoaAsyncSocket */,
-				EA5622379452A13101493D7846A4D504 /* PocketSocket */,
+				FE5F5B10C436E6182C5F7BBDFCC4D86D /* Info.plist */,
+				6C998ACEBB7EF2CBAAA052AEF76F1B21 /* SwiftyJSON.modulemap */,
+				4425725BF178F1CA91CAECE9FC8BF41A /* SwiftyJSON.xcconfig */,
+				0F9192C93C44E18C17B36CB97CF8C38E /* SwiftyJSON-dummy.m */,
+				94A2A99CD63047B6AA79ABB8B56C0F4F /* SwiftyJSON-prefix.pch */,
+				7994EDD2567F4CB039C774E6D0309ECC /* SwiftyJSON-umbrella.h */,
 			);
-			name = Pods;
+			name = "Support Files";
+			path = "../Target Support Files/SwiftyJSON";
 			sourceTree = "<group>";
 		};
-		A2F00B8CFFB23A3CF89D3E80B660D54F /* Client */ = {
+		89BB32F24D8C3E75A5F40B2836C8BAD5 /* GCD */ = {
 			isa = PBXGroup;
 			children = (
-				515A20EEC553E567487B914D8BB891A5 /* PSWebSocket.h */,
-				624817AE68A97339AE37377B9B405DF0 /* PSWebSocket.m */,
-				8659E591D97D01B8B7B1EC39875B6958 /* PSWebSocketNetworkThread.h */,
-				8BE317DAC50E468179E726016AEDD40A /* PSWebSocketNetworkThread.m */,
-			);
-			name = Client;
-			sourceTree = "<group>";
-		};
-		BA948E8E4C05197155B89AC16A20D80D /* Pods-SecondScreen */ = {
-			isa = PBXGroup;
-			children = (
-				C084EB5D6B42C31CF5CA3156A4DDA7BD /* Pods-SecondScreen-acknowledgements.markdown */,
-				499F5BE3BB8B03C9FD512EED9716DA41 /* Pods-SecondScreen-acknowledgements.plist */,
-				D15CA2B537F693CD1C7AA87D60C53542 /* Pods-SecondScreen-dummy.m */,
-				193359CAB0CB6D69FB218494EAB1FF37 /* Pods-SecondScreen-frameworks.sh */,
-				7716492AB6C2501BC9614F11B43FC5E5 /* Pods-SecondScreen-resources.sh */,
-				2C9E94DA27F9FF44483B2B625A92B851 /* Pods-SecondScreen.debug.xcconfig */,
-				060134D03F711CAB829C7212EDA15216 /* Pods-SecondScreen.release.xcconfig */,
-			);
-			name = "Pods-SecondScreen";
-			path = "Target Support Files/Pods-SecondScreen";
-			sourceTree = "<group>";
-		};
-		C431B317ABAF42FCFDD03AA7ABDF2602 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				BA948E8E4C05197155B89AC16A20D80D /* Pods-SecondScreen */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		E3ACB1F32516FBF10716F1B9B037DF0E /* GCD */ = {
-			isa = PBXGroup;
-			children = (
-				8BCDBA15E2868C79E9AAD81E034BBFF4 /* GCDAsyncSocket.h */,
-				8B2B250ADCFCC9DF81586CB494E909AE /* GCDAsyncSocket.m */,
-				6865D01FB6DA622C1B9CD08EF05EFC93 /* GCDAsyncUdpSocket.h */,
-				583D76EFB7FE60D605C1C2959D353818 /* GCDAsyncUdpSocket.m */,
+				2B8DD06E7F097F87DB176A3ADCD84580 /* GCDAsyncSocket.h */,
+				F4D13A26CEEFB8EA8B2B26D39D3F5BA1 /* GCDAsyncSocket.m */,
+				96929100880BD472877A3E7E3B0A0A31 /* GCDAsyncUdpSocket.h */,
+				E27E1B717208D010C6F4F91FE89D3D6C /* GCDAsyncUdpSocket.m */,
 			);
 			name = GCD;
 			sourceTree = "<group>";
 		};
-		EA5622379452A13101493D7846A4D504 /* PocketSocket */ = {
+		8B35A50F8D777C518B4418BCB406DD83 /* Pods-SecondScreenShared */ = {
 			isa = PBXGroup;
 			children = (
-				A2F00B8CFFB23A3CF89D3E80B660D54F /* Client */,
-				093E8130FF823A62D7AE7A6F89850211 /* Core */,
-				1841AD12A820E05A7738FBF20C19D276 /* Server */,
-				3962169A22C4F0EDF9E75BD2A6809C0F /* Support Files */,
+				9A5F0860AAE1D85E7B575009F1B9A02D /* Info.plist */,
+				5D56397295C5FF9D5EF3B410337E28DD /* Pods-SecondScreenShared.modulemap */,
+				6EE691A56DAF6057F9C6548ADEE1BE34 /* Pods-SecondScreenShared-acknowledgements.markdown */,
+				944782D541CBC761F2C170E013E0AD9D /* Pods-SecondScreenShared-acknowledgements.plist */,
+				C0A0DC06CF1E2B6D31D01DE36BAF470A /* Pods-SecondScreenShared-dummy.m */,
+				E24942386698F1AC93B95BB4ED14E78F /* Pods-SecondScreenShared-resources.sh */,
+				83F3109154E339936074D170B5544A51 /* Pods-SecondScreenShared-umbrella.h */,
+				7039F2EC9604D133464750634B2F5D08 /* Pods-SecondScreenShared.debug.xcconfig */,
+				04D29352C666C8CBD7FC01C169112A74 /* Pods-SecondScreenShared.release.xcconfig */,
+			);
+			name = "Pods-SecondScreenShared";
+			path = "Target Support Files/Pods-SecondScreenShared";
+			sourceTree = "<group>";
+		};
+		8BF1DE55CFE52292AD30035313040AAE /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				D312CDE7D9CA7D89392FA54B484E75D5 /* PSWebSocketBuffer.h */,
+				5F9334A021C3EE69DC27442A1B7E9319 /* PSWebSocketBuffer.m */,
+				9265EE0DBD2AE080141D8DA8B8B30586 /* PSWebSocketDeflater.h */,
+				EAD8D980EEF0F608D469756D9803ECA7 /* PSWebSocketDeflater.m */,
+				843F373476A7F103BFAE0F3DF021264E /* PSWebSocketDriver.h */,
+				8A6B7123792B0D43F27278753C2E50E9 /* PSWebSocketDriver.m */,
+				091507CDC469AA0C3DEBCB4AD0865157 /* PSWebSocketInflater.h */,
+				B6D2EA397F4FE57A8DDA2E85E7D0DE1A /* PSWebSocketInflater.m */,
+				DEE8EAAC9F48006DF06B5876C7400F62 /* PSWebSocketInternal.h */,
+				932688867160B788BAE7B3B6AF9B2494 /* PSWebSocketTypes.h */,
+				4E86EA85572C02DCB3C299C5A34DE806 /* PSWebSocketUTF8Decoder.h */,
+				BACCFEEF92DB7FB6930CDC3B43AAF278 /* PSWebSocketUTF8Decoder.m */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		C11F800300BB7EAAA41F79868E6DC56A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A3475AD4CEE21C17F225A76C72FD8CB9 /* CocoaAsyncSocket.framework */,
+				5179CC682ABB1ED401E123E9C6331178 /* PocketSocket.framework */,
+				91F7F8B42DB607BE9B6D5C02F1FB9CE5 /* Pods_SecondScreen.framework */,
+				8082A6BA3A0EE2BF8A16CA357B5FE870 /* Pods_SecondScreenShared.framework */,
+				AF42B58840FDACE2AFF1AC0608DD7FE5 /* SwiftyJSON.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C851C393FC4FADD1C56FD7752244BEE7 /* PocketSocket */ = {
+			isa = PBXGroup;
+			children = (
+				79BB03E5D3F8E75CC05233334260477E /* Client */,
+				8BF1DE55CFE52292AD30035313040AAE /* Core */,
+				22110A6E280FBF61C742D349C5B11C32 /* Server */,
+				0766DF7AC97517A107E4CAFCEF0F7954 /* Support Files */,
 			);
 			name = PocketSocket;
 			path = PocketSocket;
 			sourceTree = "<group>";
 		};
-		F516B426FE9D431FAFF170B017489A83 /* CocoaAsyncSocket */ = {
+		FB72083E00081C9D45A00AC1EB621718 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				E3ACB1F32516FBF10716F1B9B037DF0E /* GCD */,
-				750EE114E3D368E52D60E44E1C03E71C /* Support Files */,
+				2C075E20468BAEE3DAD5040869B80C5E /* CocoaAsyncSocket.modulemap */,
+				DF5417342A97228BF70F08D80167787B /* CocoaAsyncSocket.xcconfig */,
+				771AE77ADC533DC76A56E3A22805010C /* CocoaAsyncSocket-dummy.m */,
+				02619345141324AC7CCF65876F3BEC06 /* CocoaAsyncSocket-prefix.pch */,
+				3C0AB0BE4422BC0FA6854CB1BE9A5BF1 /* CocoaAsyncSocket-umbrella.h */,
+				BFC2DF5E122481C4D5CC55BD9A331F93 /* Info.plist */,
 			);
-			name = CocoaAsyncSocket;
-			path = CocoaAsyncSocket;
+			name = "Support Files";
+			path = "../Target Support Files/CocoaAsyncSocket";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		165848F5DE5F442CA17F98266BF22055 /* Headers */ = {
+		066131069354C4CC132CAB645145E8F7 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				241E71118B10D7807D5E964D6D9D0022 /* GCDAsyncSocket.h in Headers */,
-				714D74BBAC857D21E4BE628C6E296BC5 /* GCDAsyncUdpSocket.h in Headers */,
+				E4230DB0D114C94B081018C1AC1E9972 /* CocoaAsyncSocket-umbrella.h in Headers */,
+				A882891E5A89CADF96C2CA79606409CA /* GCDAsyncSocket.h in Headers */,
+				AC7DC2A21843CD99040DCD79FF3BE91B /* GCDAsyncUdpSocket.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1D61C31A7488C70EC0D1B0B5FFFA5756 /* Headers */ = {
+		0AA1CC0D3BE4C55011E2EC58E76FC16E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20444C4AF0DC2B56E244446E5E598519 /* PSWebSocket.h in Headers */,
-				1AE77AA2E8DF8EB5C8626506DA26286D /* PSWebSocketBuffer.h in Headers */,
-				6A1C87D29A8F73A13EEA45039C431913 /* PSWebSocketDeflater.h in Headers */,
-				9E84336ABB133EB953CAA3CF81405DA0 /* PSWebSocketDriver.h in Headers */,
-				D8301AC20EC9CA14FF590633419615B9 /* PSWebSocketInflater.h in Headers */,
-				676498D669D8B2B63D90B88A5194A93C /* PSWebSocketInternal.h in Headers */,
-				51F2373E07478025F1199826E851C44D /* PSWebSocketNetworkThread.h in Headers */,
-				2FFFD7594A08807E41DFD72172F20F79 /* PSWebSocketServer.h in Headers */,
-				78B48D56B35D31B62B0027CC395A95AB /* PSWebSocketTypes.h in Headers */,
-				81A9C77CE9672A8C31461B04263C67D5 /* PSWebSocketUTF8Decoder.h in Headers */,
+				06B7BFACAB279AC381E5CA5582C91AD9 /* Pods-SecondScreenShared-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33C714F4098999438FD51765A818D10E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D115F3F196C50CD27B520E1383F9FC5D /* PocketSocket-umbrella.h in Headers */,
+				D1877D0AAB6F68BFC6362E7D73C37A9C /* PSWebSocket.h in Headers */,
+				381CF9561487CDA9D32A0F176C0CD115 /* PSWebSocketBuffer.h in Headers */,
+				14EC5349FAE75C5C03FFC70E099A4F17 /* PSWebSocketDeflater.h in Headers */,
+				45C2EE9357EB92B648F11E21C63B76E1 /* PSWebSocketDriver.h in Headers */,
+				D69ACCC700B8029AA7A2EC16F3DFA57D /* PSWebSocketInflater.h in Headers */,
+				6A2F044C7F5387001D705ED9353E2A13 /* PSWebSocketInternal.h in Headers */,
+				DD5E1B36DAFD72B4987D69AC795F6EAD /* PSWebSocketNetworkThread.h in Headers */,
+				4BC6A64FD16DBC93EFB304F4A16D7F78 /* PSWebSocketServer.h in Headers */,
+				3AE14E56C262E564769582CB20BA40BC /* PSWebSocketTypes.h in Headers */,
+				BFEDBC1B856888EDEC3D04CC858909A0 /* PSWebSocketUTF8Decoder.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		596F0C8D3406BDA260FFAFD546F8A6B1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D459A4FECA66D8A30D4A7755FEE1B5A6 /* Pods-SecondScreen-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E9F9DE98AD1B374F429F044527774940 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE76F64B8B9B80FB47114183C0870408 /* SwiftyJSON-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		0B3F726381E57B5D63D9BA6C36E1EC0C /* PocketSocket */ = {
+		0C5A912498CE4271C9C4A4CAA0E3BDB6 /* SwiftyJSON */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ED6EFF9CC37B27D8B21355BC27364BF0 /* Build configuration list for PBXNativeTarget "PocketSocket" */;
+			buildConfigurationList = AEB4F06E9BE66E2A8D1A963AF9F4A796 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */;
 			buildPhases = (
-				DC336C663B9CC6D45F23A609629A97DE /* Sources */,
-				C45D3B493DB063C21F6EBB4C6CB2CD77 /* Frameworks */,
-				1D61C31A7488C70EC0D1B0B5FFFA5756 /* Headers */,
+				1A64F89DB07D417F6DB70DD6FDB32E19 /* Sources */,
+				4CE27E74007E79DEBBCBF6F241B05750 /* Frameworks */,
+				E9F9DE98AD1B374F429F044527774940 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyJSON;
+			productName = SwiftyJSON;
+			productReference = AF42B58840FDACE2AFF1AC0608DD7FE5 /* SwiftyJSON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7B67696F0F6D9ADB2BFA0C79ACD25E5A /* PocketSocket */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAF7B85DEDBA6BD24A9B51AFED4DCF6B /* Build configuration list for PBXNativeTarget "PocketSocket" */;
+			buildPhases = (
+				4F209DCDB41E6BDFB3A5818CE545845C /* Sources */,
+				FB8E04D7A67A74E0A95D62FAEA8622F1 /* Frameworks */,
+				33C714F4098999438FD51765A818D10E /* Headers */,
 			);
 			buildRules = (
 			);
@@ -346,16 +510,36 @@
 			);
 			name = PocketSocket;
 			productName = PocketSocket;
-			productReference = 398EB28901A0944FAD23F3A18292C5FA /* libPocketSocket.a */;
-			productType = "com.apple.product-type.library.static";
+			productReference = 5179CC682ABB1ED401E123E9C6331178 /* PocketSocket.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		23D7DA26C40DEA0CBB49A7825C7CD4F1 /* CocoaAsyncSocket */ = {
+		AB19344FF46216F7B96BE552E2B7A725 /* Pods-SecondScreen */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6E720E377F01A6230162E58B96EA78A5 /* Build configuration list for PBXNativeTarget "CocoaAsyncSocket" */;
+			buildConfigurationList = 1C8FF20BC0C536AA51DC6E51EBB5744B /* Build configuration list for PBXNativeTarget "Pods-SecondScreen" */;
 			buildPhases = (
-				52BF12F835BDA1CD2787DA3488AC6DA7 /* Sources */,
-				2B6A1E9CF2056E33B13056BDA546B887 /* Frameworks */,
-				165848F5DE5F442CA17F98266BF22055 /* Headers */,
+				196CDCAABBAADE987BED498CD9ACA16A /* Sources */,
+				96D497B900CCB2732DE3CFB3E6341731 /* Frameworks */,
+				596F0C8D3406BDA260FFAFD546F8A6B1 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CBF3FA6C9CF7070C5D44B512874F6816 /* PBXTargetDependency */,
+				05914ABC61BC459CDB3671F7B456D8E9 /* PBXTargetDependency */,
+				322ECD77246A898A9597B05F1365EC48 /* PBXTargetDependency */,
+			);
+			name = "Pods-SecondScreen";
+			productName = "Pods-SecondScreen";
+			productReference = 91F7F8B42DB607BE9B6D5C02F1FB9CE5 /* Pods_SecondScreen.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		AC0D2D2B4EE7C873431AB3502859CA60 /* CocoaAsyncSocket */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F2A03B912F777B2BFB05E7B9E903B15F /* Build configuration list for PBXNativeTarget "CocoaAsyncSocket" */;
+			buildPhases = (
+				FD452A203117FF8DFA26B0711D439093 /* Sources */,
+				D1C2C126168B038B9B15BF2A4C96FDDC /* Frameworks */,
+				066131069354C4CC132CAB645145E8F7 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -363,26 +547,26 @@
 			);
 			name = CocoaAsyncSocket;
 			productName = CocoaAsyncSocket;
-			productReference = E2E642FFE586BB560D2953FB9D0FB13C /* libCocoaAsyncSocket.a */;
-			productType = "com.apple.product-type.library.static";
+			productReference = A3475AD4CEE21C17F225A76C72FD8CB9 /* CocoaAsyncSocket.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		40275F7CECBAB68BF64CCB16E099AA3E /* Pods-SecondScreen */ = {
+		F474215586579D47D934850DBC44F4C7 /* Pods-SecondScreenShared */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DC054FB30D23623D2D977D50925485FA /* Build configuration list for PBXNativeTarget "Pods-SecondScreen" */;
+			buildConfigurationList = 1A0078166D8F22F984BB7FD3DC3C9909 /* Build configuration list for PBXNativeTarget "Pods-SecondScreenShared" */;
 			buildPhases = (
-				B7E40C6D219A0F321CFB140C62D52A41 /* Sources */,
-				B93FB99E75631E0F64DFA82DAAE74718 /* Frameworks */,
+				FB70D899B91DC4A87FB7D8CD4E488263 /* Sources */,
+				237E322BBAE16FEB6B1AADD5BA095F6C /* Frameworks */,
+				0AA1CC0D3BE4C55011E2EC58E76FC16E /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3664406ADE967A100A4AF6D5F8E265E0 /* PBXTargetDependency */,
-				169FC7AAD8CA6E6AEE57194C7E85830C /* PBXTargetDependency */,
+				DE9B6E19B508E058119AC69F215395D1 /* PBXTargetDependency */,
 			);
-			name = "Pods-SecondScreen";
-			productName = "Pods-SecondScreen";
-			productReference = BBA423F3B44E3A20D89AE0180425ED06 /* libPods-SecondScreen.a */;
-			productType = "com.apple.product-type.library.static";
+			name = "Pods-SecondScreenShared";
+			productName = "Pods-SecondScreenShared";
+			productReference = 8082A6BA3A0EE2BF8A16CA357B5FE870 /* Pods_SecondScreenShared.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -401,140 +585,310 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = 40691251F8BDECCFBD1265E94243B7DC /* Products */;
+			productRefGroup = C11F800300BB7EAAA41F79868E6DC56A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				23D7DA26C40DEA0CBB49A7825C7CD4F1 /* CocoaAsyncSocket */,
-				0B3F726381E57B5D63D9BA6C36E1EC0C /* PocketSocket */,
-				40275F7CECBAB68BF64CCB16E099AA3E /* Pods-SecondScreen */,
+				AC0D2D2B4EE7C873431AB3502859CA60 /* CocoaAsyncSocket */,
+				7B67696F0F6D9ADB2BFA0C79ACD25E5A /* PocketSocket */,
+				AB19344FF46216F7B96BE552E2B7A725 /* Pods-SecondScreen */,
+				F474215586579D47D934850DBC44F4C7 /* Pods-SecondScreenShared */,
+				0C5A912498CE4271C9C4A4CAA0E3BDB6 /* SwiftyJSON */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		52BF12F835BDA1CD2787DA3488AC6DA7 /* Sources */ = {
+		196CDCAABBAADE987BED498CD9ACA16A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1D3558E80197D62084FD585403BAFA3 /* CocoaAsyncSocket-dummy.m in Sources */,
-				5445B897FA3DC81DABEDF9719FBC0E8F /* GCDAsyncSocket.m in Sources */,
-				ABFAD23BA6072516D52DFFEA6A992A18 /* GCDAsyncUdpSocket.m in Sources */,
+				DA1203A7BFD46417B47BC7191EB34477 /* Pods-SecondScreen-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B7E40C6D219A0F321CFB140C62D52A41 /* Sources */ = {
+		1A64F89DB07D417F6DB70DD6FDB32E19 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89C7D8F2DE3042B84D89A1621A31B7E9 /* Pods-SecondScreen-dummy.m in Sources */,
+				592BC9A82F44CE210EC0AB0808687DC9 /* SwiftyJSON-dummy.m in Sources */,
+				CC1392F18C5A69E0E346C0452A1E0CBC /* SwiftyJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DC336C663B9CC6D45F23A609629A97DE /* Sources */ = {
+		4F209DCDB41E6BDFB3A5818CE545845C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC3895E3E907296D1967842D7D3CD5C5 /* PocketSocket-dummy.m in Sources */,
-				0C768340F6C3796E95033CD05BB438C6 /* PSWebSocket.m in Sources */,
-				8C7AEA54511304B50D9A1AD5844F9435 /* PSWebSocketBuffer.m in Sources */,
-				10B88DA1BA901CD5C8CC7253595CFD5B /* PSWebSocketDeflater.m in Sources */,
-				5096A5687152FC9C2512CFD34B331C4A /* PSWebSocketDriver.m in Sources */,
-				D9DC6B4F2EAB04390F1DDA39493FABC7 /* PSWebSocketInflater.m in Sources */,
-				4AA1837864DD4A4F4EC2E9183E97B415 /* PSWebSocketNetworkThread.m in Sources */,
-				CE00FEC01B0EDD9CBE0BC361D2880078 /* PSWebSocketServer.m in Sources */,
-				63CE109B65E604E3CCFC927C51424299 /* PSWebSocketUTF8Decoder.m in Sources */,
+				CCA97FDDA7FF480004108644C689A98B /* PocketSocket-dummy.m in Sources */,
+				2024FEFCD06859BF91669C7987C2D1CE /* PSWebSocket.m in Sources */,
+				3C306246AF316598B43CDDBD87FA727C /* PSWebSocketBuffer.m in Sources */,
+				0EFD3920E5183E2E0C9A4B0860410273 /* PSWebSocketDeflater.m in Sources */,
+				917E034E03E6149149C8F84B29F64217 /* PSWebSocketDriver.m in Sources */,
+				5E4745599A577238D8D8592325D878A6 /* PSWebSocketInflater.m in Sources */,
+				7A8D3FF46FF90FEA08704039586DE30A /* PSWebSocketNetworkThread.m in Sources */,
+				D7A0F9ACD8879AF84364BAE2C9BB7CAE /* PSWebSocketServer.m in Sources */,
+				6F2F4C8E6DB53E4A978FCE671408BCB9 /* PSWebSocketUTF8Decoder.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FB70D899B91DC4A87FB7D8CD4E488263 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				14A955CF1870F12BDC183A80308888B4 /* Pods-SecondScreenShared-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FD452A203117FF8DFA26B0711D439093 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E4F0161B4D135DA3A0763619A56C2F5 /* CocoaAsyncSocket-dummy.m in Sources */,
+				8480493AEC1C7AF1B5C0E0BF2F70FB44 /* GCDAsyncSocket.m in Sources */,
+				AEE9644DA0EFCF945438E125BA4F0724 /* GCDAsyncUdpSocket.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		169FC7AAD8CA6E6AEE57194C7E85830C /* PBXTargetDependency */ = {
+		05914ABC61BC459CDB3671F7B456D8E9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PocketSocket;
-			target = 0B3F726381E57B5D63D9BA6C36E1EC0C /* PocketSocket */;
-			targetProxy = BE57490474FE07BD2A4748F716D5CDA8 /* PBXContainerItemProxy */;
+			target = 7B67696F0F6D9ADB2BFA0C79ACD25E5A /* PocketSocket */;
+			targetProxy = E1EBE6726CF32013E9B8175828C48D6C /* PBXContainerItemProxy */;
 		};
-		3664406ADE967A100A4AF6D5F8E265E0 /* PBXTargetDependency */ = {
+		322ECD77246A898A9597B05F1365EC48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftyJSON;
+			target = 0C5A912498CE4271C9C4A4CAA0E3BDB6 /* SwiftyJSON */;
+			targetProxy = A755B0C097DF67E7183A8CA4823B2F78 /* PBXContainerItemProxy */;
+		};
+		CBF3FA6C9CF7070C5D44B512874F6816 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CocoaAsyncSocket;
-			target = 23D7DA26C40DEA0CBB49A7825C7CD4F1 /* CocoaAsyncSocket */;
-			targetProxy = 8C39EC352AAEB6E11BDEF2104C2B49FE /* PBXContainerItemProxy */;
+			target = AC0D2D2B4EE7C873431AB3502859CA60 /* CocoaAsyncSocket */;
+			targetProxy = 35E71B462377E13235F1DFE1AEFAAE83 /* PBXContainerItemProxy */;
+		};
+		DE9B6E19B508E058119AC69F215395D1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftyJSON;
+			target = 0C5A912498CE4271C9C4A4CAA0E3BDB6 /* SwiftyJSON */;
+			targetProxy = 5C20AA9770BE888B24053B80FCA6F023 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		1A50E21F3BE18CF616A2843DB1D70D33 /* Debug */ = {
+		07AA662BCE483D591AC35044B40F6B0D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7F496B622934ACE59EB1FA343B2BCC8 /* CocoaAsyncSocket.xcconfig */;
+			baseConfigurationReference = 7039F2EC9604D133464750634B2F5D08 /* Pods-SecondScreenShared.debug.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/CocoaAsyncSocket/CocoaAsyncSocket-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				INFOPLIST_FILE = "Target Support Files/Pods-SecondScreenShared/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SecondScreenShared/Pods-SecondScreenShared.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SecondScreenShared;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		4D032560DB39717529188AEEF700B59F /* Release */ = {
+		3399BA8D8E88D098F6749291EC56C06E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 060134D03F711CAB829C7212EDA15216 /* Pods-SecondScreen.release.xcconfig */;
+			baseConfigurationReference = 4425725BF178F1CA91CAECE9FC8BF41A /* SwiftyJSON.xcconfig */;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		38423752CB6D0FC655DC37C538F47873 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04D29352C666C8CBD7FC01C169112A74 /* Pods-SecondScreenShared.release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SecondScreenShared/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SecondScreenShared/Pods-SecondScreenShared.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Pods_SecondScreenShared;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		5BC1156BB2C41A8B068114D5DDDB7600 /* Release */ = {
+		3F493994597DBAEACD87E494C60AA2A1 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2F086BAC255467B72C0135B2F7E8CDF /* PocketSocket.xcconfig */;
+			baseConfigurationReference = 82BFD0E62C73C9EAF9904991D268BE09 /* PocketSocket.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/PocketSocket/PocketSocket-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				INFOPLIST_FILE = "Target Support Files/PocketSocket/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PocketSocket/PocketSocket.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
+				PRODUCT_NAME = PocketSocket;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		521DA4CCBF8F12BA276BB8A530ACCA48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7205645E965173C60AEDDBCBCAE2D9F /* Pods-SecondScreen.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SecondScreen/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SecondScreen/Pods-SecondScreen.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SecondScreen;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		565E09C9C6F217ED695F124FFAFF5777 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A82FA473ADFA14FE972739E429D86B68 /* Pods-SecondScreen.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-SecondScreen/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-SecondScreen/Pods-SecondScreen.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_SecondScreen;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		673254EEAF0B5BF4596080C749645884 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -576,74 +930,132 @@
 			};
 			name = Release;
 		};
-		AA3B78F90256829AFA1A92AB2170EB26 /* Debug */ = {
+		7389DCC7A730CEB77EF53651929E7A07 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2C9E94DA27F9FF44483B2B625A92B851 /* Pods-SecondScreen.debug.xcconfig */;
+			baseConfigurationReference = DF5417342A97228BF70F08D80167787B /* CocoaAsyncSocket.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
-				MACH_O_TYPE = staticlib;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		C52CDA38D4A6C248BE4171BA116FE500 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A2F086BAC255467B72C0135B2F7E8CDF /* PocketSocket.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/PocketSocket/PocketSocket-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		E105856A8EF102EE52A6FC50CE4725D2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B7F496B622934ACE59EB1FA343B2BCC8 /* CocoaAsyncSocket.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREFIX_HEADER = "Target Support Files/CocoaAsyncSocket/CocoaAsyncSocket-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PUBLIC_HEADERS_FOLDER_PATH = "";
+				INFOPLIST_FILE = "Target Support Files/CocoaAsyncSocket/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CocoaAsyncSocket/CocoaAsyncSocket.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = CocoaAsyncSocket;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		757750111ED88725A2D39D8D76BC65DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF5417342A97228BF70F08D80167787B /* CocoaAsyncSocket.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/CocoaAsyncSocket/CocoaAsyncSocket-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/CocoaAsyncSocket/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/CocoaAsyncSocket/CocoaAsyncSocket.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = CocoaAsyncSocket;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9B538348396E057420A19535F4A1C9F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82BFD0E62C73C9EAF9904991D268BE09 /* PocketSocket.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/PocketSocket/PocketSocket-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PocketSocket/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/PocketSocket/PocketSocket.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = PocketSocket;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E0644612EB7C4707AA270E4C12BAE437 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4425725BF178F1CA91CAECE9FC8BF41A /* SwiftyJSON.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -694,6 +1106,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1A0078166D8F22F984BB7FD3DC3C9909 /* Build configuration list for PBXNativeTarget "Pods-SecondScreenShared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				07AA662BCE483D591AC35044B40F6B0D /* Debug */,
+				38423752CB6D0FC655DC37C538F47873 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1C8FF20BC0C536AA51DC6E51EBB5744B /* Build configuration list for PBXNativeTarget "Pods-SecondScreen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				565E09C9C6F217ED695F124FFAFF5777 /* Debug */,
+				521DA4CCBF8F12BA276BB8A530ACCA48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -703,29 +1133,29 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		6E720E377F01A6230162E58B96EA78A5 /* Build configuration list for PBXNativeTarget "CocoaAsyncSocket" */ = {
+		AEB4F06E9BE66E2A8D1A963AF9F4A796 /* Build configuration list for PBXNativeTarget "SwiftyJSON" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1A50E21F3BE18CF616A2843DB1D70D33 /* Debug */,
-				E105856A8EF102EE52A6FC50CE4725D2 /* Release */,
+				3399BA8D8E88D098F6749291EC56C06E /* Debug */,
+				E0644612EB7C4707AA270E4C12BAE437 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DC054FB30D23623D2D977D50925485FA /* Build configuration list for PBXNativeTarget "Pods-SecondScreen" */ = {
+		EAF7B85DEDBA6BD24A9B51AFED4DCF6B /* Build configuration list for PBXNativeTarget "PocketSocket" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				AA3B78F90256829AFA1A92AB2170EB26 /* Debug */,
-				4D032560DB39717529188AEEF700B59F /* Release */,
+				9B538348396E057420A19535F4A1C9F3 /* Debug */,
+				3F493994597DBAEACD87E494C60AA2A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ED6EFF9CC37B27D8B21355BC27364BF0 /* Build configuration list for PBXNativeTarget "PocketSocket" */ = {
+		F2A03B912F777B2BFB05E7B9E903B15F /* Build configuration list for PBXNativeTarget "CocoaAsyncSocket" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C52CDA38D4A6C248BE4171BA116FE500 /* Debug */,
-				5BC1156BB2C41A8B068114D5DDDB7600 /* Release */,
+				7389DCC7A730CEB77EF53651929E7A07 /* Debug */,
+				757750111ED88725A2D39D8D76BC65DB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

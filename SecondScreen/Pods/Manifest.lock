@@ -11,15 +11,18 @@ PODS:
   - PocketSocket/Core (1.0.1)
   - PocketSocket/Server (1.0.1):
     - PocketSocket/Client
+  - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - CocoaAsyncSocket
   - PocketSocket
+  - SwiftyJSON
 
 SPEC CHECKSUMS:
   CocoaAsyncSocket: e0a7e93b2ffa411592ff87e58524fbbc9b95b4fa
   PocketSocket: 9c6867d66fb4f962af96b9b07f4b45bb561b2c2a
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: eb2c0aa7e2e9507c80bf4b4de7a29bf2087df6ba
+PODFILE CHECKSUM: b7315e2e8ab4ba6160dee85146e427360ce529c4
 
 COCOAPODS: 1.1.1

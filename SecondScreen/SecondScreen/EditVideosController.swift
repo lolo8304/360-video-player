@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import PhotosUI
+import SecondScreenShared
 
 // https://www.raywenderlich.com/136159/uicollectionview-tutorial-getting-started
 

@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import SwiftyJSON
+import PocketSocket
+import CocoaAsyncSocket
+import SecondScreenShared
 
-protocol ConnectorDelegate {
+
+public protocol ConnectorDelegate {
     func deviceConnected(device: Device)
     func deviceDisconnected(device: Device)
     func deviceSelected(device: Device)
@@ -20,28 +25,28 @@ protocol ConnectorDelegate {
 
 }
 
-enum ConnectorStatus {
+public enum ConnectorStatus {
     case Starting
     case Ready
     case Connected
     case Stopping
     case Stopped
 }
-enum ConnectorBonjourStatus {
+public enum ConnectorBonjourStatus {
     case Starting
     case Ready
     case Stopping
     case Stopped
 }
 
-enum DeviceStatus {
+public enum DeviceStatus {
     case closed
     case accepted
     case connected
     case selected
 }
 
-enum DevicePlayerStatus {
+public enum DevicePlayerStatus {
     case stopped
     case paused
     case playing
@@ -49,7 +54,7 @@ enum DevicePlayerStatus {
 }
 
 
-class DevicePlayer : NSObject {
+public class DevicePlayer : NSObject {
     public var name: String = ""
     public var medianame: String = ""
     public var language: String = "DE"
@@ -153,7 +158,7 @@ class DevicePlayer : NSObject {
     }
 }
 
-class Device: NSObject {
+public class Device: NSObject {
     
     private static var maxId: Int = 0
     
@@ -258,7 +263,7 @@ class Device: NSObject {
     
 }
 
-class Connector: NSObject {
+public class Connector: NSObject {
     
     static let instance: Connector = {
         return Connector()
@@ -512,7 +517,7 @@ class Connector: NSObject {
 
 extension Connector : PSWebSocketServerDelegate {
 
-    func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didReceiveMessage message: Any!) {
+    public func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didReceiveMessage message: Any!) {
         self.server(server, webSocket: webSocket, didReceive: message as! String)
     }
     func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didReceive message: String!) {
@@ -557,29 +562,29 @@ extension Connector : PSWebSocketServerDelegate {
         }
     }
     
-    func serverDidStop(_ server: PSWebSocketServer!) {
+    public func serverDidStop(_ server: PSWebSocketServer!) {
         self.changeState(server: .Stopped)
         self.stopTimer()
     }
-    func serverDidStart(_ server: PSWebSocketServer!) {
+    public func serverDidStart(_ server: PSWebSocketServer!) {
         self.changeState(server: .Ready)
         self.startTimer()
     }
-    func server(_ server: PSWebSocketServer!, webSocketDidOpen webSocket: PSWebSocket!) {
+    public func server(_ server: PSWebSocketServer!, webSocketDidOpen webSocket: PSWebSocket!) {
         let acknowledgeRequest = JSON.init(["action": "request-connection-data", "device.ip": "", "device.uuid": ""])
         webSocket.send(acknowledgeRequest.rawString())
     }
     
-    func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didFailWithError error: Error!) {
+    public func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didFailWithError error: Error!) {
         //self.showError("webSocket didFailWithError \(error!)", stack: true)
     }
     public func server(_ server: PSWebSocketServer!, didFailWithError error: Error!) {
         self.showError("webSocket didFailWithError \(error!)", stack: true)
     }
-    func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
+    public func server(_ server: PSWebSocketServer!, webSocket: PSWebSocket!, didCloseWithCode code: Int, reason: String!, wasClean: Bool) {
         self.showError("didCloseWithCode code=\(code), reason=\(reason)", stack: false)
     }
-    func server(_ server: PSWebSocketServer!, acceptWebSocketWith request: URLRequest!, address: Data!, trust: SecTrust!, response: AutoreleasingUnsafeMutablePointer<HTTPURLResponse?>!) -> Bool {
+    public func server(_ server: PSWebSocketServer!, acceptWebSocketWith request: URLRequest!, address: Data!, trust: SecTrust!, response: AutoreleasingUnsafeMutablePointer<HTTPURLResponse?>!) -> Bool {
         
         if (PSWebSocket.isWebSocketRequest(request)) {
             let headers: [String : String] = request.allHTTPHeaderFields!
@@ -606,34 +611,34 @@ extension Connector : PSWebSocketServerDelegate {
 
 
 extension Connector : GCDAsyncSocketDelegate {
-    func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
+    public func socket(_ sock: GCDAsyncSocket, didAcceptNewSocket newSocket: GCDAsyncSocket) {
         
     }
-    func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
+    public func socketDidDisconnect(_ sock: GCDAsyncSocket, withError err: Error?) {
         
     }
 }
 
 extension Connector : NetServiceDelegate {
-    func netServiceDidPublish(_ sender: NetService) {
+    public func netServiceDidPublish(_ sender: NetService) {
         NSLog("Bonjour Service Published: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
         self.changeState(bonjourServer: .Ready)
     }
-    func netService(_ sender: NetService, didNotPublish errorDict: [String : NSNumber]) {
+    public func netService(_ sender: NetService, didNotPublish errorDict: [String : NSNumber]) {
         NSLog("Failed to Publish: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
         
     }
-    func netServiceDidResolveAddress(_ sender: NetService) {
+    public func netServiceDidResolveAddress(_ sender: NetService) {
         NSLog("Bonjour Service Did Resolved Address: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
     }
-    func netServiceDidStop(_ sender: NetService) {
+    public func netServiceDidStop(_ sender: NetService) {
         NSLog("Bonjour Service Did Stop: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
         self.changeState(bonjourServer: .Stopped)
     }
-    func netService(_ sender: NetService, didNotResolve errorDict: [String : NSNumber]) {
+    public func netService(_ sender: NetService, didNotResolve errorDict: [String : NSNumber]) {
         NSLog("Bonjour Service did not resolve: domain(\(sender.domain)) type(\(sender.type)) name(\(sender.name)) host(\(sender.hostName)) port(\(sender.port))");
     }
-    func netService(_ sender: NetService, didAcceptConnectionWith inputStream: InputStream, outputStream: OutputStream) {
+    public func netService(_ sender: NetService, didAcceptConnectionWith inputStream: InputStream, outputStream: OutputStream) {
         
     }
 

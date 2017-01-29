@@ -8,6 +8,8 @@
 
 import Foundation
 import CoreData
+import SwiftyJSON
+import AVFoundation
 
 extension JSON {
 
@@ -50,7 +52,7 @@ extension String {
     public func fromTimeToMilliseconds() -> Int {
         return self.fromTimeToSeconds() * 1000
     }
-    func languageFlag() -> String {
+    public func languageFlag() -> String {
         switch self {
         case "EN":
             return "GB"
@@ -119,8 +121,8 @@ extension Int {
 
 }
 
-class Content : NSObject {
-    static let instance: Content = {
+public class Content : NSObject {
+    public static let instance: Content = {
         return Content().load()
     }()
     
@@ -157,7 +159,7 @@ class Content : NSObject {
         }
         return self
     }
-    func reload() -> Content {
+    public func reload() -> Content {
         for video in self.videos {
             video.delete()
         }
@@ -186,7 +188,7 @@ class Content : NSObject {
     }
     
     fileprivate func readFromFile(name: String, ext: String) -> Data {
-        let path = Bundle.main.path(forResource: name, ofType: "json")
+        let path = Bundle.init(for: Content.self).path(forResource: name, ofType: "json")
         do {
             return try String(contentsOfFile: path!).data(using: .utf8)!
         } catch {
@@ -207,9 +209,9 @@ class Content : NSObject {
 
 }
 
-extension Video {
+public extension Video {
     
-    func delete() {
+    public func delete() {
         do {
             managedObjectContext?.delete(self)
             try managedObjectContext?.save()
@@ -223,6 +225,34 @@ extension Video {
         return URL(string: self.mediaURLString!)!
     }
     
+    private func updateSizeAndDuration() {
+        if (self.mediaURLString!.hasPrefix("assets-library://")) {
+            let asset: AVURLAsset = AVURLAsset(url: self.mediaURL())
+            let track: AVAssetTrack = asset.tracks[0]
+            NSLog("track naturalSize h=\(track.naturalSize.height) + w=\(track.naturalSize.width)")
+            self.sizeInBytes = Int64(track.naturalSize.height * track.naturalSize.width)
+        } else {
+            let playerItem: AVPlayerItem = AVPlayerItem(url: self.mediaURL())
+            let duration: CMTime = playerItem.duration
+            if (duration.isValid && !duration.isIndefinite) {
+                self.durationInSeconds = Int64(CMTimeGetSeconds(duration))
+            } else {
+                self.durationInSeconds = 0
+            }
+            self.duration = self.durationInSeconds.fromSecToTime()
+        }
+        
+        do {
+            let properties: [FileAttributeKey : Any] = try FileManager.default.attributesOfItem(atPath: self.mediaURLString!)
+            let size: NSNumber = properties[FileAttributeKey.size] as! NSNumber
+            self.sizeInBytes = size.int64Value
+        } catch {
+            print(error)
+            self.sizeInBytes = 0
+            return
+        }
+    }
+    
     public func from(json: JSON) -> Video {
         self.name = json.getAttrName()
         self.mediaURLString = json.getAttrMediaName()
@@ -230,6 +260,7 @@ extension Video {
         self.language = json.getAttrLanguage()
         self.durationInSeconds = Int64(json.getAttrDuration().fromTimeToSeconds())
         self.sizeInBytes = Int64(json.getAttrSizeInBytes())
+        self.updateSizeAndDuration()
         return self
     }
     public func from(name: String, mediaURL: URL, mediaExt: String, language: String, duratinInS: Int, sizeInBytes: Int) -> Video {
@@ -239,6 +270,7 @@ extension Video {
         self.language = language
         self.durationInSeconds = Int64(duratinInS)
         self.sizeInBytes = Int64(sizeInBytes)
+        self.updateSizeAndDuration()
         return self
     }
     

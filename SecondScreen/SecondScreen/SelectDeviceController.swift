@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
 
 // https://www.raywenderlich.com/136159/uicollectionview-tutorial-getting-started
 

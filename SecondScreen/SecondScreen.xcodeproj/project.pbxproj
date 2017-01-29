@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0EB922E14C855CDC47457719 /* libPods-SecondScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FFBFDD50C213BC6FC72C535C /* libPods-SecondScreen.a */; };
+		8BD479A2FB63C75495D7A709 /* Pods_SecondScreenShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60FF80C8C4F5818F38D64EF0 /* Pods_SecondScreenShared.framework */; };
+		AB34FA22D93F378C920E891C /* Pods_SecondScreen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7016C9580F3A28C54BFCAF6 /* Pods_SecondScreen.framework */; };
 		E11AFDF81E10355F009C7E8F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11AFDF71E10355F009C7E8F /* AppDelegate.swift */; };
 		E11AFDFA1E10355F009C7E8F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11AFDF91E10355F009C7E8F /* ViewController.swift */; };
 		E11AFDFD1E10355F009C7E8F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E11AFDFB1E10355F009C7E8F /* Main.storyboard */; };
@@ -29,10 +30,14 @@
 		E154DB841E29AA2600250A70 /* AssetsTV.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E154DB831E29AA2600250A70 /* AssetsTV.xcassets */; };
 		E16ADEC01E342292008A0F52 /* credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = E16ADEBF1E342292008A0F52 /* credits.rtf */; };
 		E16ADEC21E3427D2008A0F52 /* FlagKit.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E16ADEC11E3427D2008A0F52 /* FlagKit.xcassets */; };
-		E1955D381E35025600546A91 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1955D371E35025600546A91 /* Content.swift */; };
-		E1955D3B1E3502B200546A91 /* videos.json in Resources */ = {isa = PBXBuildFile; fileRef = E1955D3A1E3502B200546A91 /* videos.json */; };
+		E1763AC31E3CFBA200B0659B /* SecondScreen-Shared.h in Headers */ = {isa = PBXBuildFile; fileRef = E1763AC11E3CFBA200B0659B /* SecondScreen-Shared.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E1763AC61E3CFBA200B0659B /* SecondScreenShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1763ABF1E3CFBA200B0659B /* SecondScreenShared.framework */; };
+		E1763AC71E3CFBA200B0659B /* SecondScreenShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E1763ABF1E3CFBA200B0659B /* SecondScreenShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E1763ACC1E3D063400B0659B /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1955D371E35025600546A91 /* Content.swift */; };
+		E1763ACD1E3D064300B0659B /* videos.json in Resources */ = {isa = PBXBuildFile; fileRef = E1955D3A1E3502B200546A91 /* videos.json */; };
+		E1763ACF1E3D0A8400B0659B /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1955D3E1E356C0000546A91 /* Model.xcdatamodeld */; };
+		E1763AD11E3D0B0600B0659B /* ContentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1763AD01E3D0B0600B0659B /* ContentManager.swift */; };
 		E1955D3D1E350B2100546A91 /* EditVideosController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1955D3C1E350B2100546A91 /* EditVideosController.swift */; };
-		E1955D401E356C0000546A91 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E1955D3E1E356C0000546A91 /* Model.xcdatamodeld */; };
 		E1955D421E36210C00546A91 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1955D411E36210B00546A91 /* CoreData.framework */; };
 		E1955D4A1E363E1600546A91 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1955D491E363E1600546A91 /* ShareViewController.swift */; };
 		E1955D4D1E363E1600546A91 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1955D4B1E363E1600546A91 /* MainInterface.storyboard */; };
@@ -44,12 +49,19 @@
 		E1BE47BE1E3759ED00585816 /* NamedListSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BE47BD1E3759ED00585816 /* NamedListSelectionViewController.swift */; };
 		E1C039821E3019C9009698D3 /* SelectDeviceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C039811E3019C9009698D3 /* SelectDeviceController.swift */; };
 		E1C039841E301B13009698D3 /* UIDeviceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C039831E301B13009698D3 /* UIDeviceCollectionViewCell.swift */; };
+		E1E0912B1E3E44DC00BB0933 /* SecondScreenShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1763ABF1E3CFBA200B0659B /* SecondScreenShared.framework */; };
 		E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF41E140AFA0055104C /* HomeViewController.swift */; };
 		E1E99EF71E141A7D0055104C /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF61E141A7D0055104C /* Connector.swift */; };
-		E1E99EFC1E14528C0055104C /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		E1763AC41E3CFBA200B0659B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E11AFDEC1E10355F009C7E8F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E1763ABE1E3CFBA200B0659B;
+			remoteInfo = "SecondScreen-Shared";
+		};
 		E1955D4F1E363E1600546A91 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E11AFDEC1E10355F009C7E8F /* Project object */;
@@ -60,6 +72,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		E1763ACB1E3CFBA200B0659B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E1763AC71E3CFBA200B0659B /* SecondScreenShared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1955D551E363E1600546A91 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -74,7 +97,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		15A1952B083C7F9CE5BBD1CF /* Pods-SecondScreen-Shared.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreen-Shared.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreen-Shared/Pods-SecondScreen-Shared.debug.xcconfig"; sourceTree = "<group>"; };
+		2DD32EA49C10E18C991D9D4C /* Pods-SecondScreenShared.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreenShared.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreenShared/Pods-SecondScreenShared.release.xcconfig"; sourceTree = "<group>"; };
+		60FF80C8C4F5818F38D64EF0 /* Pods_SecondScreenShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecondScreenShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		794844E368DBB86B1D581F9D /* Pods-SecondScreenShared.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreenShared.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreenShared/Pods-SecondScreenShared.debug.xcconfig"; sourceTree = "<group>"; };
 		9ED136A7E18703C7E324B4AC /* Pods-SecondScreen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreen.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreen/Pods-SecondScreen.release.xcconfig"; sourceTree = "<group>"; };
+		AEB7D45E369E0E462F8AE532 /* Pods_SecondScreen_Shared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecondScreen_Shared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3DF003644831CA3BAF3A202 /* Pods-SecondScreen-Shared.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreen-Shared.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreen-Shared/Pods-SecondScreen-Shared.release.xcconfig"; sourceTree = "<group>"; };
+		D7016C9580F3A28C54BFCAF6 /* Pods_SecondScreen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecondScreen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11AFDF41E10355F009C7E8F /* SecondScreen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecondScreen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E11AFDF71E10355F009C7E8F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E11AFDF91E10355F009C7E8F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +135,10 @@
 		E154DB831E29AA2600250A70 /* AssetsTV.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AssetsTV.xcassets; sourceTree = "<group>"; };
 		E16ADEBF1E342292008A0F52 /* credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = credits.rtf; sourceTree = "<group>"; };
 		E16ADEC11E3427D2008A0F52 /* FlagKit.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = FlagKit.xcassets; sourceTree = "<group>"; };
+		E1763ABF1E3CFBA200B0659B /* SecondScreenShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SecondScreenShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1763AC11E3CFBA200B0659B /* SecondScreen-Shared.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SecondScreen-Shared.h"; sourceTree = "<group>"; };
+		E1763AC21E3CFBA200B0659B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1763AD01E3D0B0600B0659B /* ContentManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentManager.swift; sourceTree = "<group>"; };
 		E1955D371E35025600546A91 /* Content.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		E1955D3A1E3502B200546A91 /* videos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = videos.json; sourceTree = "<group>"; };
 		E1955D3C1E350B2100546A91 /* EditVideosController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditVideosController.swift; sourceTree = "<group>"; };
@@ -128,9 +162,7 @@
 		E1C039831E301B13009698D3 /* UIDeviceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceCollectionViewCell.swift; sourceTree = "<group>"; };
 		E1E99EF41E140AFA0055104C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E1E99EF61E141A7D0055104C /* Connector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
-		E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		F6EB514396150EE61CE2F6E6 /* Pods-SecondScreen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreen/Pods-SecondScreen.debug.xcconfig"; sourceTree = "<group>"; };
-		FFBFDD50C213BC6FC72C535C /* libPods-SecondScreen.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SecondScreen.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +171,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1955D421E36210C00546A91 /* CoreData.framework in Frameworks */,
-				0EB922E14C855CDC47457719 /* libPods-SecondScreen.a in Frameworks */,
+				AB34FA22D93F378C920E891C /* Pods_SecondScreen.framework in Frameworks */,
+				E1763AC61E3CFBA200B0659B /* SecondScreenShared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -150,10 +183,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1763ABB1E3CFBA200B0659B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BD479A2FB63C75495D7A709 /* Pods_SecondScreenShared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1955D441E363E1600546A91 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1E0912B1E3E44DC00BB0933 /* SecondScreenShared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,6 +207,10 @@
 			children = (
 				F6EB514396150EE61CE2F6E6 /* Pods-SecondScreen.debug.xcconfig */,
 				9ED136A7E18703C7E324B4AC /* Pods-SecondScreen.release.xcconfig */,
+				15A1952B083C7F9CE5BBD1CF /* Pods-SecondScreen-Shared.debug.xcconfig */,
+				B3DF003644831CA3BAF3A202 /* Pods-SecondScreen-Shared.release.xcconfig */,
+				794844E368DBB86B1D581F9D /* Pods-SecondScreenShared.debug.xcconfig */,
+				2DD32EA49C10E18C991D9D4C /* Pods-SecondScreenShared.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -173,7 +219,9 @@
 			isa = PBXGroup;
 			children = (
 				E1955D411E36210B00546A91 /* CoreData.framework */,
-				FFBFDD50C213BC6FC72C535C /* libPods-SecondScreen.a */,
+				D7016C9580F3A28C54BFCAF6 /* Pods_SecondScreen.framework */,
+				AEB7D45E369E0E462F8AE532 /* Pods_SecondScreen_Shared.framework */,
+				60FF80C8C4F5818F38D64EF0 /* Pods_SecondScreenShared.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -183,6 +231,7 @@
 			children = (
 				E11AFE0B1E103643009C7E8F /* Podfile */,
 				E11AFDF61E10355F009C7E8F /* SecondScreen */,
+				E1763AC01E3CFBA200B0659B /* SecondScreenShared */,
 				E154DB731E29A63E00250A70 /* SecondScreenTV */,
 				E1955D481E363E1600546A91 /* Share-VR */,
 				E11AFDF51E10355F009C7E8F /* Products */,
@@ -197,6 +246,7 @@
 				E11AFDF41E10355F009C7E8F /* SecondScreen.app */,
 				E154DB721E29A63E00250A70 /* SecondScreenTV.app */,
 				E1955D471E363E1600546A91 /* Share-VR.appex */,
+				E1763ABF1E3CFBA200B0659B /* SecondScreenShared.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,9 +257,7 @@
 				E1955D571E363F9900546A91 /* SecondScreen.entitlements */,
 				E11AFE0F1E103795009C7E8F /* SecondScreen-Bridging-Header.h */,
 				E11AFDF71E10355F009C7E8F /* AppDelegate.swift */,
-				E1955D3E1E356C0000546A91 /* Model.xcdatamodeld */,
 				E11AFE1D1E12B0B5009C7E8F /* HTY360 */,
-				E1955D391E35026000546A91 /* Content */,
 				E1E99EF91E141C0F0055104C /* Connector */,
 				E1E99EFA1E141C270055104C /* Controller */,
 				E11AFDFB1E10355F009C7E8F /* Main.storyboard */,
@@ -282,6 +330,19 @@
 			path = SecondScreenTV;
 			sourceTree = "<group>";
 		};
+		E1763AC01E3CFBA200B0659B /* SecondScreenShared */ = {
+			isa = PBXGroup;
+			children = (
+				E1955D3E1E356C0000546A91 /* Model.xcdatamodeld */,
+				E1955D391E35026000546A91 /* Content */,
+				E1763AC11E3CFBA200B0659B /* SecondScreen-Shared.h */,
+				E1763AC21E3CFBA200B0659B /* Info.plist */,
+				E1763AD01E3D0B0600B0659B /* ContentManager.swift */,
+			);
+			name = SecondScreenShared;
+			path = "SecondScreen-Shared";
+			sourceTree = "<group>";
+		};
 		E1955D391E35026000546A91 /* Content */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,6 +350,7 @@
 				E1955D3A1E3502B200546A91 /* videos.json */,
 			);
 			name = Content;
+			path = ../SecondScreen;
 			sourceTree = "<group>";
 		};
 		E1955D481E363E1600546A91 /* Share-VR */ = {
@@ -317,7 +379,6 @@
 			children = (
 				E11AFE121E109544009C7E8F /* SecondScreenServer.swift */,
 				E1E99EF61E141A7D0055104C /* Connector.swift */,
-				E1E99EFB1E14528C0055104C /* SwiftyJSON.swift */,
 				E1A1350C1E180538003A4B24 /* Queue.swift */,
 			);
 			name = Connector;
@@ -337,6 +398,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		E1763ABC1E3CFBA200B0659B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1763AC31E3CFBA200B0659B /* SecondScreen-Shared.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		E11AFDF31E10355F009C7E8F /* SecondScreen */ = {
 			isa = PBXNativeTarget;
@@ -349,11 +421,13 @@
 				ED273E96ABCF9B6FD67EB5C5 /* [CP] Embed Pods Frameworks */,
 				E70FE30C03678156D5561A3F /* [CP] Copy Pods Resources */,
 				E1955D551E363E1600546A91 /* Embed App Extensions */,
+				E1763ACB1E3CFBA200B0659B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				E1955D501E363E1600546A91 /* PBXTargetDependency */,
+				E1763AC51E3CFBA200B0659B /* PBXTargetDependency */,
 			);
 			name = SecondScreen;
 			productName = SecondScreen;
@@ -376,6 +450,26 @@
 			productName = SecondScreenTV;
 			productReference = E154DB721E29A63E00250A70 /* SecondScreenTV.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E1763ABE1E3CFBA200B0659B /* SecondScreenShared */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E1763ACA1E3CFBA200B0659B /* Build configuration list for PBXNativeTarget "SecondScreenShared" */;
+			buildPhases = (
+				733E34B5F3CCC3EFE52FF26E /* [CP] Check Pods Manifest.lock */,
+				E1763ABA1E3CFBA200B0659B /* Sources */,
+				E1763ABB1E3CFBA200B0659B /* Frameworks */,
+				E1763ABC1E3CFBA200B0659B /* Headers */,
+				E1763ABD1E3CFBA200B0659B /* Resources */,
+				143C120B9393D2AC7FAC3C9D /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SecondScreenShared;
+			productName = "SecondScreen-Shared";
+			productReference = E1763ABF1E3CFBA200B0659B /* SecondScreenShared.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		E1955D461E363E1600546A91 /* Share-VR */ = {
 			isa = PBXNativeTarget;
@@ -428,6 +522,11 @@
 							};
 						};
 					};
+					E1763ABE1E3CFBA200B0659B = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = W3U24WE3R3;
+						ProvisioningStyle = Automatic;
+					};
 					E1955D461E363E1600546A91 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = W3U24WE3R3;
@@ -456,6 +555,7 @@
 				E11AFDF31E10355F009C7E8F /* SecondScreen */,
 				E154DB711E29A63E00250A70 /* SecondScreenTV */,
 				E1955D461E363E1600546A91 /* Share-VR */,
+				E1763ABE1E3CFBA200B0659B /* SecondScreenShared */,
 			);
 		};
 /* End PBXProject section */
@@ -467,7 +567,6 @@
 			files = (
 				E16ADEC21E3427D2008A0F52 /* FlagKit.xcassets in Resources */,
 				E11AFE301E12B0D5009C7E8F /* Shader.fsh in Resources */,
-				E1955D3B1E3502B200546A91 /* videos.json in Resources */,
 				E11AFE021E10355F009C7E8F /* LaunchScreen.storyboard in Resources */,
 				E11AFE2B1E12B0D5009C7E8F /* HTY360PlayerVC.xib in Resources */,
 				E11AFDFF1E10355F009C7E8F /* Assets.xcassets in Resources */,
@@ -488,6 +587,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E1763ABD1E3CFBA200B0659B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1763ACD1E3D064300B0659B /* videos.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E1955D451E363E1600546A91 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -499,6 +606,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		143C120B9393D2AC7FAC3C9D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SecondScreenShared/Pods-SecondScreenShared-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		733E34B5F3CCC3EFE52FF26E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		C19739A3D796DDCBCB2E751A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -553,12 +690,10 @@
 			files = (
 				E1C039841E301B13009698D3 /* UIDeviceCollectionViewCell.swift in Sources */,
 				E1E99EF71E141A7D0055104C /* Connector.swift in Sources */,
-				E1955D381E35025600546A91 /* Content.swift in Sources */,
 				E11AFE2A1E12B0D5009C7E8F /* HTYGLKVC.m in Sources */,
 				E11AFE2F1E12B0D5009C7E8F /* HTYMenuVC.m in Sources */,
 				E1A1350D1E180538003A4B24 /* Queue.swift in Sources */,
 				E19F71D11E19AB4B009D7926 /* EulerianAngle.m in Sources */,
-				E1E99EFC1E14528C0055104C /* SwiftyJSON.swift in Sources */,
 				E1A135151E1810C0003A4B24 /* Quaternion.m in Sources */,
 				E1955D3D1E350B2100546A91 /* EditVideosController.swift in Sources */,
 				E11AFDFA1E10355F009C7E8F /* ViewController.swift in Sources */,
@@ -568,7 +703,6 @@
 				E11AFE131E109544009C7E8F /* SecondScreenServer.swift in Sources */,
 				E11AFDF81E10355F009C7E8F /* AppDelegate.swift in Sources */,
 				E1A135111E1809C6003A4B24 /* CurrentQuaternion.m in Sources */,
-				E1955D401E356C0000546A91 /* Model.xcdatamodeld in Sources */,
 				E11AFE2D1E12B0D5009C7E8F /* GLProgram.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -579,6 +713,16 @@
 			files = (
 				E154DB771E29A63E00250A70 /* ViewController.swift in Sources */,
 				E154DB751E29A63E00250A70 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1763ABA1E3CFBA200B0659B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1763ACC1E3D063400B0659B /* Content.swift in Sources */,
+				E1763AD11E3D0B0600B0659B /* ContentManager.swift in Sources */,
+				E1763ACF1E3D0A8400B0659B /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +738,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		E1763AC51E3CFBA200B0659B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E1763ABE1E3CFBA200B0659B /* SecondScreenShared */;
+			targetProxy = E1763AC41E3CFBA200B0659B /* PBXContainerItemProxy */;
+		};
 		E1955D501E363E1600546A91 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = E1955D461E363E1600546A91 /* Share-VR */;
@@ -803,6 +952,54 @@
 			};
 			name = Release;
 		};
+		E1763AC81E3CFBA200B0659B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 794844E368DBB86B1D581F9D /* Pods-SecondScreenShared.debug.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = W3U24WE3R3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "SecondScreen-Shared/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vr-second-tv.app.SecondScreenShared";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E1763AC91E3CFBA200B0659B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2DD32EA49C10E18C991D9D4C /* Pods-SecondScreenShared.release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_IDENTITY = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = W3U24WE3R3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "SecondScreen-Shared/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vr-second-tv.app.SecondScreenShared";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		E1955D531E363E1600546A91 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -861,6 +1058,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		E1763ACA1E3CFBA200B0659B /* Build configuration list for PBXNativeTarget "SecondScreenShared" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E1763AC81E3CFBA200B0659B /* Debug */,
+				E1763AC91E3CFBA200B0659B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E1955D521E363E1600546A91 /* Build configuration list for PBXNativeTarget "Share-VR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -879,7 +1085,8 @@
 				E1955D3F1E356C0000546A91 /* Model.xcdatamodel */,
 			);
 			currentVersion = E1955D3F1E356C0000546A91 /* Model.xcdatamodel */;
-			path = Model.xcdatamodeld;
+			name = Model.xcdatamodeld;
+			path = ../SecondScreen/Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
