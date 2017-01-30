@@ -91,6 +91,7 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
         let languageImageView = cell.contentView.viewWithTag(30) as? UIImageView
         let statusImageView = cell.contentView.viewWithTag(40) as? UIImageView
         let timeLabel = cell.contentView.viewWithTag(50) as? UILabel
+        let versionLabel = cell.contentView.viewWithTag(60) as? UILabel
         
         let device: Device = self.devices()[indexPath.item]
         cell.device = device
@@ -98,6 +99,7 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
         hostNameLabel?.text = device.name
         nameLabel?.text = device.player.name
         timeLabel?.text = device.player.positionTime()
+        versionLabel?.text = device.player.video?.version
         
         DispatchQueue.main.async() { () -> Void in
             if (device.player.isPlaying()) {
@@ -133,8 +135,14 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
         let device: Device = self.devices()[indexPath.item]
         self.connector.choose(device: device)
         device.play()
-        self.launchVideo(name: "DE-AXA-One_second_away-Final_v3_short_360", ext: "mp4")
-//        performSegue(withIdentifier: "PlayDevice", sender: nil)
+        if (device.player.video != nil) {
+            self.launchVideo(device: device, url: device.player.video!.mediaURL())
+            //        performSegue(withIdentifier: "PlayDevice", sender: nil)
+        } else {
+            let alert = UIAlertController(title: "Alert", message: "Player doesn't play any video", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)

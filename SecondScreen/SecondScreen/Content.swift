@@ -133,12 +133,15 @@ public class Content : NSObject {
     
     public func getVideo(name: String) -> Video? {
         for video in self.videos {
-            if (video.name == name) { return video }
+            if (video.name?.lowercased() == name.lowercased()) { return video }
         }
         return nil;
     }
     
     public func addNewVideo(_ newVideo: Video) {
+        if (self.getVideo(name: newVideo.name!) != nil) {
+            return
+        }
         do {
             self.videos.append(newVideo)
             try newVideo.managedObjectContext?.save()
@@ -160,11 +163,14 @@ public class Content : NSObject {
         return self
     }
     public func reload() -> Content {
+        self.videos = []
+        return self.load()
+    }
+    public func reset() -> Content {
         for video in self.videos {
             video.delete()
         }
-        self.videos = []
-        return self.load()
+        return self.reload()
     }
     
     private func initializeDatabase() {

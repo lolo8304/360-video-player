@@ -24,7 +24,8 @@
 @end
 
 @implementation PlayerAction
-- (id) initStopAt: (int) seek {
+- (id) init: (NSObject*) player stopAt: (int) seek {
+    self.player = player;
     self.type = kStop;
     self.seek = -1;
     self.name = nil;
@@ -34,7 +35,8 @@
     return self;
 }
 
-- (id) initSeekAt: (int) seek {
+- (id) init: (NSObject*) player seekAt: (int) seek {
+    self.player = player;
     self.type = kSeek;
     self.seek = seek;
     self.name = nil;
@@ -43,7 +45,8 @@
     self.mediaURL = nil;
     return self;
 }
-- (id) initPlayAt: (int) seek {
+- (id) init: (NSObject*) player playAt: (int) seek {
+    self.player = player;
     self.type = kPlayAt;
     self.seek = seek;
     self.name = nil;
@@ -52,7 +55,8 @@
     self.mediaURL = nil;
     return self;
 }
-- (id) initPauseAt: (int) seek {
+- (id) init: (NSObject*) player pauseAt: (int) seek {
+    self.player = player;
     self.type = kPauseAt;
     self.seek = seek;
     self.name = nil;
@@ -61,7 +65,8 @@
     self.mediaURL = nil;
     return self;
 }
-- (id) initPrepareVideo: (NSString*) name mediaName: (NSString*) mediaName ext: (NSString*) ext at: (int) seek {
+- (id) init: (NSObject*) player prepareVideo: (NSString*) name mediaName: (NSString*) mediaName ext: (NSString*) ext at: (int) seek {
+    self.player = player;
     self.type = kPlayNewVideo;
     self.seek = seek;
     self.name = name;
@@ -70,7 +75,8 @@
     self.mediaURL = nil;
     return self;
 }
-- (id) initPrepareVideo: (NSString*) name mediaURL: (NSURL*) mediaURL ext: (NSString*) ext at: (int) seek {
+- (id) init: (NSObject*) player prepareVideo: (NSString*) name mediaURL: (NSURL*) mediaURL ext: (NSString*) ext at: (int) seek {
+    self.player = player;
     self.type = kPlayNewVideo;
     self.seek = seek;
     self.name = name;
@@ -109,24 +115,24 @@
     return self;
 }
 
-- (void) enqueue: (float) x add: (float) y add: (float) z add: (float) w {
+- (void) enqueue: (int) seek add: (float) x add: (float) y add: (float) z add: (float) w {
     if (!self.playing) { return; }
-    Quaternion* q = [[Quaternion alloc] initWith:x with:y with:z with:w];
+    Quaternion* q = [[Quaternion alloc] initWith: seek with:x with:y with:z with:w];
     @synchronized(self.queue) {
         [self.queue addObject: q];
-        if (self.queue.count > 10) {
+        if (self.queue.count > 2) {
             [self.queue removeObjectAtIndex: 0];
         }
         //self.maxQueue = MAX(self.maxQueue, self.queue.count);
         //NSLog(@"max queue = %lu", self.maxQueue);
     }
 }
-- (void)enqueue:(float)pitchX add:(float)rollY add:(float)yawZ {
+- (void)enqueue: (int)seek add: (float) pitchX add:(float)rollY add:(float)yawZ {
     if (!self.playing) { return; }
-    EulerianAngle* q = [[EulerianAngle alloc] initWith:pitchX with:rollY with:yawZ];
+    EulerianAngle* q = [[EulerianAngle alloc] initWith: seek with:pitchX with:rollY with:yawZ];
     @synchronized(self.queue) {
         [self.queue addObject: q];
-        if (self.queue.count > 10) {
+        if (self.queue.count > 2) {
             [self.queue removeObjectAtIndex: 0];
         }
         //self.maxQueue = MAX(self.maxQueue, self.queue.count);
@@ -191,12 +197,16 @@
     }
     
 }
-- (PlayerAction*) dequeuePlayerAction {
+- (PlayerAction*) dequeuePlayerAction: (NSObject*) player {
     @synchronized(self.playerActionQueue) {
         if (self.playerActionQueue.count > 0) {
             PlayerAction* a = self.playerActionQueue[0];
             [self.playerActionQueue removeObjectAtIndex: 0];
-            return a;
+            if (a.player == player) {
+                return a;
+            } else {
+                return [self dequeuePlayerAction: player];
+            }
         } else {
             return nil;
         }

@@ -14,10 +14,11 @@
 
 @implementation EulerianAngle
 
-- (id) initWith:(float)pitchX with:(float)rollY with:(float)yawZ {
+- (id) initWith: (int) seek with:(float)pitchX with:(float)rollY with:(float)yawZ {
     _pitch = pitchX;
     _roll = rollY;
     _yaw = yawZ;
+    _seek = seek;
     return self;
 }
 

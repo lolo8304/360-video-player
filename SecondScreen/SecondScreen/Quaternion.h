@@ -8,6 +8,7 @@
 
 @protocol QuaternionAPI <NSObject>
 
+- (int)seek;
 - (float)pitch;
 - (float)roll;
 - (float)yaw;
@@ -16,6 +17,6 @@
 
 @interface Quaternion : NSObject<QuaternionAPI>
 
-- (id) initWith: (float) X with: (float) Y with: (float) Z with: (float) W;
+- (id) initWith: (int) seek with: (float) X with: (float) Y with: (float) Z with: (float) W;
 
 @end

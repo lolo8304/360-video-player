@@ -118,7 +118,7 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
         
         let video: Video = self.videos()[indexPath.item]
         
-        self.launchVideo(url: video.mediaURL())
+        self.launchVideo(device: nil, url: video.mediaURL())
         //        performSegue(withIdentifier: "PlayDevice", sender: nil)
     }
     
@@ -147,7 +147,7 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
     @IBAction func addVideo(_ sender: UIBarButtonItem) {
     }
     @IBAction func refreshItems(_ sender: UIBarButtonItem) {
-        Content.instance.reload()
+        Content.instance.reset()
         self.videosCollectionView.reloadData()
     }
     

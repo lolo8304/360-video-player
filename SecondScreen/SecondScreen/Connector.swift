@@ -55,6 +55,7 @@ public enum DevicePlayerStatus {
 
 
 public class DevicePlayer : NSObject {
+    public var device: Device
     public var name: String = ""
     public var medianame: String = ""
     public var language: String = "DE"
@@ -63,7 +64,8 @@ public class DevicePlayer : NSObject {
     public var position: Int = 0
     public var duration: Int = 0
     
-    override init() {
+    init(device: Device) {
+        self.device = device
     }
     
     private func getString(_ data: JSON, attribute: String) -> String {
@@ -85,16 +87,24 @@ public class DevicePlayer : NSObject {
     private func getAttrSeek(_ data: JSON) -> Int {
         return self.getInt(data, attribute: "seek")
     }
+    
+    func loadNewVideoNamed(name: String) {
+        self.name = name
+        if (!name.isEmpty) {
+            self.video = Content.instance.getVideo(name: self.name)
+        } else {
+            self.video = nil
+        }
+    }
     public func handleFirstPositionAction(data: JSON) {
-        self.name = self.getAttrName(data)
+        self.loadNewVideoNamed(name: self.getAttrName(data))
         self.position = self.getAttrSeek(data)
-        self.video = Content.instance.getVideo(name: self.name)
         if (self.video != nil) {
-            let action: PlayerAction = PlayerAction(prepareVideo: self.name, mediaURL: video!.mediaURL(), ext: video!.mediaExt, at: Int32(self.position))
+            let action: PlayerAction = PlayerAction(self, prepareVideo: self.name, mediaURL: video!.mediaURL(), ext: video!.mediaExt, at: Int32(self.position))
             CurrentQuaternion.instance().enqueue(action)
         } else {
             NSLog("remote Video play not found '\(self.name)'")
-            let action: PlayerAction = PlayerAction(stopAt: 0)
+            let action: PlayerAction = PlayerAction(self, stopAt: 0)
             CurrentQuaternion.instance().enqueue(action)
         }
     }
@@ -112,24 +122,26 @@ public class DevicePlayer : NSObject {
         }
         
         //if (!self.verifyName(data)) { return }
+        self.loadNewVideoNamed(name: self.getAttrName(data))
         self.position = self.getAttrSeek(data)
         switch action {
         case "player-seek":
-            let action: PlayerAction = PlayerAction(seekAt: Int32(self.position))
+            let action: PlayerAction = PlayerAction(self, seekAt: Int32(self.position))
             CurrentQuaternion.instance().enqueue(action)
         case "player-start":
             self.status = .playing
-            let action: PlayerAction = PlayerAction(playAt: Int32(self.position))
+            let action: PlayerAction = PlayerAction(self, playAt: Int32(self.position))
             CurrentQuaternion.instance().enqueue(action)
         case "player-pause":
             self.status = .paused
-            let action: PlayerAction = PlayerAction(pauseAt: Int32(self.position))
+            let action: PlayerAction = PlayerAction(self, pauseAt: Int32(self.position))
             CurrentQuaternion.instance().enqueue(action)
         case "player-stop":
             self.status = .stopped
-            let action: PlayerAction = PlayerAction(stopAt: -1)
+            let action: PlayerAction = PlayerAction(self, stopAt: -1)
             CurrentQuaternion.instance().enqueue(action)
         case "player-keepAlive":
+            self.status = .playing
             break
         default:
             return
@@ -171,7 +183,9 @@ public class Device: NSObject {
     public var status: DeviceStatus = .closed
     public var pinged: Bool = false
     public var ponged: Bool = false
-    public let player: DevicePlayer = DevicePlayer()
+    lazy public var player: DevicePlayer = {
+       return DevicePlayer(device: self)
+    }()
     
 
     public static func create(connector: Connector, uuid: String, ip: String, name: String) -> Device {
@@ -528,11 +542,11 @@ extension Connector : PSWebSocketServerDelegate {
             let json:JSON = JSON.init(data: message.data(using: .utf8, allowLossyConversion: false)!)
             let action = json["action"].stringValue
             if (action == "position") {
-                CurrentQuaternion.instance().enqueue(json["pitchX"].floatValue, add: json["rollY"].floatValue, add: json["yawZ"].floatValue)
+                CurrentQuaternion.instance().enqueue(Int32(json["seek"].intValue), add: json["rollY"].floatValue, add: json["yawZ"].floatValue, add: json["pitchX"].floatValue)
             } else if (action == "positionAndPrepare") {
                 device!.player.handleFirstPositionAction(data: json)
                 delegate.playerUpdated(device: device!, player: device!.player)
-                CurrentQuaternion.instance().enqueue(json["pitchX"].floatValue, add: json["rollY"].floatValue, add: json["yawZ"].floatValue)
+                CurrentQuaternion.instance().enqueue(Int32(json["seek"].intValue), add: json["pitchX"].floatValue, add: json["rollY"].floatValue, add: json["yawZ"].floatValue)
             } else if (action == "disconnect") {
                     device?.disconnect()
                     var connectionResponse = JSON.init(["device.uuid": device!.uuid]);

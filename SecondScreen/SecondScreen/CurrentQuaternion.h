@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, PlayerActionType) {
 };
 
 @interface PlayerAction : NSObject
+@property (atomic) NSObject* player;
 @property (atomic) PlayerActionType type;
 @property (atomic) int seek;
 @property (strong, nonatomic) NSString* name;
@@ -24,12 +25,12 @@ typedef NS_ENUM(NSUInteger, PlayerActionType) {
 @property (strong, nonatomic) NSString* mediaExtension;
 @property (strong, nonatomic) NSURL* mediaURL;
 
-- (id) initSeekAt: (int) seek;
-- (id) initPlayAt: (int) seek;
-- (id) initPauseAt: (int) seek;
-- (id) initStopAt: (int) seek;
-- (id) initPrepareVideo: (NSString*) name mediaName: (NSString*) mediaName ext: (NSString*) ext at: (int) seek;
-- (id) initPrepareVideo: (NSString*) name mediaURL: (NSURL*) mediaURL ext: (NSString*) ext at: (int)seek;
+- (id) init: (NSObject*) player seekAt: (int) seek;
+- (id) init: (NSObject*) player playAt: (int) seek;
+- (id) init: (NSObject*) player pauseAt: (int) seek;
+- (id) init: (NSObject*) player stopAt: (int) seek;
+- (id) init: (NSObject*) player prepareVideo: (NSString*) name mediaName: (NSString*) mediaName ext: (NSString*) ext at: (int) seek;
+- (id) init: (NSObject*) player prepareVideo: (NSString*) name mediaURL: (NSURL*) mediaURL ext: (NSString*) ext at: (int)seek;
 
 - (NSURL*) getURL;
 @end
@@ -39,8 +40,8 @@ typedef NS_ENUM(NSUInteger, PlayerActionType) {
 + (CurrentQuaternion*)instance;
 - (id) init;
 
-- (void) enqueue: (float) x add: (float) y add: (float) z add: (float) w;
-- (void) enqueue: (float) pitchX add: (float) rollY add: (float) yawZ;
+- (void) enqueue: (int) seek add: (float) x add: (float) y add: (float) z add: (float) w;
+- (void) enqueue: (int) seek add: (float) pitchX add: (float) rollY add: (float) yawZ;
 - (NSObject<QuaternionAPI>*) dequeue;
 - (NSObject<QuaternionAPI>*) dequeueLast;
 - (void)reset;
@@ -49,7 +50,7 @@ typedef NS_ENUM(NSUInteger, PlayerActionType) {
 - (void)stop;
 
 - (void) enqueuePlayerAction: (PlayerAction*) playerAction;
-- (PlayerAction*) dequeuePlayerAction;
+- (PlayerAction*) dequeuePlayerAction: (NSObject*) player;
 
 
 @end

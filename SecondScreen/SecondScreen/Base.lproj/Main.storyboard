@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2wu-kq-cuc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="2wu-kq-cuc">
     <device id="retina5_5" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -127,15 +127,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="4WL-fO-4bK">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="4WL-fO-4bK">
                             <size key="itemSize" width="180" height="100"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="20" minY="20" maxX="20" maxY="20"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="VideoCell" id="Fyj-sl-I9n" customClass="UIVideoCollectionViewCell" customModule="SecondScreen" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
+                                <rect key="frame" x="20" y="20" width="180" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
@@ -171,7 +171,7 @@
                                         </label>
                                     </subviews>
                                 </view>
-                                <color key="backgroundColor" red="0.80462545156478882" green="0.95012873411178589" blue="0.81050640344619751" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.71928967929999998" green="0.87942023030000005" blue="0.91622121710000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="6xH-O1-ecs" firstAttribute="leading" secondItem="tBU-q1-zBB" secondAttribute="trailing" constant="20" id="1Pl-ac-sfC"/>
                                     <constraint firstItem="6xH-O1-ecs" firstAttribute="trailing" secondItem="z7r-p4-hPa" secondAttribute="trailing" id="3jL-mz-VBx"/>
@@ -315,30 +315,30 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="gZh-si-EFC">
-                                    <size key="itemSize" width="180" height="100"/>
+                                    <size key="itemSize" width="180" height="120"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="DeviceCell" id="qxA-gl-b2U" customClass="UIDeviceCollectionViewCell" customModule="SecondScreen" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="180" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VR-0" translatesAutoresizingMaskIntoConstraints="NO" id="15E-YT-t9f">
-                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
+                                                <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VR-0" translatesAutoresizingMaskIntoConstraints="NO" id="15E-YT-t9f">
+                                                    <rect key="frame" x="0.0" y="0.0" width="180" height="120"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hostname" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vst-eL-wdz">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hostname" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vst-eL-wdz">
                                                     <rect key="frame" x="8" y="8" width="164" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" tag="40" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="player-play" translatesAutoresizingMaskIntoConstraints="NO" id="MKZ-MG-Vha" userLabel="status">
-                                                    <rect key="frame" x="8" y="72" width="20" height="20"/>
+                                                    <rect key="frame" x="8" y="92" width="20" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="9BU-hb-OdS"/>
                                                         <constraint firstAttribute="width" constant="20" id="qt3-bv-zKH"/>
@@ -354,7 +354,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="50" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iso-GY-Idt">
-                                                    <rect key="frame" x="124" y="71" width="48" height="21"/>
+                                                    <rect key="frame" x="124" y="91" width="48" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="48" id="dLt-Cm-f1H"/>
                                                     </constraints>
@@ -362,8 +362,14 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YjN-bn-2Pv">
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="20" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YjN-bn-2Pv">
                                                     <rect key="frame" x="8" y="29" width="138" height="20"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="60" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Version" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yzf-xp-gPe">
+                                                    <rect key="frame" x="8" y="53" width="138" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -375,12 +381,15 @@
                                             <constraint firstAttribute="bottom" secondItem="15E-YT-t9f" secondAttribute="bottom" id="29r-51-q35"/>
                                             <constraint firstItem="BED-Yn-iL8" firstAttribute="centerY" secondItem="YjN-bn-2Pv" secondAttribute="centerY" id="Bt1-2d-K3O"/>
                                             <constraint firstItem="MKZ-MG-Vha" firstAttribute="leading" secondItem="qxA-gl-b2U" secondAttribute="leadingMargin" id="HvT-7h-QOT"/>
+                                            <constraint firstItem="Yzf-xp-gPe" firstAttribute="top" secondItem="YjN-bn-2Pv" secondAttribute="bottom" constant="4" id="Lwp-V7-ZMg"/>
                                             <constraint firstItem="15E-YT-t9f" firstAttribute="leading" secondItem="qxA-gl-b2U" secondAttribute="leading" id="Qk9-L9-7pG"/>
+                                            <constraint firstItem="Yzf-xp-gPe" firstAttribute="leading" secondItem="YjN-bn-2Pv" secondAttribute="leading" id="R7W-Oe-FuK"/>
                                             <constraint firstItem="BED-Yn-iL8" firstAttribute="top" secondItem="vst-eL-wdz" secondAttribute="bottom" id="Ruw-AJ-0aE"/>
                                             <constraint firstItem="Iso-GY-Idt" firstAttribute="bottom" secondItem="qxA-gl-b2U" secondAttribute="bottomMargin" id="VFJ-yu-zzQ"/>
                                             <constraint firstItem="15E-YT-t9f" firstAttribute="top" secondItem="qxA-gl-b2U" secondAttribute="top" id="ZH9-ny-PYy"/>
                                             <constraint firstItem="BED-Yn-iL8" firstAttribute="trailing" secondItem="qxA-gl-b2U" secondAttribute="trailingMargin" id="bZh-XL-cob"/>
                                             <constraint firstItem="vst-eL-wdz" firstAttribute="top" secondItem="qxA-gl-b2U" secondAttribute="topMargin" id="bw8-q3-eOO"/>
+                                            <constraint firstItem="Yzf-xp-gPe" firstAttribute="trailing" secondItem="YjN-bn-2Pv" secondAttribute="trailing" id="go0-u1-Vhn"/>
                                             <constraint firstItem="vst-eL-wdz" firstAttribute="trailing" secondItem="qxA-gl-b2U" secondAttribute="trailingMargin" id="hD0-0g-a9N"/>
                                             <constraint firstItem="YjN-bn-2Pv" firstAttribute="leading" secondItem="vst-eL-wdz" secondAttribute="leading" id="igm-M6-JS4"/>
                                             <constraint firstItem="Iso-GY-Idt" firstAttribute="trailing" secondItem="vst-eL-wdz" secondAttribute="trailing" id="p2U-U6-H8V"/>

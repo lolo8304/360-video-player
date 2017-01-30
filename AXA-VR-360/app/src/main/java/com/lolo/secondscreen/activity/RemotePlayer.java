@@ -86,16 +86,15 @@ public class RemotePlayer {
 
     public void sendPosition(Quaternion quaternion) {
         try {
+            JSONObject message = quaternion.toJSON();
+            message.put("name", name);
+            message.put("language", language);
+            message.put("seek", this.player.getCurrentPosition());
             if (!this.firstPositionSent) {
-                JSONObject message = quaternion.toJSON();
-                message.put("name", name);
-                message.put("mediaName", mediaName);
-                message.put("language", language);
-                message.put("seek", this.player.getCurrentPosition());
                 this.connector.sendActionMessage("positionAndPrepare", message);
                 this.firstPositionSent = true;
             } else {
-                this.connector.sendActionMessage("position", quaternion.toJSON());
+                this.connector.sendActionMessage("position", message);
             }
         } catch (JSONException e) {
             throw new RuntimeException("error while updating JSON", e);

@@ -30,6 +30,9 @@ class ShareViewController: SLComposeServiceViewController, NamedListViewControll
         if (text.isEmpty) {
             return false
         } else {
+            if (Content.instance.getVideo(name: text) != nil) {
+                return false
+            }
             return true
         }
         // Do validation of contentText and/or NSExtensionContext attachments here
@@ -53,7 +56,7 @@ class ShareViewController: SLComposeServiceViewController, NamedListViewControll
                             let url = URL(string: (data as! NSURL).absoluteString!)!
                             NSLog("add new video from URL \(url)")
                             let newVideo: Video = Video(context: managedObjectContext)
-                                    .from(name: "\(self.contentText!)\(self.selected360Type)", mediaURL: url, mediaExt: self.selectedMedia, language: self.selectedLanguage, duratinInS: 0, sizeInBytes: 0)
+                                    .from(name: "\(self.contentText!)", mediaURL: url, mediaExt: self.selectedMedia, language: self.selectedLanguage, duratinInS: 0, sizeInBytes: 0)
                             newVideo.version = self.selectedVersion
                             Content.instance.addNewVideo(newVideo)
                             NSLog("video added - \(self.contentText!)\(self.selected360Type)")

@@ -12,16 +12,16 @@
 
 @protocol HTY360PlayerVCDelegate <NSObject>
 - (void)videoDuration: (float) duration;
-- (void)videoDuration: (float) duration;
 @end
 
 @interface HTY360PlayerVC : UIViewController
 
 @property (strong, nonatomic) NSURL *videoURL;
+@property (strong, nonatomic) NSObject *devicePlayer;
 @property (nonatomic) id<HTY360PlayerVCDelegate> playerDelegate;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL*)url;
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil name:(NSString*)name ext: (NSString*) ext;
+- (id)initWith: (NSObject*) devicePlayer nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL*)url;
+- (id)initWith: (NSObject*) devicePlayer nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil name:(NSString*)name ext: (NSString*) ext;
 - (CVPixelBufferRef)retrievePixelBufferToDraw;
 - (void)toggleControls;
 

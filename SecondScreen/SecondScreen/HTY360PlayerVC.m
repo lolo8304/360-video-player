@@ -41,20 +41,23 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 @property (assign, nonatomic) CGFloat mRestoreAfterScrubbingRate;
 @property (assign, nonatomic) BOOL seekToZeroBeforePlay;
 
+
 @end
 
 @implementation HTY360PlayerVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL*)url {
+- (id)initWith: (NSObject*) devicePlayer nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil url:(NSURL*)url {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.devicePlayer = devicePlayer;
         [self setVideoURL:url];
     }
     return self;
 }
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil name:(NSString*)name ext: (NSString*) ext {
+- (id)initWith: (NSObject*) devicePlayer nibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil name:(NSString*)name ext: (NSString*) ext {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        self.devicePlayer = devicePlayer;
         [self setVideoName: name ext: ext];
     }
     return self;
@@ -107,7 +110,9 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification {
     [self updatePlayButton];
-    [self.player seekToTime:[self.player currentTime]];
+    if (![self updateSeekBaseOnPosition]) {
+        [self.player seekToTime:[self.player currentTime]];
+    }
 }
 
 - (void)dealloc {
@@ -286,11 +291,10 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         self.seekToZeroBeforePlay = NO;
         [self.player seekToTime:kCMTimeZero];
     }
-    
     [self updatePlayButton];
     [self.player play];
     [[CurrentQuaternion instance] play];
-    
+    [self updateSeekBaseOnPosition];
     [self scheduleHideControls];
 }
 
@@ -506,6 +510,13 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     [self removeTimeObserverForPlayer];
 }
 
+- (BOOL) updateSeekBaseOnPosition {
+    if (self.glkViewController.seek >= 0) {
+        [self.player seekToTime:CMTimeMakeWithSeconds(self.glkViewController.seek / 1000.0, NSEC_PER_SEC)];
+        return true;
+    }
+    return false;
+}
 /* Set the player current time to match the scrubber position. */
 - (IBAction)scrub:(id)sender {
     if ([sender isKindOfClass:[UISlider class]]) {
@@ -524,7 +535,9 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
             
             double time = duration * (value - minValue) / (maxValue - minValue);
             NSLog(@"seek time=%f", time);
-            [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC)];
+            if (![self updateSeekBaseOnPosition]) {
+                [self.player seekToTime:CMTimeMakeWithSeconds(time, NSEC_PER_SEC)];
+            }
         }
     }
 }

@@ -10,6 +10,8 @@
 #import "Quaternion.h"
 
 @interface Quaternion ()
+
+    @property (assign, nonatomic, readonly) int seek;
     @property (assign, nonatomic, readonly) float x;
     @property (assign, nonatomic, readonly) float y;
     @property (assign, nonatomic, readonly) float z;
@@ -18,11 +20,12 @@
 
 @implementation Quaternion 
 
-- (id) initWith:(float)X with:(float)Y with:(float)Z with:(float)W {
+- (id) initWith: (int) seek with:(float)X with:(float)Y with:(float)Z with:(float)W {
     _x = X;
     _y = Y;
     _z = Z;
     _w = W;
+    _seek = seek;
     return self;
 }
 

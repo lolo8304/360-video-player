@@ -59,13 +59,6 @@ class HomeViewController: UIViewController, UIGestureRecognizerDelegate {
         return count
     }
     
-    //MAK: actions
-    
-    @IBAction func playVideo(_ sender: UIButton) {
-        //self.launchVideo(name: "demo", ext: "m4v")
-        self.launchVideo(name: "DE-AXA-One_second_away-Final_v3_short_360", ext: "mp4")
-        
-    }
     
 }
 

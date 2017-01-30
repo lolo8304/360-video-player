@@ -465,18 +465,23 @@ int esGenSphere(int numSlices, float radius, float **vertices,
                     orientationLandscape = -1.0f;
                 }
             }
+            _seek = -1;
         } else {
             // see http://sunday-lab.blogspot.ch/2008/04/get-pitch-yaw-roll-from-quaternion.html
-            PlayerAction* action = [[CurrentQuaternion instance] dequeuePlayerAction];
+            PlayerAction* action = [[CurrentQuaternion instance] dequeuePlayerAction: self.videoPlayerController.devicePlayer];
             if (action != nil) {
                 if (![self.videoPlayerController runPlayerAction: action]) {
                     /* stop upate because of action */
+                    _seek = -1;
                     return;
                 }
             }
-            
             NSObject<QuaternionAPI>* remoteQuaternion = [[CurrentQuaternion instance] dequeue];
-            if (remoteQuaternion == nil) { return; }
+            if (remoteQuaternion == nil) {
+                _seek = -1;
+                return;
+            }
+            _seek = remoteQuaternion.seek;
             currentRoll = remoteQuaternion.roll;
             currentYaw = remoteQuaternion.yaw;
             currentPitch = remoteQuaternion.pitch;

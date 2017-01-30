@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         Connector.instance.startServer()
+        Content.instance.reload()
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -56,13 +57,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension UIViewController {
     
-    func launchVideo(url: URL) {
-        let videoController: HTY360PlayerVC = HTY360PlayerVC.init(nibName: "HTY360PlayerVC", bundle: nil, url: url)
+    func launchVideo(device: Device?, url: URL) {
+        let videoController: HTY360PlayerVC = HTY360PlayerVC.init(device?.player, nibName: "HTY360PlayerVC", bundle: nil, url: url)
         //self.dismiss(animated: true, completion: nil)
         self.present(videoController, animated: false, completion: nil)
     }
-    func launchVideo(name: String, ext: String) {
-        let videoController: HTY360PlayerVC = HTY360PlayerVC.init(nibName: "HTY360PlayerVC", bundle: nil, name: name, ext: ext)
+    func launchVideo(device: Device?, name: String, ext: String) {
+        let videoController: HTY360PlayerVC = HTY360PlayerVC.init(device?.player, nibName: "HTY360PlayerVC", bundle: nil, name: name, ext: ext)
         //self.dismiss(animated: true, completion: nil)
         self.present(videoController, animated: false, completion: nil)
     }

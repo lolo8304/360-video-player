@@ -10,10 +10,10 @@
 
 @interface EulerianAngle : NSObject<QuaternionAPI>
 
+@property (assign, nonatomic, readonly) int seek;
 @property (assign, nonatomic, readonly) float roll;
 @property (assign, nonatomic, readonly) float pitch;
 @property (assign, nonatomic, readonly) float yaw;
 
-- (id) initWith: (float) pitchX with: (float) rollY with: (float) yawZ;
-
+- (id) initWith: (int) seek with: (float) pitchX with: (float) rollY with: (float) yawZ;
 @end
