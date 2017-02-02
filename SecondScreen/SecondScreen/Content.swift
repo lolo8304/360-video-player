@@ -138,17 +138,35 @@ public class Content : NSObject {
         return nil;
     }
     
-    public func addNewVideo(_ newVideo: Video) {
+    public func addNewVideo(_ newVideo: Video) -> Bool {
         if (self.getVideo(name: newVideo.name!) != nil) {
-            return
+            return false
         }
         do {
             self.videos.append(newVideo)
             try newVideo.managedObjectContext?.save()
+            return true
         } catch {
             print(error)
+            return false
         }
-        
+    }
+    
+    public func updateVideo(_ video: Video) -> Bool {
+        let old: String = video.name!
+        video.name = "$$\(old)"
+        let existingVideo = self.getVideo(name: old)
+        video.name = old
+        if (existingVideo != nil && existingVideo != video) {
+            return false
+        }
+        do {
+            try video.managedObjectContext?.save()
+            return true
+        } catch {
+            print(error)
+            return false
+        }
     }
     public func removeVideo(_ video: Video) {
         self.videos.remove(object: video)
@@ -216,6 +234,12 @@ public class Content : NSObject {
 }
 
 public extension Video {
+    
+    public static let LANGUAGES: [String] = ["Deutsch : DE", "English : EN", "Francais : FR", "Italiano : IT"]
+    public static let MEDIA_EXT: [String] = ["mp4"]
+    public static let VERSIONS: [String] = ["standard", "long", "short", "teaser"]
+    public static let _360_TYPES: [String] = ["no 360: no", "360 sphere : _360", "Panorama Top/Bottom: _360_TB", "Panorama Bottom/Top: _360_BT", "Panorama Left/Right: _360_LR", "Panorama Right/Left: _360_RL"]
+    
     
     public func delete() {
         do {

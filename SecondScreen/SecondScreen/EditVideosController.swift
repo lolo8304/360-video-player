@@ -15,10 +15,11 @@ import SecondScreenShared
 import UIKit
 
 class EditVideosController: UICollectionViewController, UIGestureRecognizerDelegate,
-    UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+    UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
     @IBOutlet weak var videosCollectionView: UICollectionView!
     let imagePickerController = UIImagePickerController()
+    var video: Video?
     
 
     var appDelegate:AppDelegate {
@@ -45,6 +46,7 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
         self.videosCollectionView.delegate = self
         self.videosCollectionView.dataSource = self
         self.videosCollectionView.reloadData()
+        self.video = nil
         
     }
     
@@ -79,18 +81,18 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
         //cell.backgroundColor = UIColor.black
         
         let nameLabel = cell.contentView.viewWithTag(10) as? UILabel
-        let mediaNameLabel = cell.contentView.viewWithTag(20) as? UILabel
+        //let mediaNameLabel = cell.contentView.viewWithTag(20) as? UILabel
         let languageImageView = cell.contentView.viewWithTag(30) as? UIImageView
-        let sizeLabel = cell.contentView.viewWithTag(40) as? UILabel
+        let versionLabel = cell.contentView.viewWithTag(40) as? UILabel
         let timeLabel = cell.contentView.viewWithTag(50) as? UILabel
         
         let video: Video = self.videos()[indexPath.item]
         cell.video = video
         
-        mediaNameLabel?.text = video.mediaURLString
+        //mediaNameLabel?.text = video.mediaURLString
         nameLabel?.text = video.name
         timeLabel?.text = video.durationInSeconds.fromSecToTime()
-        sizeLabel?.text = video.sizeInBytes.asSizePrettyPrint()
+        versionLabel?.text = video.version
         
         DispatchQueue.main.async() { () -> Void in
             languageImageView?.image = UIImage(named: (video.language?.languageFlag())!)
@@ -118,7 +120,7 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
         
         let video: Video = self.videos()[indexPath.item]
         
-        self.launchVideo(device: nil, url: video.mediaURL())
+        self.launchVideo(device: nil, url: video.mediaURL(), playerDelegate: video)
         //        performSegue(withIdentifier: "PlayDevice", sender: nil)
     }
     
@@ -133,16 +135,6 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
     }
     
     
-    
-    @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
-        if (sender.state == UIGestureRecognizerState.began) {
-            let cell: UIVideoCollectionViewCell = sender.view as! UIVideoCollectionViewCell
-            let alert = UIAlertController(title: "Alert", message: "Edit mode is not implemented yet", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            //performSegue(withIdentifier: "AddEditDevice", sender: nil)
-        }
-    }
     
     @IBAction func addVideo(_ sender: UIBarButtonItem) {
     }
@@ -190,4 +182,31 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
         imagePickerController.dismiss(animated: true, completion: nil)
     }
     
+    
+    @IBAction func longPress(_ sender: UILongPressGestureRecognizer) {
+        if (sender.state == UIGestureRecognizerState.began) {
+            let cell: UIVideoCollectionViewCell = sender.view as! UIVideoCollectionViewCell
+            self.video = cell.video
+            
+            /*
+             let alert = UIAlertController(title: "Alert", message: "Edit mode is not implemented yet", preferredStyle: UIAlertControllerStyle.alert)
+             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+             self.present(alert, animated: true, completion: nil)
+             */
+            //performSegue(withIdentifier: "AddEditDevice", sender: nil)
+            performSegue(withIdentifier: "EditVideo", sender: sender)
+            
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if (segue.identifier == "EditVideo") {
+            let controller: EditVideoViewController = segue.destination as! EditVideoViewController
+            controller.video = self.video
+        }
+    }
+    
 }
+

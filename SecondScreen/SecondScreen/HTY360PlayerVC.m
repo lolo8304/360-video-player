@@ -33,6 +33,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 @property (strong, nonatomic) IBOutlet UISlider *progressSlider;
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UIButton *gyroButton;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) HTYGLKVC *glkViewController;
 @property (strong, nonatomic) AVPlayerItemVideoOutput* videoOutput;
 @property (strong, nonatomic) AVPlayer* player;
@@ -102,6 +103,9 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
                                                  name:UIApplicationDidBecomeActiveNotification
                                                object:nil];
     [self startPlayer];
+    if ([self playerDelegate] != nil) {
+        self.titleLabel.text = [[self playerDelegate] videoPlayerTitle];
+    }
 }
 
 - (void)applicationWillResignActive:(NSNotification *)notification {
@@ -156,6 +160,10 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 }
 - (void)viewDidAppear:(BOOL)animated {
     [self playButtonTouched: nil];
+    if (self.devicePlayer == nil) {
+        // video has not attached device
+        [self.glkViewController startDeviceMotion];
+    }
 //    [self gyroButtonTouched: nil];
 }
 
@@ -448,6 +456,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     }
     double duration = CMTimeGetSeconds(playerDuration);
     if (isfinite(duration)) {
+        [self updateDuration: duration];
         CGFloat width = CGRectGetWidth([self.progressSlider bounds]);
         interval = 0.5f * duration / width;
     }
@@ -477,13 +486,18 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
          
          See the AV Foundation Release Notes for iOS 4.3 for more information.
          */
-        
         return ([self.playerItem duration]);
     }
     
     return (kCMTimeInvalid);
 }
 
+
+- (void)updateDuration: (double) durationInS {
+    if (self.playerDelegate != nil) {
+        [self.playerDelegate videoPlayerDuration: durationInS];
+    }
+}
 - (void)syncScrubber {
     CMTime playerDuration = [self playerItemDuration];
     if (CMTIME_IS_INVALID(playerDuration)) {
@@ -493,6 +507,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     
     double duration = CMTimeGetSeconds(playerDuration);
     if (isfinite(duration)) {
+        [self updateDuration: duration];
         float minValue = [self.progressSlider minimumValue];
         float maxValue = [self.progressSlider maximumValue];
         double time = CMTimeGetSeconds([self.player currentTime]);
@@ -529,6 +544,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         
         double duration = CMTimeGetSeconds(playerDuration);
         if (isfinite(duration)) {
+            [self updateDuration: duration];
             float minValue = [slider minimumValue];
             float maxValue = [slider maximumValue];
             float value = [slider value];
@@ -552,6 +568,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         
         double duration = CMTimeGetSeconds(playerDuration);
         if (isfinite(duration)) {
+            [self updateDuration: duration];
             CGFloat width = CGRectGetWidth([self.progressSlider bounds]);
             double tolerance = 0.5f * duration / width;
             
@@ -668,12 +685,14 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 #pragma mark - gyro button
 
 - (IBAction)gyroButtonTouched:(id)sender {
-    if (self.glkViewController.motionType == kUsingDeviceMotion) {
-        [self.glkViewController startRemoteMotion];
-    } else {
+    if (self.devicePlayer != nil) {
+        if (self.glkViewController.motionType == kUsingDeviceMotion) {
+            [self.glkViewController startRemoteMotion];
+        } else {
             [self.glkViewController startDeviceMotion];
+        }
     }
-    self.gyroButton.selected = self.glkViewController.isUsingMotion;
+    self.gyroButton.selected = self.glkViewController.motionType == kUsingDeviceMotion;
 }
 
 #pragma mark - back button

@@ -9,25 +9,25 @@
 import UIKit
 
 @objc(NamedListViewControllerDelegate)
-protocol NamedListViewControllerDelegate {
+public protocol NamedListViewControllerDelegate {
     @objc optional func namedListSelection(
         sender: NamedListViewController,
         name: String,
         selectedValue: String)
 }
 
-class NamedListViewController : UITableViewController {
+public class NamedListViewController : UITableViewController {
     
     var namedListSelection: [String] = [ ]
     let tableviewCellIdentifier = "namedListSelectionCell"
     var defaultNamedListSelection : String = ""
-    var delegate: NamedListViewControllerDelegate?
+    public var delegate: NamedListViewControllerDelegate?
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    convenience init(style: UITableViewStyle, name: String, defaultValue: String, list: [String]) {
+    convenience public init(style: UITableViewStyle, name: String, defaultValue: String, list: [String]) {
         self.init(style: style)
         title = name
         namedListSelection = list
@@ -35,7 +35,7 @@ class NamedListViewController : UITableViewController {
     }
     
     // Initialize the tableview
-    override init(style: UITableViewStyle) {
+    override public init(style: UITableViewStyle) {
         super.init(style: style)
         tableView.register(UITableViewCell.classForCoder(),
                                 forCellReuseIdentifier: tableviewCellIdentifier)
@@ -43,7 +43,7 @@ class NamedListViewController : UITableViewController {
     
     // We only have three choices, but there's no reason this tableview can't be populated
     // dynamically from CoreData, NSDefaults, or something else.
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return namedListSelection.count
     }
     
@@ -54,7 +54,7 @@ class NamedListViewController : UITableViewController {
 
     }
     // This just populates each row in the table, and if we've selected it, we'll check it
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: tableviewCellIdentifier,
             for: indexPath as IndexPath) as UITableViewCell
@@ -71,7 +71,7 @@ class NamedListViewController : UITableViewController {
     }
     
     // Save the value the user picks
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let theDelegate = delegate {
             defaultNamedListSelection = keyFrom(text: namedListSelection[indexPath.row], seperatedBy: ":")
             theDelegate.namedListSelection!(sender: self, name: title!, selectedValue: defaultNamedListSelection)

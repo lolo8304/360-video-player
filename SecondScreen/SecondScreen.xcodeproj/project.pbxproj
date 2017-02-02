@@ -44,10 +44,11 @@
 		E1A1350D1E180538003A4B24 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A1350C1E180538003A4B24 /* Queue.swift */; };
 		E1A135111E1809C6003A4B24 /* CurrentQuaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A135101E1809C6003A4B24 /* CurrentQuaternion.m */; };
 		E1A135151E1810C0003A4B24 /* Quaternion.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A135141E1810C0003A4B24 /* Quaternion.m */; };
-		E1BE47BE1E3759ED00585816 /* NamedListSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BE47BD1E3759ED00585816 /* NamedListSelectionViewController.swift */; };
 		E1C039821E3019C9009698D3 /* SelectDeviceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C039811E3019C9009698D3 /* SelectDeviceController.swift */; };
 		E1C039841E301B13009698D3 /* UIDeviceCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1C039831E301B13009698D3 /* UIDeviceCollectionViewCell.swift */; };
 		E1E0912B1E3E44DC00BB0933 /* SecondScreenShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1763ABF1E3CFBA200B0659B /* SecondScreenShared.framework */; };
+		E1E519BC1E42452F00C798D8 /* EditVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E519BB1E42452F00C798D8 /* EditVideoViewController.swift */; };
+		E1E519BD1E429FE100C798D8 /* NamedListSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BE47BD1E3759ED00585816 /* NamedListSelectionViewController.swift */; };
 		E1E99EF51E140AFA0055104C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF41E140AFA0055104C /* HomeViewController.swift */; };
 		E1E99EF71E141A7D0055104C /* Connector.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1E99EF61E141A7D0055104C /* Connector.swift */; };
 /* End PBXBuildFile section */
@@ -152,9 +153,10 @@
 		E1A135121E180A00003A4B24 /* CurrentQuaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrentQuaternion.h; sourceTree = "<group>"; };
 		E1A135131E180EE4003A4B24 /* Quaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Quaternion.h; sourceTree = "<group>"; };
 		E1A135141E1810C0003A4B24 /* Quaternion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Quaternion.m; sourceTree = "<group>"; };
-		E1BE47BD1E3759ED00585816 /* NamedListSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NamedListSelectionViewController.swift; sourceTree = "<group>"; };
+		E1BE47BD1E3759ED00585816 /* NamedListSelectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NamedListSelectionViewController.swift; path = "../Share-VR/NamedListSelectionViewController.swift"; sourceTree = "<group>"; };
 		E1C039811E3019C9009698D3 /* SelectDeviceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectDeviceController.swift; sourceTree = "<group>"; };
 		E1C039831E301B13009698D3 /* UIDeviceCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDeviceCollectionViewCell.swift; sourceTree = "<group>"; };
+		E1E519BB1E42452F00C798D8 /* EditVideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditVideoViewController.swift; sourceTree = "<group>"; };
 		E1E99EF41E140AFA0055104C /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E1E99EF61E141A7D0055104C /* Connector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connector.swift; sourceTree = "<group>"; };
 		F6EB514396150EE61CE2F6E6 /* Pods-SecondScreen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecondScreen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecondScreen/Pods-SecondScreen.debug.xcconfig"; sourceTree = "<group>"; };
@@ -322,6 +324,7 @@
 				E1763AC11E3CFBA200B0659B /* SecondScreen-Shared.h */,
 				E1763AC21E3CFBA200B0659B /* Info.plist */,
 				E1763AD01E3D0B0600B0659B /* ContentManager.swift */,
+				E1BE47BD1E3759ED00585816 /* NamedListSelectionViewController.swift */,
 			);
 			name = SecondScreenShared;
 			path = "SecondScreen-Shared";
@@ -344,7 +347,6 @@
 				E1955D491E363E1600546A91 /* ShareViewController.swift */,
 				E1955D4B1E363E1600546A91 /* MainInterface.storyboard */,
 				E1955D4E1E363E1600546A91 /* Info.plist */,
-				E1BE47BD1E3759ED00585816 /* NamedListSelectionViewController.swift */,
 			);
 			path = "Share-VR";
 			sourceTree = "<group>";
@@ -371,11 +373,12 @@
 		E1E99EFA1E141C270055104C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E11AFDF91E10355F009C7E8F /* ViewController.swift */,
-				E1C039811E3019C9009698D3 /* SelectDeviceController.swift */,
-				E1955D3C1E350B2100546A91 /* EditVideosController.swift */,
-				E1C039831E301B13009698D3 /* UIDeviceCollectionViewCell.swift */,
 				E1E99EF41E140AFA0055104C /* HomeViewController.swift */,
+				E1955D3C1E350B2100546A91 /* EditVideosController.swift */,
+				E1E519BB1E42452F00C798D8 /* EditVideoViewController.swift */,
+				E1C039811E3019C9009698D3 /* SelectDeviceController.swift */,
+				E1C039831E301B13009698D3 /* UIDeviceCollectionViewCell.swift */,
+				E11AFDF91E10355F009C7E8F /* ViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -675,6 +678,7 @@
 				E1E99EF71E141A7D0055104C /* Connector.swift in Sources */,
 				E11AFE2A1E12B0D5009C7E8F /* HTYGLKVC.m in Sources */,
 				E1A1350D1E180538003A4B24 /* Queue.swift in Sources */,
+				E1E519BC1E42452F00C798D8 /* EditVideoViewController.swift in Sources */,
 				E19F71D11E19AB4B009D7926 /* EulerianAngle.m in Sources */,
 				E1A135151E1810C0003A4B24 /* Quaternion.m in Sources */,
 				E1955D3D1E350B2100546A91 /* EditVideosController.swift in Sources */,
@@ -705,6 +709,7 @@
 				E1763ACC1E3D063400B0659B /* Content.swift in Sources */,
 				E1763AD11E3D0B0600B0659B /* ContentManager.swift in Sources */,
 				E1763ACF1E3D0A8400B0659B /* Model.xcdatamodeld in Sources */,
+				E1E519BD1E429FE100C798D8 /* NamedListSelectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -712,7 +717,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E1BE47BE1E3759ED00585816 /* NamedListSelectionViewController.swift in Sources */,
 				E1955D4A1E363E1600546A91 /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

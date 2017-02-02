@@ -136,9 +136,10 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
         self.connector.choose(device: device)
         device.play()
         if (device.player.video != nil) {
-            self.launchVideo(device: device, url: device.player.video!.mediaURL())
+            self.launchVideo(device: device, url: device.player.video!.mediaURL(), playerDelegate: device.player.video!)
             //        performSegue(withIdentifier: "PlayDevice", sender: nil)
         } else {
+            device.stop()
             let alert = UIAlertController(title: "Alert", message: "Player doesn't play any video", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
@@ -164,6 +165,7 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
             //performSegue(withIdentifier: "AddEditDevice", sender: nil)
+            
         }
     }
     

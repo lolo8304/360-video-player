@@ -11,7 +11,8 @@
 #import "CurrentQuaternion.h"
 
 @protocol HTY360PlayerVCDelegate <NSObject>
-- (void)videoDuration: (float) duration;
+- (void)videoPlayerDuration: (double) duration;
+- (NSString*)videoPlayerTitle;
 @end
 
 @interface HTY360PlayerVC : UIViewController

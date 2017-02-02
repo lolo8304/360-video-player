@@ -13,6 +13,8 @@ import SecondScreenShared
 
 class ShareViewController: SLComposeServiceViewController, NamedListViewControllerDelegate {
 
+    
+    
     private var selectedLanguage: String = "DE"
     private var configLanguage: SLComposeSheetConfigurationItem?
 
@@ -85,7 +87,7 @@ class ShareViewController: SLComposeServiceViewController, NamedListViewControll
         return self.configLanguage!
     }
     func namedListSelection() {
-        let controller = NamedListViewController(style: .plain, name: "Language", defaultValue: self.selectedLanguage, list: ["Deutsch : DE", "English : EN", "Francais : FR", "Italiano : IT"])
+        let controller = NamedListViewController(style: .plain, name: "Language", defaultValue: self.selectedLanguage, list: Video.LANGUAGES)
         controller.delegate = self
         pushConfigurationViewController(controller)
     }
@@ -103,7 +105,7 @@ class ShareViewController: SLComposeServiceViewController, NamedListViewControll
         return self.configMedia!
     }
     func mediaSelection() {
-        let controller = NamedListViewController(style: .plain, name: "Media", defaultValue: self.selectedMedia, list: ["mp4"])
+        let controller = NamedListViewController(style: .plain, name: "Media", defaultValue: self.selectedMedia, list: Video.MEDIA_EXT)
         controller.delegate = self
         pushConfigurationViewController(controller)
     }
@@ -121,7 +123,7 @@ class ShareViewController: SLComposeServiceViewController, NamedListViewControll
         return self.config360Type!
     }
     func _360TypeSelection() {
-        let controller = NamedListViewController(style: .plain, name: "360 type", defaultValue: self.selected360Type, list: ["360 sphere : _360", "Panorama Top/Bottom: _360_TB", "Panorama Bottom/Top: _360_BT", "Panorama Left/Right: _360_LR", "Panorama Right/Left: _360_RL"])
+        let controller = NamedListViewController(style: .plain, name: "360 type", defaultValue: self.selected360Type, list: Video._360_TYPES)
         controller.delegate = self
         pushConfigurationViewController(controller)
     }
@@ -139,7 +141,7 @@ class ShareViewController: SLComposeServiceViewController, NamedListViewControll
         return self.configVersion!
     }
     func versionSelection() {
-        let controller = NamedListViewController(style: .plain, name: "Version", defaultValue: self.selectedVersion, list: ["standard", "long", "short", "teaser"])
+        let controller = NamedListViewController(style: .plain, name: "Version", defaultValue: self.selectedVersion, list: Video.VERSIONS)
         controller.delegate = self
         pushConfigurationViewController(controller)
     }
@@ -168,9 +170,9 @@ class ShareViewController: SLComposeServiceViewController, NamedListViewControll
         // To add configuration options via table cells at the bottom of the sheet, return an array of SLComposeSheetConfigurationItem here.
         return [
             self.getConfigLanguage(),
+            self.getConfigVersion(),
             self.getConfigMedia(),
-            self.getConfig360Type(),
-            self.getConfigVersion()
+            self.getConfig360Type()
         ]
     }
 

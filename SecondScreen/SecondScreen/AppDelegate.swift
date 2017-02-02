@@ -57,8 +57,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension UIViewController {
     
-    func launchVideo(device: Device?, url: URL) {
+    func launchVideo(device: Device?, url: URL, playerDelegate: HTY360PlayerVCDelegate) {
         let videoController: HTY360PlayerVC = HTY360PlayerVC.init(device?.player, nibName: "HTY360PlayerVC", bundle: nil, url: url)
+        videoController.playerDelegate = playerDelegate;
         //self.dismiss(animated: true, completion: nil)
         self.present(videoController, animated: false, completion: nil)
     }
@@ -71,5 +72,18 @@ extension UIViewController {
 }
 
 
+extension Video : HTY360PlayerVCDelegate {
+    public func videoPlayerTitle() -> String! {
+        return "\(self.name) / \(self.version) / \(self.language)"
+    }
+    public func videoPlayerDuration(_ duration: Double) {
+        let oldDuration = self.durationInSeconds
+        let newDuration = Int64(duration)
+        if (oldDuration != newDuration) {
+            self.durationInSeconds = newDuration
+            Content.instance.updateVideo(self)
+        }
+    }
+}
 
 
