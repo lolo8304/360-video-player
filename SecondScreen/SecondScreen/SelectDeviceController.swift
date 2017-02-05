@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SwiftyJSON
+import SecondScreenShared
 
 // https://www.raywenderlich.com/136159/uicollectionview-tutorial-getting-started
 
@@ -109,7 +110,7 @@ class SelectDeviceController: UIViewController, UICollectionViewDelegate, UIColl
             } else {
                 statusImageView?.image = UIImage(named: "player-pause")
             }
-            languageImageView?.image = UIImage(named: device.player.language.languageFlag())
+            languageImageView?.image = device.player.video!.languageUIImage()
         }
         
         //device.firstUIImage(view: imageView!)

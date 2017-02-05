@@ -13,6 +13,7 @@
 @protocol HTY360PlayerVCDelegate <NSObject>
 - (void)videoPlayerDuration: (double) duration;
 - (NSString*)videoPlayerTitle;
+- (void)videoSaveSnapshot: (UIImage*) image;
 @end
 
 @interface HTY360PlayerVC : UIViewController

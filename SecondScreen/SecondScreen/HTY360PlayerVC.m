@@ -33,6 +33,8 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 @property (strong, nonatomic) IBOutlet UISlider *progressSlider;
 @property (strong, nonatomic) IBOutlet UIButton *backButton;
 @property (strong, nonatomic) IBOutlet UIButton *gyroButton;
+@property (weak, nonatomic) IBOutlet UIButton *snapshotButton;
+
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) HTYGLKVC *glkViewController;
 @property (strong, nonatomic) AVPlayerItemVideoOutput* videoOutput;
@@ -84,6 +86,7 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
     [self configureControleBackgroundView];
     [self configureBackButton];
     [self configureGyroButton];
+    [self configureSnapshotButton];
     
     [[UIApplication sharedApplication] setIdleTimerDisabled:YES];
     
@@ -370,6 +373,15 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
 - (void)configureGyroButton {
     self.gyroButton.backgroundColor = [UIColor clearColor];
     self.gyroButton.showsTouchWhenHighlighted = YES;
+}
+- (void)configureSnapshotButton {
+    if (self.devicePlayer != nil) {
+        self.snapshotButton.enabled = TRUE;
+    } else {
+        self.snapshotButton.enabled = TRUE;
+    }
+    self.snapshotButton.backgroundColor = [UIColor clearColor];
+    self.snapshotButton.showsTouchWhenHighlighted = YES;
 }
 
 #pragma mark - controls management
@@ -716,5 +728,26 @@ static void *AVPlayerItemStatusContext = &AVPlayerItemStatusContext;
         self.timeObserver = nil;
     }
 }
+
+- (IBAction)takeSnapshot:(id)sender {
+    UIImage * snapshot = [self getAVPlayerScreenshot];
+    if (self.playerDelegate != nil) {
+        [self.playerDelegate videoSaveSnapshot: snapshot];
+    }
+}
+
+-(UIImage *)getAVPlayerScreenshot {
+    AVAsset *asset = self.playerItem.asset;
+    AVAssetImageGenerator *imageGenerator = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    imageGenerator.requestedTimeToleranceAfter = kCMTimeZero;
+    imageGenerator.requestedTimeToleranceBefore = kCMTimeZero;
+    CGImageRef thumb = [imageGenerator copyCGImageAtTime:self.player.currentTime
+                                              actualTime:NULL
+                                                   error:NULL];
+    UIImage *videoImage = [UIImage imageWithCGImage:thumb];
+    CGImageRelease(thumb);
+    return videoImage;
+}
+
 
 @end

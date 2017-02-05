@@ -85,6 +85,7 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
         let languageImageView = cell.contentView.viewWithTag(30) as? UIImageView
         let versionLabel = cell.contentView.viewWithTag(40) as? UILabel
         let timeLabel = cell.contentView.viewWithTag(50) as? UILabel
+        let previewImage = cell.contentView.viewWithTag(60) as? UIImageView
         
         let video: Video = self.videos()[indexPath.item]
         cell.video = video
@@ -95,7 +96,8 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
         versionLabel?.text = video.version
         
         DispatchQueue.main.async() { () -> Void in
-            languageImageView?.image = UIImage(named: (video.language?.languageFlag())!)
+            languageImageView?.image = video.languageUIImage()
+            previewImage?.image = video.previewUIImage()
         }
         
         //device.firstUIImage(view: imageView!)
@@ -119,8 +121,9 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
         _ = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! UIVideoCollectionViewCell
         
         let video: Video = self.videos()[indexPath.item]
-        
-        self.launchVideo(device: nil, url: video.mediaURL(), playerDelegate: video)
+        performSegue(withIdentifier: "EditVideo", sender: nil)
+
+        //self.launchVideo(device: nil, url: video.mediaURL(), playerDelegate: video)
         //        performSegue(withIdentifier: "PlayDevice", sender: nil)
     }
     
@@ -187,15 +190,6 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
         if (sender.state == UIGestureRecognizerState.began) {
             let cell: UIVideoCollectionViewCell = sender.view as! UIVideoCollectionViewCell
             self.video = cell.video
-            
-            /*
-             let alert = UIAlertController(title: "Alert", message: "Edit mode is not implemented yet", preferredStyle: UIAlertControllerStyle.alert)
-             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-             self.present(alert, animated: true, completion: nil)
-             */
-            //performSegue(withIdentifier: "AddEditDevice", sender: nil)
-            performSegue(withIdentifier: "EditVideo", sender: sender)
-            
         }
     }
     

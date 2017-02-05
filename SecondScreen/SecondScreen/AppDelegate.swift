@@ -84,6 +84,17 @@ extension Video : HTY360PlayerVCDelegate {
             Content.instance.updateVideo(self)
         }
     }
+    public func videoSaveSnapshot(_ image: UIImage!) {
+        do {
+            let uuid = UUID().uuidString
+            let url = sharedApplicationDocumentsDirectory.appendingPathComponent("\(uuid).png")
+            try UIImagePNGRepresentation(image)?.write(to: url!)
+            self.previewURLString = url!.absoluteString
+            Content.instance.updateVideo(self)
+        } catch let anError {
+            NSLog("error while writing UI image to file \(anError.localizedDescription)")
+        }
+    }
 }
 
 

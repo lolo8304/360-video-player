@@ -16,6 +16,7 @@
                 <outlet property="playButton" destination="3Pr-21-8dz" id="Nom-Nr-PNu"/>
                 <outlet property="playerControlBackgroundView" destination="utK-WR-lKf" id="mZV-sx-MoY"/>
                 <outlet property="progressSlider" destination="UtA-4n-mGO" id="93H-Vc-Wi3"/>
+                <outlet property="snapshotButton" destination="hut-9P-hf0" id="Vco-OA-fGU"/>
                 <outlet property="titleLabel" destination="mpt-Nf-S5O" id="IUR-lh-pEK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -29,7 +30,7 @@
                     <rect key="frame" x="30" y="284" width="676" height="100"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pr-21-8dz" userLabel="Play Button">
-                            <rect key="frame" x="316" y="8" width="44" height="44"/>
+                            <rect key="frame" x="236" y="8" width="44" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="Daa-lB-rAT"/>
                                 <constraint firstAttribute="width" constant="44" id="KLU-Pd-WBq"/>
@@ -75,12 +76,27 @@
                                 <action selector="gyroButtonTouched:" destination="-1" eventType="touchUpInside" id="vH0-KG-9yS"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hut-9P-hf0">
+                            <rect key="frame" x="396" y="8" width="44" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="W0y-cv-cgh"/>
+                                <constraint firstAttribute="height" constant="44" id="kZM-sJ-d07"/>
+                            </constraints>
+                            <state key="normal" image="playback_snapshot">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="takeSnapshot:" destination="-1" eventType="touchUpInside" id="0fi-cR-Nl5"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="3Pr-21-8dz" firstAttribute="centerX" secondItem="utK-WR-lKf" secondAttribute="centerX" id="831-O0-f35"/>
+                        <constraint firstItem="3Pr-21-8dz" firstAttribute="centerX" secondItem="utK-WR-lKf" secondAttribute="centerX" constant="-80" id="831-O0-f35"/>
                         <constraint firstItem="XuQ-LV-4yQ" firstAttribute="leading" secondItem="utK-WR-lKf" secondAttribute="leading" constant="8" id="8bF-6B-2vv"/>
                         <constraint firstAttribute="bottom" secondItem="UtA-4n-mGO" secondAttribute="bottom" constant="8" id="Bvi-0g-Mhb"/>
+                        <constraint firstItem="hut-9P-hf0" firstAttribute="top" secondItem="3Pr-21-8dz" secondAttribute="top" id="FCt-mV-6dn"/>
+                        <constraint firstItem="hut-9P-hf0" firstAttribute="centerX" secondItem="UtA-4n-mGO" secondAttribute="centerX" constant="80" id="NBp-vi-4Q7"/>
                         <constraint firstAttribute="height" constant="100" id="UAs-oO-mVR"/>
                         <constraint firstItem="UtA-4n-mGO" firstAttribute="leading" secondItem="utK-WR-lKf" secondAttribute="leading" constant="8" id="ViZ-mR-inX"/>
                         <constraint firstItem="3Pr-21-8dz" firstAttribute="top" secondItem="utK-WR-lKf" secondAttribute="top" constant="8" id="dzN-aN-3V6"/>
@@ -117,5 +133,6 @@
         <image name="back" width="512" height="512"/>
         <image name="move" width="87" height="44"/>
         <image name="playback_play" width="256" height="256"/>
+        <image name="playback_snapshot" width="256" height="256"/>
     </resources>
 </document>

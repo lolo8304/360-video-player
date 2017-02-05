@@ -15,24 +15,50 @@ class EditVideoViewController: UIViewController, UINavigationControllerDelegate,
     @IBOutlet weak var titleLabel: UITextField!
     @IBOutlet weak var mediaExtLabel: UITextField!
     @IBOutlet weak var languageLabel: UITextField!
+    @IBOutlet weak var languageView: UIImageView!
     @IBOutlet weak var versionLabel: UITextField!
     @IBOutlet weak var typeLabel: UITextField!
 
+    @IBOutlet weak var snapshotImage: UIImageView!
+    @IBOutlet weak var sizeLabel: UITextField!
+    @IBOutlet weak var durationLabel: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = self.video?.name
         titleLabel.delegate = self
+        
         mediaExtLabel.text = self.video?.mediaExt
         mediaExtLabel.delegate = self
-        languageLabel.text = self.video?.language
+        
         languageLabel.delegate = self
+        self.set(language: (self.video?.language!)!)
+        
         versionLabel.text = self.video?.version
         versionLabel.delegate = self
         
+        sizeLabel.text = "\(self.video?.sizeInBytes)"
+        durationLabel.text = self.video?.durationInSeconds.fromSecToTime()
+        
         //typeLabel.text = self.video?.type .... does not exists yet
         typeLabel.delegate = self
-
+        
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        let url: URL? = self.video?.previewURL()
+        if (url != nil) {
+            var image: UIImage?
+            do {
+                image = try UIImage(data: Data(contentsOf: url!))!
+            } catch {
+                return
+            }
+            DispatchQueue.main.async() { () -> Void in
+                self.snapshotImage.image = image
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,6 +66,10 @@ class EditVideoViewController: UIViewController, UINavigationControllerDelegate,
         // Dispose of any resources that can be recreated.
     }
     
+    func set(language: String) {
+        languageLabel.text = language
+        languageView.image = UIImage(named: language)
+    }
 
     // MARK: - Navigation
 
@@ -70,6 +100,9 @@ class EditVideoViewController: UIViewController, UINavigationControllerDelegate,
         return true
     }
     
+    @IBAction func playVideo(_ sender: UIButton) {
+        self.launchVideo(device: nil, url: self.video!.mediaURL(), playerDelegate: self.video!)
+    }
     @IBAction func save(_ sender: UIBarButtonItem) {
         self.video!.name = self.titleLabel.text
         self.video!.mediaExt = self.mediaExtLabel.text
@@ -97,7 +130,7 @@ class EditVideoViewController: UIViewController, UINavigationControllerDelegate,
     
     func namedListSelection(sender: NamedListViewController, name: String, selectedValue: String) {
         if (name == "Language") {
-            self.languageLabel.text = selectedValue
+            self.set(language: selectedValue)
         }
         if (name == "Extension") {
             self.mediaExtLabel.text = selectedValue
@@ -110,5 +143,5 @@ class EditVideoViewController: UIViewController, UINavigationControllerDelegate,
         }
         self.navigationController!.popViewController(animated: true)
     }
-
+    
 }

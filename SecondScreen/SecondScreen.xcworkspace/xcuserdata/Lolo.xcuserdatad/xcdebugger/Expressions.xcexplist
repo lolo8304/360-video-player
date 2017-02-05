@@ -3,10 +3,34 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "Video.updateSizeAndDuration() -&gt; ():Content.swift">
+         contextName = "-[HTYGLKVC update]:HTYGLKVC.m">
          <PersistentStrings>
             <PersistentString
-               value = "duration.isIndefinite">
+               value = "remoteQuaternion == nil">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "EditVideoViewController.viewWillAppear(Bool) -&gt; ():EditVideoViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "self.video!.previewURLString">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Int.asSizePrettyPrint() -&gt; String:Content.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "String(format: &quot;%.1f \(levels[index])&quot;, size)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "Connector.server(PSWebSocketServer!, acceptWebSocketWith : URLRequest!, address : Data!, trust : SecTrust!, response : AutoreleasingUnsafeMutablePointer&lt;HTTPURLResponse?&gt;!) -&gt; Bool:Connector.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "request.httpBody">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
@@ -19,31 +43,15 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "-[HTYGLKVC update]:HTYGLKVC.m">
+         contextName = "Video.updateSizeAndDuration() -&gt; ():Content.swift">
          <PersistentStrings>
             <PersistentString
-               value = "remoteQuaternion == nil">
+               value = "duration.isIndefinite">
             </PersistentString>
          </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "HomeViewController.switchImage() -&gt; ():HomeViewController.swift">
-      </ContextState>
-      <ContextState
-         contextName = "Connector.server(PSWebSocketServer!, acceptWebSocketWith : URLRequest!, address : Data!, trust : SecTrust!, response : AutoreleasingUnsafeMutablePointer&lt;HTTPURLResponse?&gt;!) -&gt; Bool:Connector.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "request.httpBody">
-            </PersistentString>
-         </PersistentStrings>
-      </ContextState>
-      <ContextState
-         contextName = "Int.asSizePrettyPrint() -&gt; String:Content.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "String(format: &quot;%.1f \(levels[index])&quot;, size)">
-            </PersistentString>
-         </PersistentStrings>
       </ContextState>
    </ContextStates>
 </VariablesViewState>

@@ -52,14 +52,6 @@ extension String {
     public func fromTimeToMilliseconds() -> Int {
         return self.fromTimeToSeconds() * 1000
     }
-    public func languageFlag() -> String {
-        switch self {
-        case "EN":
-            return "GB"
-        default:
-            return self
-        }
-    }
     
 }
 
@@ -254,6 +246,13 @@ public extension Video {
     public func mediaURL() -> URL {
         return URL(string: self.mediaURLString!)!
     }
+    public func previewURL() -> URL? {
+        if (self.previewURLString != nil) {
+            return URL(string: self.previewURLString!)!
+        } else {
+            return nil
+        }
+    }
     
     private func updateSizeAndDuration() {
         if (self.mediaURLString!.hasPrefix("assets-library://")) {
@@ -302,6 +301,24 @@ public extension Video {
         self.sizeInBytes = Int64(sizeInBytes)
         self.updateSizeAndDuration()
         return self
+    }
+    
+    public func languageUIImage() -> UIImage? {
+        return UIImage(named: (self.language)!)
+    }
+    
+    public func previewUIImage() -> UIImage? {
+        let url: URL? = self.previewURL()
+        if (url != nil) {
+            do {
+                let image: UIImage = try UIImage(data: Data(contentsOf: url!))!
+                return image
+            } catch {
+                return nil
+            }
+        } else {
+            return nil
+        }
     }
     
 }

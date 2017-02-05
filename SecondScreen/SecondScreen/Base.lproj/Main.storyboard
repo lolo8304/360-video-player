@@ -141,6 +141,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="180" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
+                                        <imageView userInteractionEnabled="NO" alpha="0.29999999999999999" tag="60" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="VR-0" translatesAutoresizingMaskIntoConstraints="NO" id="yPq-mc-kMJ">
+                                            <rect key="frame" x="-30" y="-14" width="240" height="128"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dba-xi-FgQ">
                                             <rect key="frame" x="8" y="8" width="126" height="50"/>
                                             <constraints>
@@ -316,47 +320,105 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleAspectFit" misplaced="YES" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="fEO-05-Ljz">
-                                <rect key="frame" x="20" y="62" width="627" height="150"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="BYm-IX-7Vn">
+                                <rect key="frame" x="20" y="64" width="627" height="230"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of video" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Wou-Ft-1cb">
-                                        <rect key="frame" x="0.0" y="0.0" width="627" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="mp4" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Vu-Zp-bu5">
-                                        <rect key="frame" x="0.0" y="30" width="627" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="DE" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tb5-J1-iLx">
-                                        <rect key="frame" x="0.0" y="60" width="627" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="short" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w7R-je-jUg">
-                                        <rect key="frame" x="0.0" y="90" width="627" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="_360" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KK5-YO-S7J">
-                                        <rect key="frame" x="0.0" y="120" width="627" height="30"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="fEO-05-Ljz">
+                                        <rect key="frame" x="0.0" y="0.0" width="313.5" height="120"/>
+                                        <subviews>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name of video" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Wou-Ft-1cb">
+                                                <rect key="frame" x="0.0" y="0.0" width="313.5" height="30"/>
+                                                <nil key="textColor"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="JxY-mq-qXZ">
+                                                <rect key="frame" x="0.0" y="30" width="313.5" height="30"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="mp4" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Vu-Zp-bu5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="157" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="4tO-C6-tNV">
+                                                        <rect key="frame" x="157" y="0.0" width="156.5" height="30"/>
+                                                        <subviews>
+                                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="DE" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="tb5-J1-iLx">
+                                                                <rect key="frame" x="0.0" y="0.0" width="78" height="30"/>
+                                                                <nil key="textColor"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits"/>
+                                                            </textField>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="DE" translatesAutoresizingMaskIntoConstraints="NO" id="UO9-HG-M8I">
+                                                                <rect key="frame" x="78" y="0.0" width="78.5" height="30"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="5kp-Pg-eT3">
+                                                <rect key="frame" x="0.0" y="60" width="313.5" height="30"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="short" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="w7R-je-jUg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="157" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="_360" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KK5-YO-S7J">
+                                                        <rect key="frame" x="157" y="0.0" width="156.5" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="wr1-pg-4cc">
+                                                <rect key="frame" x="0.0" y="90" width="313.5" height="30"/>
+                                                <subviews>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="00:00" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ff0-lM-nwY">
+                                                        <rect key="frame" x="0.0" y="0.0" width="157" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BvH-uF-wx5">
+                                                        <rect key="frame" x="157" y="0.0" width="156.5" height="30"/>
+                                                        <nil key="textColor"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                    </textField>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="iYJ-Uk-2AM">
+                                        <rect key="frame" x="313.5" y="0.0" width="313.5" height="230"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="VR-0" translatesAutoresizingMaskIntoConstraints="NO" id="Lxb-3n-TOR">
+                                                <rect key="frame" x="0.0" y="0.0" width="313.5" height="200"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="DYY-eH-ZCD"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAF-ko-DuN">
+                                                <rect key="frame" x="0.0" y="200" width="313.5" height="30"/>
+                                                <state key="normal" image="player-play"/>
+                                                <connections>
+                                                    <action selector="playVideo:" destination="l2H-7C-TA1" eventType="touchUpInside" id="Je1-Q5-2eD"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
                                 </subviews>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="fEO-05-Ljz" secondAttribute="trailing" id="2oB-D2-uHg"/>
-                            <constraint firstItem="fEO-05-Ljz" firstAttribute="leading" secondItem="Cn0-9x-Bdk" secondAttribute="leadingMargin" id="HzA-Nv-WVs"/>
-                            <constraint firstItem="fEO-05-Ljz" firstAttribute="top" secondItem="gin-Pe-Hdg" secondAttribute="bottom" constant="20" id="inm-Rl-RIj"/>
+                            <constraint firstItem="BYm-IX-7Vn" firstAttribute="leading" secondItem="Cn0-9x-Bdk" secondAttribute="leadingMargin" id="UxN-hc-Zsk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BYm-IX-7Vn" secondAttribute="trailing" id="cEg-st-Wp9"/>
+                            <constraint firstItem="BYm-IX-7Vn" firstAttribute="top" secondItem="gin-Pe-Hdg" secondAttribute="bottom" constant="20" id="gz5-Go-HYC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Video" id="ToA-Ja-CSa">
@@ -372,8 +434,12 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="durationLabel" destination="Ff0-lM-nwY" id="3j3-jy-cYj"/>
                         <outlet property="languageLabel" destination="tb5-J1-iLx" id="PKG-VW-Mdq"/>
+                        <outlet property="languageView" destination="UO9-HG-M8I" id="h8H-PB-X48"/>
                         <outlet property="mediaExtLabel" destination="1Vu-Zp-bu5" id="HEH-kl-Hhk"/>
+                        <outlet property="sizeLabel" destination="BvH-uF-wx5" id="uaT-T4-Twq"/>
+                        <outlet property="snapshotImage" destination="Lxb-3n-TOR" id="XDA-ub-kIO"/>
                         <outlet property="titleLabel" destination="Wou-Ft-1cb" id="x64-xX-oe9"/>
                         <outlet property="typeLabel" destination="KK5-YO-S7J" id="0bk-ew-zZK"/>
                         <outlet property="versionLabel" destination="w7R-je-jUg" id="tyB-ff-AKH"/>
