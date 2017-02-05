@@ -89,6 +89,7 @@ extension Video : HTY360PlayerVCDelegate {
             let uuid = UUID().uuidString
             let url = sharedApplicationDocumentsDirectory.appendingPathComponent("\(uuid).png")
             try UIImagePNGRepresentation(image)?.write(to: url!)
+            self.removeSnapshot()
             self.previewURLString = url!.absoluteString
             Content.instance.updateVideo(self)
         } catch let anError {

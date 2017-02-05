@@ -92,6 +92,9 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
         
         //mediaNameLabel?.text = video.mediaURLString
         nameLabel?.text = video.name
+        nameLabel?.numberOfLines = 0;
+        nameLabel?.sizeToFit()
+        
         timeLabel?.text = video.durationInSeconds.fromSecToTime()
         versionLabel?.text = video.version
         
@@ -120,7 +123,7 @@ class EditVideosController: UICollectionViewController, UIGestureRecognizerDeleg
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         _ = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! UIVideoCollectionViewCell
         
-        let video: Video = self.videos()[indexPath.item]
+        self.video = self.videos()[indexPath.item]
         performSegue(withIdentifier: "EditVideo", sender: nil)
 
         //self.launchVideo(device: nil, url: video.mediaURL(), playerDelegate: video)

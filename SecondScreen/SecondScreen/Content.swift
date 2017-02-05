@@ -161,6 +161,7 @@ public class Content : NSObject {
         }
     }
     public func removeVideo(_ video: Video) {
+        video.removeSnapshot()
         self.videos.remove(object: video)
         video.delete()
     }
@@ -180,6 +181,7 @@ public class Content : NSObject {
         for video in self.videos {
             video.delete()
         }
+        ContentManager.instance.removeAllTempFiles()
         return self.reload()
     }
     
@@ -242,6 +244,7 @@ public extension Video {
         }
         
     }
+
     
     public func mediaURL() -> URL {
         return URL(string: self.mediaURLString!)!
@@ -253,6 +256,29 @@ public extension Video {
             return nil
         }
     }
+
+    public func previewUIImage() -> UIImage? {
+        if (self.previewURLString != nil) {
+            do {
+                return try UIImage(data: Data(contentsOf: self.previewURL()!))!
+            } catch {
+                NSLog("UI image could not be created from URL=\(self.previewURLString!)")
+            }
+        }
+        return nil
+    }
+    
+    public func removeSnapshot() {
+        if (self.previewURLString != nil) {
+            do {
+                try FileManager.default.removeItem(at: self.previewURL()!)
+            } catch {
+                NSLog("file could not be deleted. URL=\(self.previewURLString!)")
+            }
+            self.previewURLString = nil
+        }
+    }
+
     
     private func updateSizeAndDuration() {
         if (self.mediaURLString!.hasPrefix("assets-library://")) {
@@ -305,20 +331,6 @@ public extension Video {
     
     public func languageUIImage() -> UIImage? {
         return UIImage(named: (self.language)!)
-    }
-    
-    public func previewUIImage() -> UIImage? {
-        let url: URL? = self.previewURL()
-        if (url != nil) {
-            do {
-                let image: UIImage = try UIImage(data: Data(contentsOf: url!))!
-                return image
-            } catch {
-                return nil
-            }
-        } else {
-            return nil
-        }
     }
     
 }

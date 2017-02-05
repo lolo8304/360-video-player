@@ -47,17 +47,11 @@ class EditVideoViewController: UIViewController, UINavigationControllerDelegate,
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let url: URL? = self.video?.previewURL()
-        if (url != nil) {
-            var image: UIImage?
-            do {
-                image = try UIImage(data: Data(contentsOf: url!))!
-            } catch {
-                return
-            }
+        if let image = self.video!.previewUIImage() {
             DispatchQueue.main.async() { () -> Void in
                 self.snapshotImage.image = image
             }
+            
         }
     }
 
@@ -100,6 +94,19 @@ class EditVideoViewController: UIViewController, UINavigationControllerDelegate,
         return true
     }
     
+    @IBAction func deleteVideo(_ sender: UIBarButtonItem) {
+        let alert = UIAlertController(title: "Alert", message: "Do you really want to delete this video?", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.destructive, handler: { action in
+            
+            
+            Content.instance.removeVideo(self.video!)
+            
+            self.navigationController!.popViewController(animated: true)
+        }))
+        alert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
+    }
     @IBAction func playVideo(_ sender: UIButton) {
         self.launchVideo(device: nil, url: self.video!.mediaURL(), playerDelegate: self.video!)
     }

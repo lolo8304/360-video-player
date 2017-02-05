@@ -27,6 +27,34 @@ public class ContentManager : NSObject {
             return true
         }
     }
+    
+    public func removeAllTempFiles() {
+        let fileManager = FileManager.default
+        let documentsUrl =  sharedApplicationDocumentsDirectory
+        let documentsPath = documentsUrl.path
+        
+        do {
+            if let documentPath = documentsPath
+            {
+                let fileNames = try fileManager.contentsOfDirectory(atPath: "\(documentPath)")
+                print("all files in cache: \(fileNames)")
+                for fileName in fileNames {
+                    
+                    if (fileName.hasSuffix(".png"))
+                    {
+                        let filePathName = "\(documentPath)/\(fileName)"
+                        try fileManager.removeItem(atPath: filePathName)
+                    }
+                }
+                
+                let files = try fileManager.contentsOfDirectory(atPath: "\(documentPath)")
+                print("all files in cache after deleting images: \(files)")
+            }
+            
+        } catch {
+            print("Could not clear temp folder: \(error)")
+        }
+    }
 
 
 }
