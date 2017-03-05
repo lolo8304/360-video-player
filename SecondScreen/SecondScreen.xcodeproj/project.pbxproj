@@ -22,6 +22,7 @@
 		E11AFE2E1E12B0D5009C7E8F /* HTY360PlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E11AFE241E12B0D5009C7E8F /* HTY360PlayerVC.m */; };
 		E11AFE301E12B0D5009C7E8F /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE281E12B0D5009C7E8F /* Shader.fsh */; };
 		E11AFE311E12B0D5009C7E8F /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = E11AFE291E12B0D5009C7E8F /* Shader.vsh */; };
+		E11E28801E478C5D00C96F6F /* Interface.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11E287F1E478C5D00C96F6F /* Interface.swift */; };
 		E154DB751E29A63E00250A70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E154DB741E29A63E00250A70 /* AppDelegate.swift */; };
 		E154DB771E29A63E00250A70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E154DB761E29A63E00250A70 /* ViewController.swift */; };
 		E154DB7A1E29A63E00250A70 /* MainTV.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E154DB781E29A63E00250A70 /* MainTV.storyboard */; };
@@ -123,6 +124,7 @@
 		E11AFE251E12B0D5009C7E8F /* HTYGLKVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTYGLKVC.h; sourceTree = "<group>"; };
 		E11AFE281E12B0D5009C7E8F /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		E11AFE291E12B0D5009C7E8F /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		E11E287F1E478C5D00C96F6F /* Interface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interface.swift; sourceTree = "<group>"; };
 		E154DB721E29A63E00250A70 /* SecondScreenTV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecondScreenTV.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E154DB741E29A63E00250A70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E154DB761E29A63E00250A70 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -363,6 +365,7 @@
 		E1E99EF91E141C0F0055104C /* Connector */ = {
 			isa = PBXGroup;
 			children = (
+				E11E287F1E478C5D00C96F6F /* Interface.swift */,
 				E11AFE121E109544009C7E8F /* SecondScreenServer.swift */,
 				E1E99EF61E141A7D0055104C /* Connector.swift */,
 				E1A1350C1E180538003A4B24 /* Queue.swift */,
@@ -678,6 +681,7 @@
 				E1E99EF71E141A7D0055104C /* Connector.swift in Sources */,
 				E11AFE2A1E12B0D5009C7E8F /* HTYGLKVC.m in Sources */,
 				E1A1350D1E180538003A4B24 /* Queue.swift in Sources */,
+				E11E28801E478C5D00C96F6F /* Interface.swift in Sources */,
 				E1E519BC1E42452F00C798D8 /* EditVideoViewController.swift in Sources */,
 				E19F71D11E19AB4B009D7926 /* EulerianAngle.m in Sources */,
 				E1A135151E1810C0003A4B24 /* Quaternion.m in Sources */,

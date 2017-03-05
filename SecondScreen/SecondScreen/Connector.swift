@@ -54,6 +54,7 @@ public enum DevicePlayerStatus {
 }
 
 
+
 public class DevicePlayer : NSObject {
     public var device: Device
     public var name: String = ""
